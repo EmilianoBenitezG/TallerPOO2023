@@ -52,4 +52,35 @@ public class daoRoles {
 		
 		return lista;
 	}
+	
+	public boolean eliminarRoles (int ID) {
+		PreparedStatement ps = null;
+		boolean salida = true;
+		try {
+			ps=cx.conectar().prepareStatement("DELETE FROM Roles WHERE iD = ?");
+			ps.setInt(1, ID);
+			ps.executeUpdate();
+			cx.desconectar();
+		} catch (SQLException e) {
+			salida = false;
+		}
+		return salida;
+	}
+	
+	public boolean modificarRoles (Roles roles) {
+		PreparedStatement ps = null;
+		boolean salida = true;
+		try {
+			ps=cx.conectar().prepareStatement("UPDATE Roles SET Usuario = ?, Contraseña = ?, NivelAcceso = ? WHERE iD = ?");
+			ps.setString(1, roles.getUsuario().toUpperCase());
+			ps.setString(2, roles.getContraseña().toUpperCase());
+			ps.setString(3, roles.getNivelAcceso().toUpperCase());
+			ps.setInt(4, roles.getId());
+			ps.executeUpdate();
+			cx.desconectar();
+		} catch (SQLException e) {
+			salida = false;
+		}
+		return salida;
+	}
 }

@@ -29,6 +29,7 @@ public class vRoles extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JTextField txtContraseña;
+	private JLabel lblId;
 	DefaultTableModel modelo = new DefaultTableModel();
 	daoRoles dao = new daoRoles();
 	ArrayList<Roles> lista;
@@ -99,6 +100,7 @@ public class vRoles extends JFrame {
 					daoRoles daoroles = new daoRoles();
 					if(daoroles.insertarRoles(roles)) {
 						actualizarTabla();
+						limpiarCampos();
 						JOptionPane.showMessageDialog(null, "Se agrego correctamente");
 					}else {
 						JOptionPane.showMessageDialog(null, "Error al agregar rol");
@@ -117,6 +119,12 @@ public class vRoles extends JFrame {
 		
 		tblRoles = new JTable();
 		
+		lblId = new JLabel("ID");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblId.setBounds(95, 88, 28, 17);
+		//lblId.setVisible(false);
+		contentPane.add(lblId);
+		
 		tblRoles.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -124,7 +132,7 @@ public class vRoles extends JFrame {
 				int item = 0;
 				fila=tblRoles.getSelectedRow();
 				roles=lista.get(fila);
-				//lblId.setText
+				lblId.setText(String.valueOf(roles.getId()));
 				txtUsuario.setText(roles.getUsuario());
 				txtContraseña.setText(roles.getContraseña());
 				if (roles.getNivelAcceso().equals("FUNCIONARIO")) {
@@ -168,11 +176,58 @@ public class vRoles extends JFrame {
 		contentPane.add(cbxNivelAcceso);
 		
 		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(roles.getId() != 1) {
+					try {
+						String acceso = null;
+						roles.setUsuario(txtUsuario.getText());
+						roles.setContraseña(txtContraseña.getText());
+						if (cbxNivelAcceso.getSelectedIndex() == 0) {
+							acceso  = "MEDICO";
+						}else {
+							acceso = "FUNCIONARIO";
+						}
+						roles.setNivelAcceso(acceso);
+						if(dao.modificarRoles(roles)) {
+							actualizarTabla();
+							limpiarCampos();
+							JOptionPane.showMessageDialog(null, "Se modifico correctamente");
+						}else {
+							JOptionPane.showMessageDialog(null, "Error al modificar rol");
+						}
+					}catch(Exception e2){
+						JOptionPane.showMessageDialog(null, "Error");
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "No se puede modificar al rol Administrador");
+				}
+			}
+		});
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnModificar.setBounds(94, 285, 125, 36);
 		contentPane.add(btnModificar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(roles.getId() != 1) {
+					try {
+						if(dao.eliminarRoles(roles.getId())) {
+							actualizarTabla();
+							limpiarCampos();
+							JOptionPane.showMessageDialog(null, "Se elimino correctamente");
+						}else {
+							JOptionPane.showMessageDialog(null, "Error al eliminar rol");
+						}
+					}catch(Exception e2){
+						JOptionPane.showMessageDialog(null, "Error");
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "No se puede elimiar al rol Administrador");
+				}
+			}
+		});
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnEliminar.setBounds(94, 332, 125, 36);
 		contentPane.add(btnEliminar);
@@ -192,16 +247,13 @@ public class vRoles extends JFrame {
 		btnLimpiar.setBounds(94, 379, 125, 36);
 		contentPane.add(btnLimpiar);
 		
-		JLabel lblId = new JLabel("ID");
-		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblId.setBounds(95, 88, 28, 17);
-		lblId.setVisible(false);
-		contentPane.add(lblId);
+		
 	}
 	
 	private void limpiarCampos() {
 		txtUsuario.setText("");
 		txtContraseña.setText("");
+		lblId.setText("");
 	}
 	
 	public void actualizarTabla() {
