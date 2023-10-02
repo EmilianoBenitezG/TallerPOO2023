@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,11 +36,14 @@ public class vPaciente extends JFrame {
     private JTextField txtestadoCivil;
     private JTextField txtemail;
     private JTextField txtpersonaContacto;
-
+    private JLabel lblId;
+    
+    int fila=-1;
     DefaultTableModel modelo = new DefaultTableModel();
     daoPacientes dao = new daoPacientes();
     ArrayList<Paciente> lista;
     private JTable tlbPacientes;
+    Paciente paciente;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -183,8 +188,35 @@ public class vPaciente extends JFrame {
         // Boton Modificar
         JButton btnModificar = new JButton("Modificar");
         btnModificar.setFont(new Font("Tahoma", Font.BOLD, 15));
+        btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					try {
+						String acceso = null;
+						paciente.setNombre(txtnombre.getText());
+						paciente.setApellido(txtapellido.getText());
+						paciente.setFechaNacimiento(txtfechaNacimiento.getText());
+						paciente.setDomicilio(txtdomicilio.getText());
+						paciente.setDNI(txtnroDNI.getText());
+						paciente.setTelFijo(txttelFijo.getText());
+						paciente.setTelCelular(txttelCelular.getText());
+						paciente.setEstadoCivil(txtestadoCivil.getText());
+						paciente.setEmail(txtemail.getText());
+						paciente.setPersonaContacto(txtpersonaContacto.getText());
+						if(dao.modificarPacientes(paciente)) {
+							actualizarTabla();
+							limpiarCampos();
+							JOptionPane.showMessageDialog(null, "Se modifico correctamente");
+						}else {
+							JOptionPane.showMessageDialog(null, "Error al modificar paciente");
+						}
+					}catch (Exception e2) {
+			            JOptionPane.showMessageDialog(null, "Error al modificar paciente: " + e2.getMessage());
+			        }
+			}
+		});
         btnModificar.setBounds(25, 479, 125, 36);
         contentPane.add(btnModificar);
+        
 
         // Boton agregar
         JButton btnAgregar = new JButton("Agregar");
@@ -222,7 +254,37 @@ public class vPaciente extends JFrame {
         scrollPane.setBounds(426, 11, 583, 504);
         contentPane.add(scrollPane);
 
+        
         tlbPacientes = new JTable();
+        
+        lblId = new JLabel("ID");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblId.setBounds(95, 88, 28, 17);
+		//lblId.setVisible(false);
+		contentPane.add(lblId);
+		
+		tlbPacientes.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int item = 0;
+				fila=tlbPacientes.getSelectedRow();
+				paciente=lista.get(fila);
+				lblId.setText(String.valueOf(paciente.getId()));
+				txtnombre.setText(paciente.getNombre());
+				txtapellido.setText(paciente.getApellido());
+				txtfechaNacimiento.setText(paciente.getFechaNacimiento());
+				txtdomicilio.setText(paciente.getDomicilio());
+				txtnroDNI.setText(paciente.getDNI());
+				txttelFijo.setText(paciente.getTelFijo());
+				txttelCelular.setText(paciente.getTelCelular());
+				txtestadoCivil.setText(paciente.getEstadoCivil());
+				txtemail.setText(paciente.getEmail());
+				txtpersonaContacto.setText(paciente.getPersonaContacto());
+			}
+			
+		});
+		
         tlbPacientes.setModel(new DefaultTableModel(
                 new Object[][] {
                         {null, null, null, null, null, null, null, null, null, null},
@@ -248,7 +310,6 @@ public class vPaciente extends JFrame {
     }
 
     public void actualizarTabla() {
-        // Limpia los registros antes de volver a crearlos
         modelo.setRowCount(0);
 
         lista = dao.ConsultaPacientes();
@@ -269,4 +330,18 @@ public class vPaciente extends JFrame {
         }
         tlbPacientes.setModel(modelo);
     }
+    
+    private void limpiarCampos() {
+    	txtnombre.setText("");
+    	txtapellido.setText("");
+    	txtfechaNacimiento.setText("");
+    	txtdomicilio.setText("");
+    	txtnroDNI.setText("");
+    	txttelFijo.setText("");
+    	txttelCelular.setText("");
+    	txtestadoCivil.setText("");
+    	txtemail.setText("");
+    	txtpersonaContacto.setText("");
+		lblId.setText("");
+	}
 }

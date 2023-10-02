@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import conexion.Conexion;
 import modelo.Paciente;
+import modelo.Roles;
 
 // Importaciones omitidas para brevedad...
 
@@ -70,10 +71,34 @@ public class daoPacientes {
             }
             cx.desconectar();
         } catch (SQLException e) {
-            // Agregamos un mensaje de error más detallado
             System.err.println("Error al consultar pacientes: " + e.getMessage());
         }
         return lista;
     }
+    
+    public boolean modificarPacientes (Paciente paciente) {
+		PreparedStatement ps = null;
+		boolean salida = true;
+		try {
+			ps=cx.conectar().prepareStatement("UPDATE Pacientes SET nombre = ?, apellido = ?, fechaNacimiento = ?, domicilio = ?, DNI = ?, telFijo = ?, telCelular = ?, estadoCivil = ?, email = ?, personaContacto = ? WHERE iD = ?");
+			ps.setString(1, paciente.getNombre().toUpperCase());
+            ps.setString(2, paciente.getApellido().toUpperCase());
+            ps.setString(3, paciente.getFechaNacimiento().toUpperCase());
+            ps.setString(4, paciente.getDomicilio().toUpperCase());
+            ps.setString(5, paciente.getDNI().toUpperCase());
+            ps.setString(6, paciente.getTelFijo().toUpperCase());
+            ps.setString(7, paciente.getTelCelular().toUpperCase());
+            ps.setString(8, paciente.getEstadoCivil().toUpperCase());
+            ps.setString(9, paciente.getEmail().toUpperCase());
+            ps.setString(10, paciente.getPersonaContacto().toUpperCase());
+            ps.setInt(11, paciente.getId());
+            ps.executeUpdate();
+			cx.desconectar();
+		} catch (SQLException e) {
+			salida = false;
+			e.printStackTrace();
+		}
+		return salida;
+	}
 }
 
