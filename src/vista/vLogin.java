@@ -5,11 +5,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dao.daoLogin;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Window.Type;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class vLogin extends JFrame {
 
@@ -17,6 +24,8 @@ public class vLogin extends JFrame {
 	private final JLabel lblTitulo = new JLabel("Sistema de Triaje");
 	private JTextField txtUsuario;
 	private JTextField txtContraseña;
+	daoLogin dao = new daoLogin();
+	menuPrincipal menuPrincipal = new menuPrincipal();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,9 +74,34 @@ public class vLogin extends JFrame {
 		contentPane.add(txtContraseña);
 		
 		JButton btnIngresar = new JButton("INGRESAR");
+		btnIngresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!txtUsuario.getText().isEmpty() && !txtContraseña.getText().isEmpty()) {
+					String rol = dao.login(txtUsuario.getText().toUpperCase(), txtContraseña.getText().toUpperCase());
+					if (!rol.isEmpty()) {
+						//abro ventana principal
+						menuPrincipal.setVisible(true);
+						//cierro ventana login
+						vLogin.this.dispose();
+					}else {
+						limpiarCampos();
+						JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta");
+					}
+				}else {
+					limpiarCampos();
+					JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
+				}
+			}
+
+		});
 		btnIngresar.setFont(new Font("Source Sans Pro SemiBold", Font.BOLD, 15));
 		btnIngresar.setBounds(370, 314, 122, 31);
 		contentPane.add(btnIngresar);
 		setLocationRelativeTo(null);
+	}
+	
+	private void limpiarCampos() {
+		txtUsuario.setText("");
+		txtContraseña.setText("");
 	}
 }
