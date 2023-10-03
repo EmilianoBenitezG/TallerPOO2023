@@ -183,7 +183,31 @@ public class vPaciente extends JFrame {
         lblPersonaContacto.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lblPersonaContacto.setBounds(25, 435, 150, 17);
         contentPane.add(lblPersonaContacto);
+        
+     // Campo de filtro de DNI
+        JTextField txtFiltroDNI = new JTextField();
+        txtFiltroDNI.setColumns(10);
+        txtFiltroDNI.setBounds(640, 11, 203, 28);
+        contentPane.add(txtFiltroDNI);
 
+        // Botón de búsqueda por DNI
+        JButton btnBuscarPorDNI = new JButton("Buscar");
+        btnBuscarPorDNI.setFont(new Font("Tahoma", Font.BOLD, 15));
+        btnBuscarPorDNI.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String filtroDNI = txtFiltroDNI.getText().trim();
+                if (!filtroDNI.isEmpty()) {
+                    buscarPorDNI(filtroDNI);
+                    
+                } else {
+                	actualizarTabla();
+                }
+            }
+        });
+        btnBuscarPorDNI.setBounds(850, 11, 125, 28);
+        contentPane.add(btnBuscarPorDNI);
+
+        
         // Botones en pantalla
         // Boton Modificar
         JButton btnModificar = new JButton("Modificar");
@@ -214,7 +238,7 @@ public class vPaciente extends JFrame {
 			        }
 			}
 		});
-        btnModificar.setBounds(25, 479, 125, 36);
+        btnModificar.setBounds(25, 479, 125, 28);
         contentPane.add(btnModificar);
         
 
@@ -239,6 +263,7 @@ public class vPaciente extends JFrame {
                     if (daopacientes.insertarPacientes(paciente)) {
                         actualizarTabla();
                         JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+                        limpiarCampos();
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al agregar paciente");
                     }
@@ -247,11 +272,11 @@ public class vPaciente extends JFrame {
                 }
             }
         });
-        btnAgregar.setBounds(178, 479, 125, 36);
+        btnAgregar.setBounds(178, 479, 125, 28);
         contentPane.add(btnAgregar);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(426, 11, 583, 504);
+        scrollPane.setBounds(426, 46, 583, 469);
         contentPane.add(scrollPane);
 
         
@@ -260,7 +285,7 @@ public class vPaciente extends JFrame {
         lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblId.setBounds(95, 88, 28, 17);
-		//lblId.setVisible(false);
+		lblId.setVisible(false);
 		contentPane.add(lblId);
 		
 		tlbPacientes.addMouseListener(new MouseAdapter() {
@@ -344,4 +369,33 @@ public class vPaciente extends JFrame {
     	txtpersonaContacto.setText("");
 		lblId.setText("");
 	}
+    
+    private void buscarPorDNI(String dni) {
+        modelo.setRowCount(0);
+
+        ArrayList<Paciente> pacientesFiltrados = dao.buscarPacientesPorDNI(dni);
+
+        if (pacientesFiltrados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se encontraron pacientes con ese DNI");
+            return;
+        }
+
+        for (Paciente u : pacientesFiltrados) {
+            Object paciente[] = new Object[10];
+            paciente[0] = u.getNombre();
+            paciente[1] = u.getApellido();
+            paciente[2] = u.getFechaNacimiento();
+            paciente[3] = u.getDomicilio();
+            paciente[4] = u.getDNI();
+            paciente[5] = u.getTelFijo();
+            paciente[6] = u.getTelCelular();
+            paciente[7] = u.getEstadoCivil();
+            paciente[8] = u.getEmail();
+            paciente[9] = u.getPersonaContacto();
+            modelo.addRow(paciente);
+        }
+
+        tlbPacientes.setModel(modelo);
+    }
+
 }
