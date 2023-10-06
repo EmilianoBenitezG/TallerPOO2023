@@ -1,13 +1,13 @@
 package modelo;
 
-public class Roles {
+public class Usuario {
 	int id;
-	String usuario,contraseña,nivelAcceso;
+	String usuario,contraseña;
+	private Rol rol;
 	
-	//constructor por defecto
-	public Roles() {
+	public Usuario() {
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -32,12 +32,11 @@ public class Roles {
 		this.contraseña = contraseña;
 	}
 
-	public String getNivelAcceso() {
-		return nivelAcceso;
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setNivelAcceso(String nivelAcceso) {
-		this.nivelAcceso = nivelAcceso;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
-	
 }

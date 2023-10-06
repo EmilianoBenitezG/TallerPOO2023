@@ -17,26 +17,27 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import modelo.Roles;
-import dao.daoRoles;
-import javax.swing.JSeparator;
+
+import modelo.Usuario;
+import modelo.Rol;
+import dao.daoUsuario;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class vRoles extends JFrame {
+public class vUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JTextField txtContraseña;
 	private JLabel lblId;
 	DefaultTableModel modelo = new DefaultTableModel();
-	daoRoles dao = new daoRoles();
-	ArrayList<Roles> lista;
+	daoUsuario dao = new daoUsuario();
+	ArrayList<Usuario> lista;
 	private JTable tblRoles;
-	private JComboBox cbxNivelAcceso;
+	private JComboBox cbxNombreRol;
 	int fila=-1;
-	Roles roles = new Roles();
+	Usuario usuario = new Usuario();
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +45,7 @@ public class vRoles extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vRoles frame = new vRoles();
+					vUsuario frame = new vUsuario();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +57,7 @@ public class vRoles extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public vRoles() {
+	public vUsuario() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 853, 471);
@@ -93,12 +94,15 @@ public class vRoles extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Roles roles = new Roles();
-					roles.setUsuario(txtUsuario.getText());
-					roles.setContraseña(txtContraseña.getText());
-					roles.setNivelAcceso(cbxNivelAcceso.getSelectedItem().toString());
-					daoRoles daoroles = new daoRoles();
-					if(daoroles.insertarRoles(roles)) {
+					Usuario usuario = new Usuario();
+					usuario.setUsuario(txtUsuario.getText());
+					usuario.setContraseña(txtContraseña.getText());
+					Integer idRol = cbxNombreRol.getSelectedIndex();
+					String nombreRol = cbxNombreRol.getSelectedItem().toString();
+					Rol rol = new Rol(idRol,nombreRol);
+					usuario.setRol(rol);
+					daoUsuario daousuario = new daoUsuario();
+					if(daousuario.insertarUsuario(usuario)) {
 						actualizarTabla();
 						limpiarCampos();
 						JOptionPane.showMessageDialog(null, "Se agrego correctamente");
@@ -131,14 +135,14 @@ public class vRoles extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int item = 0;
 				fila=tblRoles.getSelectedRow();
-				roles=lista.get(fila);
-				lblId.setText(String.valueOf(roles.getId()));
-				txtUsuario.setText(roles.getUsuario());
-				txtContraseña.setText(roles.getContraseña());
-				if (roles.getNivelAcceso().equals("FUNCIONARIO")) {
+				usuario=lista.get(fila);
+				lblId.setText(String.valueOf(usuario.getId()));
+				txtUsuario.setText(usuario.getUsuario());
+				txtContraseña.setText(usuario.getContraseña());
+				if (usuario.getRol().getNombreRol().equals("FUNCIONARIO")) {
 					item = 1;
 				}
-				cbxNivelAcceso.setSelectedIndex(item);
+				cbxNombreRol.setSelectedIndex(item);
 			}
 			
 		});
@@ -164,32 +168,29 @@ public class vRoles extends JFrame {
 		modelo.addColumn("Nivel de Acceso");
 		actualizarTabla();
 		setLocationRelativeTo(null);
-		JLabel lblNivelAcceso = new JLabel("Nivel de Acceso:\r\n");
-		lblNivelAcceso.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNivelAcceso.setBounds(10, 206, 134, 14);
-		contentPane.add(lblNivelAcceso);
+		JLabel lblRol = new JLabel("Rol:\r\n");
+		lblRol.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblRol.setBounds(105, 205, 85, 17);
+		contentPane.add(lblRol);
 		
-		cbxNivelAcceso = new JComboBox();
-		cbxNivelAcceso.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbxNivelAcceso.setModel(new DefaultComboBoxModel(new String[] {"Medico", "Funcionario"}));
-		cbxNivelAcceso.setBounds(144, 199, 156, 28);
-		contentPane.add(cbxNivelAcceso);
+		cbxNombreRol = new JComboBox();
+		cbxNombreRol.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		cbxNombreRol.setModel(new DefaultComboBoxModel(new String[] {"Medico", "Funcionario"}));
+		cbxNombreRol.setBounds(144, 199, 156, 28);
+		contentPane.add(cbxNombreRol);
 		
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(roles.getId() != 1) {
+				if(usuario.getId() != 1) {
 					try {
-						String acceso = null;
-						roles.setUsuario(txtUsuario.getText());
-						roles.setContraseña(txtContraseña.getText());
-						if (cbxNivelAcceso.getSelectedIndex() == 0) {
-							acceso  = "MEDICO";
-						}else {
-							acceso = "FUNCIONARIO";
-						}
-						roles.setNivelAcceso(acceso);
-						if(dao.modificarRoles(roles)) {
+						usuario.setUsuario(txtUsuario.getText());
+						usuario.setContraseña(txtContraseña.getText());
+						Integer idRol = cbxNombreRol.getSelectedIndex();
+						String nombreRol = cbxNombreRol.getSelectedItem().toString();
+						Rol rol = new Rol(idRol,nombreRol);
+						usuario.setRol(rol);
+						if(dao.modificarUsuario(usuario)) {
 							actualizarTabla();
 							limpiarCampos();
 							JOptionPane.showMessageDialog(null, "Se modifico correctamente");
@@ -211,9 +212,9 @@ public class vRoles extends JFrame {
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(roles.getId() != 1) {
+				if(usuario.getId() != 1) {
 					try {
-						if(dao.eliminarRoles(roles.getId())) {
+						if(dao.eliminarUsuario(usuario.getId())) {
 							actualizarTabla();
 							limpiarCampos();
 							JOptionPane.showMessageDialog(null, "Se elimino correctamente");
@@ -232,9 +233,9 @@ public class vRoles extends JFrame {
 		btnEliminar.setBounds(94, 332, 125, 36);
 		contentPane.add(btnEliminar);
 		
-		JLabel lblRoles = new JLabel("Roles");
+		JLabel lblRoles = new JLabel("Usuarios");
 		lblRoles.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
-		lblRoles.setBounds(362, 29, 103, 51);
+		lblRoles.setBounds(352, 29, 156, 51);
 		contentPane.add(lblRoles);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
@@ -262,14 +263,14 @@ public class vRoles extends JFrame {
 			modelo.removeRow(0);
 		}
 		
-		lista=dao.ConsultaRoles();
+		lista=dao.ConsultaUsuario();
 		
-		for (Roles u:lista) {
-			Object roles[]= new Object[3];
-			roles[0]=u.getUsuario();
-			roles[1]=u.getContraseña();
-			roles[2]=u.getNivelAcceso();
-			modelo.addRow(roles);
+		for (Usuario u:lista) {
+			Object usuario[]= new Object[3];
+			usuario[0]=u.getUsuario();
+			usuario[1]=u.getContraseña();
+			usuario[2]=u.getRol().getNombreRol();
+			modelo.addRow(usuario);
 		}
 		tblRoles.setModel(modelo);
 	}

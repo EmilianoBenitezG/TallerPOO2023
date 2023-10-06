@@ -23,7 +23,7 @@ public class daoLogin {
 			ps.setString(2, contraseña);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				rol = rs.getString("NivelAcceso");
+				rol = rs.getString("nombreRol");
 			}
 		} catch (SQLException e) {
 			
