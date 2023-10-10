@@ -72,124 +72,124 @@ public class vPaciente extends JFrame {
 
         JLabel lblPacientes = new JLabel("Pacientes");
         lblPacientes.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
-        lblPacientes.setBounds(24, 11, 178, 51);
+        lblPacientes.setBounds(100, 13, 178, 33);
         contentPane.add(lblPacientes);
 
         // Campos de ingreso de datos
         // Nombre
         txtnombre = new JTextField();
-        txtnombre.setBounds(196, 79, 203, 28);
+        txtnombre.setBounds(200, 80, 170, 22);
         contentPane.add(txtnombre);
         txtnombre.setColumns(10);
 
         JLabel lblNombre = new JLabel("Nombre: ");
         lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblNombre.setBounds(24, 85, 81, 17);
+        lblNombre.setBounds(25, 83, 81, 22);
         contentPane.add(lblNombre);
 
         // Apellido
         txtapellido = new JTextField();
         txtapellido.setColumns(10);
-        txtapellido.setBounds(196, 118, 203, 28);
+        txtapellido.setBounds(200, 113, 170, 22);
         contentPane.add(txtapellido);
 
         JLabel lblApellido = new JLabel("Apellido: ");
         lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblApellido.setBounds(24, 121, 81, 17);
+        lblApellido.setBounds(25, 116, 81, 22);
         contentPane.add(lblApellido);
 
         // Fecha de nacimiento
         txtfechaNacimiento = new JTextField();
         txtfechaNacimiento.setColumns(10);
-        txtfechaNacimiento.setBounds(196, 157, 203, 28);
+        txtfechaNacimiento.setBounds(200, 146, 170, 22);
         contentPane.add(txtfechaNacimiento);
 
         JLabel lblfechaNacimiento = new JLabel("Fecha de nacimiento: ");
         lblfechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblfechaNacimiento.setBounds(24, 157, 178, 14);
+        lblfechaNacimiento.setBounds(25, 149, 178, 22);
         contentPane.add(lblfechaNacimiento);
 
         // Domicilio
         txtdomicilio = new JTextField();
         txtdomicilio.setColumns(10);
-        txtdomicilio.setBounds(196, 196, 203, 28);
+        txtdomicilio.setBounds(200, 179, 170, 22);
         contentPane.add(txtdomicilio);
 
         JLabel lblDomicilio = new JLabel("Domicilio: ");
         lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblDomicilio.setBounds(24, 203, 134, 14);
+        lblDomicilio.setBounds(25, 182, 134, 22);
         contentPane.add(lblDomicilio);
 
         // DNI
         txtnroDNI = new JTextField();
         txtnroDNI.setColumns(10);
-        txtnroDNI.setBounds(196, 235, 203, 28);
+        txtnroDNI.setBounds(200, 212, 170, 22);
         contentPane.add(txtnroDNI);
 
         JLabel lblDni = new JLabel("DNI: ");
         lblDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblDni.setBounds(24, 241, 71, 17);
+        lblDni.setBounds(25, 214, 71, 22);
         contentPane.add(lblDni);
 
         // Tel fijo
         txttelFijo = new JTextField();
         txttelFijo.setColumns(10);
-        txttelFijo.setBounds(196, 272, 203, 28);
+        txttelFijo.setBounds(200, 245, 170, 22);
         contentPane.add(txttelFijo);
 
         JLabel lblTelFijo = new JLabel("Tel Fijo: ");
         lblTelFijo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblTelFijo.setBounds(24, 278, 71, 17);
+        lblTelFijo.setBounds(25, 247, 71, 22);
         contentPane.add(lblTelFijo);
 
         // Tel celular
         txttelCelular = new JTextField();
         txttelCelular.setColumns(10);
-        txttelCelular.setBounds(196, 311, 203, 28);
+        txttelCelular.setBounds(200, 278, 170, 22);
         contentPane.add(txttelCelular);
 
         JLabel lblTelCelular = new JLabel("Tel Celular: ");
         lblTelCelular.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblTelCelular.setBounds(24, 317, 95, 17);
+        lblTelCelular.setBounds(25, 280, 95, 22);
         contentPane.add(lblTelCelular);
 
         // Estado civil
         txtestadoCivil = new JTextField();
         txtestadoCivil.setColumns(10);
-        txtestadoCivil.setBounds(196, 350, 203, 28);
+        txtestadoCivil.setBounds(200, 311, 170, 22);
         contentPane.add(txtestadoCivil);
 
         JLabel lblEstadoCivil = new JLabel("Estado civil: ");
         lblEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblEstadoCivil.setBounds(25, 356, 110, 17);
+        lblEstadoCivil.setBounds(25, 313, 110, 22);
         contentPane.add(lblEstadoCivil);
 
         // Email
         txtemail = new JTextField();
         txtemail.setColumns(10);
-        txtemail.setBounds(196, 389, 203, 28);
+        txtemail.setBounds(200, 346, 170, 22);
         contentPane.add(txtemail);
 
         JLabel lblEmail = new JLabel("Email: ");
         lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblEmail.setBounds(24, 395, 71, 17);
+        lblEmail.setBounds(25, 346, 71, 22);
         contentPane.add(lblEmail);
 
         // Persona de contacto
         txtpersonaContacto = new JTextField();
         txtpersonaContacto.setColumns(10);
-        txtpersonaContacto.setBounds(196, 429, 203, 28);
+        txtpersonaContacto.setBounds(200, 379, 170, 22);
         contentPane.add(txtpersonaContacto);
 
         JLabel lblPersonaContacto = new JLabel("Persona Contacto: ");
         lblPersonaContacto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblPersonaContacto.setBounds(25, 435, 150, 17);
+        lblPersonaContacto.setBounds(25, 379, 150, 22);
         contentPane.add(lblPersonaContacto);
         
      // Campo de filtro de DNI
         JTextField txtFiltroDNI = new JTextField();
         txtFiltroDNI.setColumns(10);
-        txtFiltroDNI.setBounds(640, 11, 203, 28);
+        txtFiltroDNI.setBounds(521, 13, 203, 22);
         contentPane.add(txtFiltroDNI);
 
         // Botón de búsqueda por DNI
@@ -206,13 +206,13 @@ public class vPaciente extends JFrame {
                 }
             }
         });
-        btnBuscarPorDNI.setBounds(850, 11, 125, 28);
+        btnBuscarPorDNI.setBounds(734, 13, 125, 22);
         contentPane.add(btnBuscarPorDNI);
         
         // Checkbox para el estado "vivo/muerto"
         chkEstado = new JCheckBox("¿Está vivo?");
         chkEstado.setFont(new Font("Tahoma", Font.BOLD, 15));
-        chkEstado.setBounds(291, 479, 125, 28);
+        chkEstado.setBounds(134, 437, 125, 22);
         contentPane.add(chkEstado);
         
         // Botones en pantalla
@@ -248,7 +248,7 @@ public class vPaciente extends JFrame {
                 }
             }
         });
-        btnModificar.setBounds(25, 479, 125, 28);
+        btnModificar.setBounds(50, 479, 125, 22);
         contentPane.add(btnModificar);
         
 
@@ -258,37 +258,44 @@ public class vPaciente extends JFrame {
         btnAgregar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Paciente paciente = new Paciente();
-                    paciente.setNombre(txtnombre.getText());
-                    paciente.setApellido(txtapellido.getText());
-                    paciente.setFechaNacimiento(txtfechaNacimiento.getText());
-                    paciente.setDomicilio(txtdomicilio.getText());
-                    paciente.setDNI(txtnroDNI.getText());
-                    paciente.setTelFijo(txttelFijo.getText());
-                    paciente.setTelCelular(txttelCelular.getText());
-                    paciente.setEstadoCivil(txtestadoCivil.getText());
-                    paciente.setEmail(txtemail.getText());
-                    paciente.setPersonaContacto(txtpersonaContacto.getText());
-                    boolean estaVivo = chkEstado.isSelected(); // Obtener el estado del checkbox
-                    paciente.setEstado(estaVivo);
-                    if (dao.insertarPacientes(paciente)) {
-                        actualizarTabla();
-                        JOptionPane.showMessageDialog(null, "Se agregó correctamente");
-                        limpiarCampos();
+                    String dni = txtnroDNI.getText().trim();
+                    // Verificar si el DNI ya existe en la base de datos
+                    if (!dao.existePacienteConDNI(dni)) {
+                        Paciente paciente = new Paciente();
+                        paciente.setNombre(txtnombre.getText());
+                        paciente.setApellido(txtapellido.getText());
+                        paciente.setFechaNacimiento(txtfechaNacimiento.getText());
+                        paciente.setDomicilio(txtdomicilio.getText());
+                        paciente.setDNI(dni);
+                        paciente.setTelFijo(txttelFijo.getText());
+                        paciente.setTelCelular(txttelCelular.getText());
+                        paciente.setEstadoCivil(txtestadoCivil.getText());
+                        paciente.setEmail(txtemail.getText());
+                        paciente.setPersonaContacto(txtpersonaContacto.getText());
+                        boolean estaVivo = chkEstado.isSelected();
+                        paciente.setEstado(estaVivo);
+                        
+                        if (dao.insertarPacientes(paciente)) {
+                            actualizarTabla();
+                            JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+                            limpiarCampos();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error al agregar paciente");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error al agregar paciente");
+                        JOptionPane.showMessageDialog(null, "El paciente con este DNI ya existe en la base de datos.");
                     }
                 } catch (Exception e2) {
-                    e2.printStackTrace(); // Imprimir el mensaje de excepción en la consola
-                    JOptionPane.showMessageDialog(null, "Error: " + e2.getMessage()); // Mostrar un mensaje de error con el detalle de la excepción
+                    e2.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error: " + e2.getMessage());
                 }
             }
         });
-        btnAgregar.setBounds(160, 479, 125, 28);
+        btnAgregar.setBounds(196, 479, 125, 22);
         contentPane.add(btnAgregar);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(426, 46, 583, 469);
+        scrollPane.setBounds(380, 46, 629, 469);
         contentPane.add(scrollPane);
 
         
@@ -296,7 +303,7 @@ public class vPaciente extends JFrame {
         
         lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblId.setBounds(95, 88, 28, 17);
+		lblId.setBounds(25, 50, 28, 22);
 		lblId.setVisible(false);
 		contentPane.add(lblId);
 		
@@ -332,6 +339,11 @@ public class vPaciente extends JFrame {
                 }
         ));
         scrollPane.setViewportView(tlbPacientes);
+        
+        JLabel lblBuscarPorDni = new JLabel("Buscar por DNI:");
+        lblBuscarPorDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lblBuscarPorDni.setBounds(380, 13, 150, 22);
+        contentPane.add(lblBuscarPorDni);
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Fecha de nacimiento");
@@ -364,7 +376,7 @@ public class vPaciente extends JFrame {
             pacientes[7] = u.getEstadoCivil();
             pacientes[8] = u.getEmail();
             pacientes[9] = u.getPersonaContacto();
-            pacientes[10] = u.isEstado() ? "Vivo" : "Muerto";
+            pacientes[10] = u.isEstado() ? "Vivo" : "Fallecido";
             modelo.addRow(pacientes);
         }
         tlbPacientes.setModel(modelo);
@@ -412,5 +424,4 @@ public class vPaciente extends JFrame {
 
         tlbPacientes.setModel(modelo);
     }
-
 }

@@ -149,6 +149,34 @@ public class daoPacientes {
         }
         return lista;
     }
+    
+    public boolean existePacienteConDNI(String dni) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean existe = false;
+        
+        try {
+            ps = cx.conectar().prepareStatement("SELECT COUNT(*) FROM Pacientes WHERE DNI = ?");
+            ps.setString(1, dni.toUpperCase());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                existe = (count > 0);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar si existe el paciente con DNI: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+            cx.desconectar();
+        }
+        return existe;
+    }
+
 }
 
 
