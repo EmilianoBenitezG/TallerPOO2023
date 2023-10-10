@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import conexion.Conexion;
 import modelo.Paciente;
 
-// Importaciones omitidas para brevedad...
-
 public class daoPacientes {
     private Conexion cx;
 
@@ -19,9 +17,9 @@ public class daoPacientes {
 
     public boolean insertarPacientes(Paciente paciente) {
         PreparedStatement ps = null;
-        boolean salida = false;  // Cambiamos a false inicialmente
+        boolean salida = false;
         try {
-            ps = cx.conectar().prepareStatement("INSERT INTO Pacientes (Nombre, Apellido, FechaNacimiento, Domicilio, DNI, TelFijo, TelCelular, EstadoCivil, Email, PersonaContacto) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            ps = cx.conectar().prepareStatement("INSERT INTO Pacientes (Nombre, Apellido, FechaNacimiento, Domicilio, DNI, TelFijo, TelCelular, EstadoCivil, Email, PersonaContacto, Estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, paciente.getNombre().toUpperCase());
             ps.setString(2, paciente.getApellido().toUpperCase());
             ps.setString(3, paciente.getFechaNacimiento().toUpperCase());
@@ -32,6 +30,8 @@ public class daoPacientes {
             ps.setString(8, paciente.getEstadoCivil().toUpperCase());
             ps.setString(9, paciente.getEmail().toUpperCase());
             ps.setString(10, paciente.getPersonaContacto().toUpperCase());
+            int estaVivo = paciente.isEstado() ? 1 : 0;
+            ps.setInt(11, estaVivo);
             int resultado = ps.executeUpdate();
 
             if (resultado > 0) {
@@ -66,6 +66,7 @@ public class daoPacientes {
                 paciente.setEstadoCivil(rs.getString("EstadoCivil"));
                 paciente.setEmail(rs.getString("Email"));
                 paciente.setPersonaContacto(rs.getString("PersonaContacto"));
+                paciente.setEstado(rs.getInt("Estado") == 1); // Convertir el valor entero en booleano
                 lista.add(paciente);
             }
             cx.desconectar();
@@ -74,13 +75,13 @@ public class daoPacientes {
         }
         return lista;
     }
-    
-    public boolean modificarPacientes (Paciente paciente) {
-		PreparedStatement ps = null;
-		boolean salida = true;
-		try {
-			ps=cx.conectar().prepareStatement("UPDATE Pacientes SET nombre = ?, apellido = ?, fechaNacimiento = ?, domicilio = ?, DNI = ?, telFijo = ?, telCelular = ?, estadoCivil = ?, email = ?, personaContacto = ? WHERE iD = ?");
-			ps.setString(1, paciente.getNombre().toUpperCase());
+
+    public boolean modificarPacientes(Paciente paciente) {
+        PreparedStatement ps = null;
+        boolean salida = false;
+        try {
+            ps = cx.conectar().prepareStatement("UPDATE Pacientes SET Nombre=?, Apellido=?, FechaNacimiento=?, Domicilio=?, DNI=?, TelFijo=?, TelCelular=?, EstadoCivil=?, Email=?, PersonaContacto=?, Estado=? WHERE ID=?");
+            ps.setString(1, paciente.getNombre().toUpperCase());
             ps.setString(2, paciente.getApellido().toUpperCase());
             ps.setString(3, paciente.getFechaNacimiento().toUpperCase());
             ps.setString(4, paciente.getDomicilio().toUpperCase());
@@ -90,16 +91,23 @@ public class daoPacientes {
             ps.setString(8, paciente.getEstadoCivil().toUpperCase());
             ps.setString(9, paciente.getEmail().toUpperCase());
             ps.setString(10, paciente.getPersonaContacto().toUpperCase());
-            ps.setInt(11, paciente.getId());
-            ps.executeUpdate();
-			cx.desconectar();
-		} catch (SQLException e) {
-			salida = false;
-			e.printStackTrace();
-		}
-		return salida;
-	}
-    
+            int estaVivo = paciente.isEstado() ? 1 : 0;
+            ps.setInt(11, estaVivo);
+            ps.setInt(12, paciente.getId());
+
+            int resultado = ps.executeUpdate();
+
+            if (resultado > 0) {
+                salida = true;
+            }
+
+            cx.desconectar();
+        } catch (SQLException e) {
+            System.err.println("Error al modificar paciente: " + e.getMessage());
+        }
+        return salida;
+    }
+
     public ArrayList<Paciente> buscarPacientesPorDNI(String dni) {
         ArrayList<Paciente> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -124,6 +132,7 @@ public class daoPacientes {
                 paciente.setEstadoCivil(rs.getString("EstadoCivil"));
                 paciente.setEmail(rs.getString("Email"));
                 paciente.setPersonaContacto(rs.getString("PersonaContacto"));
+                paciente.setEstado(rs.getInt("Estado") == 1); // Convertir el valor entero en booleano
                 lista.add(paciente);
             }
         } catch (SQLException e) {
@@ -140,6 +149,6 @@ public class daoPacientes {
         }
         return lista;
     }
-
 }
+
 

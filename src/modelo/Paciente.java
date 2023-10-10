@@ -4,17 +4,19 @@ public class Paciente extends Persona{
 	
 	private int id;
 	private String personaContacto;
+	private boolean estado;
 	
 	public Paciente(String nombre, String apellido, 
             		String fechaNacimiento, String domicilio, 
             		String DNI, String telFijo, 
             		String telCelular, String estadoCivil, String email,
-            		String personaContacto) {
+            		String personaContacto, boolean estado) {
 		super(nombre, apellido, fechaNacimiento, 
 			  domicilio, DNI, telFijo, telCelular, 
 			  estadoCivil, email);
 		this.id = -1;
 		this.personaContacto = personaContacto;
+		this.setEstado(estado);
 	}
 
 	public Paciente() {
@@ -34,6 +36,14 @@ public class Paciente extends Persona{
 
 	public void setPersonaContacto(String personaContacto) {
 		this.personaContacto = personaContacto;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 }
