@@ -18,12 +18,12 @@ public class daoLogin {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps=cx.conectar().prepareStatement("SELECT * FROM Roles WHERE UPPER(usuario) = ? AND UPPER(contraseña) = ?");
+			ps=cx.conectar().prepareStatement("SELECT * FROM Usuario WHERE UPPER(usuario) = ? AND UPPER(contraseña) = ?");
 			ps.setString(1, usuario);
 			ps.setString(2, contraseña);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				rol = rs.getString("nombreRol");
+				rol = rs.getString("idRol");
 			}
 		} catch (SQLException e) {
 			

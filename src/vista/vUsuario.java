@@ -24,6 +24,7 @@ import dao.daoUsuario;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ListSelectionModel;
 
 public class vUsuario extends JFrame {
 
@@ -31,7 +32,14 @@ public class vUsuario extends JFrame {
 	private JTextField txtUsuario;
 	private JTextField txtContraseña;
 	private JLabel lblId;
-	DefaultTableModel modelo = new DefaultTableModel();
+	String[] columnNames = {"Usuario", "Contraseña", "Nivel acceso"};
+	Object[][] data = {};
+	 DefaultTableModel modelo = new DefaultTableModel(data, columnNames) {
+         @Override
+         public boolean isCellEditable(int row, int col) {
+             return false;
+         }
+     };
 	daoUsuario dao = new daoUsuario();
 	ArrayList<Usuario> lista;
 	private JTable tblRoles;
@@ -122,11 +130,12 @@ public class vUsuario extends JFrame {
 		contentPane.add(scrollPane);
 		
 		tblRoles = new JTable();
+		tblRoles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblId.setBounds(95, 88, 28, 17);
-		//lblId.setVisible(false);
+		lblId.setVisible(false);
 		contentPane.add(lblId);
 		
 		tblRoles.addMouseListener(new MouseAdapter() {
@@ -163,9 +172,6 @@ public class vUsuario extends JFrame {
 			}
 		));
 		scrollPane.setViewportView(tblRoles);
-		modelo.addColumn("Usuario");
-		modelo.addColumn("Contraseña");
-		modelo.addColumn("Nivel de Acceso");
 		actualizarTabla();
 		setLocationRelativeTo(null);
 		JLabel lblRol = new JLabel("Rol:\r\n");
@@ -247,6 +253,16 @@ public class vUsuario extends JFrame {
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnLimpiar.setBounds(94, 379, 125, 36);
 		contentPane.add(btnLimpiar);
+		
+		JButton btnAtras = new JButton("Volver");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vUsuario.this.dispose();
+			}
+		});
+		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnAtras.setBounds(10, 29, 85, 36);
+		contentPane.add(btnAtras);
 		
 		
 	}

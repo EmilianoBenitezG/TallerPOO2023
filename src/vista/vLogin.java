@@ -17,22 +17,23 @@ import javax.swing.JButton;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JPasswordField;
 
 public class vLogin extends JFrame {
 
 	private JPanel contentPane;
 	private final JLabel lblTitulo = new JLabel("Sistema de Triaje");
 	private JTextField txtUsuario;
-	private JTextField txtContraseña;
 	daoLogin dao = new daoLogin();
 	menuPrincipal menuPrincipal = new menuPrincipal();
+	private JPasswordField txtContraseña;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vLogin frame = new vLogin();
-					frame.setVisible(true);
+					vLogin login = new vLogin();
+					login.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -68,11 +69,6 @@ public class vLogin extends JFrame {
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		txtContraseña = new JTextField();
-		txtContraseña.setColumns(10);
-		txtContraseña.setBounds(407, 259, 130, 23);
-		contentPane.add(txtContraseña);
-		
 		JButton btnIngresar = new JButton("INGRESAR");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,6 +93,10 @@ public class vLogin extends JFrame {
 		btnIngresar.setFont(new Font("Source Sans Pro SemiBold", Font.BOLD, 15));
 		btnIngresar.setBounds(370, 314, 122, 31);
 		contentPane.add(btnIngresar);
+		
+		txtContraseña = new JPasswordField();
+		txtContraseña.setBounds(407, 261, 130, 23);
+		contentPane.add(txtContraseña);
 		setLocationRelativeTo(null);
 	}
 	

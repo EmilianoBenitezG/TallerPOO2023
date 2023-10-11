@@ -7,9 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class menuPrincipal extends JFrame {
-
+	vUsuario vusuario = new vUsuario();
 	private JPanel contentPane;
 
 	/**
@@ -45,7 +48,27 @@ public class menuPrincipal extends JFrame {
 		lblRoles.setBounds(282, 45, 275, 51);
 		lblRoles.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		contentPane.add(lblRoles);
+		
+		JButton btnUsuarios = new JButton("Usuarios");
+		btnUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vusuario.setVisible(true);
+				menuPrincipal.this.dispose();
+			}
+		});
+		btnUsuarios.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnUsuarios.setBounds(147, 145, 129, 51);
+		contentPane.add(btnUsuarios);
+		
+		JButton btnPacientes = new JButton("Pacientes");
+		btnPacientes.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnPacientes.setBounds(340, 145, 129, 51);
+		contentPane.add(btnPacientes);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnSalir.setBounds(699, 454, 109, 39);
+		contentPane.add(btnSalir);
 		setLocationRelativeTo(null);
 	}
-
 }
