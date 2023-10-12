@@ -16,9 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.HistoriaClinicaPaciente;
-import modelo.Paciente;
 import dao.daoHistorial;
-import dao.daoPacientes;
 
 import java.util.ArrayList;
 import javax.swing.JTextField;
@@ -66,12 +64,12 @@ public class vHistoriaClinica extends JFrame {
 
         tlbHistorial = new JTable();
         tlbHistorial.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null, null, null, null},
-        	},
-        	new String[] {
-        		"Fecha", "Historial Diagnostico", "Lugar de Atencion", "Ultimo Diagnostico", "Resultado Estudios", "Hora"
-        	}
+            new Object[][] {
+                {null, null, null, null, null, null},
+            },
+            new String[] {
+                "Fecha", "Historial Diagnostico", "Lugar de Atencion", "Ultimo Diagnostico", "Resultado Estudios", "Hora"
+            }
         ));
         scrollPane.setViewportView(tlbHistorial);
         
@@ -84,25 +82,28 @@ public class vHistoriaClinica extends JFrame {
         modelo.addColumn("Hora");
         actualizarTabla();
         setLocationRelativeTo(null);
-        
-        
-        
     }
+    
     public void actualizarTabla() {
         modelo.setRowCount(0);
 
-        lista = dao.ConsultaHistorial();
-        
-        for (HistoriaClinicaPaciente u : lista) {
-            Object historial[] = new Object[6];
-            historial[0] = u.getFecha();
-            historial[1] = u.getId();
-            historial[2] = u.getHistorialDiagnostico();
-            historial[3] = u.getLugarAtencion();
-            historial[4] = u.getUltimoDiagnostico();
-            historial[5] = u.getResEstudios();
-            modelo.addRow(historial);
+        try {
+            lista = dao.ConsultaHistorial();
+            
+            for (HistoriaClinicaPaciente u : lista) {
+                Object historial[] = new Object[6];
+                historial[0] = u.getFecha();
+                historial[1] = u.getId();
+                historial[2] = u.getHistorialDiagnostico();
+                historial[3] = u.getLugarDeAtencion();
+                historial[4] = u.getUltimoDiagnostico();
+                historial[5] = u.getResEstudios();
+                modelo.addRow(historial);
+            }
+            tlbHistorial.setModel(modelo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al consultar el historial: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        tlbHistorial.setModel(modelo);
     }
 }
