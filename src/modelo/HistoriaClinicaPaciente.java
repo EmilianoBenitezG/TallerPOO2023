@@ -1,42 +1,54 @@
 package modelo;
 
-import java.util.Date;
-
 public class HistoriaClinicaPaciente {
-    private Date fecha;
+    private String fecha;
+    private Integer id;
     private String historialDiagnostico;
     private LugarAtencion lugarAtencion;
     private String ultimoDiagnostico;
     private String resEstudios;
     private String hora;
-    
+
     public enum LugarAtencion {
         HOSPITAL,
         CLINICA,
         DOMICILIO
     }
 
-    // Constructor
-    public HistoriaClinicaPaciente(Date fecha, String historialDiagnostico, LugarAtencion lugarAtencion,
+    public HistoriaClinicaPaciente(String fecha, Integer id, String historialDiagnostico, LugarAtencion lugarAtencion,
             String ultimoDiagnostico, String resEstudios, String hora) {
         this.fecha = fecha;
+        this.id = id;
         this.historialDiagnostico = historialDiagnostico;
         this.lugarAtencion = lugarAtencion;
         this.ultimoDiagnostico = ultimoDiagnostico;
         this.resEstudios = resEstudios;
         this.hora = hora;
     }
+    
+    
 
-    // Getter y Setter para fecha
-    public Date getFecha() {
+    public HistoriaClinicaPaciente() {
+	}
+
+
+
+	public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    // Getter y Setter para historialDiagnostico
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getHistorialDiagnostico() {
         return historialDiagnostico;
     }
@@ -45,7 +57,6 @@ public class HistoriaClinicaPaciente {
         this.historialDiagnostico = historialDiagnostico;
     }
 
-    // Getter y Setter para lugarDeAtencion
     public LugarAtencion getLugarAtencion() {
         return lugarAtencion;
     }
@@ -53,8 +64,7 @@ public class HistoriaClinicaPaciente {
     public void setLugarAtencion(LugarAtencion lugarAtencion) {
         this.lugarAtencion = lugarAtencion;
     }
-    
-    // Getter y Setter para ultimoDiagnostico
+
     public String getUltimoDiagnostico() {
         return ultimoDiagnostico;
     }
@@ -63,7 +73,6 @@ public class HistoriaClinicaPaciente {
         this.ultimoDiagnostico = ultimoDiagnostico;
     }
 
-    // Getter y Setter para resEstudios
     public String getResEstudios() {
         return resEstudios;
     }
@@ -72,7 +81,6 @@ public class HistoriaClinicaPaciente {
         this.resEstudios = resEstudios;
     }
 
-    // Getter y Setter para hora
     public String getHora() {
         return hora;
     }
