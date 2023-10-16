@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class menuPrincipal extends JFrame {
-	vUsuario vusuario = new vUsuario();
 	private JPanel contentPane;
 
 	/**
@@ -22,8 +21,8 @@ public class menuPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					menuPrincipal frame = new menuPrincipal();
-					frame.setVisible(true);
+					menuPrincipal menuPrincipal = new menuPrincipal();
+					menuPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,23 +51,70 @@ public class menuPrincipal extends JFrame {
 		JButton btnUsuarios = new JButton("Usuarios");
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vUsuario vusuario = new vUsuario();
 				vusuario.setVisible(true);
-				menuPrincipal.this.dispose();
+				menuPrincipal.this.setVisible(false);
 			}
 		});
 		btnUsuarios.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnUsuarios.setBounds(147, 145, 129, 51);
+		btnUsuarios.setBounds(94, 145, 129, 51);
 		contentPane.add(btnUsuarios);
 		
 		JButton btnPacientes = new JButton("Pacientes");
+		btnPacientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnPacientes.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnPacientes.setBounds(340, 145, 129, 51);
+		btnPacientes.setBounds(255, 145, 129, 51);
 		contentPane.add(btnPacientes);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				menuPrincipal.this.dispose();
+			}
+		});
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnSalir.setBounds(699, 454, 109, 39);
+		btnSalir.setBounds(699, 454, 118, 39);
 		contentPane.add(btnSalir);
+		
+		JButton btnCerrarSesion = new JButton("Cerrar Sesion");
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				menuPrincipal.this.setVisible(false);
+				vLogin login = new vLogin();
+				login.setVisible(true);
+			}
+		});
+		btnCerrarSesion.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnCerrarSesion.setBounds(556, 454, 129, 39);
+		contentPane.add(btnCerrarSesion);
+		
+		JButton btnHistoriaClinica = new JButton("Historia Clinica");
+		btnHistoriaClinica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vHistoriaClinica historiaClinica = new vHistoriaClinica();
+				historiaClinica.setVisible(true);
+				menuPrincipal.this.setVisible(false);
+				
+			}
+		});
+		btnHistoriaClinica.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnHistoriaClinica.setBounds(409, 145, 141, 51);
+		contentPane.add(btnHistoriaClinica);
+		
+		JButton btnTriage = new JButton("Triage");
+		btnTriage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vTriage vTriage = new vTriage();
+				vTriage.setVisible(true);
+				menuPrincipal.this.setVisible(false);
+			}
+		});
+		btnTriage.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnTriage.setBounds(580, 145, 118, 51);
+		contentPane.add(btnTriage);
 		setLocationRelativeTo(null);
 	}
 }

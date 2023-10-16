@@ -257,7 +257,9 @@ public class vUsuario extends JFrame {
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vUsuario.this.dispose();
+				menuPrincipal menuPrincipal = new menuPrincipal();
+				menuPrincipal.setVisible(true);
+				vUsuario.this.setVisible(false);
 			}
 		});
 		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 15));

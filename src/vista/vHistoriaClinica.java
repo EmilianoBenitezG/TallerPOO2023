@@ -29,13 +29,14 @@ public class vHistoriaClinica extends JFrame {
     daoHistorial dao = new daoHistorial();
     ArrayList<HistoriaClinicaPaciente> lista;
     private JTable tlbHistorial;
+    private JButton btnAtras;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    vHistoriaClinica frame = new vHistoriaClinica();
-                    frame.setVisible(true);
+                    vHistoriaClinica historiaClinica = new vHistoriaClinica();
+                    historiaClinica.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -72,6 +73,18 @@ public class vHistoriaClinica extends JFrame {
             }
         ));
         scrollPane.setViewportView(tlbHistorial);
+        
+        btnAtras = new JButton("Volver");
+        btnAtras.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		menuPrincipal menuPrincipal = new menuPrincipal();
+				menuPrincipal.setVisible(true);
+				vHistoriaClinica.this.setVisible(false);
+        	}
+        });
+        btnAtras.setFont(new Font("Tahoma", Font.BOLD, 15));
+        btnAtras.setBounds(10, 53, 85, 36);
+        contentPane.add(btnAtras);
         
         
         modelo.addColumn("Fecha");

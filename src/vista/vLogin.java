@@ -25,7 +25,6 @@ public class vLogin extends JFrame {
 	private final JLabel lblTitulo = new JLabel("Sistema de Triaje");
 	private JTextField txtUsuario;
 	daoLogin dao = new daoLogin();
-	menuPrincipal menuPrincipal = new menuPrincipal();
 	private JPasswordField txtContraseña;
 
 	public static void main(String[] args) {
@@ -72,6 +71,7 @@ public class vLogin extends JFrame {
 		JButton btnIngresar = new JButton("INGRESAR");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				menuPrincipal menuPrincipal = new menuPrincipal();
 				if(!txtUsuario.getText().isEmpty() && !txtContraseña.getText().isEmpty()) {
 					String rol = dao.login(txtUsuario.getText().toUpperCase(), txtContraseña.getText().toUpperCase());
 					if (!rol.isEmpty()) {

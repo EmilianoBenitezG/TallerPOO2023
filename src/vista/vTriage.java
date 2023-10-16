@@ -192,6 +192,13 @@ public class vTriage extends JFrame {
 		textField.setColumns(10);
 		
 		btnNewButton = new JButton("Cancelar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				menuPrincipal menuPrincipal = new menuPrincipal();
+				menuPrincipal.setVisible(true);
+				vTriage.this.setVisible(false);
+			}
+		});
 		btnNewButton.setBounds(712, 486, 89, 23);
 		contentPane.add(btnNewButton);
 		
@@ -498,5 +505,6 @@ public class vTriage extends JFrame {
 		table.getColumnModel().getColumn(2).setPreferredWidth(100);
 		table.getColumnModel().getColumn(3).setPreferredWidth(100);
 		scrollPane.setViewportView(table);
+		setLocationRelativeTo(null);
 	}
 }
