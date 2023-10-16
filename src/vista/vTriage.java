@@ -12,12 +12,21 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JTextPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import dao.daoTriage;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class vTriage extends JFrame {
 
@@ -52,10 +61,11 @@ public class vTriage extends JFrame {
 	private JComboBox comboBox_9;
 	private JComboBox comboBox_10;
 	private JTextField textField_1;
-	private JTextPane txtpnElPacienteSe;
 	private JLabel lblConciencia;
 	private JComboBox comboBox_11;
-
+	private JTable table;
+	private JScrollPane scrollPane;
+	private daoTriage dao = new daoTriage();
 	/**
 	 * Launch the application.
 	 */
@@ -154,6 +164,21 @@ public class vTriage extends JFrame {
 		comboBox.setMaximumRowCount(4);
 		comboBox.setBounds(157, 101, 287, 22);
 		contentPane.add(comboBox);
+		// ActionListener para el ComboBox de Respiración
+	    comboBox.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            // Obtener el índice de la opción seleccionada
+	            int seleccion = comboBox.getSelectedIndex();
+
+	            // Establecer la puntuación de Respiración en daoTriage
+	            dao.setPuntuacionRespiracion(seleccion);
+
+	            // Mostrar un mensaje de confirmación
+	            JOptionPane.showMessageDialog(null, "Puntuación de Respiración guardada: " + seleccion);
+	        }
+	    });
+	  
+		
 		
 		lblNewLabel_1 = new JLabel("Nombre del Paciente: ");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -170,9 +195,42 @@ public class vTriage extends JFrame {
 		btnNewButton.setBounds(712, 486, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Calcular");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnGuardar.setBounds(613, 486, 89, 23);
 		contentPane.add(btnGuardar);
+		
+		btnGuardar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Obtener las selecciones de los ComboBox
+		        
+		        int respiracion = comboBox.getSelectedIndex();
+		        int fiebre = comboBox_1.getSelectedIndex();
+		        int pulso = comboBox_2.getSelectedIndex();
+		        int dolorPecho = comboBox_3.getSelectedIndex();
+		        int dolorAbdominal = comboBox_4.getSelectedIndex();
+		        int lesionesGraves = comboBox_5.getSelectedIndex();
+		        int lesionesLeves = comboBox_6.getSelectedIndex();
+		        int estadoMental = comboBox_7.getSelectedIndex();
+		        int sangrado = comboBox_8.getSelectedIndex();
+		        int vomitos = comboBox_9.getSelectedIndex();
+		        int signosShock = comboBox_10.getSelectedIndex();
+		        int conciencia = comboBox_11.getSelectedIndex();
+
+		        // Calcular la puntuación total
+		        int puntuacionTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesGraves + lesionesLeves + estadoMental + sangrado + vomitos
+		        + signosShock + signosShock + signosShock + conciencia + conciencia + conciencia ;
+
+		        // Mostrar la puntuación en la tabla
+		        DefaultTableModel model = (DefaultTableModel) table.getModel();
+		        model.setRowCount(0); // Limpiar la tabla
+		        model.addRow(new Object[] { "Puntuación Total", puntuacionTotal, null, null });
+		    }
+		});
+
 		
 		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setBounds(514, 486, 89, 23);
@@ -187,6 +245,20 @@ public class vTriage extends JFrame {
 		comboBox_1.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_1.setBounds(157, 138, 287, 22);
 		contentPane.add(comboBox_1);
+		comboBox_1.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Obtener el índice de la opción seleccionada
+		        int seleccion = comboBox_1.getSelectedIndex();
+
+		        // Establecer la puntuación de Fiebre en daoTriage
+		        dao.setPuntuacionFiebre(seleccion);
+
+		        // Mostrar un mensaje de confirmación
+		        JOptionPane.showMessageDialog(null, "Puntuación de Fiebre guardada: " + seleccion);
+		    }
+		});
+
+		
 		
 		comboBox_2 = new JComboBox();
 		comboBox_2.setToolTipText("Seleccione una opcion");
@@ -197,6 +269,21 @@ public class vTriage extends JFrame {
 		comboBox_2.setBounds(157, 173, 287, 22);
 		contentPane.add(comboBox_2);
 		
+		// ActionListener para el ComboBox de Pulso
+		comboBox_2.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Obtener el índice de la opción seleccionada
+		        int seleccion = comboBox_2.getSelectedIndex();
+
+		        // Establecer la puntuación de Pulso en daoTriage
+		        dao.setPuntuacionPulso(seleccion);
+
+		        // Mostrar un mensaje de confirmación
+		        JOptionPane.showMessageDialog(null, "Puntuación de Pulso guardada: " + seleccion);
+		    }
+		});
+
+		
 		comboBox_3 = new JComboBox();
 		comboBox_3.setToolTipText("Seleccione una opcion");
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"No presente: 0 puntos", "Presente: 1 punto"}));
@@ -206,6 +293,20 @@ public class vTriage extends JFrame {
 		comboBox_3.setBounds(157, 208, 287, 22);
 		contentPane.add(comboBox_3);
 		
+		comboBox_3.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Obtener el índice de la opción seleccionada
+		        int seleccion = comboBox_3.getSelectedIndex();
+
+		        // Establecer la puntuación de Dolor de Pecho en daoTriage
+		        dao.setPuntuacionDolorPecho(seleccion);
+
+		        // Mostrar un mensaje de confirmación
+		        JOptionPane.showMessageDialog(null, "Puntuación de Dolor de Pecho guardada: " + seleccion);
+		    }
+		});
+		
+	
 		comboBox_4 = new JComboBox();
 		comboBox_4.setToolTipText("Seleccione una opcion");
 		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"No presente: 0 puntos", "Dolor abdominal moderado: 1 punto", "Dolor abdominal severo: 2 puntos"}));
@@ -217,12 +318,32 @@ public class vTriage extends JFrame {
 		
 		comboBox_5 = new JComboBox();
 		comboBox_5.setToolTipText("Seleccione una opcion");
-		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"No presentes: 0 puntos", "Presentes: 2 puntos"}));
+		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"No Presente: 0 puntos", "Presentes: 2 puntos"}));
 		comboBox_5.setSelectedIndex(0);
-		comboBox_5.setMaximumRowCount(4);
 		comboBox_5.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_5.setBounds(157, 278, 287, 22);
 		contentPane.add(comboBox_5);
+
+		
+		// ActionListener para el ComboBox de Lesiones Graves
+		comboBox_5.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Obtener el índice de la opción seleccionada
+		        int seleccion = comboBox_5.getSelectedIndex();
+		        int puntuacion = 0; // Valor predeterminado para la opción 0
+
+		        // Actualizar la puntuación en función de la selección
+		        if (seleccion == 1) {
+		            puntuacion = 2; // Cambiar el valor a 2 si se selecciona la opción "Presentes"
+		        } 
+		        // Establecer la puntuación de Lesiones Graves en daoTriage
+		        dao.setPuntuacionLesionesGraves(puntuacion);
+
+		        // Mostrar un mensaje de confirmación
+		        JOptionPane.showMessageDialog(null, "Puntuación de Lesiones Graves: " + puntuacion);
+		    }
+		});
+
 		
 		comboBox_6 = new JComboBox();
 		comboBox_6.setToolTipText("Seleccione una opcion");
@@ -233,6 +354,15 @@ public class vTriage extends JFrame {
 		comboBox_6.setBounds(157, 313, 287, 22);
 		contentPane.add(comboBox_6);
 		
+		comboBox_6.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        int seleccion = comboBox_6.getSelectedIndex();
+		        dao.setPuntuacionLesionesLeves(seleccion);
+
+		        JOptionPane.showMessageDialog(null, "Puntuación de Lesiones Leves: " + seleccion);
+		    }
+		});
+		
 		comboBox_7 = new JComboBox();
 		comboBox_7.setToolTipText("Seleccione una opcion");
 		comboBox_7.setModel(new DefaultComboBoxModel(new String[] {"Normal: 0 puntos", "Confusi\u00F3n leve: 1 punto", "Confusi\u00F3n grave o somnolencia: 2 puntos"}));
@@ -241,6 +371,18 @@ public class vTriage extends JFrame {
 		comboBox_7.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_7.setBounds(157, 348, 287, 22);
 		contentPane.add(comboBox_7);
+		
+		comboBox_7.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        int seleccion = comboBox_7.getSelectedIndex();
+		        
+		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        dao.setPuntuacionEstadoMental(seleccion);
+
+		        JOptionPane.showMessageDialog(null, "Puntuación de Estado Mental: " + seleccion);
+		    }
+		});
+
 		
 		comboBox_8 = new JComboBox();
 		comboBox_8.setToolTipText("Seleccione una opcion");
@@ -251,6 +393,17 @@ public class vTriage extends JFrame {
 		comboBox_8.setBounds(157, 383, 287, 22);
 		contentPane.add(comboBox_8);
 		
+		comboBox_8.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        int seleccion = comboBox_8.getSelectedIndex();
+		        
+		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        dao.setPuntuacionSangrado(seleccion);
+
+		        JOptionPane.showMessageDialog(null, "Puntuación de Sangrado: " + seleccion);
+		    }
+		});
+		
 		comboBox_9 = new JComboBox();
 		comboBox_9.setToolTipText("Seleccione una opcion");
 		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"Sin v\u00F3mitos: 0 puntos", "V\u00F3mitos moderados: 1 punto", "V\u00F3mitos intensos: 2 puntos"}));
@@ -259,6 +412,18 @@ public class vTriage extends JFrame {
 		comboBox_9.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_9.setBounds(157, 418, 287, 22);
 		contentPane.add(comboBox_9);
+		
+		comboBox_9.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        int seleccion = comboBox_9.getSelectedIndex();
+		        
+		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        dao.setPuntuacionVomitos(seleccion);
+
+		        JOptionPane.showMessageDialog(null, "Puntuación de Vomitos: " + seleccion);
+		    }
+		});
+		
 		
 		comboBox_10 = new JComboBox();
 		comboBox_10.setToolTipText("Seleccione una opcion");
@@ -269,16 +434,22 @@ public class vTriage extends JFrame {
 		comboBox_10.setBounds(157, 453, 287, 22);
 		contentPane.add(comboBox_10);
 		
+		comboBox_10.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        int seleccion = comboBox_10.getSelectedIndex();
+		        
+		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        dao.setPuntuacionSignosdeShock(seleccion);
+
+		        JOptionPane.showMessageDialog(null, "Puntuación de Signos de Shock: " + seleccion);
+		    }
+		});
+		
 		textField_1 = new JTextField();
 		textField_1.setToolTipText("Edad del Paciente");
 		textField_1.setBounds(157, 70, 60, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
-		
-		txtpnElPacienteSe = new JTextPane();
-		txtpnElPacienteSe.setText("El paciente se encuentra en estado:  nashe");
-		txtpnElPacienteSe.setBounds(487, 66, 314, 330);
-		contentPane.add(txtpnElPacienteSe);
 		
 		lblConciencia = new JLabel("Conciencia\r\n");
 		lblConciencia.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -293,5 +464,39 @@ public class vTriage extends JFrame {
 		comboBox_11.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_11.setBounds(157, 486, 287, 22);
 		contentPane.add(comboBox_11);
+		
+		comboBox_11.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        int seleccion = comboBox_11.getSelectedIndex();
+		        
+		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        dao.setPuntuacionConciencia(seleccion);
+
+		        JOptionPane.showMessageDialog(null, "Puntuación de Conciencia: " + seleccion);
+		    }
+		});
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(484, 101, 317, 373);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"", "", null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(120);
+		table.getColumnModel().getColumn(0).setMinWidth(20);
+		table.getColumnModel().getColumn(1).setPreferredWidth(105);
+		table.getColumnModel().getColumn(2).setPreferredWidth(100);
+		table.getColumnModel().getColumn(3).setPreferredWidth(100);
+		scrollPane.setViewportView(table);
 	}
 }
