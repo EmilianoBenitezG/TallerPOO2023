@@ -9,17 +9,15 @@ public class HistoriaClinicaPaciente {
     private String resEstudios;
     private String hora;
 
-    // Constructor
     public HistoriaClinicaPaciente() {
     }
-    
+
     public enum LugarDeAtencion {
         CONSULTORIO,
         EMERGENCIA,
         INTERNACIONES
     }
 
-    // Getters y setters para id
     public int getId() {
         return id;
     }
@@ -27,8 +25,7 @@ public class HistoriaClinicaPaciente {
     public void setId(int id) {
         this.id = id;
     }
-    
-    // Getters y setters para fecha
+
     public String getFecha() {
         return fecha;
     }
@@ -36,8 +33,7 @@ public class HistoriaClinicaPaciente {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    
-    // Getters y setters para historial de diagnostico
+
     public String getHistorialDiagnostico() {
         return historialDiagnostico;
     }
@@ -45,9 +41,7 @@ public class HistoriaClinicaPaciente {
     public void setHistorialDiagnostico(String historialDiagnostico) {
         this.historialDiagnostico = historialDiagnostico;
     }
-    
-    
-    // Getters y setters para lugar de atencion
+
     public LugarDeAtencion getLugarDeAtencion() {
         return lugarDeAtencion;
     }
@@ -55,8 +49,7 @@ public class HistoriaClinicaPaciente {
     public void setLugarDeAtencion(LugarDeAtencion lugarDeAtencion) {
         this.lugarDeAtencion = lugarDeAtencion;
     }
-    
-    // Getters y setters para ultimo diagnostico
+
     public String getUltimoDiagnostico() {
         return ultimoDiagnostico;
     }
@@ -64,8 +57,7 @@ public class HistoriaClinicaPaciente {
     public void setUltimoDiagnostico(String ultimoDiagnostico) {
         this.ultimoDiagnostico = ultimoDiagnostico;
     }
-    
-    // Getters y setters para resultados de estudios
+
     public String getResEstudios() {
         return resEstudios;
     }
@@ -73,8 +65,7 @@ public class HistoriaClinicaPaciente {
     public void setResEstudios(String resEstudios) {
         this.resEstudios = resEstudios;
     }
-    
-    // Getters y setters para hora
+
     public String getHora() {
         return hora;
     }
