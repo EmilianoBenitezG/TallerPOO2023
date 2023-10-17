@@ -208,7 +208,6 @@ public class vTriage extends JFrame {
 		btnGuardar.setBounds(613, 486, 89, 23);
 		contentPane.add(btnGuardar);
 		
-		// ... (código anterior)
 
 		btnGuardar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
