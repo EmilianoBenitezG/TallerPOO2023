@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import conexion.Conexion;
 import modelo.Paciente;
 
@@ -14,14 +13,16 @@ public class daoPacientes {
     public daoPacientes() {
         cx = new Conexion();
     }
-
-    public boolean insertarPacientes(Paciente paciente) {
+    
+    
+    // Inserta un nuevo paciente en la base de datos
+    public boolean insertarPaciente(Paciente paciente) {
         PreparedStatement ps = null;
         boolean salida = false;
         try {
-            ps = cx.conectar().prepareStatement("INSERT INTO Pacientes (Nombre, Apellido, FechaNacimiento, Domicilio, DNI, TelFijo, TelCelular, EstadoCivil, Email, PersonaContacto, Estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            ps = cx.conectar().prepareStatement("INSERT INTO Pacientes (nombre, apellido, fechaNacimiento, domicilio, DNI, telFijo, telCelular, estadoCivil, email, personaContacto, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, paciente.getNombre().toUpperCase());
-            ps.setString(2, paciente.getApellido().toUpperCase());
+            ps.setString(2, paciente.getApellido().toUpperCase().toUpperCase());
             ps.setString(3, paciente.getFechaNacimiento().toUpperCase());
             ps.setString(4, paciente.getDomicilio().toUpperCase());
             ps.setString(5, paciente.getDNI().toUpperCase());
@@ -35,38 +36,39 @@ public class daoPacientes {
             int resultado = ps.executeUpdate();
 
             if (resultado > 0) {
-                salida = true; // Si se inserta con éxito, cambiamos salida a true
+                salida = true;
             }
 
             cx.desconectar();
         } catch (SQLException e) {
-            // Agregamos un mensaje de error más detallado
             System.err.println("Error al insertar paciente: " + e.getMessage());
         }
         return salida;
     }
-
-    public ArrayList<Paciente> ConsultaPacientes() {
+    
+    
+    // Consulta y retorna la lista de todos los pacientes
+    public ArrayList<Paciente> consultarPacientes() {
         ArrayList<Paciente> lista = new ArrayList<Paciente>();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = cx.conectar().prepareStatement("SELECT * FROM Pacientes");
+            ps = cx.conectar().prepareStatement("SELECT * FROM Pacientes WHERE estado = 1");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Paciente paciente = new Paciente();
                 paciente.setId(rs.getInt("id"));
-                paciente.setNombre(rs.getString("Nombre"));
-                paciente.setApellido(rs.getString("Apellido"));
-                paciente.setFechaNacimiento(rs.getString("FechaNacimiento"));
-                paciente.setDomicilio(rs.getString("Domicilio"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setDNI(rs.getString("DNI"));
-                paciente.setTelFijo(rs.getString("TelFijo"));
-                paciente.setTelCelular(rs.getString("TelCelular"));
-                paciente.setEstadoCivil(rs.getString("EstadoCivil"));
-                paciente.setEmail(rs.getString("Email"));
-                paciente.setPersonaContacto(rs.getString("PersonaContacto"));
-                paciente.setEstado(rs.getInt("Estado") == 1); // Convertir el valor entero en booleano
+                paciente.setTelFijo(rs.getString("telFijo"));
+                paciente.setTelCelular(rs.getString("telCelular"));
+                paciente.setEstadoCivil(rs.getString("estadoCivil"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setPersonaContacto(rs.getString("personaContacto"));
+                paciente.setEstado(rs.getInt("estado") == 1);
                 lista.add(paciente);
             }
             cx.desconectar();
@@ -75,14 +77,16 @@ public class daoPacientes {
         }
         return lista;
     }
-
-    public boolean modificarPacientes(Paciente paciente) {
+    
+    
+    // Modifica un paciente existente en la base de datos
+    public boolean modificarPaciente(Paciente paciente) {
         PreparedStatement ps = null;
         boolean salida = false;
         try {
-            ps = cx.conectar().prepareStatement("UPDATE Pacientes SET Nombre=?, Apellido=?, FechaNacimiento=?, Domicilio=?, DNI=?, TelFijo=?, TelCelular=?, EstadoCivil=?, Email=?, PersonaContacto=?, Estado=? WHERE ID=?");
+            ps = cx.conectar().prepareStatement("UPDATE Pacientes SET nombre=?, apellido=?, fechaNacimiento=?, domicilio=?, DNI=?, telFijo=?, telCelular=?, estadoCivil=?, email=?, personaContacto=?, estado=? WHERE id=?");
             ps.setString(1, paciente.getNombre().toUpperCase());
-            ps.setString(2, paciente.getApellido().toUpperCase());
+            ps.setString(2, paciente.getApellido().toUpperCase().toUpperCase());
             ps.setString(3, paciente.getFechaNacimiento().toUpperCase());
             ps.setString(4, paciente.getDomicilio().toUpperCase());
             ps.setString(5, paciente.getDNI().toUpperCase());
@@ -107,12 +111,14 @@ public class daoPacientes {
         }
         return salida;
     }
-
+    
+    
+    // Busca pacientes en la base de datos por su número de DNI
     public ArrayList<Paciente> buscarPacientesPorDNI(String dni) {
         ArrayList<Paciente> lista = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         try {
             String sql = "SELECT * FROM Pacientes WHERE DNI = ?";
             ps = cx.conectar().prepareStatement(sql);
@@ -122,21 +128,20 @@ public class daoPacientes {
             while (rs.next()) {
                 Paciente paciente = new Paciente();
                 paciente.setId(rs.getInt("id"));
-                paciente.setNombre(rs.getString("Nombre"));
-                paciente.setApellido(rs.getString("Apellido"));
-                paciente.setFechaNacimiento(rs.getString("FechaNacimiento"));
-                paciente.setDomicilio(rs.getString("Domicilio"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setDNI(rs.getString("DNI"));
-                paciente.setTelFijo(rs.getString("TelFijo"));
-                paciente.setTelCelular(rs.getString("TelCelular"));
-                paciente.setEstadoCivil(rs.getString("EstadoCivil"));
-                paciente.setEmail(rs.getString("Email"));
-                paciente.setPersonaContacto(rs.getString("PersonaContacto"));
-                paciente.setEstado(rs.getInt("Estado") == 1); // Convertir el valor entero en booleano
+                paciente.setTelFijo(rs.getString("telFijo"));
+                paciente.setTelCelular(rs.getString("telCelular"));
+                paciente.setEstadoCivil(rs.getString("estadoCivil"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setPersonaContacto(rs.getString("personaContacto"));
+                paciente.setEstado(rs.getInt("estado") == 1);
                 lista.add(paciente);
             }
         } catch (SQLException e) {
-            // Manejo adecuado de la excepción, por ejemplo, registro de error o lanzar excepción personalizada.
             System.err.println("Error al buscar pacientes por DNI: " + e.getMessage());
         } finally {
             try {
@@ -150,33 +155,27 @@ public class daoPacientes {
         return lista;
     }
     
+    
+    // Verifica si existe un paciente con el número de DNI
     public boolean existePacienteConDNI(String dni) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         boolean existe = false;
-        
-        try {
-            ps = cx.conectar().prepareStatement("SELECT COUNT(*) FROM Pacientes WHERE DNI = ?");
-            ps.setString(1, dni.toUpperCase());
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                existe = (count > 0);
+
+        try (PreparedStatement ps = cx.conectar().prepareStatement("SELECT COUNT(*) FROM Pacientes WHERE DNI = ?")) {
+            ps.setString(1, dni);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    existe = (count > 0);
+                }
             }
         } catch (SQLException e) {
             System.err.println("Error al verificar si existe el paciente con DNI: " + e.getMessage());
         } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-            } catch (SQLException e) {
-                System.err.println("Error al cerrar recursos: " + e.getMessage());
-            }
             cx.desconectar();
         }
+
         return existe;
     }
 
 }
-
-
