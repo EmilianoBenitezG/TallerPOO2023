@@ -24,8 +24,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import dao.daoTriage;
+import modelo.Triage;
+import modelo.Usuario;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 
@@ -68,6 +71,15 @@ public class vTriage extends JFrame {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private daoTriage dao = new daoTriage();
+	String[] columnNames = {"Nombre Paciente", "Resultado"};
+	Object[][] data = {};
+	DefaultTableModel modelo = new DefaultTableModel(data, columnNames) {
+        @Override
+        public boolean isCellEditable(int row, int col) {
+            return false;
+        }
+    };
+    ArrayList<Triage> lista;
 	/**
 	 * Launch the application.
 	 */
@@ -166,13 +178,13 @@ public class vTriage extends JFrame {
 		comboBox.setMaximumRowCount(4);
 		comboBox.setBounds(157, 101, 287, 22);
 		contentPane.add(comboBox);
-		// ActionListener para el ComboBox de Respiración
+		// ActionListener para el ComboBox de Respiraciï¿½n
 	    comboBox.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            // Obtener el índice de la opción seleccionada
+	            // Obtener el ï¿½ndice de la opciï¿½n seleccionada
 	            int seleccion = comboBox.getSelectedIndex();
 
-	            // Establecer la puntuación de Respiración en daoTriage
+	            // Establecer la puntuaciï¿½n de Respiraciï¿½n en daoTriage
 	            dao.setPuntuacionRespiracion(seleccion);
 
 	        }
@@ -230,23 +242,24 @@ public class vTriage extends JFrame {
 		        int signosShock = comboBox_10.getSelectedIndex();
 		        int conciencia = comboBox_11.getSelectedIndex();
 
-		        // Calcular la puntuación total
-		        int puntuaciónTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesGraves + lesionesLeves 
+		        // Calcular la puntuaciï¿½n total
+		        int puntuaciï¿½nTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesGraves + lesionesLeves 
 		        + estadoMental + sangrado + vomitos + signosShock + signosShock + signosShock + conciencia + conciencia + conciencia;
 
 		        // Obtener el nombre del paciente ingresado por el usuario
 		        String nombrePaciente = textField.getText();
 
 		        // Almacenar el resultado del triaje en la base de datos utilizando daoTriage
-		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePaciente, puntuaciónTotal);
+		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePaciente, puntuaciï¿½nTotal);
 
-		        // Mostrar un mensaje con la puntuación del paciente y la confirmación de la base de datos
+		        // Mostrar un mensaje con la puntuaciï¿½n del paciente y la confirmaciï¿½n de la base de datos
 		        String mensaje = "Nombre del Paciente: " + nombrePaciente + "\n" +
-		                        "Edad: " + edad + " años\n" +
-		                        "Puntuación Total: " + puntuaciónTotal;
+		                        "Edad: " + edad + " aï¿½os\n" +
+		                        "Puntuaciï¿½n Total: " + puntuaciï¿½nTotal;
 
 		        if (resultadoGuardado) {
-		            JOptionPane.showMessageDialog(null, "Resultado del triaje almacenado con éxito en la base de datos.\n" + mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+		        	actualizarTabla();
+		            JOptionPane.showMessageDialog(null, "Resultado del triaje almacenado con ï¿½xito en la base de datos.\n" + mensaje, "ï¿½xito", JOptionPane.INFORMATION_MESSAGE);
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Error al almacenar el resultado del triaje en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
 		        }
@@ -266,10 +279,10 @@ public class vTriage extends JFrame {
 		contentPane.add(comboBox_1);
 		comboBox_1.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        // Obtener el índice de la opción seleccionada
+		        // Obtener el ï¿½ndice de la opciï¿½n seleccionada
 		        int seleccion = comboBox_1.getSelectedIndex();
 
-		        // Establecer la puntuación de Fiebre en daoTriage
+		        // Establecer la puntuaciï¿½n de Fiebre en daoTriage
 		        dao.setPuntuacionFiebre(seleccion);
 
 		    }
@@ -289,10 +302,10 @@ public class vTriage extends JFrame {
 		// ActionListener para el ComboBox de Pulso
 		comboBox_2.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        // Obtener el índice de la opción seleccionada
+		        // Obtener el ï¿½ndice de la opciï¿½n seleccionada
 		        int seleccion = comboBox_2.getSelectedIndex();
 
-		        // Establecer la puntuación de Pulso en daoTriage
+		        // Establecer la puntuaciï¿½n de Pulso en daoTriage
 		        dao.setPuntuacionPulso(seleccion);
 
 		    }
@@ -310,16 +323,16 @@ public class vTriage extends JFrame {
 		
 		comboBox_3.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        // Obtener el índice de la opción seleccionada
+		        // Obtener el ï¿½ndice de la opciï¿½n seleccionada
 		        int seleccion = comboBox_3.getSelectedIndex();
 
-		        // Establecer la puntuación de Dolor de Pecho en daoTriage
+		        // Establecer la puntuaciï¿½n de Dolor de Pecho en daoTriage
 		        dao.setPuntuacionDolorPecho(seleccion);
 
 		    }
 		});
 		
-	
+		
 		comboBox_4 = new JComboBox();
 		comboBox_4.setToolTipText("Seleccione una opcion");
 		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"No presente: 0 puntos", "Dolor abdominal moderado: 1 punto", "Dolor abdominal severo: 2 puntos"}));
@@ -341,15 +354,15 @@ public class vTriage extends JFrame {
 		// ActionListener para el ComboBox de Lesiones Graves
 		comboBox_5.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        // Obtener el índice de la opción seleccionada
+		        // Obtener el ï¿½ndice de la opciï¿½n seleccionada
 		        int seleccion = comboBox_5.getSelectedIndex();
-		        int puntuacion = 0; // Valor predeterminado para la opción 0
+		        int puntuacion = 0; // Valor predeterminado para la opciï¿½n 0
 
-		        // Actualizar la puntuación en función de la selección
+		        // Actualizar la puntuaciï¿½n en funciï¿½n de la selecciï¿½n
 		        if (seleccion == 1) {
-		            puntuacion = 2; // Cambiar el valor a 2 si se selecciona la opción "Presentes"
+		            puntuacion = 2; // Cambiar el valor a 2 si se selecciona la opciï¿½n "Presentes"
 		        } 
-		        // Establecer la puntuación de Lesiones Graves en daoTriage
+		        // Establecer la puntuaciï¿½n de Lesiones Graves en daoTriage
 		        dao.setPuntuacionLesionesGraves(puntuacion);
 
 		    }
@@ -386,7 +399,7 @@ public class vTriage extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        int seleccion = comboBox_7.getSelectedIndex();
 		        
-		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        // Al igual que con otros sï¿½ntomas, decide si deseas almacenar esta puntuaciï¿½n en tu objeto `daoTriage`. Si sï¿½, puedes hacerlo de esta manera:
 		        dao.setPuntuacionEstadoMental(seleccion);
 
 		    }
@@ -406,7 +419,7 @@ public class vTriage extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        int seleccion = comboBox_8.getSelectedIndex();
 		        
-		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        // Al igual que con otros sï¿½ntomas, decide si deseas almacenar esta puntuaciï¿½n en tu objeto `daoTriage`. Si sï¿½, puedes hacerlo de esta manera:
 		        dao.setPuntuacionSangrado(seleccion);
 
 		    }
@@ -425,7 +438,7 @@ public class vTriage extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        int seleccion = comboBox_9.getSelectedIndex();
 		        
-		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        // Al igual que con otros sï¿½ntomas, decide si deseas almacenar esta puntuaciï¿½n en tu objeto `daoTriage`. Si sï¿½, puedes hacerlo de esta manera:
 		        dao.setPuntuacionVomitos(seleccion);
 
 		    }
@@ -445,7 +458,7 @@ public class vTriage extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        int seleccion = comboBox_10.getSelectedIndex();
 		        
-		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        // Al igual que con otros sï¿½ntomas, decide si deseas almacenar esta puntuaciï¿½n en tu objeto `daoTriage`. Si sï¿½, puedes hacerlo de esta manera:
 		        dao.setPuntuacionSignosdeShock(seleccion);
 
 		    }
@@ -475,7 +488,7 @@ public class vTriage extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        int seleccion = comboBox_11.getSelectedIndex();
 		        
-		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
+		        // Al igual que con otros sï¿½ntomas, decide si deseas almacenar esta puntuaciï¿½n en tu objeto `daoTriage`. Si sï¿½, puedes hacerlo de esta manera:
 		        dao.setPuntuacionConciencia(seleccion);
 
 		    }
@@ -502,5 +515,24 @@ public class vTriage extends JFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(105);
 		scrollPane.setViewportView(table);
 		setLocationRelativeTo(null);
+		actualizarTabla();
+		
+	}
+	
+	public void actualizarTabla() {
+		//elimina los registros para volverlos a crear
+		while (modelo.getRowCount() > 0) {
+			modelo.removeRow(0);
+		}
+		
+		lista=dao.ConsultaTriage();
+		
+		for (Triage u:lista) {
+			Object triage[]= new Object[3];
+			triage[0]=u.getNombre_paciente();
+			triage[1]=u.getResultado_triage();
+			modelo.addRow(triage);
+		}
+		table.setModel(modelo);
 	}
 }

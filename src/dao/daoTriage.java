@@ -1,9 +1,15 @@
 package dao;
 
 import conexion.Conexion;
+import modelo.Rol;
+import modelo.Triage;
+import modelo.Usuario;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -32,6 +38,30 @@ public class daoTriage {
             return false; // Error al almacenar el resultado de triaje
         }
     }
+    
+    public ArrayList<Triage> ConsultaTriage(){
+		ArrayList<Triage> lista = new ArrayList<Triage>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps=cx.conectar().prepareStatement("SELECT * FROM Triage");
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				String nombrePaciente = rs.getString("nombre_paciente");
+				String resultadoTriage = rs.getString("resultado_triage");
+				Triage triage = new Triage();
+				
+				triage.setId(rs.getInt("id"));
+				triage.setNombre_paciente(rs.getString("nombre_paciente"));
+				triage.setResultado_triage(rs.getString("resultado_triage"));
+				lista.add(triage);
+			}
+		} catch (SQLException e) {
+			
+		}
+		
+		return lista;
+	}
  
         
         private int puntuacionRespiracion;
