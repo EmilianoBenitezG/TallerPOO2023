@@ -65,6 +65,8 @@ public class vTriage extends JFrame {
 	private JTextField textField_1;
 	private JLabel lblConciencia;
 	private JComboBox comboBox_11;
+	private JTable table;
+	private JScrollPane scrollPane;
 	private daoTriage dao = new daoTriage();
 	/**
 	 * Launch the application.
@@ -478,6 +480,27 @@ public class vTriage extends JFrame {
 
 		    }
 		});
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(484, 101, 317, 373);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"", "", null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Nombre Paciente", "Resultado"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(120);
+		table.getColumnModel().getColumn(0).setMinWidth(20);
+		table.getColumnModel().getColumn(1).setPreferredWidth(105);
+		scrollPane.setViewportView(table);
 		setLocationRelativeTo(null);
 	}
 }
