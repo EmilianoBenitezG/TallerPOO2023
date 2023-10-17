@@ -28,6 +28,8 @@ import dao.daoTriage;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+
 public class vTriage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -63,8 +65,6 @@ public class vTriage extends JFrame {
 	private JTextField textField_1;
 	private JLabel lblConciencia;
 	private JComboBox comboBox_11;
-	private JTable table;
-	private JScrollPane scrollPane;
 	private daoTriage dao = new daoTriage();
 	/**
 	 * Launch the application.
@@ -173,8 +173,6 @@ public class vTriage extends JFrame {
 	            // Establecer la puntuación de Respiración en daoTriage
 	            dao.setPuntuacionRespiracion(seleccion);
 
-	            // Mostrar un mensaje de confirmación
-	            JOptionPane.showMessageDialog(null, "Puntuación de Respiración guardada: " + seleccion);
 	        }
 	    });
 	  
@@ -191,7 +189,7 @@ public class vTriage extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		btnNewButton = new JButton("Cancelar");
+		btnNewButton = new JButton("Volver");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuPrincipal menuPrincipal = new menuPrincipal();
@@ -210,10 +208,14 @@ public class vTriage extends JFrame {
 		btnGuardar.setBounds(613, 486, 89, 23);
 		contentPane.add(btnGuardar);
 		
+		// ... (código anterior)
+
 		btnGuardar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		        // Obtener la edad ingresada por el usuario
+		        String edad = textField_1.getText();
+
 		        // Obtener las selecciones de los ComboBox
-		        
 		        int respiracion = comboBox.getSelectedIndex();
 		        int fiebre = comboBox_1.getSelectedIndex();
 		        int pulso = comboBox_2.getSelectedIndex();
@@ -228,21 +230,30 @@ public class vTriage extends JFrame {
 		        int conciencia = comboBox_11.getSelectedIndex();
 
 		        // Calcular la puntuación total
-		        int puntuacionTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesGraves + lesionesLeves + estadoMental + sangrado + vomitos
-		        + signosShock + signosShock + signosShock + conciencia + conciencia + conciencia ;
+		        int puntuaciónTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesGraves + lesionesLeves 
+		        + estadoMental + sangrado + vomitos + signosShock + signosShock + signosShock + conciencia + conciencia + conciencia;
 
-		        // Mostrar la puntuación en la tabla
-		        DefaultTableModel model = (DefaultTableModel) table.getModel();
-		        model.setRowCount(0); // Limpiar la tabla
-		        model.addRow(new Object[] { "Puntuación Total", puntuacionTotal, null, null });
+		        // Obtener el nombre del paciente ingresado por el usuario
+		        String nombrePaciente = textField.getText();
+
+		        // Almacenar el resultado del triaje en la base de datos utilizando daoTriage
+		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePaciente, puntuaciónTotal);
+
+		        // Mostrar un mensaje con la puntuación del paciente y la confirmación de la base de datos
+		        String mensaje = "Nombre del Paciente: " + nombrePaciente + "\n" +
+		                        "Edad: " + edad + " años\n" +
+		                        "Puntuación Total: " + puntuaciónTotal;
+
+		        if (resultadoGuardado) {
+		            JOptionPane.showMessageDialog(null, "Resultado del triaje almacenado con éxito en la base de datos.\n" + mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Error al almacenar el resultado del triaje en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+		        }
 		    }
 		});
 
-		
-		btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setBounds(514, 486, 89, 23);
-		contentPane.add(btnLimpiar);
-		
+
+
 		comboBox_1 = new JComboBox();
 		comboBox_1.setForeground(new Color(0, 0, 0));
 		comboBox_1.setToolTipText("Seleccione una opcion");
@@ -260,8 +271,6 @@ public class vTriage extends JFrame {
 		        // Establecer la puntuación de Fiebre en daoTriage
 		        dao.setPuntuacionFiebre(seleccion);
 
-		        // Mostrar un mensaje de confirmación
-		        JOptionPane.showMessageDialog(null, "Puntuación de Fiebre guardada: " + seleccion);
 		    }
 		});
 
@@ -285,8 +294,6 @@ public class vTriage extends JFrame {
 		        // Establecer la puntuación de Pulso en daoTriage
 		        dao.setPuntuacionPulso(seleccion);
 
-		        // Mostrar un mensaje de confirmación
-		        JOptionPane.showMessageDialog(null, "Puntuación de Pulso guardada: " + seleccion);
 		    }
 		});
 
@@ -308,8 +315,6 @@ public class vTriage extends JFrame {
 		        // Establecer la puntuación de Dolor de Pecho en daoTriage
 		        dao.setPuntuacionDolorPecho(seleccion);
 
-		        // Mostrar un mensaje de confirmación
-		        JOptionPane.showMessageDialog(null, "Puntuación de Dolor de Pecho guardada: " + seleccion);
 		    }
 		});
 		
@@ -346,8 +351,6 @@ public class vTriage extends JFrame {
 		        // Establecer la puntuación de Lesiones Graves en daoTriage
 		        dao.setPuntuacionLesionesGraves(puntuacion);
 
-		        // Mostrar un mensaje de confirmación
-		        JOptionPane.showMessageDialog(null, "Puntuación de Lesiones Graves: " + puntuacion);
 		    }
 		});
 
@@ -366,7 +369,6 @@ public class vTriage extends JFrame {
 		        int seleccion = comboBox_6.getSelectedIndex();
 		        dao.setPuntuacionLesionesLeves(seleccion);
 
-		        JOptionPane.showMessageDialog(null, "Puntuación de Lesiones Leves: " + seleccion);
 		    }
 		});
 		
@@ -386,7 +388,6 @@ public class vTriage extends JFrame {
 		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
 		        dao.setPuntuacionEstadoMental(seleccion);
 
-		        JOptionPane.showMessageDialog(null, "Puntuación de Estado Mental: " + seleccion);
 		    }
 		});
 
@@ -407,7 +408,6 @@ public class vTriage extends JFrame {
 		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
 		        dao.setPuntuacionSangrado(seleccion);
 
-		        JOptionPane.showMessageDialog(null, "Puntuación de Sangrado: " + seleccion);
 		    }
 		});
 		
@@ -427,7 +427,6 @@ public class vTriage extends JFrame {
 		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
 		        dao.setPuntuacionVomitos(seleccion);
 
-		        JOptionPane.showMessageDialog(null, "Puntuación de Vomitos: " + seleccion);
 		    }
 		});
 		
@@ -448,7 +447,6 @@ public class vTriage extends JFrame {
 		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
 		        dao.setPuntuacionSignosdeShock(seleccion);
 
-		        JOptionPane.showMessageDialog(null, "Puntuación de Signos de Shock: " + seleccion);
 		    }
 		});
 		
@@ -479,32 +477,8 @@ public class vTriage extends JFrame {
 		        // Al igual que con otros síntomas, decide si deseas almacenar esta puntuación en tu objeto `daoTriage`. Si sí, puedes hacerlo de esta manera:
 		        dao.setPuntuacionConciencia(seleccion);
 
-		        JOptionPane.showMessageDialog(null, "Puntuación de Conciencia: " + seleccion);
 		    }
 		});
-		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(484, 101, 317, 373);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"", "", null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column"
-			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(120);
-		table.getColumnModel().getColumn(0).setMinWidth(20);
-		table.getColumnModel().getColumn(1).setPreferredWidth(105);
-		table.getColumnModel().getColumn(2).setPreferredWidth(100);
-		table.getColumnModel().getColumn(3).setPreferredWidth(100);
-		scrollPane.setViewportView(table);
 		setLocationRelativeTo(null);
 	}
 }
