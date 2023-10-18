@@ -243,19 +243,19 @@ public class vTriage extends JFrame {
 		        int conciencia = comboBox_11.getSelectedIndex();
 
 		        // Calcular la puntuaci�n total
-		        int puntuaci�nTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesGraves + lesionesLeves 
+		        int puntuacionTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesGraves + lesionesLeves 
 		        + estadoMental + sangrado + vomitos + signosShock + signosShock + signosShock + conciencia + conciencia + conciencia;
 
 		        // Obtener el nombre del paciente ingresado por el usuario
 		        String nombrePaciente = textField.getText();
 
 		        // Almacenar el resultado del triaje en la base de datos utilizando daoTriage
-		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePaciente, puntuaci�nTotal);
+		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePaciente, puntuacionTotal);
 
 		        // Mostrar un mensaje con la puntuaci�n del paciente y la confirmaci�n de la base de datos
 		        String mensaje = "Nombre del Paciente: " + nombrePaciente + "\n" +
 		                        "Edad: " + edad + " a�os\n" +
-		                        "Puntuaci�n Total: " + puntuaci�nTotal;
+		                        "Puntuaci�n Total: " + puntuacionTotal;
 
 		        if (resultadoGuardado) {
 		        	actualizarTabla();

@@ -232,11 +232,11 @@ public class vHistoriaClinica extends JFrame {
         scrollPane.setViewportView(tlbHistorial);
 
         modelo.addColumn("Fecha");
+        modelo.addColumn("Hora");
         modelo.addColumn("Historial Diagnóstico");
         modelo.addColumn("Lugar de Atención");
         modelo.addColumn("Último Diagnóstico");
         modelo.addColumn("Resultado Estudios");
-        modelo.addColumn("Hora");
         actualizarTabla();
         setLocationRelativeTo(null);
         
@@ -262,11 +262,11 @@ public class vHistoriaClinica extends JFrame {
             for (HistoriaClinicaPaciente u : lista) {
                 Object historialData[] = new Object[7];
                 historialData[0] = u.getFecha();
-                historialData[1] = u.getHistorialDiagnostico();
-                historialData[2] = u.getLugarDeAtencion().name();
-                historialData[3] = u.getUltimoDiagnostico();
-                historialData[4] = u.getResEstudios();
-                historialData[5] = u.getHora();
+                historialData[1] = u.getHora();
+                historialData[2] = u.getUltimoDiagnostico();
+                historialData[3] = u.getLugarDeAtencion().name();
+                historialData[4] = u.getHistorialDiagnostico();
+                historialData[5] = u.getResEstudios();
                 modelo.addRow(historialData);
             }
             tlbHistorial.setModel(modelo);

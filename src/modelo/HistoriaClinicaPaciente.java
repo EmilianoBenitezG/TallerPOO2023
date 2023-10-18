@@ -1,13 +1,14 @@
 package modelo;
 
 public class HistoriaClinicaPaciente {
+	
     private int id;
     private String fecha;
+    private String hora;
     private String historialDiagnostico;
     private LugarDeAtencion lugarDeAtencion;
     private String ultimoDiagnostico;
     private String resEstudios;
-    private String hora;
 
     public HistoriaClinicaPaciente() {
     }
@@ -38,6 +39,14 @@ public class HistoriaClinicaPaciente {
         return historialDiagnostico;
     }
 
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
     public void setHistorialDiagnostico(String historialDiagnostico) {
         this.historialDiagnostico = historialDiagnostico;
     }
@@ -64,13 +73,5 @@ public class HistoriaClinicaPaciente {
 
     public void setResEstudios(String resEstudios) {
         this.resEstudios = resEstudios;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
     }
 }
