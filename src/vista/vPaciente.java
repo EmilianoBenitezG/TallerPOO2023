@@ -4,9 +4,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -42,7 +39,12 @@ public class vPaciente extends JFrame {
 	private String filtroActual = "";
 
 	int filaSeleccionada = -1;
-	DefaultTableModel modelo = new DefaultTableModel();
+	DefaultTableModel modelo = new DefaultTableModel() {
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return false;
+		}
+	};
 	daoPacientes dao = new daoPacientes();
 	ArrayList<Paciente> lista;
 	private JTable tlbPacientes;
@@ -65,7 +67,7 @@ public class vPaciente extends JFrame {
 	public vPaciente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1035, 565);
+		setBounds(100, 100, 1095, 629);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -80,118 +82,118 @@ public class vPaciente extends JFrame {
 		// Campos de ingreso de datos
 		// Nombre
 		txtnombre = new JTextField();
-		txtnombre.setBounds(200, 80, 170, 22);
+		txtnombre.setBounds(85, 63, 170, 22);
 		contentPane.add(txtnombre);
 		txtnombre.setColumns(10);
 
 		JLabel lblNombre = new JLabel("Nombre: ");
-		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNombre.setBounds(25, 83, 81, 22);
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNombre.setBounds(20, 63, 68, 22);
 		contentPane.add(lblNombre);
 
 		// Apellido
 		txtapellido = new JTextField();
 		txtapellido.setColumns(10);
-		txtapellido.setBounds(200, 113, 170, 22);
+		txtapellido.setBounds(333, 63, 170, 22);
 		contentPane.add(txtapellido);
 
 		JLabel lblApellido = new JLabel("Apellido: ");
-		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblApellido.setBounds(25, 116, 81, 22);
+		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblApellido.setBounds(265, 63, 81, 22);
 		contentPane.add(lblApellido);
 
 		// Fecha de nacimiento
 		txtfechaNacimiento = new JTextField();
 		txtfechaNacimiento.setColumns(10);
-		txtfechaNacimiento.setBounds(200, 146, 170, 22);
+		txtfechaNacimiento.setBounds(667, 63, 125, 22);
 		contentPane.add(txtfechaNacimiento);
 
 		JLabel lblfechaNacimiento = new JLabel("Fecha de nacimiento: ");
-		lblfechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblfechaNacimiento.setBounds(25, 149, 178, 22);
+		lblfechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblfechaNacimiento.setBounds(513, 63, 178, 22);
 		contentPane.add(lblfechaNacimiento);
 
 		// Domicilio
 		txtdomicilio = new JTextField();
 		txtdomicilio.setColumns(10);
-		txtdomicilio.setBounds(200, 179, 170, 22);
+		txtdomicilio.setBounds(877, 63, 156, 22);
 		contentPane.add(txtdomicilio);
 
 		JLabel lblDomicilio = new JLabel("Domicilio: ");
-		lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblDomicilio.setBounds(25, 182, 134, 22);
+		lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDomicilio.setBounds(802, 63, 81, 22);
 		contentPane.add(lblDomicilio);
 
 		// DNI
 		txtnroDNI = new JTextField();
 		txtnroDNI.setColumns(10);
-		txtnroDNI.setBounds(200, 212, 170, 22);
+		txtnroDNI.setBounds(60, 96, 110, 22);
 		contentPane.add(txtnroDNI);
 
 		JLabel lblDni = new JLabel("DNI: ");
-		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblDni.setBounds(25, 214, 71, 22);
+		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDni.setBounds(20, 96, 39, 22);
 		contentPane.add(lblDni);
 
 		// Tel fijo
 		txttelFijo = new JTextField();
 		txttelFijo.setColumns(10);
-		txttelFijo.setBounds(200, 245, 170, 22);
+		txttelFijo.setBounds(243, 96, 115, 22);
 		contentPane.add(txttelFijo);
 
 		JLabel lblTelFijo = new JLabel("Tel Fijo: ");
-		lblTelFijo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTelFijo.setBounds(25, 247, 71, 22);
+		lblTelFijo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTelFijo.setBounds(180, 96, 71, 22);
 		contentPane.add(lblTelFijo);
 
 		// Tel celular
 		txttelCelular = new JTextField();
 		txttelCelular.setColumns(10);
-		txttelCelular.setBounds(200, 278, 170, 22);
+		txttelCelular.setBounds(454, 96, 125, 22);
 		contentPane.add(txttelCelular);
 
 		JLabel lblTelCelular = new JLabel("Tel Celular: ");
-		lblTelCelular.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTelCelular.setBounds(25, 280, 95, 22);
+		lblTelCelular.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTelCelular.setBounds(368, 96, 95, 22);
 		contentPane.add(lblTelCelular);
 
 		// Estado civil
 		txtestadoCivil = new JTextField();
 		txtestadoCivil.setColumns(10);
-		txtestadoCivil.setBounds(200, 311, 170, 22);
+		txtestadoCivil.setBounds(677, 96, 115, 22);
 		contentPane.add(txtestadoCivil);
 
 		JLabel lblEstadoCivil = new JLabel("Estado civil: ");
-		lblEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblEstadoCivil.setBounds(25, 313, 110, 22);
+		lblEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblEstadoCivil.setBounds(589, 96, 95, 22);
 		contentPane.add(lblEstadoCivil);
 
 		// Email
 		txtemail = new JTextField();
 		txtemail.setColumns(10);
-		txtemail.setBounds(200, 346, 170, 22);
+		txtemail.setBounds(853, 96, 140, 22);
 		contentPane.add(txtemail);
 
 		JLabel lblEmail = new JLabel("Email: ");
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblEmail.setBounds(25, 346, 71, 22);
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblEmail.setBounds(802, 96, 54, 22);
 		contentPane.add(lblEmail);
 
 		// Persona de contacto
 		txtpersonaContacto = new JTextField();
 		txtpersonaContacto.setColumns(10);
-		txtpersonaContacto.setBounds(200, 379, 170, 22);
+		txtpersonaContacto.setBounds(156, 129, 170, 22);
 		contentPane.add(txtpersonaContacto);
 
 		JLabel lblPersonaContacto = new JLabel("Persona Contacto: ");
-		lblPersonaContacto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblPersonaContacto.setBounds(25, 379, 150, 22);
+		lblPersonaContacto.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPersonaContacto.setBounds(20, 129, 140, 22);
 		contentPane.add(lblPersonaContacto);
 
 		// Campo de filtro de DNI
 		JTextField txtFiltroDNI = new JTextField();
 		txtFiltroDNI.setColumns(10);
-		txtFiltroDNI.setBounds(521, 13, 203, 22);
+		txtFiltroDNI.setBounds(420, 247, 203, 22);
 		contentPane.add(txtFiltroDNI);
 
 		// Botón de búsqueda por DNI
@@ -207,13 +209,13 @@ public class vPaciente extends JFrame {
 				}
 			}
 		});
-		btnBuscarPorDNI.setBounds(734, 13, 125, 22);
+		btnBuscarPorDNI.setBounds(627, 247, 125, 22);
 		contentPane.add(btnBuscarPorDNI);
 
 		// Checkbox para el estado "vivo/muerto"
 		chkEstado = new JCheckBox("¿Está vivo?");
-		chkEstado.setFont(new Font("Tahoma", Font.BOLD, 15));
-		chkEstado.setBounds(134, 437, 125, 22);
+		chkEstado.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chkEstado.setBounds(356, 129, 125, 22);
 		contentPane.add(chkEstado);
 
 		// Botones en pantalla
@@ -256,7 +258,7 @@ public class vPaciente extends JFrame {
 				}
 			}
 		});
-		btnModificar.setBounds(50, 479, 125, 22);
+		btnModificar.setBounds(233, 176, 125, 22);
 		contentPane.add(btnModificar);
 
 		// Boton agregar
@@ -297,10 +299,10 @@ public class vPaciente extends JFrame {
 				}
 			}
 		});
-		btnAgregar.setBounds(196, 479, 125, 22);
+		btnAgregar.setBounds(428, 176, 125, 22);
 		contentPane.add(btnAgregar);
 
-		// Boton para volver al menu principal
+		// Boton para volver al menú principal
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -310,12 +312,23 @@ public class vPaciente extends JFrame {
 			}
 		});
 		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnAtras.setBounds(10, 36, 85, 36);
+		btnAtras.setBounds(10, 13, 85, 36);
 		contentPane.add(btnAtras);
+
+		// Boton para volver limpiar campos de entrada
+		JButton btnLimpiar = new JButton("Limpiar campos");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
+			}
+		});
+		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnLimpiar.setBounds(618, 176, 163, 22);
+		contentPane.add(btnLimpiar);
 
 		// Crea un JScrollPane para agregar barras de desplazamiento a la tabla
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(380, 46, 629, 469);
+		scrollPane.setBounds(25, 273, 1025, 306);
 		contentPane.add(scrollPane);
 
 		// Crear una tabla de pacientes
@@ -324,7 +337,7 @@ public class vPaciente extends JFrame {
 		// Crear una etiqueta "ID"
 		lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblId.setBounds(25, 50, 28, 22);
+		lblId.setBounds(25, 26, 28, 22);
 		lblId.setVisible(false);
 		contentPane.add(lblId);
 
@@ -364,7 +377,7 @@ public class vPaciente extends JFrame {
 		// Etiqueta para buscar por DNI
 		JLabel lblBuscarPorDni = new JLabel("Buscar por DNI:");
 		lblBuscarPorDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblBuscarPorDni.setBounds(380, 13, 150, 22);
+		lblBuscarPorDni.setBounds(287, 247, 150, 22);
 		contentPane.add(lblBuscarPorDni);
 
 		// Agregar columnas al modelo de datos de la tabla

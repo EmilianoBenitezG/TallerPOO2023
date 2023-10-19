@@ -7,20 +7,18 @@ public class Paciente extends Persona{
 	private int id;
 	private String personaContacto;
 	private boolean estado;
-	private List<ResultadosEstudios> resultadosEstudios;
 	
 	public Paciente(String nombre, String apellido, 
             		String fechaNacimiento, String domicilio, 
             		String DNI, String telFijo, 
             		String telCelular, String estadoCivil, String email,
-            		String personaContacto, boolean estado, List<ResultadosEstudios> resultadosEstudios) {
+            		String personaContacto, boolean estado) {
 		super(nombre, apellido, fechaNacimiento, 
 			  domicilio, DNI, telFijo, telCelular, 
 			  estadoCivil, email);
 		this.id = -1;
 		this.personaContacto = personaContacto;
 		this.setEstado(estado);
-		this.resultadosEstudios = resultadosEstudios;
 	}
 
 	public Paciente() {
@@ -50,11 +48,12 @@ public class Paciente extends Persona{
 		this.estado = estado;
 	}
 	
-	public List<ResultadosEstudios> getResultadosEstudios() {
-		return resultadosEstudios;
+	public String getNombreApellido() {
+	    return this.getNombre() + " " + this.getApellido();
 	}
-
-	public void setResultadosEstudios(List<ResultadosEstudios> resultadosEstudios) {
-		this.resultadosEstudios = resultadosEstudios;
-	}
+	
+	@Override
+    public String toString() {
+        return getNombre() + " " +getApellido() + " - DNI: " + getDNI();
+    }
 }

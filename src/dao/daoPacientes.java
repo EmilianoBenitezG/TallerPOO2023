@@ -177,5 +177,46 @@ public class daoPacientes {
 
         return existe;
     }
+    
+    // Selecciona un paciente por ID
+    public Paciente buscarPacientePorID(int pacienteID) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Paciente paciente = null;
+
+        try {
+            String sql = "SELECT * FROM Pacientes WHERE id = ?";
+            ps = cx.conectar().prepareStatement(sql);
+            ps.setInt(1, pacienteID);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                paciente = new Paciente();
+                paciente.setId(rs.getInt("id"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setDNI(rs.getString("DNI"));
+                paciente.setTelFijo(rs.getString("telFijo"));
+                paciente.setTelCelular(rs.getString("telCelular"));
+                paciente.setEstadoCivil(rs.getString("estadoCivil"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setPersonaContacto(rs.getString("personaContacto"));
+                paciente.setEstado(rs.getInt("estado") == 1);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al buscar paciente por ID: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+            cx.desconectar();
+        }
+        return paciente;
+    }
 
 }

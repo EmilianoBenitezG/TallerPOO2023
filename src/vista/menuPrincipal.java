@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 
 public class menuPrincipal extends JFrame {
 	private JPanel contentPane;
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -26,7 +26,7 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 	}
-	
+
 	public menuPrincipal() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,13 +36,13 @@ public class menuPrincipal extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		// Etiqueta que muestra el título "Menu Principal"
 		JLabel lblRoles = new JLabel("Menu Principal");
 		lblRoles.setBounds(282, 45, 275, 51);
 		lblRoles.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		contentPane.add(lblRoles);
-		
+
 		// Botón "Usuarios" que abre la vista de usuarios
 		JButton btnUsuarios = new JButton("Usuarios");
 		btnUsuarios.addActionListener(new ActionListener() {
@@ -55,7 +55,7 @@ public class menuPrincipal extends JFrame {
 		btnUsuarios.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnUsuarios.setBounds(94, 145, 129, 51);
 		contentPane.add(btnUsuarios);
-		
+
 		// Botón "Pacientes" que abre la vista de pacientes
 		JButton btnPacientes = new JButton("Pacientes");
 		btnPacientes.addActionListener(new ActionListener() {
@@ -68,7 +68,7 @@ public class menuPrincipal extends JFrame {
 		btnPacientes.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnPacientes.setBounds(255, 145, 129, 51);
 		contentPane.add(btnPacientes);
-		
+
 		// Botón "Salir" que cierra la aplicación
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
@@ -79,7 +79,7 @@ public class menuPrincipal extends JFrame {
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnSalir.setBounds(699, 454, 118, 39);
 		contentPane.add(btnSalir);
-		
+
 		// Botón "Cerrar Sesión" que cierra la sesión actual
 		JButton btnCerrarSesion = new JButton("Cerrar Sesion");
 		btnCerrarSesion.addActionListener(new ActionListener() {
@@ -92,7 +92,7 @@ public class menuPrincipal extends JFrame {
 		btnCerrarSesion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnCerrarSesion.setBounds(556, 454, 129, 39);
 		contentPane.add(btnCerrarSesion);
-		
+
 		// Botón "Historia Clínica" que abre la vista de historias clínicas
 		JButton btnHistoriaClinica = new JButton("Historia Clinica");
 		btnHistoriaClinica.addActionListener(new ActionListener() {
@@ -103,9 +103,22 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnHistoriaClinica.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnHistoriaClinica.setBounds(409, 145, 141, 51);
+		btnHistoriaClinica.setBounds(416, 145, 141, 51);
 		contentPane.add(btnHistoriaClinica);
-		
+
+		// Botón "Admision" que abre la vista de la pantalla admision
+		JButton btnAdmision = new JButton("Admision");
+		btnAdmision.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vAdmision admision = new vAdmision();
+				admision.setVisible(true);
+				menuPrincipal.this.setVisible(false);
+			}
+		});
+		btnAdmision.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnAdmision.setBounds(94, 231, 141, 51);
+		contentPane.add(btnAdmision);
+
 		// Botón "Triage" que abre la vista de triage
 		JButton btnTriage = new JButton("Triage");
 		btnTriage.addActionListener(new ActionListener() {
