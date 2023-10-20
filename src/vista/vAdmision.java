@@ -22,12 +22,13 @@ import dao.daoPacientes;
 import dao.daoAdmision;
 import modelo.Paciente;
 import modelo.Admision;
+import javax.swing.JEditorPane;
+import java.awt.Color;
 
 public class vAdmision extends JFrame {
 
     private JTextField txtFecha;
     private JTextField txtHora;
-    private JTextField txtMotivoConsulta;
     private JPanel contentPane;
     private JTable tblAdmision;
     private JTextField txtNombreApellido;
@@ -93,6 +94,11 @@ public class vAdmision extends JFrame {
                 vAdmision.this.setVisible(false);
             }
         });
+        
+        JEditorPane txtMotivoConsulta = new JEditorPane();
+        txtMotivoConsulta.setForeground(new Color(0, 0, 0));
+        txtMotivoConsulta.setBounds(41, 300, 203, 77);
+        contentPane.add(txtMotivoConsulta);
 
         JButton btnAgregarAdmision = new JButton("Agregar");
         btnAgregarAdmision.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -155,10 +161,6 @@ public class vAdmision extends JFrame {
         lblNombreApellido.setBounds(41, 155, 152, 22);
         contentPane.add(lblNombreApellido);
 
-        txtMotivoConsulta = new JTextField();
-        txtMotivoConsulta.setBounds(41, 299, 286, 61);
-        contentPane.add(txtMotivoConsulta);
-
         JButton btnBuscarPaciente = new JButton("Buscar Paciente");
         btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
         btnBuscarPaciente.setBounds(41, 105, 232, 30);
@@ -172,7 +174,7 @@ public class vAdmision extends JFrame {
         txtNombreApellido = new JTextField();
         txtNombreApellido.setBounds(179, 155, 170, 22);
         contentPane.add(txtNombreApellido);
-
+        setLocationRelativeTo(null);
         JLabel lblDni = new JLabel("DNI:");
         lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
         lblDni.setBounds(41, 185, 40, 22);
@@ -181,7 +183,7 @@ public class vAdmision extends JFrame {
         txtDNI = new JTextField();
         txtDNI.setBounds(83, 185, 97, 22);
         contentPane.add(txtDNI);
-
+        
         btnBuscarPaciente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 daoPacientes dao = new daoPacientes();

@@ -25,12 +25,12 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.JPasswordField;
 
 public class vUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
-	private JTextField txtContraseña;
 	private JLabel lblId;
 	String[] columnNames = {"Usuario", "Contraseña", "Nivel acceso"};
 	Object[][] data = {};
@@ -46,6 +46,7 @@ public class vUsuario extends JFrame {
 	private JComboBox cbxNombreRol;
 	int fila=-1;
 	Usuario usuario = new Usuario();
+	private JPasswordField txtContraseña;
 	/**
 	 * Launch the application.
 	 */
@@ -90,12 +91,6 @@ public class vUsuario extends JFrame {
 		lblContraseña.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblContraseña.setBounds(43, 164, 103, 14);
 		contentPane.add(lblContraseña);
-		
-		txtContraseña = new JTextField();
-		txtContraseña.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtContraseña.setColumns(10);
-		txtContraseña.setBounds(144, 160, 156, 28);
-		contentPane.add(txtContraseña);
 		
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -266,7 +261,9 @@ public class vUsuario extends JFrame {
 		btnAtras.setBounds(10, 29, 85, 36);
 		contentPane.add(btnAtras);
 		
-		
+		txtContraseña = new JPasswordField();
+		txtContraseña.setBounds(144, 160, 156, 28);
+		contentPane.add(txtContraseña);
 	}
 	
 	private void limpiarCampos() {
@@ -286,7 +283,7 @@ public class vUsuario extends JFrame {
 		for (Usuario u:lista) {
 			Object usuario[]= new Object[3];
 			usuario[0]=u.getUsuario();
-			usuario[1]=u.getContraseña();
+			usuario[1]="****************";
 			usuario[2]=u.getRol().getNombreRol();
 			modelo.addRow(usuario);
 		}
