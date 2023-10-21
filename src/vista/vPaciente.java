@@ -50,6 +50,7 @@ public class vPaciente extends JFrame {
 	private JTable tlbPacientes;
 	Paciente paciente;
 	Paciente pacienteSeleccionado;
+	JLabel lblRol = new JLabel("Rol");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -307,6 +308,7 @@ public class vPaciente extends JFrame {
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuPrincipal menuPrincipal = new menuPrincipal();
+				menuPrincipal.transferirDatos(lblRol.getText());
 				menuPrincipal.setVisible(true);
 				vPaciente.this.setVisible(false);
 			}
@@ -379,6 +381,15 @@ public class vPaciente extends JFrame {
 		lblBuscarPorDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblBuscarPorDni.setBounds(287, 247, 150, 22);
 		contentPane.add(lblBuscarPorDni);
+		
+		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblRol.setBounds(952, 13, 98, 18);
+		contentPane.add(lblRol);
+		
+		JLabel lblCaptionRol = new JLabel("Rol:");
+		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblCaptionRol.setBounds(927, 13, 25, 18);
+		contentPane.add(lblCaptionRol);
 
 		// Agregar columnas al modelo de datos de la tabla
 		modelo.addColumn("Nombre");
@@ -463,5 +474,9 @@ public class vPaciente extends JFrame {
 			tlbPacientes.setRowSelectionInterval(0, 0);
 		}
 		tlbPacientes.setModel(modelo);
+	}
+	
+	public void transferirDatos(String rol) {
+		lblRol.setText(rol);
 	}
 }

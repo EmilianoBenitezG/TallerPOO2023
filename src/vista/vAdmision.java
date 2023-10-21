@@ -34,6 +34,7 @@ public class vAdmision extends JFrame {
     private JTextField txtNombreApellido;
     private JTextField txtDNI;
     private Paciente pacienteSeleccionado;
+    JLabel lblRol = new JLabel("Rol");
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -90,6 +91,7 @@ public class vAdmision extends JFrame {
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 menuPrincipal menuPrincipal = new menuPrincipal();
+                menuPrincipal.transferirDatos(lblRol.getText());
                 menuPrincipal.setVisible(true);
                 vAdmision.this.setVisible(false);
             }
@@ -184,6 +186,15 @@ public class vAdmision extends JFrame {
         txtDNI.setBounds(83, 185, 97, 22);
         contentPane.add(txtDNI);
         
+        lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+        lblRol.setBounds(971, 13, 98, 18);
+        contentPane.add(lblRol);
+        
+        JLabel lblCaptionRol = new JLabel("Rol:");
+        lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+        lblCaptionRol.setBounds(946, 13, 25, 18);
+        contentPane.add(lblCaptionRol);
+        
         btnBuscarPaciente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 daoPacientes dao = new daoPacientes();
@@ -221,4 +232,8 @@ public class vAdmision extends JFrame {
             });
         }
     }
+    
+    public void transferirDatos(String rol) {
+		lblRol.setText(rol);
+	}
 }

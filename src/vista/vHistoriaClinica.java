@@ -38,6 +38,7 @@ public class vHistoriaClinica extends JFrame {
     daoHistorial dao = new daoHistorial();
     ArrayList<HistoriaClinicaPaciente> lista;
     HistoriaClinicaPaciente historial;
+    JLabel lblRol = new JLabel("Rol");
 
     private JTable tlbHistorial;
 
@@ -209,11 +210,12 @@ public class vHistoriaClinica extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Código para volver al menú principal
                 menuPrincipal menu = new menuPrincipal();
+                menu.transferirDatos(lblRol.getText());
                 menu.setVisible(true);
                 vHistoriaClinica.this.dispose(); // Cierra la ventana actual
             }
         });
-        btnVolver.setBounds(900, 13, 89, 23);
+        btnVolver.setBounds(0, 27, 91, 23);
         contentPane.add(btnVolver);
 
         JScrollPane scrollPane = new JScrollPane();
@@ -230,6 +232,15 @@ public class vHistoriaClinica extends JFrame {
                 }
         ));
         scrollPane.setViewportView(tlbHistorial);
+        
+        lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+        lblRol.setBounds(911, 13, 98, 18);
+        contentPane.add(lblRol);
+        
+        JLabel lblCaptionRol = new JLabel("Rol:");
+        lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+        lblCaptionRol.setBounds(886, 13, 25, 18);
+        contentPane.add(lblCaptionRol);
 
         modelo.addColumn("Fecha");
         modelo.addColumn("Hora");
@@ -284,4 +295,8 @@ public class vHistoriaClinica extends JFrame {
         txtResultadosEstudios.setText("");
         txtHora.setText("");
     }
+    
+    public void transferirDatos(String rol) {
+		lblRol.setText(rol);
+	}
 }

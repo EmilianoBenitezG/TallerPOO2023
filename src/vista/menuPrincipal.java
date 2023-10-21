@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 
 public class menuPrincipal extends JFrame {
 	private JPanel contentPane;
+	JLabel lblRol = new JLabel("Rol");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,6 +49,7 @@ public class menuPrincipal extends JFrame {
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vUsuario vusuario = new vUsuario();
+				vusuario.transferirDatos(lblRol.getText());
 				vusuario.setVisible(true);
 				menuPrincipal.this.setVisible(false);
 			}
@@ -61,6 +63,7 @@ public class menuPrincipal extends JFrame {
 		btnPacientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vPaciente vpaciente = new vPaciente();
+				vpaciente.transferirDatos(lblRol.getText());
 				vpaciente.setVisible(true);
 				menuPrincipal.this.setVisible(false);
 			}
@@ -86,6 +89,7 @@ public class menuPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				menuPrincipal.this.setVisible(false);
 				vLogin login = new vLogin();
+				login.transferirDatos(lblRol.getText());
 				login.setVisible(true);
 			}
 		});
@@ -98,6 +102,7 @@ public class menuPrincipal extends JFrame {
 		btnHistoriaClinica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vHistoriaClinica historiaClinica = new vHistoriaClinica();
+				historiaClinica.transferirDatos(lblRol.getText());
 				historiaClinica.setVisible(true);
 				menuPrincipal.this.setVisible(false);
 			}
@@ -111,6 +116,7 @@ public class menuPrincipal extends JFrame {
 		btnAdmision.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vAdmision admision = new vAdmision();
+				admision.transferirDatos(lblRol.getText());
 				admision.setVisible(true);
 				menuPrincipal.this.setVisible(false);
 			}
@@ -124,6 +130,7 @@ public class menuPrincipal extends JFrame {
 		btnTriage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vTriage vTriage = new vTriage();
+				vTriage.transferirDatos(lblRol.getText());
 				vTriage.setVisible(true);
 				menuPrincipal.this.setVisible(false);
 			}
@@ -131,6 +138,18 @@ public class menuPrincipal extends JFrame {
 		btnTriage.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnTriage.setBounds(580, 145, 118, 51);
 		contentPane.add(btnTriage);
+		
+		JLabel lblCaptionRol = new JLabel("Rol:");
+		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblCaptionRol.setBounds(727, 11, 25, 18);
+		contentPane.add(lblCaptionRol);
+		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblRol.setBounds(752, 11, 98, 18);
+		contentPane.add(lblRol);
 		setLocationRelativeTo(null);
+	}
+	
+	public void transferirDatos(String rol) {
+		lblRol.setText(rol);
 	}
 }

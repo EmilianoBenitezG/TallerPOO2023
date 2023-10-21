@@ -22,10 +22,11 @@ import javax.swing.JPasswordField;
 public class vLogin extends JFrame {
 
 	private JPanel contentPane;
-	private final JLabel lblTitulo = new JLabel("Sistema de Triaje");
+	private final JLabel lblTitulo = new JLabel("Sistema de Triage");
 	private JTextField txtUsuario;
 	daoLogin dao = new daoLogin();
 	private JPasswordField txtContraseña;
+	JLabel lblRol = new JLabel("Rol");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -76,6 +77,7 @@ public class vLogin extends JFrame {
 					String rol = dao.login(txtUsuario.getText().toUpperCase(), txtContraseña.getText().toUpperCase());
 					if (!rol.isEmpty()) {
 						//abro ventana principal
+						menuPrincipal.transferirDatos(rol);
 						menuPrincipal.setVisible(true);
 						//cierro ventana login
 						vLogin.this.dispose();
@@ -97,11 +99,36 @@ public class vLogin extends JFrame {
 		txtContraseña = new JPasswordField();
 		txtContraseña.setBounds(407, 261, 130, 23);
 		contentPane.add(txtContraseña);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vLogin.this.dispose();
+			}
+		});
+		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnSalir.setBounds(687, 451, 118, 39);
+		contentPane.add(btnSalir);
+		
+		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblRol.setBounds(727, 11, 98, 18);
+		contentPane.add(lblRol);
+		
+		JLabel lblCaptionRol = new JLabel("Rol:");
+		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblCaptionRol.setBounds(702, 11, 25, 18);
+		lblCaptionRol.setVisible(false);
+		lblRol.setVisible(false);
+		contentPane.add(lblCaptionRol);
 		setLocationRelativeTo(null);
 	}
 	
 	private void limpiarCampos() {
 		txtUsuario.setText("");
 		txtContraseña.setText("");
+	}
+	
+	public void transferirDatos(String rol) {
+		lblRol.setText(rol);
 	}
 }

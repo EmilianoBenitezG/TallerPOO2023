@@ -32,6 +32,7 @@ public class vUsuario extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JLabel lblId;
+	JLabel lblRol = new JLabel("Rol");
 	String[] columnNames = {"Usuario", "Contraseña", "Nivel acceso"};
 	Object[][] data = {};
 	 DefaultTableModel modelo = new DefaultTableModel(data, columnNames) {
@@ -78,18 +79,18 @@ public class vUsuario extends JFrame {
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtUsuario.setBounds(144, 121, 156, 28);
+		txtUsuario.setBounds(127, 121, 173, 28);
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblUsuario.setBounds(72, 127, 71, 17);
+		lblUsuario.setBounds(58, 125, 71, 17);
 		contentPane.add(lblUsuario);
 		
 		JLabel lblContraseña = new JLabel("Contrase\u00F1a:");
 		lblContraseña.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblContraseña.setBounds(43, 164, 103, 14);
+		lblContraseña.setBounds(28, 164, 103, 14);
 		contentPane.add(lblContraseña);
 		
 		JButton btnAgregar = new JButton("Agregar");
@@ -169,15 +170,15 @@ public class vUsuario extends JFrame {
 		scrollPane.setViewportView(tblRoles);
 		actualizarTabla();
 		setLocationRelativeTo(null);
-		JLabel lblRol = new JLabel("Rol:\r\n");
-		lblRol.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblRol.setBounds(105, 205, 85, 17);
-		contentPane.add(lblRol);
+		JLabel lblRol_1 = new JLabel("Rol:\r\n");
+		lblRol_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblRol_1.setBounds(89, 205, 35, 17);
+		contentPane.add(lblRol_1);
 		
 		cbxNombreRol = new JComboBox();
 		cbxNombreRol.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbxNombreRol.setModel(new DefaultComboBoxModel(new String[] {"Medico", "Funcionario"}));
-		cbxNombreRol.setBounds(144, 199, 156, 28);
+		cbxNombreRol.setModel(new DefaultComboBoxModel(new String[] {"Medico", "Funcionario", "Licenciado en Enfermeria"}));
+		cbxNombreRol.setBounds(127, 199, 173, 28);
 		contentPane.add(cbxNombreRol);
 		
 		JButton btnModificar = new JButton("Modificar");
@@ -253,6 +254,7 @@ public class vUsuario extends JFrame {
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuPrincipal menuPrincipal = new menuPrincipal();
+				menuPrincipal.transferirDatos(lblRol.getText());
 				menuPrincipal.setVisible(true);
 				vUsuario.this.setVisible(false);
 			}
@@ -262,8 +264,17 @@ public class vUsuario extends JFrame {
 		contentPane.add(btnAtras);
 		
 		txtContraseña = new JPasswordField();
-		txtContraseña.setBounds(144, 160, 156, 28);
+		txtContraseña.setBounds(127, 160, 173, 28);
 		contentPane.add(txtContraseña);
+		
+		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblRol.setBounds(729, 11, 98, 18);
+		contentPane.add(lblRol);
+		
+		JLabel lblCaptionRol = new JLabel("Rol:");
+		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblCaptionRol.setBounds(704, 11, 25, 18);
+		contentPane.add(lblCaptionRol);
 	}
 	
 	private void limpiarCampos() {
@@ -288,5 +299,9 @@ public class vUsuario extends JFrame {
 			modelo.addRow(usuario);
 		}
 		tblRoles.setModel(modelo);
+	}
+	
+	public void transferirDatos(String rol) {
+		lblRol.setText(rol);
 	}
 }

@@ -80,6 +80,8 @@ public class vTriage extends JFrame {
         }
     };
     ArrayList<Triage> lista;
+    private JLabel lblRol;
+    private JLabel lblCaptionRol;
 	/**
 	 * Launch the application.
 	 */
@@ -207,6 +209,7 @@ public class vTriage extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuPrincipal menuPrincipal = new menuPrincipal();
+				menuPrincipal.transferirDatos(lblRol.getText());
 				menuPrincipal.setVisible(true);
 				vTriage.this.setVisible(false);
 			}
@@ -514,6 +517,16 @@ public class vTriage extends JFrame {
 		table.getColumnModel().getColumn(0).setMinWidth(20);
 		table.getColumnModel().getColumn(1).setPreferredWidth(105);
 		scrollPane.setViewportView(table);
+		
+		lblRol = new JLabel("Rol");
+		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblRol.setBounds(703, 11, 98, 18);
+		contentPane.add(lblRol);
+		
+		lblCaptionRol = new JLabel("Rol:");
+		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblCaptionRol.setBounds(678, 11, 25, 18);
+		contentPane.add(lblCaptionRol);
 		setLocationRelativeTo(null);
 		actualizarTabla();
 		
@@ -534,5 +547,9 @@ public class vTriage extends JFrame {
 			modelo.addRow(triage);
 		}
 		table.setModel(modelo);
+	}
+	
+	public void transferirDatos(String rol) {
+		lblRol.setText(rol);
 	}
 }
