@@ -106,7 +106,6 @@ public class vAdmision extends JFrame {
         btnAgregarAdmision.setFont(new Font("Tahoma", Font.BOLD, 15));
         btnAgregarAdmision.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar la lógica para agregar una admisión
                 String nombreApellido = txtNombreApellido.getText();
                 String dni = txtDNI.getText();
                 String motivoConsulta = txtMotivoConsulta.getText();

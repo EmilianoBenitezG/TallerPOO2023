@@ -50,7 +50,7 @@ public class daoHistorial {
         PreparedStatement ps = null;
 
         try {
-            String sql = "UPDATE HistoriaClinica SET Fecha = ?, Hora = ?, HistorialDiagnostico = ?, LugarDeAtencion = ?, TextoMedico = ? WHERE id = ?";
+            String sql = "UPDATE HistoriaClinica SET Fecha = ?, Hora = ?, LugarDeAtencion = ?, TextoMedico = ?, HistorialDiagnostico = ? WHERE id = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, historial.getFecha());
             ps.setString(2, historial.getHora());
@@ -74,13 +74,13 @@ public class daoHistorial {
         PreparedStatement ps = null;
 
         try {
-            String sql = "INSERT INTO HistoriaClinica (Fecha, Hora, HistorialDiagnostico, LugarDeAtencion, TextoMedico) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO HistoriaClinica (Fecha, Hora, LugarDeAtencion, TextoMedico, HistorialDiagnostico) VALUES (?, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
             ps.setString(1, historial.getFecha());
             ps.setString(2, historial.getHora());
-            ps.setString(4, historial.getLugarDeAtencion());
-            ps.setString(5, historial.getTextoMedico());
-            ps.setString(3, historial.getHistorialDiagnostico());
+            ps.setString(3, historial.getLugarDeAtencion());
+            ps.setString(4, historial.getTextoMedico());
+            ps.setString(5, historial.getHistorialDiagnostico());
 
             int rowsInserted = ps.executeUpdate();
             cx.desconectar();
@@ -91,14 +91,4 @@ public class daoHistorial {
             return false;
         }
     }
-
-    public boolean eliminarHistorial(int id) {
-        // Implementa la lógica para eliminar un historial clínico por ID si es necesario
-        return false;
-    }
-
-	public ArrayList<HistoriaClinicaPaciente> ConsultaHistorial() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JEditorPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.event.ListSelectionEvent;
@@ -32,13 +33,14 @@ public class vHistoriaClinica extends JFrame {
     private JTextField txtFecha;
     private JTextField txtHora;
     private JComboBox<String> cmbLugarAtencion;
-    private JTextField txtTextoMedico;
+    private JEditorPane txtTextoMedico;
     private JTextField txtHistorialDiagnostico;
+    JLabel lblRol = new JLabel("Rol");
 
     int fila = -1;
     DefaultTableModel modelo = new DefaultTableModel();
     daoHistorial dao = new daoHistorial();
-    ArrayList<HistoriaClinicaPaciente> lista = new ArrayList<>(); // Inicializa la lista
+    ArrayList<HistoriaClinicaPaciente> lista = new ArrayList<>();
     HistoriaClinicaPaciente historial;
 
     private JTable tlbHistorial;
@@ -105,10 +107,9 @@ public class vHistoriaClinica extends JFrame {
         lblLugarAtencion.setBounds(25, 179, 176, 22);
         contentPane.add(lblLugarAtencion);
 
-        // Texto Médico
-        txtTextoMedico = new JTextField();
-        txtTextoMedico.setColumns(10);
-        txtTextoMedico.setBounds(200, 230, 170, 22);
+        // Texto Médico (JEditorPane)
+        txtTextoMedico = new JEditorPane();
+        txtTextoMedico.setBounds(200, 230, 170, 100);
         contentPane.add(txtTextoMedico);
 
         JLabel lblTextoMedico = new JLabel("Texto Médico: ");
@@ -119,13 +120,17 @@ public class vHistoriaClinica extends JFrame {
         // Historial de Diagnóstico
         txtHistorialDiagnostico = new JTextField();
         txtHistorialDiagnostico.setColumns(10);
-        txtHistorialDiagnostico.setBounds(200, 282, 170, 22);
+        txtHistorialDiagnostico.setBounds(200, 335, 170, 22);
         contentPane.add(txtHistorialDiagnostico);
 
         JLabel lblHistorialDiagnostico = new JLabel("Historial Diagnóstico: ");
         lblHistorialDiagnostico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblHistorialDiagnostico.setBounds(25, 282, 181, 22);
+        lblHistorialDiagnostico.setBounds(25, 335, 181, 22);
         contentPane.add(lblHistorialDiagnostico);
+        
+        lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+        lblRol.setBounds(971, 13, 98, 18);
+        contentPane.add(lblRol);
 
         // Botones en pantalla
         // Botón Modificar
@@ -189,7 +194,7 @@ public class vHistoriaClinica extends JFrame {
         });
         btnAgregar.setBounds(50, 461, 125, 33);
         contentPane.add(btnAgregar);
-        
+
         // Botón Volver
         JButton btnVolver = new JButton("Volver");
         btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -201,9 +206,9 @@ public class vHistoriaClinica extends JFrame {
                 vHistoriaClinica.this.dispose(); // Cierra la ventana actual
             }
         });
-        btnVolver.setBounds(900, 13, 89, 23);
+        btnVolver.setBounds(10, 11, 85, 36);
         contentPane.add(btnVolver);
-
+        
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(380, 46, 629, 469);
         contentPane.add(scrollPane);
@@ -293,4 +298,8 @@ public class vHistoriaClinica extends JFrame {
         txtTextoMedico.setText("");
         txtHistorialDiagnostico.setText("");
     }
+    
+    public void transferirDatos(String rol) {
+		lblRol.setText(rol);
+	}
 }
