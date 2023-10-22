@@ -1,22 +1,14 @@
 package modelo;
 
 public class HistoriaClinicaPaciente {
-	
     private int id;
     private String fecha;
     private String hora;
+    private String lugarDeAtencion;
+    private String textoMedico;
     private String historialDiagnostico;
-    private LugarDeAtencion lugarDeAtencion;
-    private String ultimoDiagnostico;
-    private String resEstudios;
 
     public HistoriaClinicaPaciente() {
-    }
-
-    public enum LugarDeAtencion {
-        CONSULTORIO,
-        EMERGENCIA,
-        INTERNACIONES
     }
 
     public int getId() {
@@ -35,10 +27,6 @@ public class HistoriaClinicaPaciente {
         this.fecha = fecha;
     }
 
-    public String getHistorialDiagnostico() {
-        return historialDiagnostico;
-    }
-
     public String getHora() {
         return hora;
     }
@@ -47,31 +35,27 @@ public class HistoriaClinicaPaciente {
         this.hora = hora;
     }
 
-    public void setHistorialDiagnostico(String historialDiagnostico) {
-        this.historialDiagnostico = historialDiagnostico;
-    }
-
-    public LugarDeAtencion getLugarDeAtencion() {
+    public String getLugarDeAtencion() {
         return lugarDeAtencion;
     }
 
-    public void setLugarDeAtencion(LugarDeAtencion lugarDeAtencion) {
+    public void setLugarDeAtencion(String lugarDeAtencion) {
         this.lugarDeAtencion = lugarDeAtencion;
     }
 
-    public String getUltimoDiagnostico() {
-        return ultimoDiagnostico;
+    public String getTextoMedico() {
+        return textoMedico;
     }
 
-    public void setUltimoDiagnostico(String ultimoDiagnostico) {
-        this.ultimoDiagnostico = ultimoDiagnostico;
+    public void setTextoMedico(String textoMedico) {
+        this.textoMedico = textoMedico;
     }
 
-    public String getResEstudios() {
-        return resEstudios;
+    public String getHistorialDiagnostico() {
+        return historialDiagnostico;
     }
 
-    public void setResEstudios(String resEstudios) {
-        this.resEstudios = resEstudios;
+    public void setHistorialDiagnostico(String historialDiagnostico) {
+        this.historialDiagnostico = historialDiagnostico;
     }
 }

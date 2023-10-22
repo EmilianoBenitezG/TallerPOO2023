@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.HistoriaClinicaPaciente;
-import modelo.HistoriaClinicaPaciente.LugarDeAtencion;
 import conexion.Conexion;
 
 public class daoHistorial {
@@ -16,40 +15,33 @@ public class daoHistorial {
         cx = new Conexion();
     }
 
-    public ArrayList<HistoriaClinicaPaciente> ConsultaHistorial() {
+    public ArrayList<HistoriaClinicaPaciente> consultarHistorial() {
         ArrayList<HistoriaClinicaPaciente> lista = new ArrayList<HistoriaClinicaPaciente>();
         Connection conn = cx.conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
+
         try {
             ps = conn.prepareStatement("SELECT * FROM HistoriaClinica");
             rs = ps.executeQuery();
+
             while (rs.next()) {
                 HistoriaClinicaPaciente historial = new HistoriaClinicaPaciente();
                 historial.setId(rs.getInt("id"));
                 historial.setFecha(rs.getString("Fecha"));
+                historial.setHora(rs.getString("Hora"));
+                historial.setLugarDeAtencion(rs.getString("LugarDeAtencion"));
+                historial.setTextoMedico(rs.getString("TextoMedico"));
                 historial.setHistorialDiagnostico(rs.getString("HistorialDiagnostico"));
 
-                // Obtener el valor del campo LugarDeAtencion desde la base de datos
-                String lugarAtencionString = rs.getString("LugarDeAtencion");
-                // Verificar si el valor coincide con un enum válido
-                try {
-                    HistoriaClinicaPaciente.LugarDeAtencion lugarAtencion = HistoriaClinicaPaciente.LugarDeAtencion.valueOf(lugarAtencionString);
-                    historial.setLugarDeAtencion(lugarAtencion);
-                } catch (IllegalArgumentException e) {
-                    // Manejar el caso en el que el valor no coincide con un enum
-                    historial.setLugarDeAtencion(HistoriaClinicaPaciente.LugarDeAtencion.CONSULTORIO); // Puedes asignar un valor predeterminado
-                }
-
-                historial.setUltimoDiagnostico(rs.getString("UltimoDiagnostico"));
-                historial.setResEstudios(rs.getString("ResEstudios"));
-                historial.setHora(rs.getString("Hora"));
                 lista.add(historial);
             }
+
             cx.desconectar();
         } catch (SQLException e) {
             System.err.println("Error al consultar historiales clínicos: " + e.getMessage());
         }
+
         return lista;
     }
 
@@ -58,18 +50,14 @@ public class daoHistorial {
         PreparedStatement ps = null;
 
         try {
-            String sql = "UPDATE HistoriaClinica SET Fecha = ?, HistorialDiagnostico = ?, " +
-                         "LugarDeAtencion = ?, UltimoDiagnostico = ?, ResEstudios = ?, Hora = ? " +
-                         "WHERE id = ?";
-
+            String sql = "UPDATE HistoriaClinica SET Fecha = ?, Hora = ?, HistorialDiagnostico = ?, LugarDeAtencion = ?, TextoMedico = ? WHERE id = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, historial.getFecha());
-            ps.setString(2, historial.getHistorialDiagnostico());
-            ps.setString(3, historial.getLugarDeAtencion().name());
-            ps.setString(4, historial.getUltimoDiagnostico());
-            ps.setString(5, historial.getResEstudios());
-            ps.setString(6, historial.getHora());
-            ps.setInt(7, historial.getId());
+            ps.setString(2, historial.getHora());
+            ps.setString(3, historial.getLugarDeAtencion());
+            ps.setString(4, historial.getTextoMedico());
+            ps.setString(5, historial.getHistorialDiagnostico());
+            ps.setInt(6, historial.getId());
 
             int rowsUpdated = ps.executeUpdate();
             cx.desconectar();
@@ -86,15 +74,13 @@ public class daoHistorial {
         PreparedStatement ps = null;
 
         try {
-            String sql = "INSERT INTO HistoriaClinica (Fecha, HistorialDiagnostico, LugarDeAtencion, UltimoDiagnostico, ResEstudios, Hora) " +
-                         "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO HistoriaClinica (Fecha, Hora, HistorialDiagnostico, LugarDeAtencion, TextoMedico) VALUES (?, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
             ps.setString(1, historial.getFecha());
-            ps.setString(2, historial.getHistorialDiagnostico());
-            ps.setString(3, historial.getLugarDeAtencion().name());
-            ps.setString(4, historial.getUltimoDiagnostico());
-            ps.setString(5, historial.getResEstudios());
-            ps.setString(6, historial.getHora());
+            ps.setString(2, historial.getHora());
+            ps.setString(4, historial.getLugarDeAtencion());
+            ps.setString(5, historial.getTextoMedico());
+            ps.setString(3, historial.getHistorialDiagnostico());
 
             int rowsInserted = ps.executeUpdate();
             cx.desconectar();
@@ -106,8 +92,13 @@ public class daoHistorial {
         }
     }
 
-	public boolean eliminarHistorial(int id) {
+    public boolean eliminarHistorial(int id) {
+        // Implementa la lógica para eliminar un historial clínico por ID si es necesario
+        return false;
+    }
+
+	public ArrayList<HistoriaClinicaPaciente> ConsultaHistorial() {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 }

@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,6 +18,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import modelo.HistoriaClinicaPaciente;
 import dao.daoHistorial;
@@ -27,18 +30,16 @@ public class vHistoriaClinica extends JFrame {
 
     private JPanel contentPane;
     private JTextField txtFecha;
-    private JTextField txtHistorialDiagnostico;
-    private JTextField txtLugarAtencion;
-    private JTextField txtUltimoDiagnostico;
-    private JTextField txtResultadosEstudios;
     private JTextField txtHora;
+    private JComboBox<String> cmbLugarAtencion;
+    private JTextField txtTextoMedico;
+    private JTextField txtHistorialDiagnostico;
 
     int fila = -1;
     DefaultTableModel modelo = new DefaultTableModel();
     daoHistorial dao = new daoHistorial();
-    ArrayList<HistoriaClinicaPaciente> lista;
+    ArrayList<HistoriaClinicaPaciente> lista = new ArrayList<>(); // Inicializa la lista
     HistoriaClinicaPaciente historial;
-    JLabel lblRol = new JLabel("Rol");
 
     private JTable tlbHistorial;
 
@@ -81,60 +82,50 @@ public class vHistoriaClinica extends JFrame {
         lblFecha.setBounds(25, 83, 81, 22);
         contentPane.add(lblFecha);
 
-        // Historial de Diagnóstico
-        txtHistorialDiagnostico = new JTextField();
-        txtHistorialDiagnostico.setColumns(10);
-        txtHistorialDiagnostico.setBounds(200, 129, 170, 22);
-        contentPane.add(txtHistorialDiagnostico);
-
-        JLabel lblHistorialDiagnostico = new JLabel("Historial Diagnóstico: ");
-        lblHistorialDiagnostico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblHistorialDiagnostico.setBounds(25, 126, 181, 22);
-        contentPane.add(lblHistorialDiagnostico);
-
-        // Lugar de Atención
-        txtLugarAtencion = new JTextField();
-        txtLugarAtencion.setColumns(10);
-        txtLugarAtencion.setBounds(200, 178, 170, 22);
-        contentPane.add(txtLugarAtencion);
-
-        JLabel lblLugarAtencion = new JLabel("Lugar de Atención: ");
-        lblLugarAtencion.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblLugarAtencion.setBounds(25, 175, 176, 22);
-        contentPane.add(lblLugarAtencion);
-
-        // Último Diagnóstico
-        txtUltimoDiagnostico = new JTextField();
-        txtUltimoDiagnostico.setColumns(10);
-        txtUltimoDiagnostico.setBounds(200, 229, 170, 22);
-        contentPane.add(txtUltimoDiagnostico);
-
-        JLabel lblUltimoDiagnostico = new JLabel("Último Diagnóstico: ");
-        lblUltimoDiagnostico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblUltimoDiagnostico.setBounds(25, 226, 185, 22);
-        contentPane.add(lblUltimoDiagnostico);
-
-        // Resultados de Estudios
-        txtResultadosEstudios = new JTextField();
-        txtResultadosEstudios.setColumns(10);
-        txtResultadosEstudios.setBounds(200, 279, 170, 22);
-        contentPane.add(txtResultadosEstudios);
-
-        JLabel lblResultadosEstudios = new JLabel("Resultado Estudios: ");
-        lblResultadosEstudios.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblResultadosEstudios.setBounds(25, 276, 214, 22);
-        contentPane.add(lblResultadosEstudios);
-
         // Hora
         txtHora = new JTextField();
         txtHora.setColumns(10);
-        txtHora.setBounds(200, 327, 170, 22);
+        txtHora.setBounds(200, 132, 170, 22);
         contentPane.add(txtHora);
 
         JLabel lblHora = new JLabel("Hora: ");
         lblHora.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblHora.setBounds(25, 324, 73, 22);
+        lblHora.setBounds(25, 129, 73, 22);
         contentPane.add(lblHora);
+
+        // Lugar de Atención (usando JComboBox)
+        String[] lugaresAtencion = {"CONSULTORIO", "EMERGENCIA", "INTERNACIONES"};
+        cmbLugarAtencion = new JComboBox<>(lugaresAtencion);
+        cmbLugarAtencion.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        cmbLugarAtencion.setBounds(200, 180, 170, 22);
+        contentPane.add(cmbLugarAtencion);
+
+        JLabel lblLugarAtencion = new JLabel("Lugar de Atención: ");
+        lblLugarAtencion.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lblLugarAtencion.setBounds(25, 179, 176, 22);
+        contentPane.add(lblLugarAtencion);
+
+        // Texto Médico
+        txtTextoMedico = new JTextField();
+        txtTextoMedico.setColumns(10);
+        txtTextoMedico.setBounds(200, 230, 170, 22);
+        contentPane.add(txtTextoMedico);
+
+        JLabel lblTextoMedico = new JLabel("Texto Médico: ");
+        lblTextoMedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lblTextoMedico.setBounds(25, 230, 185, 22);
+        contentPane.add(lblTextoMedico);
+
+        // Historial de Diagnóstico
+        txtHistorialDiagnostico = new JTextField();
+        txtHistorialDiagnostico.setColumns(10);
+        txtHistorialDiagnostico.setBounds(200, 282, 170, 22);
+        contentPane.add(txtHistorialDiagnostico);
+
+        JLabel lblHistorialDiagnostico = new JLabel("Historial Diagnóstico: ");
+        lblHistorialDiagnostico.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lblHistorialDiagnostico.setBounds(25, 282, 181, 22);
+        contentPane.add(lblHistorialDiagnostico);
 
         // Botones en pantalla
         // Botón Modificar
@@ -146,13 +137,10 @@ public class vHistoriaClinica extends JFrame {
                     try {
                         historial = lista.get(fila);
                         historial.setFecha(txtFecha.getText());
-                        historial.setHistorialDiagnostico(txtHistorialDiagnostico.getText());
-                        String lugarAtencionText = txtLugarAtencion.getText();
-                        HistoriaClinicaPaciente.LugarDeAtencion lugarAtencion = HistoriaClinicaPaciente.LugarDeAtencion.valueOf(lugarAtencionText);
-                        historial.setLugarDeAtencion(lugarAtencion);
-                        historial.setUltimoDiagnostico(txtUltimoDiagnostico.getText());
-                        historial.setResEstudios(txtResultadosEstudios.getText());
                         historial.setHora(txtHora.getText());
+                        historial.setLugarDeAtencion((String) cmbLugarAtencion.getSelectedItem());
+                        historial.setTextoMedico(txtTextoMedico.getText());
+                        historial.setHistorialDiagnostico(txtHistorialDiagnostico.getText());
 
                         if (dao.modificarHistorial(historial)) {
                             actualizarTabla();
@@ -170,10 +158,10 @@ public class vHistoriaClinica extends JFrame {
                 }
             }
         });
-        btnModificar.setBounds(50, 479, 125, 22);
+        btnModificar.setBounds(200, 461, 125, 33);
         contentPane.add(btnModificar);
 
-        // Botón agregar
+        // Botón Agregar
         JButton btnAgregar = new JButton("Agregar");
         btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
         btnAgregar.addActionListener(new ActionListener() {
@@ -181,11 +169,10 @@ public class vHistoriaClinica extends JFrame {
                 try {
                     HistoriaClinicaPaciente historial = new HistoriaClinicaPaciente();
                     historial.setFecha(txtFecha.getText());
-                    historial.setHistorialDiagnostico(txtHistorialDiagnostico.getText());
-                    historial.setLugarDeAtencion(HistoriaClinicaPaciente.LugarDeAtencion.valueOf(txtLugarAtencion.getText()));
-                    historial.setUltimoDiagnostico(txtUltimoDiagnostico.getText());
-                    historial.setResEstudios(txtResultadosEstudios.getText());
                     historial.setHora(txtHora.getText());
+                    historial.setLugarDeAtencion((String) cmbLugarAtencion.getSelectedItem());
+                    historial.setTextoMedico(txtTextoMedico.getText());
+                    historial.setHistorialDiagnostico(txtHistorialDiagnostico.getText());
 
                     if (dao.insertarHistorial(historial)) {
                         actualizarTabla();
@@ -200,9 +187,9 @@ public class vHistoriaClinica extends JFrame {
                 }
             }
         });
-        btnAgregar.setBounds(196, 479, 125, 22);
+        btnAgregar.setBounds(50, 461, 125, 33);
         contentPane.add(btnAgregar);
-
+        
         // Botón Volver
         JButton btnVolver = new JButton("Volver");
         btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -210,47 +197,41 @@ public class vHistoriaClinica extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Código para volver al menú principal
                 menuPrincipal menu = new menuPrincipal();
-                menu.transferirDatos(lblRol.getText());
                 menu.setVisible(true);
                 vHistoriaClinica.this.dispose(); // Cierra la ventana actual
             }
         });
-        btnVolver.setBounds(0, 27, 91, 23);
+        btnVolver.setBounds(900, 13, 89, 23);
         contentPane.add(btnVolver);
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(380, 46, 629, 469);
         contentPane.add(scrollPane);
 
-        tlbHistorial = new JTable();
+        tlbHistorial = new JTable(modelo) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         tlbHistorial.setModel(new DefaultTableModel(
-                new Object[][] {
-                        {null, null, null, null, null, null, null},
-                },
-                new String[] {
-                        "Fecha", "Historial Diagnóstico", "Lugar de Atención", "Último Diagnóstico", "Resultado Estudios", "Hora",
-                }
+            new Object[][] {
+                {null, null, null, null, null},
+            },
+            new String[] {
+                "Fecha", "Hora", "Lugar de Atención", "Texto Médico", "Historial Diagnóstico",
+            }
         ));
         scrollPane.setViewportView(tlbHistorial);
-        
-        lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-        lblRol.setBounds(911, 13, 98, 18);
-        contentPane.add(lblRol);
-        
-        JLabel lblCaptionRol = new JLabel("Rol:");
-        lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-        lblCaptionRol.setBounds(886, 13, 25, 18);
-        contentPane.add(lblCaptionRol);
 
         modelo.addColumn("Fecha");
         modelo.addColumn("Hora");
-        modelo.addColumn("Historial Diagnóstico");
         modelo.addColumn("Lugar de Atención");
-        modelo.addColumn("Último Diagnóstico");
-        modelo.addColumn("Resultado Estudios");
+        modelo.addColumn("Texto Médico");
+        modelo.addColumn("Historial Diagnóstico");
         actualizarTabla();
         setLocationRelativeTo(null);
-        
+
         tlbHistorial.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -262,22 +243,40 @@ public class vHistoriaClinica extends JFrame {
                 }
             }
         });
+
+        tlbHistorial.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = tlbHistorial.getSelectedRow();
+                    if (selectedRow >= 0) {
+                        HistoriaClinicaPaciente historial = lista.get(selectedRow);
+                        txtFecha.setText(historial.getFecha());
+                        txtHora.setText(historial.getHora());
+                        cmbLugarAtencion.setSelectedItem(historial.getLugarDeAtencion());
+                        txtTextoMedico.setText(historial.getTextoMedico());
+                        txtHistorialDiagnostico.setText(historial.getHistorialDiagnostico());
+                    }
+                }
+            }
+        });
     }
 
     public void actualizarTabla() {
         modelo.setRowCount(0);
-
         try {
-            lista = dao.ConsultaHistorial();
+            lista = dao.consultarHistorial();
+            if (lista == null) {
+                lista = new ArrayList<>();
+            }
 
             for (HistoriaClinicaPaciente u : lista) {
-                Object historialData[] = new Object[7];
+                Object historialData[] = new Object[5];
                 historialData[0] = u.getFecha();
                 historialData[1] = u.getHora();
-                historialData[2] = u.getUltimoDiagnostico();
-                historialData[3] = u.getLugarDeAtencion().name();
+                historialData[2] = u.getLugarDeAtencion();
+                historialData[3] = u.getTextoMedico();
                 historialData[4] = u.getHistorialDiagnostico();
-                historialData[5] = u.getResEstudios();
                 modelo.addRow(historialData);
             }
             tlbHistorial.setModel(modelo);
@@ -289,14 +288,9 @@ public class vHistoriaClinica extends JFrame {
 
     private void limpiarCampos() {
         txtFecha.setText("");
-        txtHistorialDiagnostico.setText("");
-        txtLugarAtencion.setText("");
-        txtUltimoDiagnostico.setText("");
-        txtResultadosEstudios.setText("");
         txtHora.setText("");
+        cmbLugarAtencion.setSelectedIndex(0);
+        txtTextoMedico.setText("");
+        txtHistorialDiagnostico.setText("");
     }
-    
-    public void transferirDatos(String rol) {
-		lblRol.setText(rol);
-	}
 }
