@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,6 +32,7 @@ public class vAdmision extends JFrame {
     private JTable tblAdmision;
     private JTextField txtNombreApellido;
     private JTextField txtDNI;
+    private JEditorPane txtMotivoConsulta; // Cambio aquí
     private Paciente pacienteSeleccionado;
     JLabel lblRol = new JLabel("Rol");
 
@@ -50,43 +50,46 @@ public class vAdmision extends JFrame {
     }
 
     public vAdmision() {
-    	setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1095, 629);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 1024, 600);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-        JPanel panel = new JPanel();
-        panel.setBounds(493, 41, 527, 445);
-        contentPane.add(panel);
-
+        // Crear tabla de admisiones y convertir celdas a no editables
         DefaultTableModel tableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+
         tableModel.addColumn("Nombre");
         tableModel.addColumn("DNI");
         tableModel.addColumn("Motivo Consulta");
         tableModel.addColumn("Fecha");
         tableModel.addColumn("Hora");
-        tblAdmision = new JTable(tableModel);
-        tblAdmision.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        actualizarTablaAdmisiones();
-        
-        JScrollPane scrollPane = new JScrollPane(tblAdmision);
-        scrollPane.setBounds(10, 10, 855, 305);
-        panel.add(scrollPane);
 
+        // Crear la tabla y agregar al contenido
+        tblAdmision = new JTable(tableModel);
+        tblAdmision.setBounds(25, 273, 745, 237);
+        actualizarTablaAdmisiones();
+        contentPane.add(tblAdmision);
+
+        // Crear un JScrollPane para la tabla
+        JScrollPane scrollPane = new JScrollPane(tblAdmision);
+        scrollPane.setBounds(41, 280, 940, 270);
+        contentPane.add(scrollPane);
+
+        // Configurar el título
         JLabel lblAdmision = new JLabel("Admision");
         lblAdmision.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
-        lblAdmision.setBounds(122, 13, 178, 33);
+        lblAdmision.setBounds(116, 14, 178, 33);
         contentPane.add(lblAdmision);
 
+        // Botón para volver al menú principal
         JButton btnAtras = new JButton("Volver");
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -96,12 +99,14 @@ public class vAdmision extends JFrame {
                 vAdmision.this.setVisible(false);
             }
         });
-        
-        JEditorPane txtMotivoConsulta = new JEditorPane();
+
+        // Campo de texto para motivo de consulta
+        txtMotivoConsulta = new JEditorPane();
         txtMotivoConsulta.setForeground(new Color(0, 0, 0));
-        txtMotivoConsulta.setBounds(41, 300, 203, 77);
+        txtMotivoConsulta.setBounds(225, 160, 358, 64);
         contentPane.add(txtMotivoConsulta);
 
+        // Botón para agregar admisión
         JButton btnAgregarAdmision = new JButton("Agregar");
         btnAgregarAdmision.setFont(new Font("Tahoma", Font.BOLD, 15));
         btnAgregarAdmision.addActionListener(new ActionListener() {
@@ -122,78 +127,83 @@ public class vAdmision extends JFrame {
                     daoAdmision dao = new daoAdmision();
                     if (dao.insertarAdmision(admision)) {
                         actualizarTablaAdmisiones();
+                        JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+                        limpiarCampos();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error al agregar la admisiÃ³n");
+                        JOptionPane.showMessageDialog(null, "Error al agregar la admisión");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Debes seleccionar un paciente antes de agregar la admisiÃ³n");
+                    JOptionPane.showMessageDialog(null, "Debes seleccionar un paciente antes de agregar la admisión");
                 }
             }
         });
-        btnAgregarAdmision.setBounds(41, 472, 178, 36);
+        btnAgregarAdmision.setBounds(439, 239, 125, 22);
         contentPane.add(btnAgregarAdmision);
 
+        // Boton para volver al menu principal
         btnAtras.setFont(new Font("Tahoma", Font.BOLD, 15));
         btnAtras.setBounds(10, 11, 85, 36);
         contentPane.add(btnAtras);
 
-        txtFecha = new JTextField();
-        txtFecha.setBounds(102, 215, 102, 22);
-        contentPane.add(txtFecha);
-        txtFecha.setColumns(10);
-
+        // Hora
         JLabel lblHora = new JLabel("Hora: ");
         lblHora.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblHora.setBounds(41, 245, 45, 22);
+        lblHora.setBounds(770, 120, 45, 22);
         contentPane.add(lblHora);
 
         txtHora = new JTextField();
         txtHora.setColumns(10);
-        txtHora.setBounds(96, 245, 121, 22);
+        txtHora.setBounds(820, 120, 121, 22);
         contentPane.add(txtHora);
 
+        // Fecha
         JLabel lblFecha = new JLabel("Fecha: ");
         lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblFecha.setBounds(41, 215, 56, 22);
+        lblFecha.setBounds(595, 120, 56, 22);
         contentPane.add(lblFecha);
 
+        txtFecha = new JTextField();
+        txtFecha.setBounds(650, 120, 102, 22);
+        contentPane.add(txtFecha);
+        txtFecha.setColumns(10);
+
+        // Nombre y apellido
         JLabel lblNombreApellido = new JLabel("Nombre y apellido:");
         lblNombreApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblNombreApellido.setBounds(41, 155, 152, 22);
+        lblNombreApellido.setBounds(76, 120, 152, 22);
         contentPane.add(lblNombreApellido);
 
-        JButton btnBuscarPaciente = new JButton("Buscar Paciente");
-        btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnBuscarPaciente.setBounds(41, 105, 232, 30);
-        contentPane.add(btnBuscarPaciente);
-
-        JLabel lblMotivoConsulta = new JLabel("Motivo consulta:");
-        lblMotivoConsulta.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblMotivoConsulta.setBounds(41, 275, 139, 14);
-        contentPane.add(lblMotivoConsulta);
-
         txtNombreApellido = new JTextField();
-        txtNombreApellido.setBounds(179, 155, 170, 22);
+        txtNombreApellido.setBounds(238, 120, 170, 22);
         contentPane.add(txtNombreApellido);
         setLocationRelativeTo(null);
+
+        // Botón para buscar pacientes
+        JButton btnBuscarPaciente = new JButton("Seleccionar Paciente");
+        btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnBuscarPaciente.setBounds(41, 75, 201, 30);
+        contentPane.add(btnBuscarPaciente);
+
+        // DNI
         JLabel lblDni = new JLabel("DNI:");
         lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblDni.setBounds(41, 185, 40, 22);
+        lblDni.setBounds(425, 120, 40, 22);
         contentPane.add(lblDni);
 
         txtDNI = new JTextField();
-        txtDNI.setBounds(83, 185, 97, 22);
+        txtDNI.setBounds(470, 120, 97, 22);
         contentPane.add(txtDNI);
-        
+
         lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
         lblRol.setBounds(971, 13, 98, 18);
         contentPane.add(lblRol);
-        
+
         JLabel lblCaptionRol = new JLabel("Rol:");
         lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
         lblCaptionRol.setBounds(946, 13, 25, 18);
         contentPane.add(lblCaptionRol);
-        
+
+        // Botón para buscar pacientes
         btnBuscarPaciente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 daoPacientes dao = new daoPacientes();
@@ -210,29 +220,35 @@ public class vAdmision extends JFrame {
 
                 if (pacienteSeleccionado != null) {
                     txtDNI.setText(pacienteSeleccionado.getDNI());
-                    txtNombreApellido.setText(pacienteSeleccionado.getNombre() + " " + pacienteSeleccionado.getApellido());
+                    txtNombreApellido
+                            .setText(pacienteSeleccionado.getNombre() + " " + pacienteSeleccionado.getApellido());
                 }
             }
         });
     }
-    
+
+    // Método para actualizar la tabla de admisiones
     private void actualizarTablaAdmisiones() {
         DefaultTableModel model = (DefaultTableModel) tblAdmision.getModel();
         model.setRowCount(0);
         daoAdmision dao = new daoAdmision();
         ArrayList<Admision> admisiones = dao.consultarAdmisiones();
         for (Admision admision : admisiones) {
-            model.addRow(new Object[]{
-                    admision.getPaciente().getNombreApellido(),
-                    admision.getPaciente().getDNI(),
-                    admision.getMotivoConsulta(),
-                    admision.getFecha(),
-                    admision.getHora()
-            });
+            model.addRow(new Object[] { admision.getPaciente().getNombreApellido(), admision.getPaciente().getDNI(),
+                    admision.getMotivoConsulta(), admision.getFecha(), admision.getHora() });
         }
     }
-    
+
+    // Método para transferir el rol del usuario a la ventana
     public void transferirDatos(String rol) {
-		lblRol.setText(rol);
-	}
+        lblRol.setText(rol);
+    }
+
+    private void limpiarCampos() {
+        txtNombreApellido.setText("");
+        txtDNI.setText("");
+        txtMotivoConsulta.setText("");
+        txtFecha.setText("");
+        txtHora.setText("");
+    }
 }
