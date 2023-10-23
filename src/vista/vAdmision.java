@@ -252,3 +252,5 @@ public class vAdmision extends JFrame {
         txtHora.setText("");
     }
 }
+
+// comentario F
