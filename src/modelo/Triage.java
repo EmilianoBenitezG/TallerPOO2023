@@ -25,5 +25,14 @@ public class Triage {
 	public void setResultado_triage(String resultado_triage) {
 		this.resultado_triage = resultado_triage;
 	}
-	
+	private String colorResultado;
+
+	public String getColorResultado() {
+	    return colorResultado;
+	}
+
+	public void setColorResultado(String colorResultado) {
+	    this.colorResultado = colorResultado;
+	}
+
 }

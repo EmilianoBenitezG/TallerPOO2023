@@ -21,13 +21,13 @@ public class daoTriage {
     }
 
     // Método para almacenar el resultado de triaje en la base de datos
-    public boolean almacenarResultadoTriage(String nombrePaciente, int resultadoTriage) {
+    public boolean almacenarResultadoTriage(String nombrePaciente, String resultadoTriage) {
         String sql = "INSERT INTO Triage (nombre_paciente, resultado_triage) VALUES (?, ?)";
 
         try (Connection connection = cx.conectar();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, nombrePaciente);
-            pstmt.setInt(2, resultadoTriage);
+            pstmt.setString(2, resultadoTriage);
 
             // Ejecutar la consulta
             pstmt.executeUpdate();
@@ -61,7 +61,33 @@ public class daoTriage {
 		}
 		
 		return lista;
+		
 	}
+    
+  
+        public ArrayList<String> obtenerNombreApellidoPacientesDesdeAdmision() {
+            ArrayList<String> nombreApellidos = new ArrayList<>();
+            String sql = "SELECT NombreApellido FROM Admision";
+
+            try (Connection connection = cx.conectar();
+                 PreparedStatement pstmt = connection.prepareStatement(sql);
+                 ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    String nombreApellido = resultSet.getString("NombreApellido");
+                    nombreApellidos.add(nombreApellido);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return nombreApellidos;
+        }
+
+
+
+
+
+
  
         
         private int puntuacionRespiracion;
