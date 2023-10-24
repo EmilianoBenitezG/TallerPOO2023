@@ -75,61 +75,61 @@ public class vHistoriaClinica extends JFrame {
         // Campos de ingreso de datos
         // Fecha
         txtFecha = new JTextField();
-        txtFecha.setBounds(200, 80, 170, 22);
+        txtFecha.setBounds(116, 83, 170, 22);
         contentPane.add(txtFecha);
         txtFecha.setColumns(10);
 
         JLabel lblFecha = new JLabel("Fecha: ");
         lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblFecha.setBounds(25, 83, 81, 22);
+        lblFecha.setBounds(45, 83, 81, 22);
         contentPane.add(lblFecha);
 
         // Hora
         txtHora = new JTextField();
         txtHora.setColumns(10);
-        txtHora.setBounds(200, 132, 170, 22);
+        txtHora.setBounds(411, 83, 170, 22);
         contentPane.add(txtHora);
 
         JLabel lblHora = new JLabel("Hora: ");
         lblHora.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblHora.setBounds(25, 129, 73, 22);
+        lblHora.setBounds(346, 83, 81, 22);
         contentPane.add(lblHora);
 
         // Lugar de Atención (usando JComboBox)
         String[] lugaresAtencion = {"CONSULTORIO", "EMERGENCIA", "INTERNACIONES"};
         cmbLugarAtencion = new JComboBox<>(lugaresAtencion);
         cmbLugarAtencion.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        cmbLugarAtencion.setBounds(200, 180, 170, 22);
+        cmbLugarAtencion.setBounds(808, 83, 170, 22);
         contentPane.add(cmbLugarAtencion);
 
         JLabel lblLugarAtencion = new JLabel("Lugar de Atención: ");
         lblLugarAtencion.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblLugarAtencion.setBounds(25, 179, 176, 22);
+        lblLugarAtencion.setBounds(639, 83, 170, 22);
         contentPane.add(lblLugarAtencion);
 
         // Texto Médico (JEditorPane)
         txtTextoMedico = new JEditorPane();
-        txtTextoMedico.setBounds(200, 230, 170, 100);
+        txtTextoMedico.setBounds(296, 134, 170, 74);
         contentPane.add(txtTextoMedico);
 
         JLabel lblTextoMedico = new JLabel("Texto Médico: ");
         lblTextoMedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblTextoMedico.setBounds(25, 230, 185, 22);
+        lblTextoMedico.setBounds(160, 134, 185, 22);
         contentPane.add(lblTextoMedico);
 
         // Historial de Diagnóstico
         txtHistorialDiagnostico = new JTextField();
         txtHistorialDiagnostico.setColumns(10);
-        txtHistorialDiagnostico.setBounds(200, 335, 170, 22);
+        txtHistorialDiagnostico.setBounds(705, 134, 170, 22);
         contentPane.add(txtHistorialDiagnostico);
 
         JLabel lblHistorialDiagnostico = new JLabel("Historial Diagnóstico: ");
         lblHistorialDiagnostico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblHistorialDiagnostico.setBounds(25, 335, 181, 22);
+        lblHistorialDiagnostico.setBounds(520, 134, 185, 22);
         contentPane.add(lblHistorialDiagnostico);
         
         lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-        lblRol.setBounds(911, 13, 98, 18);
+        lblRol.setBounds(971, 13, 98, 18);
         contentPane.add(lblRol);
 
         // Botones en pantalla
@@ -163,7 +163,7 @@ public class vHistoriaClinica extends JFrame {
                 }
             }
         });
-        btnModificar.setBounds(200, 461, 125, 33);
+        btnModificar.setBounds(450, 225, 140, 33);
         contentPane.add(btnModificar);
 
         // Botón Agregar
@@ -192,9 +192,20 @@ public class vHistoriaClinica extends JFrame {
                 }
             }
         });
-        btnAgregar.setBounds(50, 461, 125, 33);
+        btnAgregar.setBounds(210, 225, 140, 33);
         contentPane.add(btnAgregar);
-
+        
+     // Boton para volver limpiar campos de entrada
+     		JButton btnLimpiar = new JButton("Limpiar");
+     		btnLimpiar.addActionListener(new ActionListener() {
+     			public void actionPerformed(ActionEvent e) {
+     				limpiarCampos();
+     			}
+     		});
+     		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 15));
+     		btnLimpiar.setBounds(690, 225, 140, 33);
+     		contentPane.add(btnLimpiar);
+     		
         // Botón Volver
         JButton btnVolver = new JButton("Volver");
         btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -202,7 +213,6 @@ public class vHistoriaClinica extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Código para volver al menú principal
                 menuPrincipal menu = new menuPrincipal();
-                menu.transferirDatos(lblRol.getText());
                 menu.setVisible(true);
                 vHistoriaClinica.this.dispose(); // Cierra la ventana actual
             }
@@ -211,7 +221,7 @@ public class vHistoriaClinica extends JFrame {
         contentPane.add(btnVolver);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(380, 46, 629, 469);
+        scrollPane.setBounds(83, 276, 853, 239);
         contentPane.add(scrollPane);
 
         tlbHistorial = new JTable(modelo) {
@@ -229,11 +239,6 @@ public class vHistoriaClinica extends JFrame {
             }
         ));
         scrollPane.setViewportView(tlbHistorial);
-        
-        JLabel lblCaptionRol = new JLabel("Rol:");
-        lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-        lblCaptionRol.setBounds(886, 13, 25, 18);
-        contentPane.add(lblCaptionRol);
 
         modelo.addColumn("Fecha");
         modelo.addColumn("Hora");
