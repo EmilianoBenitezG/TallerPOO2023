@@ -195,12 +195,12 @@ public class vAdmision extends JFrame {
         contentPane.add(txtDNI);
 
         lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-        lblRol.setBounds(971, 13, 98, 18);
+        lblRol.setBounds(900, 14, 98, 18);
         contentPane.add(lblRol);
 
         JLabel lblCaptionRol = new JLabel("Rol:");
         lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-        lblCaptionRol.setBounds(946, 13, 25, 18);
+        lblCaptionRol.setBounds(875, 14, 25, 18);
         contentPane.add(lblCaptionRol);
         
         JLabel lblMotivoConsulta = new JLabel("Motivo de consulta:");

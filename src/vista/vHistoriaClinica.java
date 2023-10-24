@@ -114,7 +114,7 @@ public class vHistoriaClinica extends JFrame {
 
         JLabel lblTextoMedico = new JLabel("Texto Médico: ");
         lblTextoMedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblTextoMedico.setBounds(160, 134, 185, 22);
+        lblTextoMedico.setBounds(160, 134, 190, 22);
         contentPane.add(lblTextoMedico);
 
         // Historial de Diagnóstico
@@ -129,7 +129,7 @@ public class vHistoriaClinica extends JFrame {
         contentPane.add(lblHistorialDiagnostico);
         
         lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-        lblRol.setBounds(971, 13, 98, 18);
+        lblRol.setBounds(955, 13, 98, 18);
         contentPane.add(lblRol);
 
         // Botones en pantalla
@@ -213,6 +213,7 @@ public class vHistoriaClinica extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Código para volver al menú principal
                 menuPrincipal menu = new menuPrincipal();
+                menu.transferirDatos(lblRol.getText());
                 menu.setVisible(true);
                 vHistoriaClinica.this.dispose(); // Cierra la ventana actual
             }
@@ -239,6 +240,11 @@ public class vHistoriaClinica extends JFrame {
             }
         ));
         scrollPane.setViewportView(tlbHistorial);
+        
+        JLabel lblCaptionRol = new JLabel("Rol:");
+        lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+        lblCaptionRol.setBounds(928, 13, 25, 18);
+        contentPane.add(lblCaptionRol);
 
         modelo.addColumn("Fecha");
         modelo.addColumn("Hora");
