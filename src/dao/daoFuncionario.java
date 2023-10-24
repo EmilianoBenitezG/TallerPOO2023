@@ -44,7 +44,6 @@ public class daoFuncionario {
         return salida;
     }
     
-    
     // Consulta y retorna la lista de todos los funcionarios
     public ArrayList<Funcionario> consultarFuncionarios() {
         ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
@@ -74,7 +73,6 @@ public class daoFuncionario {
         }
         return lista;
     }
-    
     
     // Modifica un funcionario existente en la base de datos
     public boolean modificarFuncionario(Funcionario funcionario) {
@@ -146,7 +144,6 @@ public class daoFuncionario {
         }
         return lista;
     }
-    
     
     // Verifica si existe un paciente con el número de DNI
     public boolean existeFuncionarioConDNI(String dni) {

@@ -16,8 +16,7 @@ public class Medico extends Funcionario{
 		this.matricula = matricula;
 		especialidades = new ArrayList<>();
 	}
-
-
+	
 	public String getMatricula() {
 		return matricula;
 	}
@@ -33,5 +32,4 @@ public class Medico extends Funcionario{
 	public void agregarEspecialidad(DetallesEspecialidad especialidad) {
         especialidades.add(especialidad);
     }
-    
 }

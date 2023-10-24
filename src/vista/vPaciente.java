@@ -239,8 +239,6 @@ public class vPaciente extends JFrame {
 						paciente.setEstadoCivil(txtestadoCivil.getText());
 						paciente.setEmail(txtemail.getText());
 						paciente.setPersonaContacto(txtpersonaContacto.getText());
-
-						// Actualiza el estado del paciente
 						boolean estaVivo = chkEstado.isSelected();
 						paciente.setEstado(estaVivo);
 
@@ -418,14 +416,20 @@ public class vPaciente extends JFrame {
 		}
 
 		modelo.setRowCount(0);
-
-		// Llenar la tabla con los datos de los pacientes
+		
 		for (Paciente paciente : lista) {
-			Object[] rowData = { paciente.getNombre(), paciente.getApellido(), paciente.getFechaNacimiento(),
-					paciente.getDomicilio(), paciente.getDNI(), paciente.getTelFijo(), paciente.getTelCelular(),
-					paciente.getEstadoCivil(), paciente.getEmail(), paciente.getPersonaContacto(),
+			Object[] rowData = { 
+					paciente.getNombre(), 
+					paciente.getApellido(), 
+					paciente.getFechaNacimiento(),
+					paciente.getDomicilio(), 
+					paciente.getDNI(), 
+					paciente.getTelFijo(), 
+					paciente.getTelCelular(),
+					paciente.getEstadoCivil(), 
+					paciente.getEmail(), 
+					paciente.getPersonaContacto(),
 					paciente.isEstado() ? "Vivo" : "Fallecido" };
-
 			modelo.addRow(rowData);
 		}
 		tlbPacientes.setModel(modelo);

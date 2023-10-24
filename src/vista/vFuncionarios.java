@@ -51,7 +51,11 @@ public class vFuncionarios extends JFrame {
 	ArrayList<Funcionario> lista;
 	daoFuncionario dao = new daoFuncionario();
 
-	DefaultTableModel modelo=new DefaultTableModel(){@Override public boolean isCellEditable(int row,int column){return false;}};
+	DefaultTableModel modelo=new DefaultTableModel(){
+		@Override 
+		public boolean isCellEditable(int row,int column){
+			return false;}
+		};
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -400,12 +404,18 @@ public class vFuncionarios extends JFrame {
 			buscarPorDNI(filtroActual);
 		}
 		modelo.setRowCount(0);
-
-		// Llenar la tabla con los datos de los funcionarios
+		
 		for (Funcionario funcionario : lista) {
-			Object[] rowData = { funcionario.getNombre(), funcionario.getApellido(), funcionario.getFechaNacimiento(),
-					funcionario.getDomicilio(), funcionario.getDNI(), funcionario.getTelFijo(),
-					funcionario.getTelCelular(), funcionario.getEstadoCivil(), funcionario.getEmail(),
+			Object[] rowData = { 
+					funcionario.getNombre(), 
+					funcionario.getApellido(), 
+					funcionario.getFechaNacimiento(),
+					funcionario.getDomicilio(), 
+					funcionario.getDNI(), 
+					funcionario.getTelFijo(),
+					funcionario.getTelCelular(), 
+					funcionario.getEstadoCivil(), 
+					funcionario.getEmail(),
 					funcionario.getPuesto() };
 			modelo.addRow(rowData);
 		}

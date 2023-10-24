@@ -20,6 +20,8 @@ public class menuPrincipal extends JFrame {
 	JButton btnAdmision = new JButton("Admision");
 	JButton btnTriage = new JButton("Triage");
 	JButton btnGestor = new JButton("Gestores");
+	JButton btnFuncionario = new JButton("Funcionarios");
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -59,8 +61,21 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnUsuarios.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnUsuarios.setBounds(94, 145, 129, 51);
+		btnUsuarios.setBounds(94, 145, 141, 51);
 		contentPane.add(btnUsuarios);
+
+		// Botón "Funcionario" que abre la vista de usuarios
+		btnFuncionario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vFuncionarios vfuncionarios = new vFuncionarios();
+				vfuncionarios.transferirDatos(lblRol.getText());
+				vfuncionarios.setVisible(true);
+				menuPrincipal.this.setVisible(false);
+			}
+		});
+		btnFuncionario.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnFuncionario.setBounds(416, 231, 141, 51);
+		contentPane.add(btnFuncionario);
 
 		// Botón "Pacientes" que abre la vista de pacientes
 		btnPacientes.addActionListener(new ActionListener() {
@@ -138,7 +153,7 @@ public class menuPrincipal extends JFrame {
 		btnTriage.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnTriage.setBounds(580, 145, 118, 51);
 		contentPane.add(btnTriage);
-		
+
 		JLabel lblCaptionRol = new JLabel("Rol:");
 		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblCaptionRol.setBounds(727, 11, 25, 18);
@@ -146,8 +161,7 @@ public class menuPrincipal extends JFrame {
 		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblRol.setBounds(752, 11, 98, 18);
 		contentPane.add(lblRol);
-		
-		
+
 		btnGestor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vGestores gestores = new vGestores();
@@ -157,45 +171,45 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnGestor.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnGestor.setBounds(266, 231, 118, 51);
+		btnGestor.setBounds(255, 231, 129, 51);
 		contentPane.add(btnGestor);
 		setLocationRelativeTo(null);
 	}
-	
+
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 		ocultarPantallasByRol(rol);
 	}
-	
+
 	public void ocultarPantallasByRol(String rol) {
 		ocultarBotones();
-		switch (rol) { 
-	    case "ADMINISTRADOR":
-	    	btnUsuarios.setVisible(true);
-	     break;
-	    case "MEDICO":
-	    	btnPacientes.setVisible(true);
+		switch (rol) {
+		case "ADMINISTRADOR":
+			btnUsuarios.setVisible(true);
+			break;
+		case "MEDICO":
+			btnPacientes.setVisible(true);
 			btnHistoriaClinica.setVisible(true);
 			btnAdmision.setVisible(true);
 			btnTriage.setVisible(true);
 			btnGestor.setVisible(true);
-	     break;
-	    case "FUNCIONARIO":
-	    	btnPacientes.setVisible(true);
+			break;
+		case "FUNCIONARIO":
+			btnPacientes.setVisible(true);
 			btnHistoriaClinica.setVisible(true);
 			btnAdmision.setVisible(true);
 			btnTriage.setVisible(true);
 			btnGestor.setVisible(true);
-	     break;
-	    case "GESTOR":
-	    	btnPacientes.setVisible(true);
+			break;
+		case "GESTOR":
+			btnPacientes.setVisible(true);
 			btnHistoriaClinica.setVisible(true);
 			btnAdmision.setVisible(true);
 			btnTriage.setVisible(true);
 			btnGestor.setVisible(true);
-	     break;
-	    default:
-	  }
+			break;
+		default:
+		}
 	}
 
 	private void ocultarBotones() {

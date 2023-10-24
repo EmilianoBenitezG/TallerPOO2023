@@ -32,9 +32,9 @@ public class daoAdmision {
             }
 
             ps.setInt(1, pacienteID);
-            ps.setString(2, admision.getMotivoConsulta());
-            ps.setString(3, admision.getFecha());
-            ps.setString(4, admision.getHora());
+            ps.setString(2, admision.getMotivoConsulta().toUpperCase());
+            ps.setString(3, admision.getFecha().toUpperCase());
+            ps.setString(4, admision.getHora().toUpperCase());
 
             int resultado = ps.executeUpdate();
 

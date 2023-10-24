@@ -14,7 +14,6 @@ public class daoPacientes {
         cx = new Conexion();
     }
     
-    
     // Inserta un nuevo paciente en la base de datos
     public boolean insertarPaciente(Paciente paciente) {
         PreparedStatement ps = null;
@@ -46,7 +45,6 @@ public class daoPacientes {
         return salida;
     }
     
-    
     // Consulta y retorna la lista de todos los pacientes
     public ArrayList<Paciente> consultarPacientes() {
         ArrayList<Paciente> lista = new ArrayList<Paciente>();
@@ -77,7 +75,6 @@ public class daoPacientes {
         }
         return lista;
     }
-    
     
     // Modifica un paciente existente en la base de datos
     public boolean modificarPaciente(Paciente paciente) {
@@ -111,7 +108,6 @@ public class daoPacientes {
         }
         return salida;
     }
-    
     
     // Busca pacientes en la base de datos por su número de DNI
     public ArrayList<Paciente> buscarPacientesPorDNI(String dni) {
@@ -154,7 +150,6 @@ public class daoPacientes {
         }
         return lista;
     }
-    
     
     // Verifica si existe un paciente con el número de DNI
     public boolean existePacienteConDNI(String dni) {
