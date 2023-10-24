@@ -30,8 +30,7 @@ public class Medico extends Funcionario{
         return especialidades;
     }
 	
-	// Método para agregar una especialidad
-    public void agregarEspecialidad(DetallesEspecialidad especialidad) {
+	public void agregarEspecialidad(DetallesEspecialidad especialidad) {
         especialidades.add(especialidad);
     }
     
