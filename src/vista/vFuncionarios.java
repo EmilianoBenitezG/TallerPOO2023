@@ -342,6 +342,50 @@ public class vFuncionarios extends JFrame {
 		modelo.addColumn("Estado civil");
 		modelo.addColumn("Email");
 		modelo.addColumn("Puesto");
+		
+		// Crear una etiqueta "ID"
+		lblId = new JLabel("ID");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblId.setBounds(25, 26, 28, 22);
+		lblId.setVisible(false);
+		contentPane.add(lblId);
+		
+		JButton btnBuscarPorDNI = new JButton("Buscar");
+		btnBuscarPorDNI.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filtroActual = txtFiltroDNI.getText().trim();
+				if (!filtroActual.isEmpty()) {
+					buscarPorDNI(filtroActual);
+				} else {
+					actualizarTabla();
+				}
+			}
+		});
+		btnBuscarPorDNI.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnBuscarPorDNI.setBounds(631, 247, 125, 22);
+		contentPane.add(btnBuscarPorDNI);
+
+		// Manejar selección en tabla de funcionarios
+		tlbFuncionarios.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			int item = 0;
+			filaSeleccionada = tlbFuncionarios.getSelectedRow();
+			funcionario = lista.get(filaSeleccionada);
+			lblId.setText(String.valueOf(funcionario.getId()));
+			txtnombre.setText(funcionario.getNombre());
+			txtapellido.setText(funcionario.getApellido());
+			txtfechaNacimiento.setText(funcionario.getFechaNacimiento());
+			txtdomicilio.setText(funcionario.getDomicilio());
+			txtnroDNI.setText(funcionario.getDNI());
+			txttelFijo.setText(funcionario.getTelFijo());
+			txttelCelular.setText(funcionario.getTelCelular());
+			txtestadoCivil.setText(funcionario.getEstadoCivil());
+			txtemail.setText(funcionario.getEmail());
+			txtpuesto.setText(funcionario.getPuesto());
+		}
+	});
+		
 		actualizarTabla();
 		setLocationRelativeTo(null);
 	}
@@ -408,34 +452,8 @@ public class vFuncionarios extends JFrame {
 			tlbFuncionarios.setRowSelectionInterval(0, 0);
 		}
 		tlbFuncionarios.setModel(modelo);
-
-		// Crear una etiqueta "ID"
-		lblId = new JLabel("ID");
-		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblId.setBounds(25, 26, 28, 22);
-		lblId.setVisible(false);
-		contentPane.add(lblId);
-
-		// Manejar selección en tabla de funcionarios
-		tlbFuncionarios.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			int item = 0;
-			filaSeleccionada = tlbFuncionarios.getSelectedRow();
-			funcionario = lista.get(filaSeleccionada);
-			lblId.setText(String.valueOf(funcionario.getId()));
-			txtnombre.setText(funcionario.getNombre());
-			txtapellido.setText(funcionario.getApellido());
-			txtfechaNacimiento.setText(funcionario.getFechaNacimiento());
-			txtdomicilio.setText(funcionario.getDomicilio());
-			txtnroDNI.setText(funcionario.getDNI());
-			txttelFijo.setText(funcionario.getTelFijo());
-			txttelCelular.setText(funcionario.getTelCelular());
-			txtestadoCivil.setText(funcionario.getEstadoCivil());
-			txtemail.setText(funcionario.getEmail());
-			txtpuesto.setText(funcionario.getPuesto());
-		}
-	});}
+	}
+	
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}
