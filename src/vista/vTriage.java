@@ -70,6 +70,8 @@ public class vTriage extends JFrame {
 	private JComboBox BoxSignosDeShock;
 	private JLabel lblConciencia;
 	private JComboBox BoxConciencia;
+	private JComboBox comboBox_12;
+	private JTextField textField_1;
 	private JTable table;
 	private JScrollPane scrollPane;
 	private daoTriage dao = new daoTriage();
@@ -560,16 +562,14 @@ public class vTriage extends JFrame {
 		textEdad.setBounds(381, 125, 73, 22);
 		contentPane.add(textEdad);
 		
-<<<<<<< Updated upstream
 		comboBox_12 = new JComboBox<String>();
 		comboBox_12.setToolTipText("Seleccione un paciente");
 		comboBox_12.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_12.setMaximumRowCount(10);
-		comboBox_12.setBounds(205, 11, 287, 36);
+		comboBox_12.setBounds(293, 65, 179, 24);
 		contentPane.add(comboBox_12);
 		cargarNombreApellidoPacientes();
 		setLocationRelativeTo(null);
-=======
 		JLabel lblEdad = new JLabel("Edad");
 		lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblEdad.setBounds(381, 100, 49, 22);
@@ -577,9 +577,8 @@ public class vTriage extends JFrame {
 		
 		JLabel lblTriage = new JLabel("Triage");
 		lblTriage.setFont(new Font("Dialog", Font.PLAIN, 35));
-		lblTriage.setBounds(415, 11, 106, 45);
+		lblTriage.setBounds(455, 11, 106, 45);
         contentPane.add(lblTriage);		
->>>>>>> Stashed changes
 	}
 	
 	private void cargarNombreApellidoPacientes() {
