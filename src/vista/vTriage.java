@@ -527,7 +527,8 @@ public class vTriage extends JFrame {
 		comboBox_12.setMaximumRowCount(10);
 		comboBox_12.setBounds(205, 11, 287, 36);
 		contentPane.add(comboBox_12);
-		cargarNombreApellidoPacientes();		
+		cargarNombreApellidoPacientes();
+		setLocationRelativeTo(null);
 	}
 	
 	private void cargarNombreApellidoPacientes() {

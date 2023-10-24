@@ -14,7 +14,12 @@ import java.awt.event.ActionEvent;
 public class menuPrincipal extends JFrame {
 	private JPanel contentPane;
 	JLabel lblRol = new JLabel("Rol");
-
+	JButton btnUsuarios = new JButton("Usuarios");
+	JButton btnPacientes = new JButton("Pacientes");
+	JButton btnHistoriaClinica = new JButton("Historia Clinica");
+	JButton btnAdmision = new JButton("Admision");
+	JButton btnTriage = new JButton("Triage");
+	JButton btnGestor = new JButton("Gestores");
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,7 +50,6 @@ public class menuPrincipal extends JFrame {
 		contentPane.add(lblRoles);
 
 		// Botón "Usuarios" que abre la vista de usuarios
-		JButton btnUsuarios = new JButton("Usuarios");
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vUsuario vusuario = new vUsuario();
@@ -59,7 +63,6 @@ public class menuPrincipal extends JFrame {
 		contentPane.add(btnUsuarios);
 
 		// Botón "Pacientes" que abre la vista de pacientes
-		JButton btnPacientes = new JButton("Pacientes");
 		btnPacientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vPaciente vpaciente = new vPaciente();
@@ -98,7 +101,6 @@ public class menuPrincipal extends JFrame {
 		contentPane.add(btnCerrarSesion);
 
 		// Botón "Historia Clínica" que abre la vista de historias clínicas
-		JButton btnHistoriaClinica = new JButton("Historia Clinica");
 		btnHistoriaClinica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vHistoriaClinica historiaClinica = new vHistoriaClinica();
@@ -112,7 +114,6 @@ public class menuPrincipal extends JFrame {
 		contentPane.add(btnHistoriaClinica);
 
 		// Botón "Admision" que abre la vista de la pantalla admision
-		JButton btnAdmision = new JButton("Admision");
 		btnAdmision.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vAdmision admision = new vAdmision();
@@ -126,7 +127,6 @@ public class menuPrincipal extends JFrame {
 		contentPane.add(btnAdmision);
 
 		// Botón "Triage" que abre la vista de triage
-		JButton btnTriage = new JButton("Triage");
 		btnTriage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vTriage vTriage = new vTriage();
@@ -146,10 +146,64 @@ public class menuPrincipal extends JFrame {
 		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblRol.setBounds(752, 11, 98, 18);
 		contentPane.add(lblRol);
+		
+		
+		btnGestor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vGestores gestores = new vGestores();
+				gestores.transferirDatos(lblRol.getText());
+				gestores.setVisible(true);
+				menuPrincipal.this.setVisible(false);
+			}
+		});
+		btnGestor.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnGestor.setBounds(266, 231, 118, 51);
+		contentPane.add(btnGestor);
 		setLocationRelativeTo(null);
 	}
 	
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+		ocultarPantallasByRol(rol);
+	}
+	
+	public void ocultarPantallasByRol(String rol) {
+		ocultarBotones();
+		switch (rol) { 
+	    case "ADMINISTRADOR":
+	    	btnUsuarios.setVisible(true);
+	     break;
+	    case "MEDICO":
+	    	btnPacientes.setVisible(true);
+			btnHistoriaClinica.setVisible(true);
+			btnAdmision.setVisible(true);
+			btnTriage.setVisible(true);
+			btnGestor.setVisible(true);
+	     break;
+	    case "FUNCIONARIO":
+	    	btnPacientes.setVisible(true);
+			btnHistoriaClinica.setVisible(true);
+			btnAdmision.setVisible(true);
+			btnTriage.setVisible(true);
+			btnGestor.setVisible(true);
+	     break;
+	    case "GESTOR":
+	    	btnPacientes.setVisible(true);
+			btnHistoriaClinica.setVisible(true);
+			btnAdmision.setVisible(true);
+			btnTriage.setVisible(true);
+			btnGestor.setVisible(true);
+	     break;
+	    default:
+	  }
+	}
+
+	private void ocultarBotones() {
+		btnUsuarios.setVisible(false);
+		btnPacientes.setVisible(false);
+		btnHistoriaClinica.setVisible(false);
+		btnAdmision.setVisible(false);
+		btnTriage.setVisible(false);
+		btnGestor.setVisible(false);
 	}
 }

@@ -177,7 +177,7 @@ public class vUsuario extends JFrame {
 		
 		cbxNombreRol = new JComboBox();
 		cbxNombreRol.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbxNombreRol.setModel(new DefaultComboBoxModel(new String[] {"Medico", "Funcionario", "Licenciado en Enfermeria"}));
+		cbxNombreRol.setModel(new DefaultComboBoxModel(new String[] {"Medico", "Funcionario", "Licenciado en Enfermeria", "Gestor"}));
 		cbxNombreRol.setBounds(127, 199, 173, 28);
 		contentPane.add(cbxNombreRol);
 		
