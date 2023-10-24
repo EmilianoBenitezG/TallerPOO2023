@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,6 +27,7 @@ import modelo.HistoriaClinicaPaciente;
 import dao.daoHistorial;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class vHistoriaClinica extends JFrame {
 
@@ -75,6 +77,7 @@ public class vHistoriaClinica extends JFrame {
         // Campos de ingreso de datos
         // Fecha
         txtFecha = new JTextField();
+        txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
         txtFecha.setBounds(116, 83, 170, 22);
         contentPane.add(txtFecha);
         txtFecha.setColumns(10);
@@ -86,6 +89,7 @@ public class vHistoriaClinica extends JFrame {
 
         // Hora
         txtHora = new JTextField();
+        txtHora.setFont(new Font("Tahoma", Font.PLAIN, 14));
         txtHora.setColumns(10);
         txtHora.setBounds(411, 83, 170, 22);
         contentPane.add(txtHora);
@@ -282,6 +286,8 @@ public class vHistoriaClinica extends JFrame {
                 }
             }
         });
+        
+        colocarHoraActual();
     }
 
     public void actualizarTabla() {
@@ -318,5 +324,15 @@ public class vHistoriaClinica extends JFrame {
     
     public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+	}
+    
+    private void colocarHoraActual() {
+		Date todayDate = new Date();
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
+        String fechaActual = fecha.format(todayDate);
+        String horaActual = hora.format(todayDate);
+        txtFecha.setText(fechaActual);
+        txtHora.setText(horaActual);
 	}
 }

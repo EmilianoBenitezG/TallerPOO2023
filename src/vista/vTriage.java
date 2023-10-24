@@ -77,7 +77,7 @@ public class vTriage extends JFrame {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private daoTriage dao = new daoTriage();
-	String[] columnNames = {"Nombre Paciente", "Color Sugerido","Hora","Fecha"};
+	String[] columnNames = {"Nombre Paciente", "Color Sugerido","Motivo Cambio","Color Final","Hora","Fecha"};
 	Object[][] data = {};
 	DefaultTableModel modelo = new DefaultTableModel(data, columnNames) {
         @Override
@@ -234,7 +234,7 @@ public class vTriage extends JFrame {
 		BoxRespiracion.setFont(new Font("Arial", Font.PLAIN, 14));
 		BoxRespiracion.setToolTipText("Seleccione una opcion");
 		BoxRespiracion.setMaximumRowCount(4);
-		BoxRespiracion.setBounds(10, 193, 100, 22);
+		BoxRespiracion.setBounds(10, 193, 120, 22);
 		contentPane.add(BoxRespiracion);
 		// ActionListener para el ComboBox de Respiracion
 	    BoxRespiracion.addActionListener(new ActionListener() {
@@ -327,7 +327,7 @@ public class vTriage extends JFrame {
 		BoxFiebre.setSelectedIndex(0);
 		BoxFiebre.setMaximumRowCount(4);
 		BoxFiebre.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxFiebre.setBounds(10, 253, 100, 22);
+		BoxFiebre.setBounds(10, 253, 120, 22);
 		contentPane.add(BoxFiebre);
 		BoxFiebre.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -348,7 +348,7 @@ public class vTriage extends JFrame {
 		BoxPulso.setSelectedIndex(0);
 		BoxPulso.setMaximumRowCount(4);
 		BoxPulso.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxPulso.setBounds(156, 193, 100, 22);
+		BoxPulso.setBounds(156, 193, 120, 22);
 		contentPane.add(BoxPulso);
 		
 		// ActionListener para el ComboBox de Pulso
@@ -370,7 +370,7 @@ public class vTriage extends JFrame {
 		BoxDolorDePecho.setSelectedIndex(0);
 		BoxDolorDePecho.setMaximumRowCount(4);
 		BoxDolorDePecho.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxDolorDePecho.setBounds(573, 193, 100, 22);
+		BoxDolorDePecho.setBounds(573, 193, 120, 22);
 		contentPane.add(BoxDolorDePecho);
 		
 		BoxDolorDePecho.addActionListener(new ActionListener() {
@@ -391,7 +391,7 @@ public class vTriage extends JFrame {
 		BoxDolorAbdominal.setSelectedIndex(0);
 		BoxDolorAbdominal.setMaximumRowCount(4);
 		BoxDolorAbdominal.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxDolorAbdominal.setBounds(293, 253, 100, 22);
+		BoxDolorAbdominal.setBounds(293, 253, 128, 22);
 		contentPane.add(BoxDolorAbdominal);
 		
 		BoxLesionesGraves = new JComboBox();
@@ -399,7 +399,7 @@ public class vTriage extends JFrame {
 		BoxLesionesGraves.setModel(new DefaultComboBoxModel(new String[] {"No Presente", "Presentes"}));
 		BoxLesionesGraves.setSelectedIndex(0);
 		BoxLesionesGraves.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxLesionesGraves.setBounds(715, 193, 100, 22);
+		BoxLesionesGraves.setBounds(715, 193, 120, 22);
 		contentPane.add(BoxLesionesGraves);
 
 		
@@ -427,7 +427,7 @@ public class vTriage extends JFrame {
 		BoxLesionesLeves.setSelectedIndex(0);
 		BoxLesionesLeves.setMaximumRowCount(4);
 		BoxLesionesLeves.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxLesionesLeves.setBounds(573, 253, 100, 22);
+		BoxLesionesLeves.setBounds(573, 253, 120, 22);
 		contentPane.add(BoxLesionesLeves);
 		
 		BoxLesionesLeves.addActionListener(new ActionListener() {
@@ -444,7 +444,7 @@ public class vTriage extends JFrame {
 		BoxEstadoMental.setSelectedIndex(0);
 		BoxEstadoMental.setMaximumRowCount(4);
 		BoxEstadoMental.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxEstadoMental.setBounds(293, 193, 100, 22);
+		BoxEstadoMental.setBounds(293, 193, 128, 22);
 		contentPane.add(BoxEstadoMental);
 		
 		BoxEstadoMental.addActionListener(new ActionListener() {
@@ -464,7 +464,7 @@ public class vTriage extends JFrame {
 		BoxSangrado.setSelectedIndex(0);
 		BoxSangrado.setMaximumRowCount(4);
 		BoxSangrado.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxSangrado.setBounds(715, 253, 100, 22);
+		BoxSangrado.setBounds(715, 253, 120, 22);
 		contentPane.add(BoxSangrado);
 		
 		BoxSangrado.addActionListener(new ActionListener() {
@@ -483,7 +483,7 @@ public class vTriage extends JFrame {
 		BoxVomitos.setSelectedIndex(0);
 		BoxVomitos.setMaximumRowCount(4);
 		BoxVomitos.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxVomitos.setBounds(156, 253, 100, 22);
+		BoxVomitos.setBounds(156, 253, 120, 22);
 		contentPane.add(BoxVomitos);
 		
 		BoxVomitos.addActionListener(new ActionListener() {
@@ -502,7 +502,7 @@ public class vTriage extends JFrame {
 		BoxSignosDeShock.setSelectedIndex(0);
 		BoxSignosDeShock.setMaximumRowCount(4);
 		BoxSignosDeShock.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxSignosDeShock.setBounds(440, 253, 100, 22);
+		BoxSignosDeShock.setBounds(440, 253, 123, 22);
 		contentPane.add(BoxSignosDeShock);
 		
 		BoxSignosDeShock.addActionListener(new ActionListener() {
@@ -527,7 +527,7 @@ public class vTriage extends JFrame {
 		BoxConciencia.setSelectedIndex(0);
 		BoxConciencia.setMaximumRowCount(4);
 		BoxConciencia.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxConciencia.setBounds(440, 193, 100, 22);
+		BoxConciencia.setBounds(440, 193, 123, 22);
 		contentPane.add(BoxConciencia);
 		
 		BoxConciencia.addActionListener(new ActionListener() {
@@ -595,7 +595,7 @@ public class vTriage extends JFrame {
         BoxEdad.setModel(new DefaultComboBoxModel(new String[] {"Adulto", "Ni\u00F1o/Anciano"}));
         BoxEdad.setSelectedIndex(0);
         BoxEdad.setFont(new Font("Arial", Font.PLAIN, 14));
-        BoxEdad.setBounds(846, 193, 89, 22);
+        BoxEdad.setBounds(846, 193, 109, 22);
         contentPane.add(BoxEdad);
         
         colocarHoraActual();
@@ -607,7 +607,6 @@ public class vTriage extends JFrame {
         SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
         String fechaActual = fecha.format(todayDate);
         String horaActual = hora.format(todayDate);
-        
         txtFecha.setText(fechaActual);
         txtHora.setText(horaActual);
 	}
@@ -641,11 +640,14 @@ public class vTriage extends JFrame {
 		lista=dao.ConsultaTriage();
 		
 		for (Triage u:lista) {
-			Object triage[]= new Object[4];
+			Object triage[]= new Object[6];
 			triage[0]=u.getNombre_paciente();
 			triage[1]=u.getResultado_triage();
-			triage[2]=u.getFecha_triage();
-			triage[3]=u.getHora_triage();
+			triage[2]=u.getMotivo_cambio();
+			triage[3]=u.getColor_final();
+			triage[4]=u.getFecha_triage();
+			triage[5]=u.getHora_triage();
+			
 			modelo.addRow(triage);
 		}
 		table.setModel(modelo);

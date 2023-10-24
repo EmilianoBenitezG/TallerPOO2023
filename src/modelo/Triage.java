@@ -2,11 +2,27 @@ package modelo;
 
 public class Triage {
 	int id;
-	String nombre_paciente,resultado_triage,fecha_triage,hora_triage;
+	String nombre_paciente,resultado_triage,fecha_triage,hora_triage,motivo_cambio,color_final;
 	
 	public Triage() {
 	}
 	
+	public String getMotivo_cambio() {
+		return motivo_cambio;
+	}
+
+	public void setMotivo_cambio(String motivo_consulta) {
+		this.motivo_cambio = motivo_consulta;
+	}
+
+	public String getColor_final() {
+		return color_final;
+	}
+
+	public void setColor_final(String color_final) {
+		this.color_final = color_final;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -58,6 +58,8 @@ public class daoTriage {
 				triage.setResultado_triage(rs.getString("resultado_triage"));
 				triage.setFecha_triage(rs.getString("fecha_triage"));
 				triage.setHora_triage(rs.getString("hora_triage"));
+				triage.setMotivo_cambio(rs.getString("motivo_cambio"));
+				triage.setColor_final(rs.getString("color_final"));
 				lista.add(triage);
 			}
 		} catch (SQLException e) {

@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 
 import dao.daoPacientes;
 import dao.daoAdmision;
@@ -164,6 +167,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(lblHora);
 
 		txtHora = new JTextField();
+		txtHora.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtHora.setColumns(10);
 		txtHora.setBounds(820, 120, 121, 22);
 		contentPane.add(txtHora);
@@ -175,6 +179,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(lblFecha);
 
 		txtFecha = new JTextField();
+		txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtFecha.setBounds(650, 120, 102, 22);
 		contentPane.add(txtFecha);
 		txtFecha.setColumns(10);
@@ -268,6 +273,8 @@ public class vAdmision extends JFrame {
 				}
 			}
 		});
+		
+		colocarHoraActual();
 	}
 
 	// Método para actualizar la tabla de admisiones
@@ -293,6 +300,17 @@ public class vAdmision extends JFrame {
 		txtMotivoConsulta.setText("");
 		txtFecha.setText("");
 		txtHora.setText("");
+	}
+	
+	private void colocarHoraActual() {
+		Date todayDate = new Date();
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
+        String fechaActual = fecha.format(todayDate);
+        String horaActual = hora.format(todayDate);
+        
+        txtFecha.setText(fechaActual);
+        txtHora.setText(horaActual);
 	}
 
 }
