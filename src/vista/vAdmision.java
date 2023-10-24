@@ -32,7 +32,7 @@ public class vAdmision extends JFrame {
     private JTable tblAdmision;
     private JTextField txtNombreApellido;
     private JTextField txtDNI;
-    private JEditorPane txtMotivoConsulta; // Cambio aquí
+    private JEditorPane txtMotivoConsulta;
     private Paciente pacienteSeleccionado;
     JLabel lblRol = new JLabel("Rol");
 
@@ -202,6 +202,11 @@ public class vAdmision extends JFrame {
         lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
         lblCaptionRol.setBounds(946, 13, 25, 18);
         contentPane.add(lblCaptionRol);
+        
+        JLabel lblMotivoConsulta = new JLabel("Motivo de consulta:");
+        lblMotivoConsulta.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        lblMotivoConsulta.setBounds(76, 160, 152, 22);
+        contentPane.add(lblMotivoConsulta);
 
         // Botón para buscar pacientes
         btnBuscarPaciente.addActionListener(new ActionListener() {
@@ -252,5 +257,3 @@ public class vAdmision extends JFrame {
         txtHora.setText("");
     }
 }
-
-// comentario F
