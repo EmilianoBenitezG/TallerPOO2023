@@ -2,7 +2,7 @@ package modelo;
 
 public class Triage {
 	int id;
-	String nombre_paciente,resultado_triage;
+	String nombre_paciente,resultado_triage,fecha_triage,hora_triage;
 	
 	public Triage() {
 	}
@@ -13,6 +13,22 @@ public class Triage {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public String getFecha_triage() {
+		return fecha_triage;
+	}
+
+	public void setFecha_triage(String fecha_triage) {
+		this.fecha_triage = fecha_triage;
+	}
+
+	public String getHora_triage() {
+		return hora_triage;
+	}
+
+	public void setHora_triage(String hora_triage) {
+		this.hora_triage = hora_triage;
+	}
+
 	public String getNombre_paciente() {
 		return nombre_paciente;
 	}

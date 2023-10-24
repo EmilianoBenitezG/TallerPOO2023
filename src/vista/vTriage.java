@@ -28,7 +28,9 @@ import modelo.Triage;
 import modelo.Usuario;
 
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 
@@ -179,6 +181,7 @@ public class vTriage extends JFrame {
         contentPane.add(lblHora);
 
         txtHora = new JTextField();
+        txtHora.setFont(new Font("Tahoma", Font.PLAIN, 14));
         txtHora.setColumns(10);
         txtHora.setBounds(694, 125, 121, 22);
         contentPane.add(txtHora);
@@ -190,6 +193,7 @@ public class vTriage extends JFrame {
         contentPane.add(lblFecha);
 
         txtFecha = new JTextField();
+        txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
         txtFecha.setBounds(510, 125, 102, 22);
         contentPane.add(txtFecha);
         txtFecha.setColumns(10);
@@ -270,7 +274,8 @@ public class vTriage extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        // Obtener la edad ingresada por el usuario
 		       String nombrePacienteSeleccionado = comboBox_12.getSelectedItem().toString();
-
+		       String horaTriage = txtHora.getText();
+		       String fechaTriage = txtFecha.getText();
 		        // Obtener las selecciones de los ComboBox
 		        int respiracion = BoxRespiracion.getSelectedIndex();
 		        int fiebre = BoxFiebre.getSelectedIndex();
@@ -306,7 +311,7 @@ public class vTriage extends JFrame {
 		        }
 
 		        // Almacenar el color del resultado en la base de datos utilizando daoTriage
-		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePacienteSeleccionado, colorResultado);
+		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePacienteSeleccionado, colorResultado,fechaTriage ,horaTriage);
 
 		        // Mostrar un mensaje con el color del paciente y la confirmación de la base de datos
 		       		        
@@ -592,8 +597,21 @@ public class vTriage extends JFrame {
         BoxEdad.setFont(new Font("Arial", Font.PLAIN, 14));
         BoxEdad.setBounds(846, 193, 89, 22);
         contentPane.add(BoxEdad);
-	}
+        
+        colocarHoraActual();
+        }
 	
+	private void colocarHoraActual() {
+		Date todayDate = new Date();
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
+        String fechaActual = fecha.format(todayDate);
+        String horaActual = hora.format(todayDate);
+        
+        txtFecha.setText(fechaActual);
+        txtHora.setText(horaActual);
+	}
+
 	private void cargarNombreApellidoPacientes() {
         ArrayList<String> nombreApellidos = obtenerNombreApellidoPacientesDesdeAdmision();
 
@@ -623,9 +641,11 @@ public class vTriage extends JFrame {
 		lista=dao.ConsultaTriage();
 		
 		for (Triage u:lista) {
-			Object triage[]= new Object[3];
+			Object triage[]= new Object[4];
 			triage[0]=u.getNombre_paciente();
 			triage[1]=u.getResultado_triage();
+			triage[2]=u.getFecha_triage();
+			triage[3]=u.getHora_triage();
 			modelo.addRow(triage);
 		}
 		table.setModel(modelo);
