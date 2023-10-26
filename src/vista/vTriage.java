@@ -1,12 +1,12 @@
 package vista;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.JComboBox;
@@ -21,29 +21,24 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-
 import dao.daoTriage;
 import modelo.Triage;
 import modelo.Usuario;
-
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
-
-
 public class vTriage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
 	private JTextField txtNombreApellido;
     private JTextField txtDNI;
 	private JTextField txtFecha;
-    private JTextField txtHora;
-    
+    private JTextField txtHora;    
 	private JPanel contentPane;
 	private JLabel lblRespiracion;
 	private JLabel lblFiebre;
@@ -77,7 +72,7 @@ public class vTriage extends JFrame {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private daoTriage dao = new daoTriage();
-	String[] columnNames = {"Nombre Paciente", "Color Sugerido","Motivo Cambio","Color Final","Hora","Fecha"};
+	String[] columnNames = {"Nombre Paciente", "Color Sugerido","Motivo Cambio","Color Final","Fecha","Hora"};
 	Object[][] data = {};
 	DefaultTableModel modelo = new DefaultTableModel(data, columnNames) {
         @Override
@@ -119,6 +114,8 @@ public class vTriage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// Nombre de cada Variable Triage
+		
 		lblRespiracion = new JLabel("Respiraci\u00F3n");
 		lblRespiracion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblRespiracion.setBounds(10, 169, 85, 24);
@@ -131,47 +128,47 @@ public class vTriage extends JFrame {
 		
 		lblSignosDeShock = new JLabel("Signos de Shock");
 		lblSignosDeShock.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSignosDeShock.setBounds(440, 229, 128, 24);
+		lblSignosDeShock.setBounds(417, 229, 128, 24);
 		contentPane.add(lblSignosDeShock);
 		
 		lblLesionesLeves = new JLabel("Lesiones Leves");
 		lblLesionesLeves.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLesionesLeves.setBounds(573, 229, 120, 24);
+		lblLesionesLeves.setBounds(557, 229, 120, 24);
 		contentPane.add(lblLesionesLeves);
 		
 		lblLesionesGraves = new JLabel("Lesiones Graves");
 		lblLesionesGraves.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLesionesGraves.setBounds(715, 169, 120, 24);
+		lblLesionesGraves.setBounds(687, 169, 120, 24);
 		contentPane.add(lblLesionesGraves);
 		
 		lblDolorAbdominal = new JLabel("Dolor Abdominal");
 		lblDolorAbdominal.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDolorAbdominal.setBounds(293, 229, 137, 24);
+		lblDolorAbdominal.setBounds(270, 229, 137, 24);
 		contentPane.add(lblDolorAbdominal);
 		
 		lblSangrado = new JLabel("Sangrado");
 		lblSangrado.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSangrado.setBounds(715, 229, 73, 24);
+		lblSangrado.setBounds(687, 229, 73, 24);
 		contentPane.add(lblSangrado);
 		
 		lblEstadoMental = new JLabel("Estado Mental\r\n");
 		lblEstadoMental.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEstadoMental.setBounds(293, 169, 109, 24);
+		lblEstadoMental.setBounds(270, 169, 109, 24);
 		contentPane.add(lblEstadoMental);
 		
 		lblDolorDePecho = new JLabel("Dolor de Pecho");
 		lblDolorDePecho.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDolorDePecho.setBounds(573, 169, 120, 24);
+		lblDolorDePecho.setBounds(557, 169, 120, 24);
 		contentPane.add(lblDolorDePecho);
 		
 		lblVomitos = new JLabel("Vomitos");
 		lblVomitos.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblVomitos.setBounds(156, 229, 73, 24);
+		lblVomitos.setBounds(140, 229, 73, 24);
 		contentPane.add(lblVomitos);
 		
 		lblPulso = new JLabel("Pulso");
 		lblPulso.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPulso.setBounds(156, 169, 53, 24);
+		lblPulso.setBounds(140, 169, 53, 24);
 		contentPane.add(lblPulso);
 		
 		// Hora
@@ -205,10 +202,12 @@ public class vTriage extends JFrame {
         contentPane.add(lblNombreApellido);
 
         txtNombreApellido = new JTextField();
+        txtNombreApellido.setFont(new Font("Tahoma", Font.BOLD, 14));
         txtNombreApellido.setEditable(false);
         txtNombreApellido.setBounds(68, 125, 170, 22);
         contentPane.add(txtNombreApellido);
         setLocationRelativeTo(null);
+        
         
         // DNI
         JLabel lblDni = new JLabel("DNI");
@@ -217,8 +216,9 @@ public class vTriage extends JFrame {
         contentPane.add(lblDni);
 
         txtDNI = new JTextField();
+        txtDNI.setFont(new Font("Tahoma", Font.BOLD, 14));
         txtDNI.setEditable(false);
-        txtDNI.setBounds(319, 125, 83, 22);
+        txtDNI.setBounds(319, 125, 109, 22);
         contentPane.add(txtDNI);
         
         // Botón para buscar pacientes
@@ -226,7 +226,29 @@ public class vTriage extends JFrame {
         btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
         btnBuscarPaciente.setBounds(65, 59, 201, 30);
         contentPane.add(btnBuscarPaciente);
-		
+        btnBuscarPaciente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Obtener el paciente seleccionado en el ComboBox
+                String seleccion = comboBox_12.getSelectedItem().toString();
+
+                // Dividir la selección en NombreApellido y DNI
+                String[] partes = seleccion.split(" - ");
+                if (partes.length == 2) {
+                    String nombreApellido = partes[0];
+                    String dni = partes[1];
+
+                    // Establecer el nombre y DNI en los campos de texto
+                    txtNombreApellido.setText(nombreApellido);
+                    txtDNI.setText(dni);
+                } else {
+                    // Manejar el caso en el que no se pudo obtener la información
+                    JOptionPane.showMessageDialog(vTriage.this, "No se pudo obtener la información del paciente.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+      
+
 		BoxRespiracion = new JComboBox();
 		BoxRespiracion.setForeground(new Color(0, 0, 0));
 		BoxRespiracion.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Dificultad respiratoria moderada", "Dificultad respiratoria grave"}));
@@ -266,59 +288,59 @@ public class vTriage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardar.setBounds(415, 286, 89, 23);
+		btnGuardar.setBounds(319, 286, 89, 23);
 		contentPane.add(btnGuardar);
 		
 
 		btnGuardar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        // Obtener la edad ingresada por el usuario
-		       String nombrePacienteSeleccionado = comboBox_12.getSelectedItem().toString();
-		       String horaTriage = txtHora.getText();
-		       String fechaTriage = txtFecha.getText();
+		        // Obtener el nombre del paciente seleccionado en el ComboBox
+		        String seleccion = comboBox_12.getSelectedItem().toString();
+		        String[] partes = seleccion.split(" - ");
+		        String nombrePacienteSeleccionado = partes[0];
+		        
+		        String horaTriage = txtHora.getText();
+		        String fechaTriage = txtFecha.getText();
+
 		        // Obtener las selecciones de los ComboBox
 		        int respiracion = BoxRespiracion.getSelectedIndex();
 		        int fiebre = BoxFiebre.getSelectedIndex();
 		        int pulso = BoxPulso.getSelectedIndex();
 		        int dolorPecho = BoxDolorDePecho.getSelectedIndex();
 		        int dolorAbdominal = BoxDolorAbdominal.getSelectedIndex();
-		        int lesionesGraves = BoxLesionesGraves.getSelectedIndex()*2;
+		        int lesionesGraves = BoxLesionesGraves.getSelectedIndex() * 2;
 		        int lesionesLeves = BoxLesionesLeves.getSelectedIndex();
 		        int estadoMental = BoxEstadoMental.getSelectedIndex();
 		        int sangrado = BoxSangrado.getSelectedIndex();
 		        int vomitos = BoxVomitos.getSelectedIndex();
-		        int signosShock = BoxSignosDeShock.getSelectedIndex()*3;
-		        int conciencia = BoxConciencia.getSelectedIndex()*3;
+		        int signosShock = BoxSignosDeShock.getSelectedIndex() * 3;
+		        int conciencia = BoxConciencia.getSelectedIndex() * 3;
 		        int edad = BoxEdad.getSelectedIndex();
 
-		        // Calcular la puntuacion total
-		        int puntuacionTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesLeves 
-			            + estadoMental + sangrado + vomitos + signosShock + conciencia + edad;
-		        
-		       
+		        // Calcular la puntuación total
+		        int puntuaciónTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesLeves
+		                + estadoMental + sangrado + vomitos + signosShock + conciencia + edad;
 
 		        // Calcular el color del resultado
-		        
 		        String colorResultado;
-		        if (puntuacionTotal > 15) {
+		        if (puntuaciónTotal > 15) {
 		            colorResultado = "Rojo";
-		        } else if (puntuacionTotal >= 10) {
+		        } else if (puntuaciónTotal >= 10) {
 		            colorResultado = "Naranja";
-		        } else if (puntuacionTotal >= 5) {
+		        } else if (puntuaciónTotal >= 5) {
 		            colorResultado = "Amarillo";
 		        } else {
 		            colorResultado = "Verde";
 		        }
 
 		        // Almacenar el color del resultado en la base de datos utilizando daoTriage
-		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePacienteSeleccionado, colorResultado,fechaTriage ,horaTriage);
+		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePacienteSeleccionado, colorResultado, fechaTriage, horaTriage);
 
 		        // Mostrar un mensaje con el color del paciente y la confirmación de la base de datos
-		       		        
 		        actualizarTabla();
-
 		    }
 		});
+
 
 		BoxFiebre = new JComboBox();
 		BoxFiebre.setForeground(new Color(0, 0, 0));
@@ -348,7 +370,7 @@ public class vTriage extends JFrame {
 		BoxPulso.setSelectedIndex(0);
 		BoxPulso.setMaximumRowCount(4);
 		BoxPulso.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxPulso.setBounds(156, 193, 120, 22);
+		BoxPulso.setBounds(140, 193, 120, 22);
 		contentPane.add(BoxPulso);
 		
 		// ActionListener para el ComboBox de Pulso
@@ -370,7 +392,7 @@ public class vTriage extends JFrame {
 		BoxDolorDePecho.setSelectedIndex(0);
 		BoxDolorDePecho.setMaximumRowCount(4);
 		BoxDolorDePecho.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxDolorDePecho.setBounds(573, 193, 120, 22);
+		BoxDolorDePecho.setBounds(557, 193, 120, 22);
 		contentPane.add(BoxDolorDePecho);
 		
 		BoxDolorDePecho.addActionListener(new ActionListener() {
@@ -391,7 +413,7 @@ public class vTriage extends JFrame {
 		BoxDolorAbdominal.setSelectedIndex(0);
 		BoxDolorAbdominal.setMaximumRowCount(4);
 		BoxDolorAbdominal.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxDolorAbdominal.setBounds(293, 253, 128, 22);
+		BoxDolorAbdominal.setBounds(270, 253, 128, 22);
 		contentPane.add(BoxDolorAbdominal);
 		
 		BoxLesionesGraves = new JComboBox();
@@ -399,7 +421,7 @@ public class vTriage extends JFrame {
 		BoxLesionesGraves.setModel(new DefaultComboBoxModel(new String[] {"No Presente", "Presentes"}));
 		BoxLesionesGraves.setSelectedIndex(0);
 		BoxLesionesGraves.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxLesionesGraves.setBounds(715, 193, 120, 22);
+		BoxLesionesGraves.setBounds(687, 193, 120, 22);
 		contentPane.add(BoxLesionesGraves);
 
 		
@@ -427,7 +449,7 @@ public class vTriage extends JFrame {
 		BoxLesionesLeves.setSelectedIndex(0);
 		BoxLesionesLeves.setMaximumRowCount(4);
 		BoxLesionesLeves.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxLesionesLeves.setBounds(573, 253, 120, 22);
+		BoxLesionesLeves.setBounds(557, 253, 120, 22);
 		contentPane.add(BoxLesionesLeves);
 		
 		BoxLesionesLeves.addActionListener(new ActionListener() {
@@ -444,7 +466,7 @@ public class vTriage extends JFrame {
 		BoxEstadoMental.setSelectedIndex(0);
 		BoxEstadoMental.setMaximumRowCount(4);
 		BoxEstadoMental.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxEstadoMental.setBounds(293, 193, 128, 22);
+		BoxEstadoMental.setBounds(270, 193, 128, 22);
 		contentPane.add(BoxEstadoMental);
 		
 		BoxEstadoMental.addActionListener(new ActionListener() {
@@ -464,7 +486,7 @@ public class vTriage extends JFrame {
 		BoxSangrado.setSelectedIndex(0);
 		BoxSangrado.setMaximumRowCount(4);
 		BoxSangrado.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxSangrado.setBounds(715, 253, 120, 22);
+		BoxSangrado.setBounds(687, 253, 120, 22);
 		contentPane.add(BoxSangrado);
 		
 		BoxSangrado.addActionListener(new ActionListener() {
@@ -483,7 +505,7 @@ public class vTriage extends JFrame {
 		BoxVomitos.setSelectedIndex(0);
 		BoxVomitos.setMaximumRowCount(4);
 		BoxVomitos.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxVomitos.setBounds(156, 253, 120, 22);
+		BoxVomitos.setBounds(140, 253, 120, 22);
 		contentPane.add(BoxVomitos);
 		
 		BoxVomitos.addActionListener(new ActionListener() {
@@ -502,9 +524,8 @@ public class vTriage extends JFrame {
 		BoxSignosDeShock.setSelectedIndex(0);
 		BoxSignosDeShock.setMaximumRowCount(4);
 		BoxSignosDeShock.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxSignosDeShock.setBounds(440, 253, 123, 22);
-		contentPane.add(BoxSignosDeShock);
-		
+		BoxSignosDeShock.setBounds(417, 253, 123, 22);
+		contentPane.add(BoxSignosDeShock);		
 		BoxSignosDeShock.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        int seleccion = BoxSignosDeShock.getSelectedIndex();
@@ -518,7 +539,7 @@ public class vTriage extends JFrame {
 		
 		lblConciencia = new JLabel("Conciencia\r\n:");
 		lblConciencia.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblConciencia.setBounds(440, 169, 89, 24);
+		lblConciencia.setBounds(415, 169, 89, 24);
 		contentPane.add(lblConciencia);
 		
 		BoxConciencia = new JComboBox();
@@ -527,9 +548,8 @@ public class vTriage extends JFrame {
 		BoxConciencia.setSelectedIndex(0);
 		BoxConciencia.setMaximumRowCount(4);
 		BoxConciencia.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxConciencia.setBounds(440, 193, 123, 22);
-		contentPane.add(BoxConciencia);
-		
+		BoxConciencia.setBounds(415, 193, 123, 22);
+		contentPane.add(BoxConciencia);		
 		BoxConciencia.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        int seleccion = BoxConciencia.getSelectedIndex();
@@ -551,7 +571,7 @@ public class vTriage extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-					"Nombre Paciente", "Color Sugerido","Hora","Fecha"
+					"Nombre Paciente", "Color Sugerido","Motivo Cambio","Color Final","Hora","Fecha"
 			}
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(120);
@@ -576,13 +596,15 @@ public class vTriage extends JFrame {
 		comboBox_12.setToolTipText("Seleccione un paciente");
 		comboBox_12.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_12.setMaximumRowCount(10);
-		comboBox_12.setBounds(293, 65, 179, 24);
+		comboBox_12.setBounds(293, 65, 228, 24);
 		contentPane.add(comboBox_12);
+		
+        
 		cargarNombreApellidoPacientes();
 		setLocationRelativeTo(null);
 		JLabel lblEdad = new JLabel("Edad");
 		lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEdad.setBounds(845, 170, 49, 22);
+		lblEdad.setBounds(817, 170, 49, 22);
 		contentPane.add(lblEdad);
 		
 		JLabel lblTriage = new JLabel("Triage");
@@ -595,11 +617,61 @@ public class vTriage extends JFrame {
         BoxEdad.setModel(new DefaultComboBoxModel(new String[] {"Adulto", "Ni\u00F1o/Anciano"}));
         BoxEdad.setSelectedIndex(0);
         BoxEdad.setFont(new Font("Arial", Font.PLAIN, 14));
-        BoxEdad.setBounds(846, 193, 109, 22);
+        BoxEdad.setBounds(817, 193, 109, 22);
         contentPane.add(BoxEdad);
-        
         colocarHoraActual();
-        }
+        
+        JButton btnmodificar = new JButton("Modificar");
+        btnmodificar.setBounds(523, 286, 89, 23);
+        contentPane.add(btnmodificar);
+        btnmodificar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Obtener el nombre del paciente seleccionado en el ComboBox
+                String seleccion = comboBox_12.getSelectedItem().toString();
+                String nombrePacienteSeleccionado = null;
+                for (String paciente : obtenerNombreApellidoPacientesDesdeAdmision()) {
+                    if (paciente.startsWith(seleccion)) {
+                        String[] partes = paciente.split(" - "); // Suponiendo que el nombre y apellido están separados por una coma y un espacio
+                        if (partes.length == 2) {
+                            nombrePacienteSeleccionado = partes[0];
+                        }
+                        break;
+                    }
+                }
+
+                // Crear un JComboBox con las opciones de color
+                String[] colores = {"Verde", "Amarillo", "Naranja", "Rojo"};
+                JComboBox<String> colorComboBox = new JComboBox<>(colores);
+
+                // Crear un JTextArea para ingresar el nuevo resultado
+                JTextArea resultadoTextArea = new JTextArea(5, 20);
+                
+                // Ajustar el número de filas y columnas del JTextArea para cambiar su tamaño
+                resultadoTextArea.setRows(2); // Aumentar el número de filas
+                resultadoTextArea.setColumns(5); // Ajustar el número de columnas
+
+                // Crear un panel para contener los componentes
+                JPanel panel = new JPanel(new GridLayout(0, 1));
+                panel.add(new JLabel("Seleccione un color:"));
+                panel.add(colorComboBox);
+                panel.add(new JLabel("Motivo:"));
+                panel.add(new JScrollPane(resultadoTextArea));
+
+                int result = JOptionPane.showConfirmDialog(null, panel, "Modificar Resultado", JOptionPane.OK_CANCEL_OPTION);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    String nuevoResultado = resultadoTextArea.getText();
+                    String colorSeleccionado = (String) colorComboBox.getSelectedItem();
+
+                    // Actualizar los campos "color_final" y "motivo_cambio" en la base de datos utilizando daoTriage
+                    boolean resultadoActualizado = dao.actualizarColorFinalYMotivoCambio(nombrePacienteSeleccionado, nuevoResultado, colorSeleccionado);
+                    actualizarTabla();
+                }
+            }
+        });
+	}
+
+        
 	
 	private void colocarHoraActual() {
 		Date todayDate = new Date();
@@ -627,7 +699,7 @@ public class vTriage extends JFrame {
     }
 
     private ArrayList<String> obtenerNombreApellidoPacientesDesdeAdmision() {
-        return dao.obtenerNombreApellidoPacientesDesdeAdmision();
+        return dao.obtenerNombreYDNIPacientesDesdeAdmision();
     }
 	
 

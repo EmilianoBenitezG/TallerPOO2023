@@ -4,13 +4,11 @@ import conexion.Conexion;
 import modelo.Rol;
 import modelo.Triage;
 import modelo.Usuario;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class daoTriage {
@@ -71,31 +69,107 @@ public class daoTriage {
 	}
     
   
-        public ArrayList<String> obtenerNombreApellidoPacientesDesdeAdmision() {
-            ArrayList<String> nombreApellidos = new ArrayList<>();
-            String sql = "SELECT NombreApellido FROM Admision";
+    public ArrayList<String> obtenerNombreYDNIPacientesDesdeAdmision() {
+        ArrayList<String> pacientes = new ArrayList<>();
+        String sql = "SELECT NombreApellido, DNI FROM Admision"; // Seleccionar NombreApellido y DNI
+
+        try (Connection connection = cx.conectar();
+             PreparedStatement pstmt = connection.prepareStatement(sql);
+             ResultSet resultSet = pstmt.executeQuery()) {
+            while (resultSet.next()) {
+                String nombreApellido = resultSet.getString("NombreApellido");
+                String dni = resultSet.getString("DNI");
+                String pacienteInfo = nombreApellido + " - " + dni; // Combinar nombre y DNI en una sola cadena
+                pacientes.add(pacienteInfo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pacientes;
+    }
+
+        public boolean actualizarMotivoCambio(String nombrePaciente, String motivoCambio) {
+            String sql = "UPDATE Triage SET motivo_cambio = ? WHERE nombre_paciente = ?";
 
             try (Connection connection = cx.conectar();
-                 PreparedStatement pstmt = connection.prepareStatement(sql);
-                 ResultSet resultSet = pstmt.executeQuery()) {
-                while (resultSet.next()) {
-                    String nombreApellido = resultSet.getString("NombreApellido");
-                    nombreApellidos.add(nombreApellido);
+                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, motivoCambio);
+                pstmt.setString(2, nombrePaciente);
+
+                // Ejecutar la consulta
+                pstmt.executeUpdate();
+
+                return true; // Éxito al actualizar el motivo de cambio
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false; // Error al actualizar el motivo de cambio
+            }
+        }
+
+        public boolean almacenarColorFinal(String nombrePaciente, String colorResultado, String fechaTriage, String horaTriage) {
+            String sql = "INSERT INTO Triage (color_final, fecha_triage, hora_triage) VALUES (?, ?, ?, ?)";
+
+            try (Connection connection = cx.conectar();
+                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, nombrePaciente);
+                pstmt.setString(2, colorResultado);
+                pstmt.setString(3, fechaTriage);
+                pstmt.setString(4, horaTriage);
+
+                // Ejecutar la consulta
+                pstmt.executeUpdate();
+
+                return true; // Éxito al almacenar el resultado en la columna "color_final" de la tabla "Triage"
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false; // Error al almacenar el resultado en la columna "color_final" de la tabla "Triage"
+            }
+        }
+
+        public boolean verificarRegistroExistente(String nombrePaciente) {
+            String sql = "SELECT COUNT(*) FROM Triage WHERE nombre_paciente = ?";
+            
+            try (Connection connection = cx.conectar();
+                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, nombrePaciente);
+
+                // Ejecutar la consulta y obtener el resultado
+                try (ResultSet resultSet = pstmt.executeQuery()) {
+                    if (resultSet.next()) {
+                        int count = resultSet.getInt(1);
+                        return count > 0; // Si count es mayor que 0, significa que ya existe un registro
+                    }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            return nombreApellidos;
+            return false; // Si ocurre un error o no se encuentra el registro, retornar false
+        }
+
+        public boolean actualizarColorFinalYMotivoCambio(String nombrePaciente, String nuevoResultado, String colorSeleccionado) {
+            String sql = "UPDATE Triage SET color_final = ?, motivo_cambio = ? WHERE nombre_paciente = ?";
+
+            try (Connection connection = cx.conectar();
+                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, colorSeleccionado);
+                pstmt.setString(2, nuevoResultado);
+                pstmt.setString(3, nombrePaciente);
+
+                // Ejecutar la consulta
+                int rowsUpdated = pstmt.executeUpdate();
+
+                return rowsUpdated > 0; // Si se actualizó al menos una fila, significa éxito
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return false; // Error al actualizar
         }
 
 
-
-
-
-
- 
-        
+  
         private int puntuacionRespiracion;
 		private int puntuacionFiebre;
 		private int puntuacionPulso;
@@ -151,6 +225,5 @@ public class daoTriage {
     
     public void setPuntuacionConciencia(int puntuacionConciencia) {
     	this.Conciencia = puntuacionConciencia;
-    }
-    
+    }   
 }
