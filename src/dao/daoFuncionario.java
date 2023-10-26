@@ -36,7 +36,6 @@ public class daoFuncionario {
             if (resultado > 0) {
                 salida = true;
             }
-
             cx.desconectar();
         } catch (SQLException e) {
             System.err.println("Error al insertar paciente: " + e.getMessage());
@@ -90,13 +89,10 @@ public class daoFuncionario {
             ps.setString(8, funcionario.getEstadoCivil().toUpperCase());
             ps.setString(9, funcionario.getEmail().toUpperCase());
             ps.setString(10, funcionario.getPuesto().toUpperCase());
-
             int resultado = ps.executeUpdate();
-
             if (resultado > 0) {
                 salida = true;
             }
-
             cx.desconectar();
         } catch (SQLException e) {
             System.err.println("Error al modificar paciente: " + e.getMessage());
@@ -104,7 +100,7 @@ public class daoFuncionario {
         return salida;
     }
 
-    // Busca pacientes en la base de datos por su número de DNI
+    // Busca funcionarios en la base de datos por su número de DNI
     public ArrayList<Funcionario> buscarFuncionarioPorDNI(String dni) {
         ArrayList<Funcionario> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -145,7 +141,7 @@ public class daoFuncionario {
         return lista;
     }
     
-    // Verifica si existe un paciente con el número de DNI
+    // Verifica si existe un funcionario con el número de DNI
     public boolean existeFuncionarioConDNI(String dni) {
         boolean existe = false;
 

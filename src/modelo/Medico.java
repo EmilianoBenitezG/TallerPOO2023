@@ -1,35 +1,55 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Medico extends Funcionario{
 	
-	private String matricula;
-	private List<DetallesEspecialidad> especialidades;
-	 
-	public Medico() {
-		especialidades = new ArrayList<>();
-	}
-	
-	public Medico(String matricula) {
-		this.matricula = matricula;
-		especialidades = new ArrayList<>();
-	}
-	
-	public String getMatricula() {
-		return matricula;
-	}
+	 	private int id;
+	    private int funcionarioId;
+	    private String matricula;
+	    private DetallesEspecialidad detallesEspecialidad;
+		
+	    public Medico(int id, int funcionarioId, String matricula) {
+			this.id = id;
+			this.funcionarioId = funcionarioId;
+			this.matricula = matricula;
+		}
 
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-	
-	public List<DetallesEspecialidad> getEspecialidades() {
-        return especialidades;
-    }
-	
-	public void agregarEspecialidad(DetallesEspecialidad especialidad) {
-        especialidades.add(especialidad);
-    }
+		public Medico() {
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public int getFuncionarioId() {
+			return funcionarioId;
+		}
+
+		public void setFuncionarioId(int funcionarioId) {
+			this.funcionarioId = funcionarioId;
+		}
+
+		public String getMatricula() {
+			return matricula;
+		}
+
+		public void setMatricula(String matricula) {
+			this.matricula = matricula;
+		}
+		
+		public DetallesEspecialidad getDetallesEspecialidad() {
+			return detallesEspecialidad;
+		}
+
+		public void setDetallesEspecialidad(DetallesEspecialidad detallesEspecialidad) {
+			this.detallesEspecialidad = detallesEspecialidad;
+		}
+		
+		@Override
+	    public String toString() {
+	        return "Médico: " + getNombre() + " " + getApellido() +  ", Matrícula: " + matricula;
+	    }
 }

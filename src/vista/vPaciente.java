@@ -480,6 +480,7 @@ public class vPaciente extends JFrame {
 		tlbPacientes.setModel(modelo);
 	}
 	
+	// Método para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}

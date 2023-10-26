@@ -30,7 +30,6 @@ public class daoAdmision {
                 System.err.println("ID de paciente no válido");
                 return false;
             }
-
             ps.setInt(1, pacienteID);
             ps.setString(2, admision.getMotivoConsulta().toUpperCase());
             ps.setString(3, admision.getFecha().toUpperCase());
@@ -46,7 +45,6 @@ public class daoAdmision {
         } finally {
             cx.desconectar();
         }
-
         return salida;
     }
 
@@ -55,12 +53,10 @@ public class daoAdmision {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-
         try {
             connection = cx.conectar();
             ps = connection.prepareStatement("SELECT Admision.ID, Admision.MotivoConsulta, Admision.Fecha, Admision.Hora, Pacientes.Nombre, Pacientes.Apellido, Pacientes.DNI FROM Admision INNER JOIN Pacientes ON Admision.PacienteID = Pacientes.ID");
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 Admision admision = new Admision();
                 admision.setId(rs.getInt("ID"));
@@ -81,7 +77,6 @@ public class daoAdmision {
         } finally {
             cx.desconectar();
         }
-
         return lista;
     }
 }

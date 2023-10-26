@@ -232,16 +232,11 @@ public class vAdmision extends JFrame {
 				int filaSeleccionada = tblAdmision.getSelectedRow();
 				if (filaSeleccionada >= 0) {
 					DefaultTableModel model = (DefaultTableModel) tblAdmision.getModel();
-					// Suponiendo que los datos de la admisión están en las primeras columnas de la
-					// tabla
 					String nombreApellido = model.getValueAt(filaSeleccionada, 0).toString();
 					String dni = model.getValueAt(filaSeleccionada, 1).toString();
 					String motivoConsulta = model.getValueAt(filaSeleccionada, 2).toString();
 					String fecha = model.getValueAt(filaSeleccionada, 3).toString();
 					String hora = model.getValueAt(filaSeleccionada, 4).toString();
-
-					// Aquí llenas los campos correspondientes en vAdmision con los datos
-					// seleccionados
 					txtNombreApellido.setText(nombreApellido);
 					txtDNI.setText(dni);
 					txtMotivoConsulta.setText(motivoConsulta);
@@ -260,12 +255,9 @@ public class vAdmision extends JFrame {
 				for (Paciente paciente : pacientes) {
 					pacienteListModel.addElement(paciente);
 				}
-
 				SeleccionarPaciente dialog = new SeleccionarPaciente(vAdmision.this, pacienteListModel);
 				dialog.setVisible(true);
-
 				pacienteSeleccionado = dialog.getSelectedPaciente();
-
 				if (pacienteSeleccionado != null) {
 					txtDNI.setText(pacienteSeleccionado.getDNI());
 					txtNombreApellido
@@ -273,7 +265,6 @@ public class vAdmision extends JFrame {
 				}
 			}
 		});
-		
 		colocarHoraActual();
 	}
 
@@ -293,7 +284,8 @@ public class vAdmision extends JFrame {
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}
-
+	
+	// Limpiar campos de entrada
 	private void limpiarCampos() {
 		txtNombreApellido.setText("");
 		txtDNI.setText("");
@@ -302,6 +294,7 @@ public class vAdmision extends JFrame {
 		txtHora.setText("");
 	}
 	
+	// Funcion que agrega fecha y hora actual del equipo
 	private void colocarHoraActual() {
 		Date todayDate = new Date();
         SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");

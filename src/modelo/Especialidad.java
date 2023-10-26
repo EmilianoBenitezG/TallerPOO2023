@@ -2,17 +2,31 @@ package modelo;
 
 public class Especialidad {
 	
-	private String especialidad;
-
-	public Especialidad(String especialidad) {
-		this.especialidad = especialidad;
+	private int id;
+    private String nombreEspecialidad;
+	
+	public Especialidad(int id, String nombreEspecialidad) {
+		super();
+		this.id = id;
+		this.nombreEspecialidad = nombreEspecialidad;
+	}
+	
+	public Especialidad() {
 	}
 
-	public String getEspecialidad() {
-		return especialidad;
+	public int getId() {
+		return id;
 	}
 
-	public void setEspecialidad(String especialidad) {
-		this.especialidad = especialidad;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombreEspecialidad() {
+		return nombreEspecialidad;
+	}
+
+	public void setNombreEspecialidad(String nombreEspecialidad) {
+		this.nombreEspecialidad = nombreEspecialidad;
 	}
 }

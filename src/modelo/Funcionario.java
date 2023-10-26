@@ -7,14 +7,6 @@ public class Funcionario extends Persona{
 	public Funcionario() {
 	}
 	
-	public String getPuesto() {
-		return Puesto;
-	}
-
-	public void setPuesto(String puesto) {
-		Puesto = puesto;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -23,4 +15,11 @@ public class Funcionario extends Persona{
 		this.id = id;
 	}
 	
+	public String getPuesto() {
+		return Puesto;
+	}
+
+	public void setPuesto(String puesto) {
+		Puesto = puesto;
+	}
 }

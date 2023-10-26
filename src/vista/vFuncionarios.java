@@ -45,9 +45,7 @@ public class vFuncionarios extends JFrame {
 	int filaSeleccionada = -1;
 
 	JLabel lblRol = new JLabel("Rol");
-
 	Funcionario funcionario;
-
 	ArrayList<Funcionario> lista;
 	daoFuncionario dao = new daoFuncionario();
 
@@ -389,7 +387,6 @@ public class vFuncionarios extends JFrame {
 			txtpuesto.setText(funcionario.getPuesto());
 		}
 	});
-		
 		actualizarTabla();
 		setLocationRelativeTo(null);
 	}
