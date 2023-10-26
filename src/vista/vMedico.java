@@ -118,7 +118,7 @@ public class vMedico extends JFrame {
 		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblApellido.setBounds(376, 115, 81, 22);
 		contentPane.add(lblApellido);
-		
+		setLocationRelativeTo(null);
 		// Matricula
 		JLabel lblMatricula = new JLabel("Matricula: ");
 		lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 16));

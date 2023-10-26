@@ -684,8 +684,6 @@ public class vTriage extends JFrame {
         });
         
 	}
-
-        
 	
 	private void colocarHoraActual() {
 		Date todayDate = new Date();
