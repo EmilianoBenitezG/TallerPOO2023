@@ -191,6 +191,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(lblNombreApellido);
 
 		txtNombreApellido = new JTextField();
+		txtNombreApellido.setEnabled(false);
 		txtNombreApellido.setBounds(238, 120, 170, 22);
 		contentPane.add(txtNombreApellido);
 		setLocationRelativeTo(null);
@@ -208,6 +209,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(lblDni);
 
 		txtDNI = new JTextField();
+		txtDNI.setEnabled(false);
 		txtDNI.setBounds(470, 120, 97, 22);
 		contentPane.add(txtDNI);
 
@@ -250,7 +252,7 @@ public class vAdmision extends JFrame {
 		btnBuscarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				daoPacientes dao = new daoPacientes();
-				ArrayList<Paciente> pacientes = dao.buscarPacientesPorDNI(txtDNI.getText());
+				ArrayList<Paciente> pacientes = dao.buscarPacientes();
 				DefaultListModel<Paciente> pacienteListModel = new DefaultListModel<>();
 				for (Paciente paciente : pacientes) {
 					pacienteListModel.addElement(paciente);

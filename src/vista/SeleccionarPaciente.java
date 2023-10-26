@@ -24,13 +24,8 @@ public class SeleccionarPaciente extends JDialog {
         super(owner, "Seleccionar Paciente", true);
         dao = new daoPacientes();
         
-        ArrayList<Paciente> pacientes = dao.consultarPacientes();
-        DefaultListModel<Paciente> initialModel = new DefaultListModel<>();
-        for (Paciente paciente : pacientes) {
-            initialModel.addElement(paciente);
-        }
 
-        pacienteList = new JList<>(initialModel);
+        pacienteList = new JList<>(pacienteListModel);
         JScrollPane listScrollPane = new JScrollPane(pacienteList);
 
         selectButton = new JButton("Seleccionar");
@@ -58,7 +53,7 @@ public class SeleccionarPaciente extends JDialog {
                     }
                     pacienteList.setModel(updatedModel);
                 } else {
-                    pacienteList.setModel(initialModel);
+                    pacienteList.setModel(pacienteListModel);
                 }
             }
         });

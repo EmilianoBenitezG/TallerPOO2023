@@ -298,7 +298,7 @@ public class vTriage extends JFrame {
 		        String seleccion = comboBox_12.getSelectedItem().toString();
 		        String[] partes = seleccion.split(" - ");
 		        String nombrePacienteSeleccionado = partes[0];
-		        
+		        String dniPaciente = txtDNI.getText();
 		        String horaTriage = txtHora.getText();
 		        String fechaTriage = txtFecha.getText();
 
@@ -334,7 +334,7 @@ public class vTriage extends JFrame {
 		        }
 
 		        // Almacenar el color del resultado en la base de datos utilizando daoTriage
-		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePacienteSeleccionado, colorResultado, fechaTriage, horaTriage);
+		        boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePacienteSeleccionado, colorResultado, fechaTriage, horaTriage, dniPaciente);
 
 		        // Mostrar un mensaje con el color del paciente y la confirmación de la base de datos
 		        actualizarTabla();
@@ -669,6 +669,20 @@ public class vTriage extends JFrame {
                 }
             }
         });
+        
+     // Agrega un ActionListener al JComboBox
+        comboBox_12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // El código aquí se ejecutará cuando cambie la selección en el JComboBox
+                // Puedes acceder al elemento seleccionado con comboBox.getSelectedItem()
+                String elementoSeleccionado = (String) comboBox_12.getSelectedItem();
+                String[] partes = elementoSeleccionado.split(" - ");
+                txtNombreApellido.setText(partes[0]);
+                txtDNI.setText(partes[1]);
+            }
+        });
+        
 	}
 
         
@@ -689,7 +703,10 @@ public class vTriage extends JFrame {
         if (nombreApellidos != null) {
             // Elimina cualquier elemento existente en el ComboBox
             comboBox_12.removeAllItems();
-
+            String primerElemento = nombreApellidos.get(0);
+            String[] partes = primerElemento.split(" - ");
+            txtNombreApellido.setText(partes[0]);
+            txtDNI.setText(partes[1]);
             for (String nombreApellido : nombreApellidos) {
                 comboBox_12.addItem(nombreApellido);
             }

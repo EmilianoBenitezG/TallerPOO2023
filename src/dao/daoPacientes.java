@@ -151,6 +151,88 @@ public class daoPacientes {
         return lista;
     }
     
+ // Busca pacientes en la base de datos por su número de DNI
+    public ArrayList<Paciente> buscarPacientes() {
+        ArrayList<Paciente> lista = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT * FROM Pacientes";
+            ps = cx.conectar().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setId(rs.getInt("id"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setDNI(rs.getString("DNI"));
+                paciente.setTelFijo(rs.getString("telFijo"));
+                paciente.setTelCelular(rs.getString("telCelular"));
+                paciente.setEstadoCivil(rs.getString("estadoCivil"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setPersonaContacto(rs.getString("personaContacto"));
+                paciente.setEstado(rs.getInt("estado") == 1);
+                lista.add(paciente);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al buscar pacientes por DNI: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+            cx.desconectar();
+        }
+        return lista;
+    }
+    
+ // Busca pacientes en la base de datos por su número de DNI
+    public ArrayList<Paciente> buscarPacientesEnTriage() {
+        ArrayList<Paciente> lista = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT * FROM Pacientes inner join triage on Pacientes.dni = triage.dni_paciente";
+            ps = cx.conectar().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setId(rs.getInt("id"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setDNI(rs.getString("DNI"));
+                paciente.setTelFijo(rs.getString("telFijo"));
+                paciente.setTelCelular(rs.getString("telCelular"));
+                paciente.setEstadoCivil(rs.getString("estadoCivil"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setPersonaContacto(rs.getString("personaContacto"));
+                paciente.setEstado(rs.getInt("estado") == 1);
+                lista.add(paciente);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al buscar pacientes por DNI: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+            cx.desconectar();
+        }
+        return lista;
+    }
+    
     // Verifica si existe un paciente con el número de DNI
     public boolean existePacienteConDNI(String dni) {
         boolean existe = false;

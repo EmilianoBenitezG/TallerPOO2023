@@ -23,7 +23,7 @@ public class daoAdmision {
 
         try {
             connection = cx.conectar();
-            ps = connection.prepareStatement("INSERT INTO Admision (PacienteID, MotivoConsulta, Fecha, Hora) VALUES (?,?,?,?)");
+            ps = connection.prepareStatement("INSERT INTO Admision (PacienteID, NombreApellido, DNI, MotivoConsulta, Fecha, Hora) VALUES (?,?,?,?,?,?)");
             
             int pacienteID = admision.getPaciente().getId();
             if (pacienteID <= 0) {
@@ -31,9 +31,11 @@ public class daoAdmision {
                 return false;
             }
             ps.setInt(1, pacienteID);
-            ps.setString(2, admision.getMotivoConsulta().toUpperCase());
-            ps.setString(3, admision.getFecha().toUpperCase());
-            ps.setString(4, admision.getHora().toUpperCase());
+            ps.setString(2, admision.getPaciente().getNombreApellido());
+            ps.setString(3, admision.getPaciente().getDNI());
+            ps.setString(4, admision.getMotivoConsulta().toUpperCase());
+            ps.setString(5, admision.getFecha().toUpperCase());
+            ps.setString(6, admision.getHora().toUpperCase());
 
             int resultado = ps.executeUpdate();
 

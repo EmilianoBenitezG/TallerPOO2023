@@ -125,7 +125,7 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnHistoriaClinica.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnHistoriaClinica.setBounds(416, 145, 141, 51);
+		btnHistoriaClinica.setBounds(580, 231, 141, 51);
 		contentPane.add(btnHistoriaClinica);
 
 		// Botón "Admision" que abre la vista de la pantalla admision
@@ -138,7 +138,7 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnAdmision.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAdmision.setBounds(94, 231, 141, 51);
+		btnAdmision.setBounds(416, 145, 141, 51);
 		contentPane.add(btnAdmision);
 
 		// Botón "Triage" que abre la vista de triage
@@ -151,7 +151,7 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnTriage.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnTriage.setBounds(580, 145, 118, 51);
+		btnTriage.setBounds(580, 145, 141, 51);
 		contentPane.add(btnTriage);
 
 		JLabel lblCaptionRol = new JLabel("Rol:");
@@ -173,6 +173,18 @@ public class menuPrincipal extends JFrame {
 		btnGestor.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGestor.setBounds(255, 231, 129, 51);
 		contentPane.add(btnGestor);
+		
+		JButton btnAtencion = new JButton("Atencion");
+		btnAtencion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vAtencion admision = new vAtencion();
+				admision.setVisible(true);
+				menuPrincipal.this.setVisible(false);
+			}
+		});
+		btnAtencion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnAtencion.setBounds(94, 231, 141, 51);
+		contentPane.add(btnAtencion);
 		setLocationRelativeTo(null);
 	}
 
@@ -213,11 +225,11 @@ public class menuPrincipal extends JFrame {
 	}
 
 	private void ocultarBotones() {
-		btnUsuarios.setVisible(false);
+		/*btnUsuarios.setVisible(false);
 		btnPacientes.setVisible(false);
 		btnHistoriaClinica.setVisible(false);
 		btnAdmision.setVisible(false);
 		btnTriage.setVisible(false);
-		btnGestor.setVisible(false);
+		btnGestor.setVisible(false);*/
 	}
 }

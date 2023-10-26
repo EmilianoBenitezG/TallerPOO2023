@@ -215,6 +215,7 @@ public class vPaciente extends JFrame {
 
 		// Checkbox para el estado "vivo/muerto"
 		chkEstado = new JCheckBox("¿Está vivo?");
+		chkEstado.setSelected(true);
 		chkEstado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chkEstado.setBounds(356, 129, 125, 22);
 		contentPane.add(chkEstado);
