@@ -57,12 +57,11 @@ public class daoResultadosEstudios {
         ArrayList<ResultadosEstudios> resultadosEstudios = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        daoHistorial daoHistorialInstance = new daoHistorial();
 
         Connection conn = cx.conectar();
 
         try {
-            ps = conn.prepareStatement("SELECT * FROM ResultadosEstudios WHERE id_paciente = ?");
+            ps = conn.prepareStatement("SELECT * FROM ResultadosEstudios WHERE id_historia_clinica IN (SELECT id FROM HistoriaClinica WHERE PacienteId = ?)");
             ps.setInt(1, idPaciente);
             rs = ps.executeQuery();
 
@@ -74,8 +73,6 @@ public class daoResultadosEstudios {
                 resultado.setTipoEstudio(rs.getString("tipoEstudio"));
                 resultado.setInforme(rs.getString("informe"));
                 int idHistoriaClinica = rs.getInt("id_historia_clinica");
-                HistoriaClinicaPaciente historiaClinica = daoHistorialInstance.buscarHistoriaClinicaPorID(idHistoriaClinica);
-                resultado.setHistoriaClinica(historiaClinica);
                 resultadosEstudios.add(resultado);
             }
         } catch (SQLException e) {
@@ -85,6 +82,7 @@ public class daoResultadosEstudios {
         }
         return resultadosEstudios;
     }
+
     
     public ArrayList<ResultadosEstudios> buscarResultadosEstudiosPorPaciente(int pacienteId) {
         ArrayList<ResultadosEstudios> resultados = new ArrayList<>();

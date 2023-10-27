@@ -22,60 +22,70 @@ public class daoMedico {
 	}
 
 	// Inserta un nuevo médico en la base de datos
-    public boolean insertarMedico(Medico medico, DetallesEspecialidad detallesEspecialidad) {
-        Connection connection = null;
-        PreparedStatement ps = null;
-        boolean salida = false;
-        int intentos = 3;
-        while (intentos > 0) {
-            try {
-                connection = cx.conectar();
-                connection.setAutoCommit(false);
-                int funcionarioId = obtenerFuncionarioId(medico.getNombre(), medico.getApellido());
-                if (funcionarioId > 0) {
-                    String insertMedicoSQL = "INSERT INTO Medicos (funcionario_id, matricula) VALUES (?, ?)";
-                    ps = connection.prepareStatement(insertMedicoSQL);
-                    ps.setInt(1, funcionarioId);
-                    ps.setString(2, medico.getMatricula());
-                    ps.executeUpdate();
+	public boolean insertarMedico(Medico medico, DetallesEspecialidad detallesEspecialidad) {
+	    Connection connection = null;
+	    PreparedStatement ps = null;
+	    boolean salida = false;
+	    int intentos = 3;
 
-                    if (detallesEspecialidad != null) {
-                        String insertDetallesEspecialidadSQL = "INSERT INTO MedicosEspecialidades (medico_id, especialidad_id, fechaObtencion, universidad) VALUES (?, ?, ?, ?)";
-                        ps = connection.prepareStatement(insertDetallesEspecialidadSQL);
-                        ps.setInt(1, obtenerMedicoIdPorFuncionarioId(funcionarioId));
-                        ps.setInt(2, obtenerEspecialidadIdPorNombre(detallesEspecialidad.getEspecialidad()));
-                        ps.setString(3, detallesEspecialidad.getFechaObtencion());
-                        ps.setString(4, detallesEspecialidad.getUniversidad());
-                        ps.executeUpdate();
-                    }
-                    connection.commit();
-                    salida = true;
-                    break;
-                } else {
-                    System.err.println("El ID de Funcionarios proporcionado no es válido.");
-                    break;
-                }
-            } catch (SQLException e) {
-                System.err.println("Error al insertar médico: " + e.getMessage());
-                intentos--;
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
-            } finally {
-                try {
-                    if (connection != null) {
-                        connection.setAutoCommit(true);
-                        connection.close();
-                    }
-                } catch (SQLException e) {
-                    System.err.println("Error al restablecer la conexión: " + e.getMessage());
-                }
-            }
-        }
-        return salida;
-    }
+	    try {
+	        connection = cx.conectar();
+	        connection.setAutoCommit(false);
+
+	        while (intentos > 0) {
+	            try {
+	                int funcionarioId = obtenerFuncionarioId(medico.getNombre(), medico.getApellido());
+
+	                if (funcionarioId > 0) {
+	                    String insertMedicoSQL = "INSERT INTO Medicos (funcionario_id, matricula) VALUES (?, ?)";
+	                    ps = connection.prepareStatement(insertMedicoSQL);
+	                    ps.setInt(1, funcionarioId);
+	                    ps.setString(2, medico.getMatricula());
+	                    ps.executeUpdate();
+
+	                    if (detallesEspecialidad != null) {
+	                        String insertDetallesEspecialidadSQL = "INSERT INTO MedicosEspecialidades (medico_id, especialidad_id, fechaObtencion, universidad) VALUES (?, ?, ?, ?)";
+	                        ps = connection.prepareStatement(insertDetallesEspecialidadSQL);
+	                        ps.setInt(1, obtenerMedicoIdPorFuncionarioId(funcionarioId));
+	                        ps.setInt(2, obtenerEspecialidadIdPorNombre(detallesEspecialidad.getEspecialidad()));
+	                        ps.setString(3, detallesEspecialidad.getFechaObtencion());
+	                        ps.setString(4, detallesEspecialidad.getUniversidad());
+	                        ps.executeUpdate();
+	                    }
+
+	                    connection.commit();
+	                    salida = true;
+	                    break;
+	                } else {
+	                    System.err.println("El ID de Funcionarios proporcionado no es válido.");
+	                    break;
+	                }
+	            } catch (SQLException e) {
+	                System.err.println("Error al insertar médico: " + e.getMessage());
+	                intentos--;
+	                try {
+	                    Thread.sleep(1000);
+	                } catch (InterruptedException ex) {
+	                    Thread.currentThread().interrupt();
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+	    } finally {
+	        try {
+	            if (connection != null) {
+	                connection.setAutoCommit(true);
+	                connection.close();
+	            }
+	        } catch (SQLException e) {
+	            System.err.println("Error al restablecer la conexión: " + e.getMessage());
+	        }
+	    }
+
+	    return salida;
+	}
+
 	
 	private int obtenerFuncionarioId(String nombre, String apellido) {
 	    Connection connection = null;
