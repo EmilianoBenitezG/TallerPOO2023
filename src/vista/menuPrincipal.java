@@ -109,7 +109,7 @@ public class menuPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				menuPrincipal.this.setVisible(false);
 				vLogin login = new vLogin();
-				login.transferirDatos(lblRol.getText());
+				//login.transferirDatos(lblRol.getText());
 				login.setVisible(true);
 			}
 		});
@@ -198,6 +198,19 @@ public class menuPrincipal extends JFrame {
 		btnMedico.setBounds(94, 309, 141, 51);
 		
 		contentPane.add(btnMedico);
+		
+		JButton btnAsignacion = new JButton("Asignacion");
+		btnAsignacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vAsignacion vAsignacion = new vAsignacion();
+				//vfuncionarios.transferirDatos(lblRol.getText());
+				vAsignacion.setVisible(true);
+				menuPrincipal.this.setVisible(false);
+			}
+		});
+		btnAsignacion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnAsignacion.setBounds(580, 231, 118, 51);
+		contentPane.add(btnAsignacion);
 		setLocationRelativeTo(null);
 	}
 
@@ -241,12 +254,12 @@ public class menuPrincipal extends JFrame {
 	}
 
 	private void ocultarBotones() {
-		btnUsuarios.setVisible(false);
+		/*btnUsuarios.setVisible(false);
 		btnPacientes.setVisible(false);
 		btnHistoriaClinica.setVisible(false);
 		btnAdmision.setVisible(false);
 		btnTriage.setVisible(false);
 		btnGestor.setVisible(false);
-		btnResultadoEstudios.setVisible(false);
+		btnResultadoEstudios.setVisible(false);*/
 	}
 }

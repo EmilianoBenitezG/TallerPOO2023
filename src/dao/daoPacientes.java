@@ -19,7 +19,7 @@ public class daoPacientes {
         PreparedStatement ps = null;
         boolean salida = false;
         try {
-            ps = cx.conectar().prepareStatement("INSERT INTO Pacientes (nombre, apellido, fechaNacimiento, domicilio, DNI, telFijo, telCelular, estadoCivil, email, personaContacto, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            ps = cx.conectar().prepareStatement("INSERT INTO Pacientes (nombre, apellido, fechaNacimiento, domicilio, DNI, telFijo, telCelular, estadoCivil, email, personaContacto,edad, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, paciente.getNombre().toUpperCase());
             ps.setString(2, paciente.getApellido().toUpperCase().toUpperCase());
             ps.setString(3, paciente.getFechaNacimiento().toUpperCase());
@@ -30,8 +30,9 @@ public class daoPacientes {
             ps.setString(8, paciente.getEstadoCivil().toUpperCase());
             ps.setString(9, paciente.getEmail().toUpperCase());
             ps.setString(10, paciente.getPersonaContacto().toUpperCase());
+            ps.setInt(11, paciente.getEdad());
             int estaVivo = paciente.isEstado() ? 1 : 0;
-            ps.setInt(11, estaVivo);
+            ps.setInt(12, estaVivo);
             int resultado = ps.executeUpdate();
 
             if (resultado > 0) {
@@ -81,7 +82,7 @@ public class daoPacientes {
         PreparedStatement ps = null;
         boolean salida = false;
         try {
-            ps = cx.conectar().prepareStatement("UPDATE Pacientes SET nombre=?, apellido=?, fechaNacimiento=?, domicilio=?, DNI=?, telFijo=?, telCelular=?, estadoCivil=?, email=?, personaContacto=?, estado=? WHERE id=?");
+            ps = cx.conectar().prepareStatement("UPDATE Pacientes SET nombre=?, apellido=?, fechaNacimiento=?, domicilio=?, DNI=?, telFijo=?, telCelular=?, estadoCivil=?, email=?, personaContacto=?, estado=?, edad=? WHERE id=?");
             ps.setString(1, paciente.getNombre().toUpperCase());
             ps.setString(2, paciente.getApellido().toUpperCase().toUpperCase());
             ps.setString(3, paciente.getFechaNacimiento().toUpperCase());
@@ -94,7 +95,8 @@ public class daoPacientes {
             ps.setString(10, paciente.getPersonaContacto().toUpperCase());
             int estaVivo = paciente.isEstado() ? 1 : 0;
             ps.setInt(11, estaVivo);
-            ps.setInt(12, paciente.getId());
+            ps.setInt(12, paciente.getEdad());
+            ps.setInt(13, paciente.getId());
 
             int resultado = ps.executeUpdate();
 

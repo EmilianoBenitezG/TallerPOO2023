@@ -19,8 +19,8 @@ public class daoTriage {
     }
 
     // Método para almacenar el resultado de triaje en la base de datos
-    public boolean almacenarResultadoTriage(String nombrePaciente, String resultadoTriage, String fechaTriage, String horaTriage, String dniPaciente) {
-        String sql = "INSERT INTO Triage (nombre_paciente, resultado_triage, fecha_triage , hora_triage, dni_paciente) VALUES (?,?,?,?,?)";
+    public boolean almacenarResultadoTriage(String nombrePaciente, String resultadoTriage, String fechaTriage, String horaTriage, String dniPaciente, String triador) {
+        String sql = "INSERT INTO Triage (nombre_paciente, resultado_triage, fecha_triage , hora_triage, dni_paciente,triador) VALUES (?,?,?,?,?,?)";
 
         try (Connection connection = cx.conectar();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -29,6 +29,7 @@ public class daoTriage {
             pstmt.setString(3, fechaTriage);
             pstmt.setString(4, horaTriage);
             pstmt.setString(5, dniPaciente);
+            pstmt.setString(6, triador);
             // Ejecutar la consulta
             pstmt.executeUpdate();
 

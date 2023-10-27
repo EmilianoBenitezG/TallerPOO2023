@@ -51,6 +51,7 @@ public class vPaciente extends JFrame {
 	Paciente paciente;
 	Paciente pacienteSeleccionado;
 	JLabel lblRol = new JLabel("Rol");
+	private JTextField txtEdad;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -172,12 +173,12 @@ public class vPaciente extends JFrame {
 		// Email
 		txtemail = new JTextField();
 		txtemail.setColumns(10);
-		txtemail.setBounds(853, 96, 140, 22);
+		txtemail.setBounds(405, 129, 140, 22);
 		contentPane.add(txtemail);
 
 		JLabel lblEmail = new JLabel("Email: ");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEmail.setBounds(802, 96, 54, 22);
+		lblEmail.setBounds(354, 129, 54, 22);
 		contentPane.add(lblEmail);
 
 		// Persona de contacto
@@ -217,7 +218,7 @@ public class vPaciente extends JFrame {
 		chkEstado = new JCheckBox("¿Está vivo?");
 		chkEstado.setSelected(true);
 		chkEstado.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chkEstado.setBounds(356, 129, 125, 22);
+		chkEstado.setBounds(566, 127, 125, 22);
 		contentPane.add(chkEstado);
 
 		// Botones en pantalla
@@ -240,6 +241,7 @@ public class vPaciente extends JFrame {
 						paciente.setEstadoCivil(txtestadoCivil.getText());
 						paciente.setEmail(txtemail.getText());
 						paciente.setPersonaContacto(txtpersonaContacto.getText());
+						paciente.setEdad(Integer.parseInt(txtEdad.getText()));
 						boolean estaVivo = chkEstado.isSelected();
 						paciente.setEstado(estaVivo);
 
@@ -280,6 +282,7 @@ public class vPaciente extends JFrame {
 						paciente.setEstadoCivil(txtestadoCivil.getText());
 						paciente.setEmail(txtemail.getText());
 						paciente.setPersonaContacto(txtpersonaContacto.getText());
+						paciente.setEdad(Integer.parseInt(txtEdad.getText()));
 						boolean estaVivo = chkEstado.isSelected();
 						paciente.setEstado(estaVivo);
 
@@ -389,6 +392,16 @@ public class vPaciente extends JFrame {
 		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblCaptionRol.setBounds(927, 13, 25, 18);
 		contentPane.add(lblCaptionRol);
+		
+		txtEdad = new JTextField();
+		txtEdad.setColumns(10);
+		txtEdad.setBounds(868, 96, 59, 22);
+		contentPane.add(txtEdad);
+		
+		JLabel lblEdad = new JLabel("Edad: ");
+		lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblEdad.setBounds(812, 94, 46, 22);
+		contentPane.add(lblEdad);
 
 		// Agregar columnas al modelo de datos de la tabla
 		modelo.addColumn("Nombre");
@@ -448,6 +461,7 @@ public class vPaciente extends JFrame {
 		txtestadoCivil.setText("");
 		txtemail.setText("");
 		txtpersonaContacto.setText("");
+		txtEdad.setText("");
 		lblId.setText("");
 		chkEstado.setSelected(false);
 	}

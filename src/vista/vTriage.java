@@ -507,7 +507,7 @@ public class vTriage extends JFrame {
 				}
 
 				boolean resultadoGuardado = dao.almacenarResultadoTriage(nombrePacienteSeleccionado, colorResultado,
-						fechaTriage, horaTriage, dniPaciente);
+						fechaTriage, horaTriage, dniPaciente, lblRol.getText());
 				actualizarTabla();
 			}
 		});
@@ -665,7 +665,7 @@ public class vTriage extends JFrame {
 	
 	private void colocarHoraActual() {
 		Date todayDate = new Date();
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
         String fechaActual = fecha.format(todayDate);
         String horaActual = hora.format(todayDate);

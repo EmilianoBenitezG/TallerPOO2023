@@ -297,7 +297,7 @@ public class vAdmision extends JFrame {
 	// Funcion que agrega fecha y hora actual del equipo
 	private void colocarHoraActual() {
 		Date todayDate = new Date();
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
         String fechaActual = fecha.format(todayDate);
         String horaActual = hora.format(todayDate);

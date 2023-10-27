@@ -3,21 +3,22 @@ package modelo;
 // Clase abstracta que representa una persona
 public abstract class Persona {
     // Atributos de la clase Persona
-    private String nombre;
-    private String apellido;
-    private String fechaNacimiento;
-    private String domicilio;
-    private String DNI;
-    private String telFijo;
-    private String telCelular;
-    private String estadoCivil;
-    private String email;
+	private String nombre;
+	private String apellido;
+	private String fechaNacimiento;
+	private String domicilio;
+	private String DNI;
+	private String telFijo;
+	private String telCelular;
+	private String estadoCivil;
+	private String email;
+	private Integer edad;
 
-    // Constructor vacío de la clase Persona
+    // Constructor vacï¿½o de la clase Persona
     public Persona() {
     }
 
-    // Constructor de la clase Persona con parámetros
+    // Constructor de la clase Persona con parï¿½metros
     public Persona(String nombre, String apellido, String fechaNacimiento, String domicilio,
                    String nroDNI, String telFijo, String telCelular, String estadoCivil, String email) {
         this.nombre = nombre;
@@ -31,7 +32,11 @@ public abstract class Persona {
         this.email = email;
     }
 
-    // Getters y setters para los atributos de la clase Persona
+    public String getEmail() {
+		return email;
+	}
+
+	// Getters y setters para los atributos de la clase Persona
     public String getNombre() {
         return nombre;
     }
@@ -96,11 +101,16 @@ public abstract class Persona {
         this.estadoCivil = estadoCivil;
     }
 
-    public String getEmail() {
-        return email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public Integer getEdad() {
+		return edad;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEdad(Integer edad) {
+		this.edad = edad;
+	}
+	
 }
