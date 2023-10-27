@@ -156,19 +156,6 @@ public class menuPrincipal extends JFrame {
 		btnTriage.setBounds(580, 145, 118, 51);
 		contentPane.add(btnTriage);
 		
-		// Bot�n "Resultados de Estudios" que abre la vista de resultados de estudios
-        btnResultadoEstudios.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-    			vResultadoEstudios vResultadoEstudios = new vResultadoEstudios();
-    			vResultadoEstudios.transferirDatos(lblRol.getText());
-    			vResultadoEstudios.setVisible(true);
-    			menuPrincipal.this.setVisible(false);
-            }
-        });
-        btnResultadoEstudios.setFont(new Font("Tahoma", Font.BOLD, 15));
-        btnResultadoEstudios.setBounds(580, 231, 180, 51);
-        contentPane.add(btnResultadoEstudios);
-
 		JLabel lblCaptionRol = new JLabel("Rol:");
 		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblCaptionRol.setBounds(727, 11, 25, 18);

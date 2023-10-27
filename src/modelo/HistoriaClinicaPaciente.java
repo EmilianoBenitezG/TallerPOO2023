@@ -2,6 +2,7 @@ package modelo;
 
 public class HistoriaClinicaPaciente {
     private int id;
+    private int pacienteId;
     private String fecha;
     private String hora;
     private String lugarDeAtencion;
@@ -17,6 +18,14 @@ public class HistoriaClinicaPaciente {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public int getPacienteId() {
+        return pacienteId;
+    }
+
+    public void setPacienteId(int pacienteId) {
+        this.pacienteId = pacienteId;
     }
 
     public String getFecha() {

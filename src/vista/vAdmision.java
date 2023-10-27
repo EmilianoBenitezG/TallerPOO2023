@@ -191,7 +191,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(lblNombreApellido);
 
 		txtNombreApellido = new JTextField();
-		txtNombreApellido.setEnabled(false);
+		txtNombreApellido.setEditable(false);
 		txtNombreApellido.setBounds(238, 120, 170, 22);
 		contentPane.add(txtNombreApellido);
 		setLocationRelativeTo(null);
@@ -199,6 +199,24 @@ public class vAdmision extends JFrame {
 		// Botón para buscar pacientes
 		JButton btnBuscarPaciente = new JButton("Seleccionar Paciente");
 		btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnBuscarPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				daoPacientes dao = new daoPacientes();
+				ArrayList<Paciente> pacientes = dao.buscarPacientes();
+				DefaultListModel<Paciente> pacienteListModel = new DefaultListModel<>();
+				for (Paciente paciente : pacientes) {
+					pacienteListModel.addElement(paciente);
+				}
+				SeleccionarPaciente dialog = new SeleccionarPaciente(vAdmision.this, pacienteListModel);
+				dialog.setVisible(true);
+				pacienteSeleccionado = dialog.getSelectedPaciente();
+				if (pacienteSeleccionado != null) {
+					txtDNI.setText(pacienteSeleccionado.getDNI());
+					txtNombreApellido
+							.setText(pacienteSeleccionado.getNombre() + " " + pacienteSeleccionado.getApellido());
+				}
+			}
+		});
 		btnBuscarPaciente.setBounds(41, 75, 201, 30);
 		contentPane.add(btnBuscarPaciente);
 
@@ -209,7 +227,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(lblDni);
 
 		txtDNI = new JTextField();
-		txtDNI.setEnabled(false);
+		txtDNI.setEditable(false);
 		txtDNI.setBounds(470, 120, 97, 22);
 		contentPane.add(txtDNI);
 
@@ -244,26 +262,6 @@ public class vAdmision extends JFrame {
 					txtMotivoConsulta.setText(motivoConsulta);
 					txtFecha.setText(fecha);
 					txtHora.setText(hora);
-				}
-			}
-		});
-
-		// Manejar la selección de pacientes al hacer clic en el botón "Buscar Paciente"
-		btnBuscarPaciente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				daoPacientes dao = new daoPacientes();
-				ArrayList<Paciente> pacientes = dao.buscarPacientes();
-				DefaultListModel<Paciente> pacienteListModel = new DefaultListModel<>();
-				for (Paciente paciente : pacientes) {
-					pacienteListModel.addElement(paciente);
-				}
-				SeleccionarPaciente dialog = new SeleccionarPaciente(vAdmision.this, pacienteListModel);
-				dialog.setVisible(true);
-				pacienteSeleccionado = dialog.getSelectedPaciente();
-				if (pacienteSeleccionado != null) {
-					txtDNI.setText(pacienteSeleccionado.getDNI());
-					txtNombreApellido
-							.setText(pacienteSeleccionado.getNombre() + " " + pacienteSeleccionado.getApellido());
 				}
 			}
 		});
