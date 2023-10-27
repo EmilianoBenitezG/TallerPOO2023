@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
 public class ColorRenderer extends DefaultTableCellRenderer {
     @Override
@@ -31,6 +30,9 @@ public class ColorRenderer extends DefaultTableCellRenderer {
                         break;
                     case "Verde":
                         setBackground(Color.GREEN);
+                        break;
+                    case "Azul":
+                        setBackground(new Color(60, 60, 186)); // Color azul claro (RGB)
                         break;
                     default:
                         setBackground(table.getBackground());

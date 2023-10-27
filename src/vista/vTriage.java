@@ -103,13 +103,22 @@ public class vTriage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	/**
+	 * 
+	 */
+	/**
+	 * 
+	 */
 	public vTriage() {
+		
+		setBackground(new Color(255, 255, 255));
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1024, 600);
+		setBounds(100, 100, 1100, 700);
+
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -118,93 +127,93 @@ public class vTriage extends JFrame {
 		
 		lblRespiracion = new JLabel("Respiraci\u00F3n");
 		lblRespiracion.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblRespiracion.setBounds(10, 169, 85, 24);
+		lblRespiracion.setBounds(10, 183, 85, 24);
 		contentPane.add(lblRespiracion);
 		
 		lblFiebre = new JLabel("Fiebre");
 		lblFiebre.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblFiebre.setBounds(10, 229, 49, 24);
+		lblFiebre.setBounds(10, 260, 49, 24);
 		contentPane.add(lblFiebre);
 		
 		lblSignosDeShock = new JLabel("Signos de Shock");
 		lblSignosDeShock.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSignosDeShock.setBounds(417, 229, 128, 24);
+		lblSignosDeShock.setBounds(491, 260, 128, 24);
 		contentPane.add(lblSignosDeShock);
 		
 		lblLesionesLeves = new JLabel("Lesiones Leves");
 		lblLesionesLeves.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLesionesLeves.setBounds(557, 229, 120, 24);
+		lblLesionesLeves.setBounds(651, 260, 120, 24);
 		contentPane.add(lblLesionesLeves);
 		
 		lblLesionesGraves = new JLabel("Lesiones Graves");
 		lblLesionesGraves.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLesionesGraves.setBounds(687, 169, 120, 24);
+		lblLesionesGraves.setBounds(811, 183, 120, 24);
 		contentPane.add(lblLesionesGraves);
 		
 		lblDolorAbdominal = new JLabel("Dolor Abdominal");
 		lblDolorAbdominal.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDolorAbdominal.setBounds(270, 229, 137, 24);
+		lblDolorAbdominal.setBounds(332, 260, 137, 24);
 		contentPane.add(lblDolorAbdominal);
 		
 		lblSangrado = new JLabel("Sangrado");
 		lblSangrado.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSangrado.setBounds(687, 229, 73, 24);
+		lblSangrado.setBounds(811, 260, 73, 24);
 		contentPane.add(lblSangrado);
 		
 		lblEstadoMental = new JLabel("Estado Mental\r\n");
 		lblEstadoMental.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEstadoMental.setBounds(270, 169, 109, 24);
+		lblEstadoMental.setBounds(332, 183, 109, 24);
 		contentPane.add(lblEstadoMental);
 		
 		lblDolorDePecho = new JLabel("Dolor de Pecho");
 		lblDolorDePecho.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDolorDePecho.setBounds(557, 169, 120, 24);
+		lblDolorDePecho.setBounds(651, 183, 120, 24);
 		contentPane.add(lblDolorDePecho);
 		
 		lblVomitos = new JLabel("Vomitos");
 		lblVomitos.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblVomitos.setBounds(140, 229, 73, 24);
+		lblVomitos.setBounds(170, 260, 73, 24);
 		contentPane.add(lblVomitos);
 		
 		lblPulso = new JLabel("Pulso");
 		lblPulso.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPulso.setBounds(140, 169, 53, 24);
+		lblPulso.setBounds(170, 183, 53, 24);
 		contentPane.add(lblPulso);
 		
 		// Hora
         JLabel lblHora = new JLabel("Hora");
         lblHora.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblHora.setBounds(694, 100, 45, 22);
+        lblHora.setBounds(833, 125, 45, 22);
         contentPane.add(lblHora);
 
         txtHora = new JTextField();
         txtHora.setFont(new Font("Tahoma", Font.PLAIN, 14));
         txtHora.setColumns(10);
-        txtHora.setBounds(694, 125, 121, 22);
+        txtHora.setBounds(833, 150, 121, 22);
         contentPane.add(txtHora);
 
         // Fecha
         JLabel lblFecha = new JLabel("Fecha");
         lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblFecha.setBounds(512, 100, 56, 22);
+        lblFecha.setBounds(651, 125, 56, 22);
         contentPane.add(lblFecha);
 
         txtFecha = new JTextField();
         txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        txtFecha.setBounds(510, 125, 102, 22);
+        txtFecha.setBounds(651, 150, 102, 22);
         contentPane.add(txtFecha);
         txtFecha.setColumns(10);
 
         // Nombre y apellido
         JLabel lblNombreApellido = new JLabel("Nombre y apellido");
         lblNombreApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblNombreApellido.setBounds(68, 100, 152, 22);
+        lblNombreApellido.setBounds(65, 125, 152, 22);
         contentPane.add(lblNombreApellido);
 
         txtNombreApellido = new JTextField();
         txtNombreApellido.setFont(new Font("Tahoma", Font.BOLD, 14));
         txtNombreApellido.setEditable(false);
-        txtNombreApellido.setBounds(68, 125, 170, 22);
+        txtNombreApellido.setBounds(65, 150, 170, 22);
         contentPane.add(txtNombreApellido);
         setLocationRelativeTo(null);
         
@@ -212,16 +221,16 @@ public class vTriage extends JFrame {
         // DNI
         JLabel lblDni = new JLabel("DNI");
         lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblDni.setBounds(319, 100, 40, 22);
+        lblDni.setBounds(316, 125, 40, 22);
         contentPane.add(lblDni);
 
         txtDNI = new JTextField();
         txtDNI.setFont(new Font("Tahoma", Font.BOLD, 14));
         txtDNI.setEditable(false);
-        txtDNI.setBounds(319, 125, 109, 22);
+        txtDNI.setBounds(316, 150, 109, 22);
         contentPane.add(txtDNI);
         
-        // Botón para buscar pacientes
+        // Boton para buscar pacientes
         JButton btnBuscarPaciente = new JButton("Seleccionar Paciente");
         btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
         btnBuscarPaciente.setBounds(65, 59, 201, 30);
@@ -241,7 +250,7 @@ public class vTriage extends JFrame {
                     txtNombreApellido.setText(nombreApellido);
                     txtDNI.setText(dni);
                 } else {
-                    // Manejar el caso en el que no se pudo obtener la información
+                    // Manejar el caso en el que no se pudo obtener la informacion
                     JOptionPane.showMessageDialog(vTriage.this, "No se pudo obtener la información del paciente.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -251,12 +260,12 @@ public class vTriage extends JFrame {
 
 		BoxRespiracion = new JComboBox();
 		BoxRespiracion.setForeground(new Color(0, 0, 0));
-		BoxRespiracion.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Dificultad respiratoria moderada", "Dificultad respiratoria grave"}));
+		BoxRespiracion.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Dificultad moderada", "Dificultad grave"}));
 		BoxRespiracion.setSelectedIndex(0);
 		BoxRespiracion.setFont(new Font("Arial", Font.PLAIN, 14));
 		BoxRespiracion.setToolTipText("Seleccione una opcion");
 		BoxRespiracion.setMaximumRowCount(4);
-		BoxRespiracion.setBounds(10, 193, 120, 22);
+		BoxRespiracion.setBounds(10, 207, 150, 22);
 		contentPane.add(BoxRespiracion);
 		// ActionListener para el ComboBox de Respiracion
 	    BoxRespiracion.addActionListener(new ActionListener() {
@@ -288,7 +297,7 @@ public class vTriage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardar.setBounds(319, 286, 89, 23);
+		btnGuardar.setBounds(361, 328, 89, 23);
 		contentPane.add(btnGuardar);
 		
 
@@ -317,20 +326,22 @@ public class vTriage extends JFrame {
 		        int conciencia = BoxConciencia.getSelectedIndex() * 3;
 		        int edad = BoxEdad.getSelectedIndex();
 
-		        // Calcular la puntuación total
-		        int puntuaciónTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesLeves
+		        // Calcular la puntuacion total
+		        int puntuacionTotal = respiracion + fiebre + pulso + dolorPecho + dolorAbdominal + lesionesGraves + lesionesLeves
 		                + estadoMental + sangrado + vomitos + signosShock + conciencia + edad;
 
 		        // Calcular el color del resultado
 		        String colorResultado;
-		        if (puntuaciónTotal > 15) {
+		        if (puntuacionTotal >= 15) {
 		            colorResultado = "Rojo";
-		        } else if (puntuaciónTotal >= 10) {
+		        } else if (puntuacionTotal >= 10) {
 		            colorResultado = "Naranja";
-		        } else if (puntuaciónTotal >= 5) {
+		        } else if (puntuacionTotal >= 5) {
 		            colorResultado = "Amarillo";
-		        } else {
+		        } else if (puntuacionTotal >= 1) {
 		            colorResultado = "Verde";
+		        } else {
+		            colorResultado = "Azul";
 		        }
 
 		        // Almacenar el color del resultado en la base de datos utilizando daoTriage
@@ -342,14 +353,15 @@ public class vTriage extends JFrame {
 		});
 
 
+
 		BoxFiebre = new JComboBox();
 		BoxFiebre.setForeground(new Color(0, 0, 0));
 		BoxFiebre.setToolTipText("Seleccione una opcion");
-		BoxFiebre.setModel(new DefaultComboBoxModel(new String[] {"Sin fiebre", "Fiebre moderada", "Fiebre alta"}));
+		BoxFiebre.setModel(new DefaultComboBoxModel(new String[] {"Sin fiebre", "Fiebre baja", "Fiebre alta"}));
 		BoxFiebre.setSelectedIndex(0);
 		BoxFiebre.setMaximumRowCount(4);
 		BoxFiebre.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxFiebre.setBounds(10, 253, 120, 22);
+		BoxFiebre.setBounds(10, 284, 150, 22);
 		contentPane.add(BoxFiebre);
 		BoxFiebre.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -366,20 +378,20 @@ public class vTriage extends JFrame {
 		
 		BoxPulso = new JComboBox();
 		BoxPulso.setToolTipText("Seleccione una opcion");
-		BoxPulso.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Anormal (rapido o lento)"}));
+		BoxPulso.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Anormal"}));
 		BoxPulso.setSelectedIndex(0);
 		BoxPulso.setMaximumRowCount(4);
 		BoxPulso.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxPulso.setBounds(140, 193, 120, 22);
+		BoxPulso.setBounds(170, 207, 152, 22);
 		contentPane.add(BoxPulso);
 		
 		// ActionListener para el ComboBox de Pulso
 		BoxPulso.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        // Obtener el ï¿½ndice de la opciï¿½n seleccionada
+		        // Obtener el indice de la opcion seleccionada
 		        int seleccion = BoxPulso.getSelectedIndex();
 
-		        // Establecer la puntuaciï¿½n de Pulso en daoTriage
+		        // Establecer la puntuacion de Pulso en daoTriage
 		        dao.setPuntuacionPulso(seleccion);
 
 		    }
@@ -392,7 +404,7 @@ public class vTriage extends JFrame {
 		BoxDolorDePecho.setSelectedIndex(0);
 		BoxDolorDePecho.setMaximumRowCount(4);
 		BoxDolorDePecho.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxDolorDePecho.setBounds(557, 193, 120, 22);
+		BoxDolorDePecho.setBounds(651, 207, 150, 22);
 		contentPane.add(BoxDolorDePecho);
 		
 		BoxDolorDePecho.addActionListener(new ActionListener() {
@@ -409,19 +421,19 @@ public class vTriage extends JFrame {
 		
 		BoxDolorAbdominal = new JComboBox();
 		BoxDolorAbdominal.setToolTipText("Seleccione una opcion");
-		BoxDolorAbdominal.setModel(new DefaultComboBoxModel(new String[] {"No presente", "Dolor abdominal moderado", "Dolor abdominal severo"}));
+		BoxDolorAbdominal.setModel(new DefaultComboBoxModel(new String[] {"No presente", "Dolor moderado", "Dolor severo"}));
 		BoxDolorAbdominal.setSelectedIndex(0);
 		BoxDolorAbdominal.setMaximumRowCount(4);
 		BoxDolorAbdominal.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxDolorAbdominal.setBounds(270, 253, 128, 22);
+		BoxDolorAbdominal.setBounds(332, 284, 149, 22);
 		contentPane.add(BoxDolorAbdominal);
 		
 		BoxLesionesGraves = new JComboBox();
 		BoxLesionesGraves.setToolTipText("Seleccione una opcion");
-		BoxLesionesGraves.setModel(new DefaultComboBoxModel(new String[] {"No Presente", "Presentes"}));
+		BoxLesionesGraves.setModel(new DefaultComboBoxModel(new String[] {"Sin lesiones", "Con graves lesiones"}));
 		BoxLesionesGraves.setSelectedIndex(0);
 		BoxLesionesGraves.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxLesionesGraves.setBounds(687, 193, 120, 22);
+		BoxLesionesGraves.setBounds(811, 207, 143, 22);
 		contentPane.add(BoxLesionesGraves);
 
 		
@@ -445,11 +457,11 @@ public class vTriage extends JFrame {
 		
 		BoxLesionesLeves = new JComboBox();
 		BoxLesionesLeves.setToolTipText("Seleccione una opcion");
-		BoxLesionesLeves.setModel(new DefaultComboBoxModel(new String[] {"No presentes", "Presentes"}));
+		BoxLesionesLeves.setModel(new DefaultComboBoxModel(new String[] {"Sin lesiones", "Con ligeras lesiones"}));
 		BoxLesionesLeves.setSelectedIndex(0);
 		BoxLesionesLeves.setMaximumRowCount(4);
 		BoxLesionesLeves.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxLesionesLeves.setBounds(557, 253, 120, 22);
+		BoxLesionesLeves.setBounds(651, 284, 150, 22);
 		contentPane.add(BoxLesionesLeves);
 		
 		BoxLesionesLeves.addActionListener(new ActionListener() {
@@ -462,11 +474,11 @@ public class vTriage extends JFrame {
 		
 		BoxEstadoMental = new JComboBox();
 		BoxEstadoMental.setToolTipText("Seleccione una opcion");
-		BoxEstadoMental.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Confusion leve", "Confusion grave o somnolencia"}));
+		BoxEstadoMental.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Confusion ligera", "Somnolencia"}));
 		BoxEstadoMental.setSelectedIndex(0);
 		BoxEstadoMental.setMaximumRowCount(4);
 		BoxEstadoMental.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxEstadoMental.setBounds(270, 193, 128, 22);
+		BoxEstadoMental.setBounds(332, 207, 149, 22);
 		contentPane.add(BoxEstadoMental);
 		
 		BoxEstadoMental.addActionListener(new ActionListener() {
@@ -482,11 +494,11 @@ public class vTriage extends JFrame {
 		
 		BoxSangrado = new JComboBox();
 		BoxSangrado.setToolTipText("Seleccione una opcion");
-		BoxSangrado.setModel(new DefaultComboBoxModel(new String[] {"No presente", "Sangrado moderado", "Sangrado intenso"}));
+		BoxSangrado.setModel(new DefaultComboBoxModel(new String[] {"No presente", "Sangrado ligero", "Sangrado intenso"}));
 		BoxSangrado.setSelectedIndex(0);
 		BoxSangrado.setMaximumRowCount(4);
 		BoxSangrado.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxSangrado.setBounds(687, 253, 120, 22);
+		BoxSangrado.setBounds(811, 284, 137, 22);
 		contentPane.add(BoxSangrado);
 		
 		BoxSangrado.addActionListener(new ActionListener() {
@@ -501,11 +513,11 @@ public class vTriage extends JFrame {
 		
 		BoxVomitos = new JComboBox();
 		BoxVomitos.setToolTipText("Seleccione una opcion");
-		BoxVomitos.setModel(new DefaultComboBoxModel(new String[] {"Sin Vomitos", "Vomitos moderados", "Vomitos intensos"}));
+		BoxVomitos.setModel(new DefaultComboBoxModel(new String[] {"Sin vomitos", "Vomitos leves", "Vomitos intensos"}));
 		BoxVomitos.setSelectedIndex(0);
 		BoxVomitos.setMaximumRowCount(4);
 		BoxVomitos.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxVomitos.setBounds(140, 253, 120, 22);
+		BoxVomitos.setBounds(170, 284, 152, 22);
 		contentPane.add(BoxVomitos);
 		
 		BoxVomitos.addActionListener(new ActionListener() {
@@ -524,7 +536,7 @@ public class vTriage extends JFrame {
 		BoxSignosDeShock.setSelectedIndex(0);
 		BoxSignosDeShock.setMaximumRowCount(4);
 		BoxSignosDeShock.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxSignosDeShock.setBounds(417, 253, 123, 22);
+		BoxSignosDeShock.setBounds(491, 284, 150, 22);
 		contentPane.add(BoxSignosDeShock);		
 		BoxSignosDeShock.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -537,18 +549,18 @@ public class vTriage extends JFrame {
 		
 		
 		
-		lblConciencia = new JLabel("Conciencia\r\n:");
+		lblConciencia = new JLabel("Conciencia\r\n");
 		lblConciencia.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblConciencia.setBounds(415, 169, 89, 24);
+		lblConciencia.setBounds(491, 183, 89, 24);
 		contentPane.add(lblConciencia);
 		
 		BoxConciencia = new JComboBox();
 		BoxConciencia.setToolTipText("Seleccione una opcion");
-		BoxConciencia.setModel(new DefaultComboBoxModel(new String[] {"Consciente y alerta", "Perdida de conciencia"}));
+		BoxConciencia.setModel(new DefaultComboBoxModel(new String[] {"Consciente", "Perdida de conciencia"}));
 		BoxConciencia.setSelectedIndex(0);
 		BoxConciencia.setMaximumRowCount(4);
 		BoxConciencia.setFont(new Font("Arial", Font.PLAIN, 14));
-		BoxConciencia.setBounds(415, 193, 123, 22);
+		BoxConciencia.setBounds(491, 207, 150, 22);
 		contentPane.add(BoxConciencia);		
 		BoxConciencia.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -560,10 +572,12 @@ public class vTriage extends JFrame {
 		});
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(31, 320, 944, 224);
+		scrollPane.setBounds(68, 362, 944, 288);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setEnabled(false);
+		table.setCellSelectionEnabled(true);
 		table.setFillsViewportHeight(true);
 		table.setForeground(new Color(0, 0, 0));
 		table.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -584,19 +598,19 @@ public class vTriage extends JFrame {
 		
 		lblRol = new JLabel("Rol");
 		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-		lblRol.setBounds(915, 10, 83, 18);
+		lblRol.setBounds(991, 11, 83, 18);
 		contentPane.add(lblRol);
 		
 		lblCaptionRol = new JLabel("Rol:");
 		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-		lblCaptionRol.setBounds(880, 10, 25, 18);
+		lblCaptionRol.setBounds(956, 11, 25, 18);
 		contentPane.add(lblCaptionRol);
 		
 		comboBox_12 = new JComboBox<String>();
 		comboBox_12.setToolTipText("Seleccione un paciente");
 		comboBox_12.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_12.setMaximumRowCount(10);
-		comboBox_12.setBounds(293, 65, 228, 24);
+		comboBox_12.setBounds(361, 64, 319, 24);
 		contentPane.add(comboBox_12);
 		
         
@@ -604,25 +618,25 @@ public class vTriage extends JFrame {
 		setLocationRelativeTo(null);
 		JLabel lblEdad = new JLabel("Edad");
 		lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEdad.setBounds(817, 170, 49, 22);
+		lblEdad.setBounds(965, 184, 49, 22);
 		contentPane.add(lblEdad);
 		
 		JLabel lblTriage = new JLabel("Triage");
 		lblTriage.setFont(new Font("Dialog", Font.PLAIN, 35));
-		lblTriage.setBounds(415, 11, 106, 45);
+		lblTriage.setBounds(474, 11, 106, 45);
         contentPane.add(lblTriage);		
         
         BoxEdad = new JComboBox();
         BoxEdad.setToolTipText("Seleccione una opcion");
-        BoxEdad.setModel(new DefaultComboBoxModel(new String[] {"Adulto", "Ni\u00F1o/Anciano"}));
+        BoxEdad.setModel(new DefaultComboBoxModel(new String[] {"Adulto", "Infante/Anciano"}));
         BoxEdad.setSelectedIndex(0);
         BoxEdad.setFont(new Font("Arial", Font.PLAIN, 14));
-        BoxEdad.setBounds(817, 193, 109, 22);
+        BoxEdad.setBounds(965, 207, 109, 22);
         contentPane.add(BoxEdad);
         colocarHoraActual();
         
         JButton btnmodificar = new JButton("Modificar");
-        btnmodificar.setBounds(523, 286, 89, 23);
+        btnmodificar.setBounds(591, 328, 89, 23);
         contentPane.add(btnmodificar);
         btnmodificar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -631,7 +645,7 @@ public class vTriage extends JFrame {
                 String nombrePacienteSeleccionado = null;
                 for (String paciente : obtenerNombreApellidoPacientesDesdeAdmision()) {
                     if (paciente.startsWith(seleccion)) {
-                        String[] partes = paciente.split(" - "); // Suponiendo que el nombre y apellido están separados por una coma y un espacio
+                        String[] partes = paciente.split(" - ");
                         if (partes.length == 2) {
                             nombrePacienteSeleccionado = partes[0];
                         }
@@ -639,16 +653,24 @@ public class vTriage extends JFrame {
                     }
                 }
 
+                // Obtener el color actual del paciente desde la base de datos
+                String colorActual = dao.getColorActualPaciente(nombrePacienteSeleccionado);
+
                 // Crear un JComboBox con las opciones de color
-                String[] colores = {"Verde", "Amarillo", "Naranja", "Rojo"};
+                String[] colores = {"Azul", "Verde", "Amarillo", "Naranja", "Rojo"};
                 JComboBox<String> colorComboBox = new JComboBox<>(colores);
+
+                // Obtener el indice del color actual en la lista
+                int indiceColorActual = obtenerIndiceColorEnLista(colores, colorActual);
+                // Establecer el color actual como seleccion predeterminada
+                colorComboBox.setSelectedIndex(indiceColorActual);
 
                 // Crear un JTextArea para ingresar el nuevo resultado
                 JTextArea resultadoTextArea = new JTextArea(5, 20);
-                
-                // Ajustar el número de filas y columnas del JTextArea para cambiar su tamaño
-                resultadoTextArea.setRows(2); // Aumentar el número de filas
-                resultadoTextArea.setColumns(5); // Ajustar el número de columnas
+
+                // Ajustar el numero de filas y columnas del JTextArea
+                resultadoTextArea.setRows(2); // Aumentar el numero de filas
+                resultadoTextArea.setColumns(5); // Ajustar el numero de columnas
 
                 // Crear un panel para contener los componentes
                 JPanel panel = new JPanel(new GridLayout(0, 1));
@@ -663,18 +685,45 @@ public class vTriage extends JFrame {
                     String nuevoResultado = resultadoTextArea.getText();
                     String colorSeleccionado = (String) colorComboBox.getSelectedItem();
 
-                    // Actualizar los campos "color_final" y "motivo_cambio" en la base de datos utilizando daoTriage
-                    boolean resultadoActualizado = dao.actualizarColorFinalYMotivoCambio(nombrePacienteSeleccionado, nuevoResultado, colorSeleccionado);
-                    actualizarTabla();
+                    // Verificar si se está sobrepasando en más de 2 niveles
+                    if (!puedeCambiarColor(colorActual, colorSeleccionado)) {
+                        JOptionPane.showMessageDialog(null, "El cambio de color no puede ser superior/inferior a 2 niveles", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        // Actualizar los campos "color_final" y "motivo_cambio" en la base de datos utilizando daoTriage
+                        boolean resultadoActualizado = dao.actualizarColorFinalYMotivoCambio(nombrePacienteSeleccionado, nuevoResultado, colorSeleccionado);
+                        actualizarTabla();
+                    }
                 }
             }
+
+            private boolean puedeCambiarColor(String colorActual, String colorSeleccionado) {
+                String[] colores = {"Azul", "Verde", "Amarillo", "Naranja", "Rojo"};
+
+                int indiceColorActual = obtenerIndiceColorEnLista(colores, colorActual);
+                int indiceColorSeleccionado = obtenerIndiceColorEnLista(colores, colorSeleccionado);
+
+                return Math.abs(indiceColorActual - indiceColorSeleccionado) <= 2;
+            }
+
+            private int obtenerIndiceColorEnLista(String[] colores, String color) {
+                for (int i = 0; i < colores.length; i++) {
+                    if (colores[i].equals(color)) {
+                        return i;
+                    }
+                }
+                return -1; // Color no encontrado
+            }
         });
+
+
+
+
         
      // Agrega un ActionListener al JComboBox
         comboBox_12.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // El código aquí se ejecutará cuando cambie la selección en el JComboBox
+                // El código aquí se ejecutara cuando cambie la selección en el JComboBox
                 // Puedes acceder al elemento seleccionado con comboBox.getSelectedItem()
                 String elementoSeleccionado = (String) comboBox_12.getSelectedItem();
                 String[] partes = elementoSeleccionado.split(" - ");

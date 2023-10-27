@@ -167,6 +167,23 @@ public class daoTriage {
 
             return false; // Error al actualizar
         }
+        public String getColorActualPaciente(String nombrePaciente) {
+            String sql = "SELECT resultado_triage FROM Triage WHERE nombre_paciente = ?";
+
+            try (Connection connection = cx.conectar();
+                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, nombrePaciente);
+                try (ResultSet resultSet = pstmt.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getString("resultado_triage");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return null; // Devuelve null si no se encuentra el color actual
+        }
 
 
   
@@ -225,5 +242,6 @@ public class daoTriage {
     
     public void setPuntuacionConciencia(int puntuacionConciencia) {
     	this.Conciencia = puntuacionConciencia;
-    }   
+    }
+  
 }
