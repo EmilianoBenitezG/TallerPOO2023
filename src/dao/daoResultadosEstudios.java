@@ -17,6 +17,7 @@ public class daoResultadosEstudios {
         cx = new Conexion();
     }
 
+    // Función para cerrar los recursos (ResultSet, PreparedStatement, Connection).
     private void cerrarRecursos(ResultSet rs, PreparedStatement ps, Connection conn) {
         try {
             if (rs != null) rs.close();
@@ -27,6 +28,7 @@ public class daoResultadosEstudios {
         }
     }
 
+    // Inserta un resultado de estudios en la base de datos y lo asocia con una historia clínica.
     public boolean insertarResultado(ResultadosEstudios resultadoEstudios, int idHistoriaClinica) {
         PreparedStatement ps = null;
         boolean salida = false;
@@ -53,6 +55,7 @@ public class daoResultadosEstudios {
         return salida;
     }
 
+    // Obtiene una lista de resultados de estudios asociados a un paciente a través de su ID.
     public ArrayList<ResultadosEstudios> obtenerResultadosPorPaciente(int idPaciente) {
         ArrayList<ResultadosEstudios> resultadosEstudios = new ArrayList<>();
         PreparedStatement ps = null;
@@ -83,12 +86,13 @@ public class daoResultadosEstudios {
         return resultadosEstudios;
     }
 
-    
+    // Esta función busca resultados de estudios por paciente pero está incompleta.
     public ArrayList<ResultadosEstudios> buscarResultadosEstudiosPorPaciente(int pacienteId) {
         ArrayList<ResultadosEstudios> resultados = new ArrayList<>();
         return resultados;
     }
     
+    // Obtiene una lista de resultados de estudios asociados a una consulta de historial clínico.
     public ArrayList<ResultadosEstudios> buscarResultadosEstudiosPorConsulta(int historialId) {
         ArrayList<ResultadosEstudios> resultados = new ArrayList<>();
         Connection conn = cx.conectar();

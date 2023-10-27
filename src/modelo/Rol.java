@@ -1,32 +1,37 @@
 package modelo;
 
+// Clase que representa el rol de un usuario
 public class Rol {
-	int id;
-	String nombreRol;
-	
-	public Rol(int id, String nombreRol) {
-		this.id = id;
-		this.nombreRol = nombreRol;
-	}
+    int id;             // Identificador único del rol
+    String nombreRol;   // Nombre del rol, como "administrador", "médico", "enfermero", etc.
 
-	//constructor por defecto
-	public Rol() {
-	}
+    // Constructor de la clase con parámetros
+    public Rol(int id, String nombreRol) {
+        this.id = id;
+        this.nombreRol = nombreRol;
+    }
 
-	public int getId() {
-		return id;
-	}
+    // Constructor por defecto de la clase
+    public Rol() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    // Getter para obtener el identificador (id) del rol
+    public int getId() {
+        return id;
+    }
 
-	public String getNombreRol() {
-		return nombreRol;
-	}
+    // Setter para establecer el identificador (id) del rol
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setNombreRol(String nombreRol) {
-		this.nombreRol = nombreRol;
-	}
-	
+    // Getter para obtener el nombre del rol
+    public String getNombreRol() {
+        return nombreRol;
+    }
+
+    // Setter para establecer el nombre del rol
+    public void setNombreRol(String nombreRol) {
+        this.nombreRol = nombreRol;
+    }
 }

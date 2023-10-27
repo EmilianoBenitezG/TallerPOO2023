@@ -17,14 +17,17 @@ public class daoUsuario {
 		cx = new Conexion();
 	}
 	
+	// Insertar un nuevo usuario en la base de datos
 	public boolean insertarUsuario (Usuario usuario) {
 		PreparedStatement ps = null;
 		boolean salida = true;
 		try {
+			// Preparar la sentencia SQL para la inserción
 			ps=cx.conectar().prepareStatement("INSERT INTO Usuario VALUES (null,?,?,?)");
 			ps.setString(1, usuario.getUsuario().toUpperCase());
 			ps.setString(2, usuario.getContraseña().toUpperCase());
 			ps.setLong(3, usuario.getRol().getId());
+			// Ejecutar la sentencia SQL
 			ps.executeUpdate();
 			cx.desconectar();
 		} catch (SQLException e) {
@@ -33,14 +36,17 @@ public class daoUsuario {
 		return salida;
 	}
 	
+	 // Consultar y retornar la lista de usuarios con información de roles
 	public ArrayList<Usuario> ConsultaUsuario(){
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
+			 // Preparar la sentencia SQL para la consulta
 			ps=cx.conectar().prepareStatement("SELECT * FROM Usuario a INNER JOIN Rol b on a.idRol = b.idRol");
 			rs=ps.executeQuery();
 			while(rs.next()) {
+				// Obtener los datos del resultado
 				Integer idRol = rs.getInt("idRol");
 				String nombreRol = rs.getString("nombreRol");
 				Rol rol = new Rol(idRol,nombreRol);
@@ -49,6 +55,7 @@ public class daoUsuario {
 				usuario.setUsuario(rs.getString("Usuario"));
 				usuario.setContraseña(rs.getString("Contraseña"));
 				usuario.setRol(rol);
+				// Agregar el usuario a la lista
 				lista.add(usuario);
 			}
 		} catch (SQLException e) {
@@ -58,12 +65,15 @@ public class daoUsuario {
 		return lista;
 	}
 	
+	// Eliminar un usuario por su ID
 	public boolean eliminarUsuario (int ID) {
 		PreparedStatement ps = null;
 		boolean salida = true;
 		try {
+			 // Preparar la sentencia SQL para eliminar
 			ps=cx.conectar().prepareStatement("DELETE FROM Usuario WHERE idUsuario = ?");
 			ps.setInt(1, ID);
+			// Ejecutar la sentencia SQL
 			ps.executeUpdate();
 			cx.desconectar();
 		} catch (SQLException e) {
@@ -72,15 +82,18 @@ public class daoUsuario {
 		return salida;
 	}
 	
+	 // Modificar un usuario existente en la base de datos
 	public boolean modificarUsuario (Usuario usuario) {
 		PreparedStatement ps = null;
 		boolean salida = true;
 		try {
+			// Preparar la sentencia SQL para la modificación
 			ps=cx.conectar().prepareStatement("UPDATE Usuario SET Usuario = ?, Contraseña = ?, idRol = ? WHERE idUsuario = ?");
 			ps.setString(1, usuario.getUsuario().toUpperCase());
 			ps.setString(2, usuario.getContraseña().toUpperCase());
 			ps.setLong(3, usuario.getRol().getId());
 			ps.setInt(4, usuario.getId());
+			// Ejecutar la sentencia SQL
 			ps.executeUpdate();
 			cx.desconectar();
 		} catch (SQLException e) {

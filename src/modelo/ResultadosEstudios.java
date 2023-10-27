@@ -1,15 +1,16 @@
 package modelo;
 
+// Clase que representa los resultados de estudios médicos
 public class ResultadosEstudios {
-	
-	private int id;
-    private String fecha;
-    private String hora;
-    private String tipoEstudio;
-    private String informe;
-    private Paciente paciente;
-    private HistoriaClinicaPaciente historiaClinica;
+    private int id;                 // Identificador único del resultado
+    private String fecha;           // Fecha en la que se realizó el estudio
+    private String hora;            // Hora en la que se realizó el estudio
+    private String tipoEstudio;     // Tipo de estudio médico realizado
+    private String informe;         // Informe o resultados del estudio
+    private Paciente paciente;      // Paciente asociado a los resultados
+    private HistoriaClinicaPaciente historiaClinica;  // Historia clínica relacionada a los resultados
 
+    // Constructor de la clase con parámetros
     public ResultadosEstudios(String fecha, String hora, String tipoEstudio, String informe, Paciente paciente) {
         this.fecha = fecha;
         this.hora = hora;
@@ -17,19 +18,22 @@ public class ResultadosEstudios {
         this.informe = informe;
         this.paciente = paciente;
     }
-    
-	public ResultadosEstudios() {
-	}
 
-	public int getId() {
-		return id;
-	}
+    // Constructor vacío de la clase
+    public ResultadosEstudios() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    // Getter y setter para el identificador (id)
+    public int getId() {
+        return id;
+    }
 
-	public String getFecha() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // Getters y setters para los atributos de la clase
+    public String getFecha() {
         return fecha;
     }
 
@@ -69,12 +73,11 @@ public class ResultadosEstudios {
         this.paciente = paciente;
     }
 
-	public HistoriaClinicaPaciente getHistoriaClinica() {
-		return historiaClinica;
-	}
+    public HistoriaClinicaPaciente getHistoriaClinica() {
+        return historiaClinica;
+    }
 
-	public void setHistoriaClinica(HistoriaClinicaPaciente historiaClinica) {
-		this.historiaClinica = historiaClinica;
-	}
-    
+    public void setHistoriaClinica(HistoriaClinicaPaciente historiaClinica) {
+        this.historiaClinica = historiaClinica;
+    }
 }

@@ -12,10 +12,12 @@ import modelo.Paciente;
 public class daoAdmision {
     private Conexion cx;
 
+    // Constructor de la clase daoAdmision, inicializa la conexión a la base de datos.
     public daoAdmision() {
         cx = new Conexion();
     }
     
+    // Función para insertar una nueva admisión en la base de datos.
     public boolean insertarAdmision(Admision admision) {
         Connection connection = null;
         PreparedStatement ps = null;
@@ -23,13 +25,16 @@ public class daoAdmision {
 
         try {
             connection = cx.conectar();
+            // Preparar la sentencia SQL para insertar una admisión en la tabla Admision.
             ps = connection.prepareStatement("INSERT INTO Admision (PacienteID, NombreApellido, DNI, MotivoConsulta, Fecha, Hora) VALUES (?,?,?,?,?,?)");
             
+            // Obtener el ID del paciente y verificar si es válido.
             int pacienteID = admision.getPaciente().getId();
             if (pacienteID <= 0) {
                 System.err.println("ID de paciente no válido");
                 return false;
             }
+            // Establecer los valores de los parámetros en la sentencia SQL.
             ps.setInt(1, pacienteID);
             ps.setString(2, admision.getPaciente().getNombreApellido());
             ps.setString(3, admision.getPaciente().getDNI());
@@ -37,6 +42,7 @@ public class daoAdmision {
             ps.setString(5, admision.getFecha().toUpperCase());
             ps.setString(6, admision.getHora().toUpperCase());
 
+            // Ejecutar la sentencia SQL para insertar la admisión en la base de datos.
             int resultado = ps.executeUpdate();
 
             if (resultado > 0) {
@@ -45,11 +51,12 @@ public class daoAdmision {
         } catch (SQLException e) {
             System.err.println("Error al insertar admisión: " + e.getMessage());
         } finally {
-            cx.desconectar();
+            cx.desconectar(); // Cerrar la conexión a la base de datos.
         }
         return salida;
     }
 
+    // Función para consultar todas las admisiones en la base de datos y devolver una lista de objetos Admision.
     public ArrayList<Admision> consultarAdmisiones() {
         ArrayList<Admision> lista = new ArrayList<>();
         Connection connection = null;
@@ -57,6 +64,7 @@ public class daoAdmision {
         ResultSet rs = null;
         try {
             connection = cx.conectar();
+            // Preparar la sentencia SQL para consultar información de admisiones y pacientes.
             ps = connection.prepareStatement("SELECT Admision.ID, Admision.MotivoConsulta, Admision.Fecha, Admision.Hora, Pacientes.Nombre, Pacientes.Apellido, Pacientes.DNI FROM Admision INNER JOIN Pacientes ON Admision.PacienteID = Pacientes.ID");
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -72,13 +80,13 @@ public class daoAdmision {
                 paciente.setDNI(rs.getString("DNI"));
                 admision.setPaciente(paciente);
 
-                lista.add(admision);
+                lista.add(admision); // Agregar la admisión a la lista de resultados.
             }
         } catch (SQLException e) {
             System.err.println("Error al consultar admisiones: " + e.getMessage());
         } finally {
-            cx.desconectar();
+            cx.desconectar(); // Cerrar la conexión a la base de datos.
         }
-        return lista;
+        return lista; // Devolver la lista de admisiones consultadas.
     }
 }

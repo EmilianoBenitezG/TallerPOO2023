@@ -12,21 +12,24 @@ import java.util.ArrayList;
 public class daoEspecialidad {
     private Conexion cx;
 
+    // Constructor de la clase daoEspecialidad, inicializa la conexión a la base de datos.
     public daoEspecialidad() {
         cx = new Conexion();
     }
 
+    // Función para cerrar la conexión a la base de datos.
     public void cerrarConexion() {
         cx.desconectar();
     }
 
-    // Insertar una nueva especialidad
+    // Función para insertar una nueva especialidad en la base de datos.
     public boolean insertarEspecialidad(Especialidad especialidad) {
         Connection connection = null;
         PreparedStatement ps = null;
         boolean exito = false;
         try {
             connection = cx.conectar();
+            // Preparar la sentencia SQL para insertar una especialidad en la tabla Especialidades.
             String insertEspecialidadSQL = "INSERT INTO Especialidades (nombreEspecialidad) VALUES (?)";
             ps = connection.prepareStatement(insertEspecialidadSQL);
             ps.setString(1, especialidad.getNombreEspecialidad());
@@ -50,7 +53,7 @@ public class daoEspecialidad {
         return exito;
     }
 
-    // Consultar y retornar la lista de todas las especialidades
+    // Función para consultar y retornar la lista de todas las especialidades en la base de datos.
     public ArrayList<Especialidad> consultarEspecialidades() {
         ArrayList<Especialidad> lista = new ArrayList<>();
         Connection connection = null;
@@ -58,6 +61,7 @@ public class daoEspecialidad {
         ResultSet rs = null;
         try {
             connection = cx.conectar();
+            // Preparar la sentencia SQL para consultar todas las especialidades.
             ps = connection.prepareStatement("SELECT * FROM Especialidades");
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -83,6 +87,6 @@ public class daoEspecialidad {
                 System.err.println("Error al cerrar la conexión: " + e.getMessage());
             }
         }
-        return lista;
+        return lista; // Devolver la lista de especialidades consultadas.
     }
 }

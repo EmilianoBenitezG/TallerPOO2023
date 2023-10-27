@@ -1,32 +1,36 @@
 package modelo;
 
 public class Especialidad {
-	
-	private int id;
-    private String nombreEspecialidad;
-	
-	public Especialidad(int id, String nombreEspecialidad) {
-		super();
-		this.id = id;
-		this.nombreEspecialidad = nombreEspecialidad;
-	}
-	
-	public Especialidad() {
-	}
+    private int id;                // Atributo: Identificador único de la especialidad
+    private String nombreEspecialidad; // Atributo: Nombre de la especialidad
 
-	public int getId() {
-		return id;
-	}
+    // Constructor que recibe todos los atributos
+    public Especialidad(int id, String nombreEspecialidad) {
+        this.id = id;
+        this.nombreEspecialidad = nombreEspecialidad;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    // Constructor vacío
+    public Especialidad() {
+    }
 
-	public String getNombreEspecialidad() {
-		return nombreEspecialidad;
-	}
+    // Getter para obtener el valor del atributo "id"
+    public int getId() {
+        return id;
+    }
 
-	public void setNombreEspecialidad(String nombreEspecialidad) {
-		this.nombreEspecialidad = nombreEspecialidad;
-	}
+    // Setter para establecer el valor del atributo "id"
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // Getter para obtener el valor del atributo "nombreEspecialidad"
+    public String getNombreEspecialidad() {
+        return nombreEspecialidad;
+    }
+
+    // Setter para establecer el valor del atributo "nombreEspecialidad"
+    public void setNombreEspecialidad(String nombreEspecialidad) {
+        this.nombreEspecialidad = nombreEspecialidad;
+    }
 }

@@ -1,42 +1,48 @@
 package modelo;
 
+// Clase que representa un usuario del sistema
 public class Usuario {
-	int id;
-	String usuario,contraseña;
-	private Rol rol;
-	
-	public Usuario() {
-	}
-	
-	public int getId() {
-		return id;
-	}
+    int id;          // Identificador único del usuario
+    String usuario;  // Nombre de usuario
+    String contraseña; // Contraseña del usuario
+    private Rol rol;  // Rol asociado al usuario
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public Usuario() {
+    }
 
-	public String getUsuario() {
-		return usuario;
-	}
+    // Getter y Setter para obtener y establecer el identificador (id) del usuario
+    public int getId() {
+        return id;
+    }
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getContraseña() {
-		return contraseña;
-	}
+    // Getter y Setter para obtener y establecer el nombre de usuario
+    public String getUsuario() {
+        return usuario;
+    }
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
-	}
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 
-	public Rol getRol() {
-		return rol;
-	}
+    // Getter y Setter para obtener y establecer la contraseña del usuario
+    public String getContraseña() {
+        return contraseña;
+    }
 
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    // Getter y Setter para obtener y establecer el rol asociado al usuario
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 }

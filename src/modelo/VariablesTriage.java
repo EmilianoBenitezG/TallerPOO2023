@@ -1,5 +1,6 @@
 package modelo;
 
+//Clase que representa las variables utilizadas en el sistema de triage
 public class VariablesTriage {
     
     private int respiracion;
@@ -16,8 +17,10 @@ public class VariablesTriage {
     private int lesionesLeves;
     private int sangrado;
 
+    // Constructor que recibe los valores de las variables de triage
     public VariablesTriage(int respiracion, int pulso, int estadoMental, int conciencia, int dolorPechoRespirar, int lesionesGraves, int edad, int fiebre, int vomitos, int dolorAbdominal, int signosShock, int lesionesLeves, int sangrado) 
     {
+    		// Asigna y valida cada valor de las variables
     		this.respiracion = validarPuntuacion(respiracion, 0, 2);
             this.pulso = validarPuntuacion(pulso, 0, 1);
             this.estadoMental = validarPuntuacion(estadoMental, 0, 2);
@@ -34,12 +37,13 @@ public class VariablesTriage {
     }
 
 
-
+ // Método privado para validar que una puntuación se encuentre dentro de un rango
 private int validarPuntuacion(int sangrado2, int i, int j) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+// Método para calcular la puntuación total del sistema de triage
 public int calcularPuntuacionTriage() {
     
     int puntuacionTotal = respiracion + pulso + estadoMental + conciencia + dolorPecho + lesionesGraves + edad + fiebre + vomitos + dolorAbdominal + signosShock + lesionesLeves + sangrado;
@@ -48,7 +52,7 @@ public int calcularPuntuacionTriage() {
 }
 
 
-    
+// Método para obtener el color según la puntuación calculada    	
 public String obtenerColorSegunPuntuacion() {
     int puntuacionTotal = calcularPuntuacionTriage();
     

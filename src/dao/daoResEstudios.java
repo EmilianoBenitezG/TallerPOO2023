@@ -11,10 +11,12 @@ import conexion.Conexion;
 public class daoResEstudios {
     private Conexion cx;
 
+    // Constructor de la clase daoResEstudios, inicializa la conexión a la base de datos.
     public daoResEstudios() {
         cx = new Conexion();
     }
 
+    // Consulta y retorna la lista de todos los resultados de estudios.
     public ArrayList<ResultEstudios> consultarResultados() {
         ArrayList<ResultEstudios> lista = new ArrayList<ResultEstudios>();
         Connection conn = cx.conectar();
@@ -44,6 +46,7 @@ public class daoResEstudios {
         return lista;
     }
 
+    // Modifica un resultado de estudios existente en la base de datos.
     public boolean modificarResultado(ResultEstudios resultado) {
         Connection conn = cx.conectar();
         PreparedStatement ps = null;
@@ -67,6 +70,7 @@ public class daoResEstudios {
         }
     }
 
+    // Inserta un nuevo resultado de estudios en la base de datos.
     public boolean insertarResultado(ResultEstudios resultado) {
         Connection conn = cx.conectar();
         PreparedStatement ps = null;

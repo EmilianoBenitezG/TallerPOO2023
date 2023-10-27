@@ -1,25 +1,30 @@
 package modelo;
 
-public class Funcionario extends Persona{
-	private int id;
-	private String Puesto;
+public class Funcionario extends Persona {
+    private int id;        // Atributo: Identificador único del funcionario
+    private String Puesto;  // Atributo: Puesto del funcionario
 
-	public Funcionario() {
-	}
-	
-	public int getId() {
-		return id;
-	}
+    // Constructor vacío
+    public Funcionario() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getPuesto() {
-		return Puesto;
-	}
+    // Getter para obtener el valor del atributo "id"
+    public int getId() {
+        return id;
+    }
 
-	public void setPuesto(String puesto) {
-		Puesto = puesto;
-	}
+    // Setter para establecer el valor del atributo "id"
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // Getter para obtener el valor del atributo "Puesto"
+    public String getPuesto() {
+        return Puesto;
+    }
+
+    // Setter para establecer el valor del atributo "Puesto"
+    public void setPuesto(String puesto) {
+        Puesto = puesto;
+    }
 }

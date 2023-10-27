@@ -12,7 +12,8 @@ import modelo.DetallesEspecialidad;
 
 public class daoMedico {
 	private Conexion cx;
-
+	
+	// Constructor de la clase daoMedico, inicializa la conexión a la base de datos.
 	public daoMedico() {
 		cx = new Conexion();
 	}
@@ -21,7 +22,7 @@ public class daoMedico {
 		cx.desconectar();
 	}
 
-	// Inserta un nuevo médico en la base de datos
+	 // Función para insertar un nuevo médico en la base de datos, junto con detalles de especialidad si se proporcionan.
 	public boolean insertarMedico(Medico medico, DetallesEspecialidad detallesEspecialidad) {
 	    Connection connection = null;
 	    PreparedStatement ps = null;
@@ -34,6 +35,7 @@ public class daoMedico {
 
 	        while (intentos > 0) {
 	            try {
+	            	// Obtener el ID del funcionario asociado al médico por nombre y apellido.
 	                int funcionarioId = obtenerFuncionarioId(medico.getNombre(), medico.getApellido());
 
 	                if (funcionarioId > 0) {
@@ -44,6 +46,7 @@ public class daoMedico {
 	                    ps.executeUpdate();
 
 	                    if (detallesEspecialidad != null) {
+	                    	// Insertar detalles de especialidad si se proporcionan.
 	                        String insertDetallesEspecialidadSQL = "INSERT INTO MedicosEspecialidades (medico_id, especialidad_id, fechaObtencion, universidad) VALUES (?, ?, ?, ?)";
 	                        ps = connection.prepareStatement(insertDetallesEspecialidadSQL);
 	                        ps.setInt(1, obtenerMedicoIdPorFuncionarioId(funcionarioId));
@@ -86,7 +89,7 @@ public class daoMedico {
 	    return salida;
 	}
 
-	
+	// Función para obtener el ID de un funcionario por nombre y apellido.
 	private int obtenerFuncionarioId(String nombre, String apellido) {
 	    Connection connection = null;
 	    PreparedStatement ps = null;
@@ -118,6 +121,7 @@ public class daoMedico {
 	    return funcionarioId;
 	}
 	
+	// Función para obtener el ID de un médico por el ID de funcionario.
 	private int obtenerMedicoIdPorFuncionarioId(int funcionarioId) {
 	    Connection connection = null;
 	    PreparedStatement ps = null;

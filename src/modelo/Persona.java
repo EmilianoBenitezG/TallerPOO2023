@@ -1,106 +1,106 @@
 package modelo;
 
+// Clase abstracta que representa una persona
 public abstract class Persona {
-	private String nombre;
-	private String apellido;
-	private String fechaNacimiento;
-	private String domicilio;
-	private String DNI;
-	private String telFijo;
-	private String telCelular;
-	private String estadoCivil;
-	private String email;
-	
-	
-	public Persona() {
-	}
+    // Atributos de la clase Persona
+    private String nombre;
+    private String apellido;
+    private String fechaNacimiento;
+    private String domicilio;
+    private String DNI;
+    private String telFijo;
+    private String telCelular;
+    private String estadoCivil;
+    private String email;
 
-	public Persona(String nombre, String apellido, 
-				   String fechaNacimiento, String domicilio, 
-				   String nroDNI, String telFijo, 
-				   String telCelular, String estadoCivil, String email) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.fechaNacimiento = fechaNacimiento;
-		this.domicilio = domicilio;
-		this.DNI = nroDNI;
-		this.telFijo = telFijo;
-		this.telCelular = telCelular;
-		this.estadoCivil = estadoCivil;
-		this.email = email;
-		
-	}
+    // Constructor vacío de la clase Persona
+    public Persona() {
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    // Constructor de la clase Persona con parámetros
+    public Persona(String nombre, String apellido, String fechaNacimiento, String domicilio,
+                   String nroDNI, String telFijo, String telCelular, String estadoCivil, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.domicilio = domicilio;
+        this.DNI = nroDNI;
+        this.telFijo = telFijo;
+        this.telCelular = telCelular;
+        this.estadoCivil = estadoCivil;
+        this.email = email;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    // Getters y setters para los atributos de la clase Persona
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getApellido() {
-		return apellido;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    public String getApellido() {
+        return apellido;
+    }
 
-	public String getFechaNacimiento() {
-		return fechaNacimiento;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
 
-	public String getDomicilio() {
-		return domicilio;
-	}
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
-	public void setDomicilio(String domicilio) {
-		this.domicilio = domicilio;
-	}
+    public String getDomicilio() {
+        return domicilio;
+    }
 
-	public String getDNI() {
-		return DNI;
-	}
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
 
-	public void setDNI(String DNI) {
-		this.DNI = DNI;
-	}
+    public String getDNI() {
+        return DNI;
+    }
 
-	public String getTelFijo() {
-		return telFijo;
-	}
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
 
-	public void setTelFijo(String telFijo) {
-		this.telFijo = telFijo;
-	}
+    public String getTelFijo() {
+        return telFijo;
+    }
 
-	public String getTelCelular() {
-		return telCelular;
-	}
+    public void setTelFijo(String telFijo) {
+        this.telFijo = telFijo;
+    }
 
-	public void setTelCelular(String telCelular) {
-		this.telCelular = telCelular;
-	}
+    public String getTelCelular() {
+        return telCelular;
+    }
 
-	public String getEstadoCivil() {
-		return estadoCivil;
-	}
+    public void setTelCelular(String telCelular) {
+        this.telCelular = telCelular;
+    }
 
-	public void setEstadoCivil(String estadoCivil) {
-		this.estadoCivil = estadoCivil;
-	}
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

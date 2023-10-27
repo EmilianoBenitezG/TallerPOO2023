@@ -47,7 +47,7 @@ public class Sector {
         this.tipo = tipo;
     }
 
-    // Otros métodos específicos del sector
+    // Otros metodos especificos del sector
 
     @Override
     public String toString() {
