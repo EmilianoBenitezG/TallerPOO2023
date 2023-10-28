@@ -72,7 +72,7 @@ public class vUsuario extends JFrame {
 		// Etiqueta para "Usuario".
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblUsuario.setBounds(58, 125, 71, 17);
+		lblUsuario.setBounds(50, 125, 71, 17);
 		contentPane.add(lblUsuario);
 		
 		// Etiqueta para "Contrasenia".
@@ -87,21 +87,27 @@ public class vUsuario extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Usuario usuario = new Usuario();
-					usuario.setUsuario(txtUsuario.getText());
-					usuario.setContrasenia(txtContrasenia.getText());
-					Integer idRol = cbxNombreRol.getSelectedIndex();
-					String nombreRol = cbxNombreRol.getSelectedItem().toString();
-					Rol rol = new Rol(idRol,nombreRol);
-					usuario.setRol(rol);
-					daoUsuario daousuario = new daoUsuario();
-					if(daousuario.insertarUsuario(usuario)) {
-						actualizarTabla();
-						limpiarCampos();
-						JOptionPane.showMessageDialog(null, "Se agrego correctamente");
-					}else {
-						JOptionPane.showMessageDialog(null, "Error al agregar rol");
+					if(!txtUsuario.getText().equals("") && !txtContrasenia.getText().equals("")) {
+						Usuario usuario = new Usuario();
+						usuario.setUsuario(txtUsuario.getText());
+						usuario.setContrasenia(txtContrasenia.getText());
+						Integer idRol = cbxNombreRol.getSelectedIndex();
+						String nombreRol = cbxNombreRol.getSelectedItem().toString();
+						Rol rol = new Rol(idRol,nombreRol);
+						usuario.setRol(rol);
+						daoUsuario daousuario = new daoUsuario();
+						if(daousuario.insertarUsuario(usuario)) {
+							actualizarTabla();
+							limpiarCampos();
+							JOptionPane.showMessageDialog(null, "Se agrego correctamente");
+						}else {
+							JOptionPane.showMessageDialog(null, "Error al agregar rol");
+						}
+					}else{
+						JOptionPane.showMessageDialog(null, "debe completar todos los campos");
 					}
+					
+					
 				}catch(Exception e2){
 					JOptionPane.showMessageDialog(null, "Error");
 				}
@@ -179,26 +185,30 @@ public class vUsuario extends JFrame {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(usuario.getId() != 1) {
-					try {
-						usuario.setUsuario(txtUsuario.getText());
-						usuario.setContrasenia(txtContrasenia.getText());
-						Integer idRol = cbxNombreRol.getSelectedIndex();
-						String nombreRol = cbxNombreRol.getSelectedItem().toString();
-						Rol rol = new Rol(idRol,nombreRol);
-						usuario.setRol(rol);
-						if(dao.modificarUsuario(usuario)) {
-							actualizarTabla();
-							limpiarCampos();
-							JOptionPane.showMessageDialog(null, "Se modifico correctamente");
-						}else {
-							JOptionPane.showMessageDialog(null, "Error al modificar rol");
+				if(!txtUsuario.getText().equals("") && !txtContrasenia.getText().equals("")) {
+					if(usuario.getId() != 1) {
+						try {
+							usuario.setUsuario(txtUsuario.getText());
+							usuario.setContrasenia(txtContrasenia.getText());
+							Integer idRol = cbxNombreRol.getSelectedIndex();
+							String nombreRol = cbxNombreRol.getSelectedItem().toString();
+							Rol rol = new Rol(idRol,nombreRol);
+							usuario.setRol(rol);
+							if(dao.modificarUsuario(usuario)) {
+								actualizarTabla();
+								limpiarCampos();
+								JOptionPane.showMessageDialog(null, "Se modifico correctamente");
+							}else {
+								JOptionPane.showMessageDialog(null, "Error al modificar rol");
+							}
+						}catch(Exception e2){
+							JOptionPane.showMessageDialog(null, "Error");
 						}
-					}catch(Exception e2){
-						JOptionPane.showMessageDialog(null, "Error");
+					}else {
+						JOptionPane.showMessageDialog(null, "No se puede modificar al rol Administrador");
 					}
-				}else {
-					JOptionPane.showMessageDialog(null, "No se puede modificar al rol Administrador");
+				}else{
+					JOptionPane.showMessageDialog(null, "debe completar todos los campos obligatorios");
 				}
 			}
 		});

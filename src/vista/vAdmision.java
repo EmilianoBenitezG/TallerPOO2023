@@ -40,6 +40,7 @@ public class vAdmision extends JFrame {
 	private JEditorPane txtMotivoConsulta;
 	private Paciente pacienteSeleccionado;
 	JLabel lblRol = new JLabel("Rol");
+	JButton btnAgregarAdmision = new JButton("Agregar");
 
 	public vAdmision() {
 		setResizable(false);
@@ -77,7 +78,7 @@ public class vAdmision extends JFrame {
 		// Configurar el titulo
 		JLabel lblAdmision = new JLabel("Admisión");
 		lblAdmision.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
-		lblAdmision.setBounds(116, 14, 178, 33);
+		lblAdmision.setBounds(405, 11, 178, 33);
 		contentPane.add(lblAdmision);
 
 		// Boton para volver al menu principal
@@ -98,33 +99,36 @@ public class vAdmision extends JFrame {
 		contentPane.add(txtMotivoConsulta);
 
 		// Boton para agregar admisión
-		JButton btnAgregarAdmision = new JButton("Agregar");
 		btnAgregarAdmision.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregarAdmision.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombreApellido = txtNombreApellido.getText();
 				String dni = txtDNI.getText();
-				String motivoConsulta = txtMotivoConsulta.getText();
-				String fecha = txtFecha.getText();
-				String hora = txtHora.getText();
-
-				if (pacienteSeleccionado != null) {
-					Admision admision = new Admision();
-					admision.setPaciente(pacienteSeleccionado);
-					admision.setMotivoConsulta(motivoConsulta);
-					admision.setFecha(fecha);
-					admision.setHora(hora);
-
-					daoAdmision dao = new daoAdmision();
-					if (dao.insertarAdmision(admision)) {
-						actualizarTablaAdmisiones();
-						JOptionPane.showMessageDialog(null, "Se agregó correctamente");
-						limpiarCampos();
+				if(!nombreApellido.equals("") && !dni.equals("")) {
+					String motivoConsulta = txtMotivoConsulta.getText();
+					String fecha = txtFecha.getText();
+					String hora = txtHora.getText();
+	
+					if (pacienteSeleccionado != null) {
+						Admision admision = new Admision();
+						admision.setPaciente(pacienteSeleccionado);
+						admision.setMotivoConsulta(motivoConsulta);
+						admision.setFecha(fecha);
+						admision.setHora(hora);
+	
+						daoAdmision dao = new daoAdmision();
+						if (dao.insertarAdmision(admision)) {
+							actualizarTablaAdmisiones();
+							JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+							limpiarCampos();
+						} else {
+							JOptionPane.showMessageDialog(null, "Error al agregar la admisión");
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Error al agregar la admisión");
+						JOptionPane.showMessageDialog(null, "Debes seleccionar un paciente antes de agregar la admisión");
 					}
-				} else {
-					JOptionPane.showMessageDialog(null, "Debes seleccionar un paciente antes de agregar la admisión");
+				}else{
+					JOptionPane.showMessageDialog(null, "debe completar todos los campos obligatorios");
 				}
 			}
 		});
@@ -172,7 +176,7 @@ public class vAdmision extends JFrame {
 		txtFecha.setColumns(10);
 
 		// Nombre y apellido
-		JLabel lblNombreApellido = new JLabel("Nombre y apellido:");
+		JLabel lblNombreApellido = new JLabel("Nombre y apellido*:");
 		lblNombreApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNombreApellido.setBounds(76, 120, 152, 22);
 		contentPane.add(lblNombreApellido);
@@ -208,9 +212,9 @@ public class vAdmision extends JFrame {
 		contentPane.add(btnBuscarPaciente);
 
 		// DNI
-		JLabel lblDni = new JLabel("DNI:");
+		JLabel lblDni = new JLabel("DNI*:");
 		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDni.setBounds(425, 120, 40, 22);
+		lblDni.setBounds(418, 120, 56, 22);
 		contentPane.add(lblDni);
 
 		txtDNI = new JTextField();
@@ -231,6 +235,11 @@ public class vAdmision extends JFrame {
 		lblMotivoConsulta.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMotivoConsulta.setBounds(76, 160, 152, 22);
 		contentPane.add(lblMotivoConsulta);
+		
+		JLabel lblCampoObligatorio = new JLabel("* campo obligatorio");
+		lblCampoObligatorio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCampoObligatorio.setBounds(38, 239, 128, 22);
+		contentPane.add(lblCampoObligatorio);
 
 		// Manejar seleccion en tabla de admisiones
 		tblAdmision.addMouseListener(new MouseAdapter() {
@@ -270,6 +279,10 @@ public class vAdmision extends JFrame {
 	// Metodo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+		
+		if(rol.equals("ADMINISTRADOR")) {
+			btnAgregarAdmision.setVisible(false);
+		}
 	}
 	
 	// Limpiar campos de entrada

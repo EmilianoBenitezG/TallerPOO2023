@@ -66,6 +66,7 @@ public class vTriage extends JFrame {
 	private JTextField textField_1;
 	private JTable table;
 	private JScrollPane scrollPane;
+	JButton btnmodificar = new JButton("Modificar");
 	private daoTriage dao = new daoTriage();
 	String[] columnNames = {"Nombre Paciente", "Color Sugerido","Motivo Cambio","Color Final","Fecha","Hora"};
 	Object[][] data = {};
@@ -79,6 +80,7 @@ public class vTriage extends JFrame {
     private JLabel lblRol;
     private JLabel lblCaptionRol;
     private JComboBox BoxEdad;
+    private JLabel lblCampoObligatorio;
     
 	public vTriage() {
 
@@ -96,7 +98,7 @@ public class vTriage extends JFrame {
 
 		// Nombre de cada Variable Triage
 		// Nombre y apellido
-		JLabel lblNombreApellido = new JLabel("Nombre y apellido");
+		JLabel lblNombreApellido = new JLabel("Nombre y apellido *");
 		lblNombreApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNombreApellido.setBounds(65, 125, 152, 22);
 		contentPane.add(lblNombreApellido);
@@ -104,20 +106,20 @@ public class vTriage extends JFrame {
 		txtNombreApellido = new JTextField();
 		txtNombreApellido.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtNombreApellido.setEditable(false);
-		txtNombreApellido.setBounds(65, 150, 170, 22);
+		txtNombreApellido.setBounds(65, 150, 201, 22);
 		contentPane.add(txtNombreApellido);
 		setLocationRelativeTo(null);
 
 		// DNI
-		JLabel lblDni = new JLabel("DNI");
+		JLabel lblDni = new JLabel("DNI *");
 		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDni.setBounds(316, 125, 40, 22);
+		lblDni.setBounds(316, 125, 56, 22);
 		contentPane.add(lblDni);
 
 		txtDNI = new JTextField();
 		txtDNI.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtDNI.setEditable(false);
-		txtDNI.setBounds(316, 150, 109, 22);
+		txtDNI.setBounds(316, 150, 128, 22);
 		contentPane.add(txtDNI);
 
 		// Fecha
@@ -557,65 +559,73 @@ public class vTriage extends JFrame {
 		contentPane.add(BoxEdad);
 		colocarHoraActual();
 
-		JButton btnmodificar = new JButton("Modificar");
 		btnmodificar.setBounds(591, 328, 89, 23);
 		contentPane.add(btnmodificar);
+		
+		lblCampoObligatorio = new JLabel("* campo obligatorio");
+		lblCampoObligatorio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCampoObligatorio.setBounds(25, 329, 128, 22);
+		contentPane.add(lblCampoObligatorio);
 		btnmodificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String seleccion = boxPacientes.getSelectedItem().toString();
-				String nombrePacienteSeleccionado = null;
-				for (String paciente : obtenerNombreApellidoPacientesDesdeAdmision()) {
-					if (paciente.startsWith(seleccion)) {
-						String[] partes = paciente.split(" - ");
-						if (partes.length == 2) {
-							nombrePacienteSeleccionado = partes[0];
+				if(!txtNombreApellido.getText().equals("") && !txtDNI.getText().equals("")) {
+					String seleccion = boxPacientes.getSelectedItem().toString();
+					String nombrePacienteSeleccionado = null;
+					for (String paciente : obtenerNombreApellidoPacientesDesdeAdmision()) {
+						if (paciente.startsWith(seleccion)) {
+							String[] partes = paciente.split(" - ");
+							if (partes.length == 2) {
+								nombrePacienteSeleccionado = partes[0];
+							}
+							break;
 						}
-						break;
 					}
-				}
-				String colorActual = dao.getColorActualPaciente(nombrePacienteSeleccionado);
-
-				// Crear un JComboBox con las opciones de color
-				String[] colores = { "Azul", "Verde", "Amarillo", "Naranja", "Rojo" };
-				JComboBox<String> colorComboBox = new JComboBox<>(colores);
-
-				// Obtener el indice del color actual en la lista
-				int indiceColorActual = obtenerIndiceColorEnLista(colores, colorActual);
-				// Establecer el color actual como seleccion predeterminada
-				colorComboBox.setSelectedIndex(indiceColorActual);
-
-				// Crear un JTextArea para ingresar el nuevo resultado
-				JTextArea resultadoTextArea = new JTextArea(5, 20);
-
-				// Ajustar el numero de filas y columnas del JTextArea
-				resultadoTextArea.setRows(2); // Aumentar el numero de filas
-				resultadoTextArea.setColumns(5); // Ajustar el numero de columnas
-
-				// Crear un panel para contener los componentes
-				JPanel panel = new JPanel(new GridLayout(0, 1));
-				panel.add(new JLabel("Seleccione un color:"));
-				panel.add(colorComboBox);
-				panel.add(new JLabel("Motivo:"));
-				panel.add(new JScrollPane(resultadoTextArea));
-
-				int result = JOptionPane.showConfirmDialog(null, panel, "Modificar Resultado",
-						JOptionPane.OK_CANCEL_OPTION);
-
-				if (result == JOptionPane.OK_OPTION) {
-					String nuevoResultado = resultadoTextArea.getText();
-					String colorSeleccionado = (String) colorComboBox.getSelectedItem();
-
-					// Verificar si se esta sobrepasando en mas de 2 niveles
-					if (!puedeCambiarColor(colorActual, colorSeleccionado)) {
-						JOptionPane.showMessageDialog(null,
-								"El cambio de color no puede ser superior/inferior a 2 niveles", "Advertencia",
-								JOptionPane.WARNING_MESSAGE);
-					} else {
-						boolean resultadoActualizado = dao.actualizarColorFinalYMotivoCambio(nombrePacienteSeleccionado,
-								nuevoResultado, colorSeleccionado);
-						actualizarTabla();
+					String colorActual = dao.getColorActualPaciente(nombrePacienteSeleccionado);
+	
+					// Crear un JComboBox con las opciones de color
+					String[] colores = { "Azul", "Verde", "Amarillo", "Naranja", "Rojo" };
+					JComboBox<String> colorComboBox = new JComboBox<>(colores);
+	
+					// Obtener el indice del color actual en la lista
+					int indiceColorActual = obtenerIndiceColorEnLista(colores, colorActual);
+					// Establecer el color actual como seleccion predeterminada
+					colorComboBox.setSelectedIndex(indiceColorActual);
+	
+					// Crear un JTextArea para ingresar el nuevo resultado
+					JTextArea resultadoTextArea = new JTextArea(5, 20);
+	
+					// Ajustar el numero de filas y columnas del JTextArea
+					resultadoTextArea.setRows(2); // Aumentar el numero de filas
+					resultadoTextArea.setColumns(5); // Ajustar el numero de columnas
+	
+					// Crear un panel para contener los componentes
+					JPanel panel = new JPanel(new GridLayout(0, 1));
+					panel.add(new JLabel("Seleccione un color:"));
+					panel.add(colorComboBox);
+					panel.add(new JLabel("Motivo:"));
+					panel.add(new JScrollPane(resultadoTextArea));
+	
+					int result = JOptionPane.showConfirmDialog(null, panel, "Modificar Resultado",
+							JOptionPane.OK_CANCEL_OPTION);
+	
+					if (result == JOptionPane.OK_OPTION) {
+						String nuevoResultado = resultadoTextArea.getText();
+						String colorSeleccionado = (String) colorComboBox.getSelectedItem();
+	
+						// Verificar si se esta sobrepasando en mas de 2 niveles
+						if (!puedeCambiarColor(colorActual, colorSeleccionado)) {
+							JOptionPane.showMessageDialog(null,
+									"El cambio de color no puede ser superior/inferior a 2 niveles", "Advertencia",
+									JOptionPane.WARNING_MESSAGE);
+						} else {
+							boolean resultadoActualizado = dao.actualizarColorFinalYMotivoCambio(nombrePacienteSeleccionado,
+									nuevoResultado, colorSeleccionado);
+							actualizarTabla();
+						}
 					}
-				}
+				}else{
+					JOptionPane.showMessageDialog(null, "debe completar todos los campos obligatorios");
+			}
 			}
 
 			private boolean puedeCambiarColor(String colorActual, String colorSeleccionado) {
@@ -702,5 +712,9 @@ public class vTriage extends JFrame {
 	
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+		if(rol.equals("ADMINISTRADOR")) {
+			btnGuardar.setVisible(false);
+			btnmodificar.setVisible(false);
+		}
 	}
 }

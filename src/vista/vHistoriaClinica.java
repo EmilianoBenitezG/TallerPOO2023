@@ -53,6 +53,8 @@ public class vHistoriaClinica extends JFrame {
 	private DefaultTableModel modelo = new DefaultTableModel();
 	private JLabel lblRol;
 	private HistoriaClinicaPaciente historial;
+	JButton btnModificarHistorial = new JButton("Modificar");
+	JButton btnAgregar = new JButton("Agregar");
 
 	public vHistoriaClinica() {
 		setResizable(false);
@@ -72,26 +74,26 @@ public class vHistoriaClinica extends JFrame {
 
 		// Campos de ingreso de datos
 		// Nombre y apellido
-		JLabel lblNombreApellido = new JLabel("Nombre y apellido:");
+		JLabel lblNombreApellido = new JLabel("Nombre y apellido*:");
 		lblNombreApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNombreApellido.setBounds(232, 60, 140, 22);
+		lblNombreApellido.setBounds(232, 60, 155, 22);
 		contentPane.add(lblNombreApellido);
 
 		txtNombreApellido = new JTextField();
 		txtNombreApellido.setEditable(false);
-		txtNombreApellido.setBounds(370, 60, 170, 22);
+		txtNombreApellido.setBounds(381, 60, 170, 22);
 		contentPane.add(txtNombreApellido);
 		setLocationRelativeTo(null);
 
 		// DNI
-		JLabel lblDni = new JLabel("DNI:");
+		JLabel lblDni = new JLabel("DNI*:");
 		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDni.setBounds(552, 60, 40, 22);
+		lblDni.setBounds(560, 60, 43, 22);
 		contentPane.add(lblDni);
 
 		txtDNI = new JTextField();
 		txtDNI.setEditable(false);
-		txtDNI.setBounds(591, 60, 97, 22);
+		txtDNI.setBounds(611, 60, 97, 22);
 		contentPane.add(txtDNI);
 
 		// Fecha
@@ -157,7 +159,6 @@ public class vHistoriaClinica extends JFrame {
 
 		// Botones en pantalla
 		// Boton Modificar Historial
-		JButton btnModificarHistorial = new JButton("Modificar");
 		btnModificarHistorial.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnModificarHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -188,24 +189,28 @@ public class vHistoriaClinica extends JFrame {
 		contentPane.add(btnModificarHistorial);
 
 		// Boton Agregar
-		JButton btnAgregar = new JButton("Agregar");
+		
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					HistoriaClinicaPaciente historial = new HistoriaClinicaPaciente();
-					historial.setFecha(txtFecha.getText());
-					historial.setHora(txtHora.getText());
-					historial.setLugarDeAtencion((String) cmbLugarAtencion.getSelectedItem());
-					historial.setTextoMedico(txtTextoMedico.getText());
-					historial.setHistorialDiagnostico(txtHistorialDiagnostico.getText());
-					historial.setPacienteId(idPacienteSeleccionado);
-					if (dao.insertarHistorial(historial)) {
-						actualizarTabla();
-						JOptionPane.showMessageDialog(null, "Se agrego correctamente");
-						limpiarCampos();
-					} else {
-						JOptionPane.showMessageDialog(null, "Error al agregar el historial");
+					if(!txtNombreApellido.getText().equals("") && !txtDNI.getText().equals("")) {
+						HistoriaClinicaPaciente historial = new HistoriaClinicaPaciente();
+						historial.setFecha(txtFecha.getText());
+						historial.setHora(txtHora.getText());
+						historial.setLugarDeAtencion((String) cmbLugarAtencion.getSelectedItem());
+						historial.setTextoMedico(txtTextoMedico.getText());
+						historial.setHistorialDiagnostico(txtHistorialDiagnostico.getText());
+						historial.setPacienteId(idPacienteSeleccionado);
+						if (dao.insertarHistorial(historial)) {
+							actualizarTabla();
+							JOptionPane.showMessageDialog(null, "Se agrego correctamente");
+							limpiarCampos();
+						} else {
+							JOptionPane.showMessageDialog(null, "Error al agregar el historial");
+						}
+					}else{
+						JOptionPane.showMessageDialog(null, "debe completar todos los campos obligatorios");
 					}
 				} catch (Exception e2) {
 					e2.printStackTrace();
@@ -311,6 +316,11 @@ public class vHistoriaClinica extends JFrame {
 		JScrollPane scrollPaneResultados = new JScrollPane(tlbResultados);
 		scrollPaneResultados.setBounds(10, 333, 999, 182);
 		contentPane.add(scrollPaneResultados);
+		
+		JLabel lblCampoObligatorio = new JLabel("* campo obligatorio");
+		lblCampoObligatorio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCampoObligatorio.setBounds(10, 173, 128, 22);
+		contentPane.add(lblCampoObligatorio);
 
 		// Manejar seleccion en tabla de historias clinicas
 		tlbHistorial.addMouseListener(new MouseAdapter() {
@@ -456,6 +466,10 @@ public class vHistoriaClinica extends JFrame {
 
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+		if(rol.equals("ADMINISTRADOR")) {
+			btnModificarHistorial.setVisible(false);
+			btnAgregar.setVisible(false);
+		}
 	}
 	
 	private void colocarHoraActual() {

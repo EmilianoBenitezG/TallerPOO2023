@@ -41,7 +41,9 @@ public class vFuncionarios extends JFrame {
 	private String filtroActual = "";
 	private JTable tlbFuncionarios;
 	private JLabel lblId;
-
+	JButton btnModificar = new JButton("Modificar");
+	JButton btnAgregar = new JButton("Agregar");
+	
 	int filaSeleccionada = -1;
 
 	JLabel lblRol = new JLabel("Rol");
@@ -77,9 +79,9 @@ public class vFuncionarios extends JFrame {
 		contentPane.add(txtnombre);
 		txtnombre.setColumns(10);
 
-		JLabel lblNombre = new JLabel("Nombre: ");
+		JLabel lblNombre = new JLabel("Nombre*: ");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNombre.setBounds(20, 63, 68, 22);
+		lblNombre.setBounds(10, 63, 85, 22);
 		contentPane.add(lblNombre);
 
 		// Apellido
@@ -88,9 +90,9 @@ public class vFuncionarios extends JFrame {
 		txtapellido.setBounds(333, 63, 170, 22);
 		contentPane.add(txtapellido);
 
-		JLabel lblApellido = new JLabel("Apellido: ");
+		JLabel lblApellido = new JLabel("Apellido*: ");
 		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblApellido.setBounds(265, 63, 81, 22);
+		lblApellido.setBounds(257, 63, 81, 22);
 		contentPane.add(lblApellido);
 
 		// Fecha de nacimiento
@@ -99,9 +101,9 @@ public class vFuncionarios extends JFrame {
 		txtfechaNacimiento.setBounds(667, 63, 125, 22);
 		contentPane.add(txtfechaNacimiento);
 
-		JLabel lblfechaNacimiento = new JLabel("Fecha de nacimiento: ");
+		JLabel lblfechaNacimiento = new JLabel("Fecha de nacimiento*: ");
 		lblfechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblfechaNacimiento.setBounds(513, 63, 178, 22);
+		lblfechaNacimiento.setBounds(506, 63, 178, 22);
 		contentPane.add(lblfechaNacimiento);
 
 		// Domicilio
@@ -217,34 +219,38 @@ public class vFuncionarios extends JFrame {
 		contentPane.add(btnAtras);
 
 		// Boton agregar
-		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String dni = txtnroDNI.getText().trim();
-					if (!dao.existeFuncionarioConDNI(dni)) {
-						Funcionario funcionario = new Funcionario();
-						funcionario.setNombre(txtnombre.getText());
-						funcionario.setApellido(txtapellido.getText());
-						funcionario.setFechaNacimiento(txtfechaNacimiento.getText());
-						funcionario.setDomicilio(txtdomicilio.getText());
-						funcionario.setDNI(dni);
-						funcionario.setTelFijo(txttelFijo.getText());
-						funcionario.setTelCelular(txttelCelular.getText());
-						funcionario.setEstadoCivil(txtestadoCivil.getText());
-						funcionario.setEmail(txtemail.getText());
-						funcionario.setPuesto(txtpuesto.getText());
-
-						if (dao.insertarFuncionario(funcionario)) {
-							actualizarTabla();
-							JOptionPane.showMessageDialog(null, "Se agrego correctamente");
-							limpiarCampos();
+					
+					if(!txtnombre.getText().equals("") && !txtapellido.getText().equals("") && !txtfechaNacimiento.getText().equals("")) {
+						String dni = txtnroDNI.getText().trim();
+						if (!dao.existeFuncionarioConDNI(dni)) {
+							Funcionario funcionario = new Funcionario();
+							funcionario.setNombre(txtnombre.getText());
+							funcionario.setApellido(txtapellido.getText());
+							funcionario.setFechaNacimiento(txtfechaNacimiento.getText());
+							funcionario.setDomicilio(txtdomicilio.getText());
+							funcionario.setDNI(dni);
+							funcionario.setTelFijo(txttelFijo.getText());
+							funcionario.setTelCelular(txttelCelular.getText());
+							funcionario.setEstadoCivil(txtestadoCivil.getText());
+							funcionario.setEmail(txtemail.getText());
+							funcionario.setPuesto(txtpuesto.getText());
+	
+							if (dao.insertarFuncionario(funcionario)) {
+								actualizarTabla();
+								JOptionPane.showMessageDialog(null, "Se agrego correctamente");
+								limpiarCampos();
+							} else {
+								JOptionPane.showMessageDialog(null, "Error al agregar paciente");
+							}
 						} else {
-							JOptionPane.showMessageDialog(null, "Error al agregar paciente");
+							JOptionPane.showMessageDialog(null, "El paciente con este DNI ya existe en la base de datos.");
 						}
-					} else {
-						JOptionPane.showMessageDialog(null, "El paciente con este DNI ya existe en la base de datos.");
+					}else{
+						JOptionPane.showMessageDialog(null, "debe completar todos los campos obligatorios");
 					}
 				} catch (Exception e2) {
 					e2.printStackTrace();
@@ -256,7 +262,6 @@ public class vFuncionarios extends JFrame {
 		contentPane.add(btnAgregar);
 
 		// Boton Modificar
-		JButton btnModificar = new JButton("Modificar");
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -353,6 +358,11 @@ public class vFuncionarios extends JFrame {
 		btnBuscarPorDNI.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnBuscarPorDNI.setBounds(631, 247, 125, 22);
 		contentPane.add(btnBuscarPorDNI);
+		
+		JLabel lblCampoObligatorio = new JLabel("* campo obligatorio");
+		lblCampoObligatorio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCampoObligatorio.setBounds(20, 176, 128, 22);
+		contentPane.add(lblCampoObligatorio);
 
 		// Manejar seleccion en tabla de funcionarios
 		tlbFuncionarios.addMouseListener(new MouseAdapter() {
@@ -450,5 +460,9 @@ public class vFuncionarios extends JFrame {
 	
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+		if(rol.equals("ADMINISTRADOR")) {
+			btnModificar.setVisible(false);
+			btnAgregar.setVisible(false);
+		}
 	}
 }

@@ -41,7 +41,7 @@ public class vMedico extends JFrame {
 	private JComboBox<String> boxEspecialidad;
 	private JTextField txtFechaObtencion;
 	private JTextField txtUniversidad;
-
+	JButton btnAgregarMedico = new JButton("Agregar");
 	public vMedico() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +73,7 @@ public class vMedico extends JFrame {
 
 		// Crear un JScrollPane para la tabla
 		JScrollPane scrollPane = new JScrollPane(tblMedico);
-		scrollPane.setBounds(41, 280, 940, 270);
+		scrollPane.setBounds(41, 250, 940, 300);
 		contentPane.add(scrollPane);
 
 		JLabel lblMedico = new JLabel("Médicos");
@@ -89,9 +89,9 @@ public class vMedico extends JFrame {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 
-		JLabel lblNombre = new JLabel("Nombre: ");
+		JLabel lblNombre = new JLabel("Nombre*: ");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNombre.setBounds(131, 115, 68, 22);
+		lblNombre.setBounds(150, 115, 88, 22);
 		contentPane.add(lblNombre);
 
 		// Apellido
@@ -101,15 +101,15 @@ public class vMedico extends JFrame {
 		txtApellido.setBounds(499, 115, 130, 22);
 		contentPane.add(txtApellido);
 
-		JLabel lblApellido = new JLabel("Apellido: ");
+		JLabel lblApellido = new JLabel("Apellido*: ");
 		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblApellido.setBounds(376, 115, 81, 22);
+		lblApellido.setBounds(422, 115, 81, 22);
 		contentPane.add(lblApellido);
 		setLocationRelativeTo(null);
 		// Matricula
-		JLabel lblMatricula = new JLabel("Matrícula: ");
+		JLabel lblMatricula = new JLabel("Matrícula*: ");
 		lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblMatricula.setBounds(655, 115, 81, 22);
+		lblMatricula.setBounds(663, 115, 94, 22);
 		contentPane.add(lblMatricula);
 
 		txtMatricula = new JTextField();
@@ -181,45 +181,48 @@ public class vMedico extends JFrame {
 		});
 
 		// Boton para agregar admision
-		JButton btnAgregarMedico = new JButton("Agregar");
         btnAgregarMedico.setFont(new Font("Tahoma", Font.BOLD, 15));
         btnAgregarMedico.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nombre = txtNombre.getText();
                 String apellido = txtApellido.getText();
                 String matricula = txtMatricula.getText();
-                String especialidad = boxEspecialidad.getSelectedItem().toString();
-                String fechaObtencion = txtFechaObtencion.getText();
-                String universidad = txtUniversidad.getText();
-
-                if (nombre.isEmpty() || apellido.isEmpty() || matricula.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor, completa los campos requeridos.");
-                } else {
-                    Medico medico = new Medico();
-                    medico.setNombre(nombre);
-                    medico.setApellido(apellido);
-                    medico.setMatricula(matricula);
-                    
-                    if (!especialidad.isEmpty() && !fechaObtencion.isEmpty() && !universidad.isEmpty()) {
-                        DetallesEspecialidad detalles = new DetallesEspecialidad();
-                        detalles.setEspecialidad(especialidad);
-                        detalles.setFechaObtencion(fechaObtencion);
-                        detalles.setUniversidad(universidad);
-                        medico.setDetallesEspecialidad(detalles);
-                    }
-                    
-                    daoMedico dao = new daoMedico();
-                    if (dao.insertarMedico(medico, medico.getDetallesEspecialidad())) {
-                        actualizarTablaMedicos();
-                        JOptionPane.showMessageDialog(null, "Medico agregado correctamente.");
-                        limpiarCampos();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error al agregar el medico.");
-                    }
-                }
+                if(!nombre.equals("") && !apellido.equals("") && !matricula.equals("")) {
+	                String especialidad = boxEspecialidad.getSelectedItem().toString();
+	                String fechaObtencion = txtFechaObtencion.getText();
+	                String universidad = txtUniversidad.getText();
+	
+	                if (nombre.isEmpty() || apellido.isEmpty() || matricula.isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Por favor, completa los campos requeridos.");
+	                } else {
+	                    Medico medico = new Medico();
+	                    medico.setNombre(nombre);
+	                    medico.setApellido(apellido);
+	                    medico.setMatricula(matricula);
+	                    
+	                    if (!especialidad.isEmpty() && !fechaObtencion.isEmpty() && !universidad.isEmpty()) {
+	                        DetallesEspecialidad detalles = new DetallesEspecialidad();
+	                        detalles.setEspecialidad(especialidad);
+	                        detalles.setFechaObtencion(fechaObtencion);
+	                        detalles.setUniversidad(universidad);
+	                        medico.setDetallesEspecialidad(detalles);
+	                    }
+	                    
+	                    daoMedico dao = new daoMedico();
+	                    if (dao.insertarMedico(medico, medico.getDetallesEspecialidad())) {
+	                        actualizarTablaMedicos();
+	                        JOptionPane.showMessageDialog(null, "Medico agregado correctamente.");
+	                        limpiarCampos();
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "Error al agregar el medico.");
+	                    }
+	                }
+                }else{
+					JOptionPane.showMessageDialog(null, "debe completar todos los campos");
+				}
             }
         });
-		btnAgregarMedico.setBounds(442, 200, 125, 22);
+		btnAgregarMedico.setBounds(329, 197, 125, 22);
 		contentPane.add(btnAgregarMedico);
 
 		// Boton para volver al menu principal
@@ -244,7 +247,7 @@ public class vMedico extends JFrame {
 			}
 		});
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnLimpiar.setBounds(619, 200, 163, 22);
+		btnLimpiar.setBounds(506, 197, 163, 22);
 		contentPane.add(btnLimpiar);
 		
 		JLabel lblCaptionRol = new JLabel("Rol:");
@@ -255,6 +258,11 @@ public class vMedico extends JFrame {
 		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblRol.setBounds(883, 21, 115, 18);
 		contentPane.add(lblRol);
+		
+		JLabel lblCampoObligatorio = new JLabel("* campo obligatorio");
+		lblCampoObligatorio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCampoObligatorio.setBounds(30, 197, 128, 22);
+		contentPane.add(lblCampoObligatorio);
 
 		// Llamamos a una funcion para cargar las especialidades
 		cargarEspecialidades();
@@ -303,5 +311,8 @@ public class vMedico extends JFrame {
 	// Metodo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+		if(rol.equals("ADMINISTRADOR")) {
+			btnAgregarMedico.setVisible(false);
+		}
 	}
 }

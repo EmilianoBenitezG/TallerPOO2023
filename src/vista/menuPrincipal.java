@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -43,10 +45,15 @@ public class menuPrincipal extends JFrame {
 		// Boton "Usuarios" que abre la vista de usuarios
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vUsuario vusuario = new vUsuario();
-				vusuario.transferirDatos(lblRol.getText());
-				vusuario.setVisible(true);
-				menuPrincipal.this.setVisible(false);
+				String rol = lblRol.getText();
+				if(rol.equals("ADMINISTRADOR")){
+					vUsuario vusuario = new vUsuario();
+					vusuario.transferirDatos(lblRol.getText());
+					vusuario.setVisible(true);
+					menuPrincipal.this.setVisible(false);
+				}else {
+					JOptionPane.showMessageDialog(null, "Solo el administrador puede acceder al siguiente modulo");
+				}
 			}
 		});
 		btnUsuarios.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -114,7 +121,7 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnHistoriaClinica.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnHistoriaClinica.setBounds(416, 145, 141, 51);
+		btnHistoriaClinica.setBounds(255, 231, 141, 51);
 		contentPane.add(btnHistoriaClinica);
 
 		// Boton "Admision" que abre la vista de la pantalla admision
@@ -127,7 +134,7 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnAdmision.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAdmision.setBounds(94, 231, 141, 51);
+		btnAdmision.setBounds(416, 145, 141, 51);
 		contentPane.add(btnAdmision);
 
 		// Boton "Triage" que abre la vista de triage
@@ -153,27 +160,20 @@ public class menuPrincipal extends JFrame {
 
 		btnGestor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vGestores gestores = new vGestores();
-				gestores.transferirDatos(lblRol.getText());
-				gestores.setVisible(true);
-				menuPrincipal.this.setVisible(false);
+				String rol = lblRol.getText();
+				if(rol.equals("GESTOR")){
+					vGestores gestores = new vGestores();
+					gestores.transferirDatos(lblRol.getText());
+					gestores.setVisible(true);
+					menuPrincipal.this.setVisible(false);
+				}else {
+					JOptionPane.showMessageDialog(null, "Solo usuarios con rol gestor puede acceder al siguiente modulo");
+				}
 			}
 		});
 		btnGestor.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnGestor.setBounds(255, 231, 129, 51);
+		btnGestor.setBounds(94, 308, 141, 51);
 		contentPane.add(btnGestor);
-		
-		JButton btnAtencion = new JButton("Atencion");
-		btnAtencion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				vAsignacion atencion = new vAsignacion();
-				atencion.setVisible(true);
-				menuPrincipal.this.setVisible(false);
-			}
-		});
-		btnAtencion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnAtencion.setBounds(94, 231, 141, 51);
-		contentPane.add(btnAtencion);
 		btnMedico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vMedico medico = new vMedico();
@@ -183,7 +183,7 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnMedico.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnMedico.setBounds(94, 309, 141, 51);
+		btnMedico.setBounds(580, 231, 118, 51);
 		
 		contentPane.add(btnMedico);
 		
@@ -197,7 +197,7 @@ public class menuPrincipal extends JFrame {
 			}
 		});
 		btnAsignacion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnAsignacion.setBounds(580, 231, 118, 51);
+		btnAsignacion.setBounds(94, 231, 141, 51);
 		contentPane.add(btnAsignacion);
 		setLocationRelativeTo(null);
 	}

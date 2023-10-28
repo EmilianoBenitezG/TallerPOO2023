@@ -45,6 +45,7 @@ public class vAsignacion extends JFrame {
     private JTextField txtFecha;
     private JTextField txtHora;
     JLabel lblRol = new JLabel("Rol");
+    JButton btnAsignar = new JButton("Asignar");
     ArrayList<Asignacion> lista;
     String[] columnNames = {"Nombre Paciente", "DNI", "Médico", "Matrícula", "Fecha", "Box"};
     Object[][] data = {};
@@ -97,9 +98,9 @@ public class vAsignacion extends JFrame {
 		btnBuscarPaciente.setBounds(533, 142, 182, 30);
 		contentPane.add(btnBuscarPaciente);
 		
-		JLabel lblNombreApellido = new JLabel("Paciente:");
+		JLabel lblNombreApellido = new JLabel("Paciente*:");
 		lblNombreApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNombreApellido.setBounds(102, 146, 81, 22);
+		lblNombreApellido.setBounds(93, 146, 81, 22);
 		contentPane.add(lblNombreApellido);
 		
 		txtNombreApellido = new JTextField();
@@ -107,9 +108,9 @@ public class vAsignacion extends JFrame {
 		txtNombreApellido.setBounds(182, 144, 170, 22);
 		contentPane.add(txtNombreApellido);
 		
-		JLabel lblDni = new JLabel("DNI:");
+		JLabel lblDni = new JLabel("DNI*:");
 		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDni.setBounds(374, 144, 40, 22);
+		lblDni.setBounds(372, 144, 52, 22);
 		contentPane.add(lblDni);
 		
 		txtDNI = new JTextField();
@@ -152,9 +153,9 @@ public class vAsignacion extends JFrame {
 		btnSeleccionarMedico.setBounds(533, 187, 182, 30);
 		contentPane.add(btnSeleccionarMedico);
 		
-		JLabel lblMedico = new JLabel("Médico:");
+		JLabel lblMedico = new JLabel("Médico*:");
 		lblMedico.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblMedico.setBounds(112, 179, 61, 22);
+		lblMedico.setBounds(102, 179, 72, 22);
 		contentPane.add(lblMedico);
 		
 		txtMedico = new JTextField();
@@ -162,9 +163,9 @@ public class vAsignacion extends JFrame {
 		txtMedico.setBounds(183, 189, 150, 22);
 		contentPane.add(txtMedico);
 		
-		JLabel lblMatricula = new JLabel("Matrícula:");
+		JLabel lblMatricula = new JLabel("Matrícula*:");
 		lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblMatricula.setBounds(340, 187, 70, 22);
+		lblMatricula.setBounds(337, 187, 84, 22);
 		contentPane.add(lblMatricula);
 		
 		txtMatricula = new JTextField();
@@ -207,34 +208,37 @@ public class vAsignacion extends JFrame {
 		txtHora.setBounds(378, 111, 121, 22);
 		contentPane.add(txtHora);
 		
-		JButton btnAsignar = new JButton("Asignar");
 		btnAsignar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombrePaciente = txtNombreApellido.getText();
 				String dniPaciente = txtDNI.getText();
 				String medicoNombre = txtMedico.getText();
 				String matricula = txtMatricula.getText();
-				String fecha = txtFecha.getText();
-				String hora = txtMatricula.getText();
-				String box = comboBox_12.getSelectedItem().toString();
-				Paciente paciente = new Paciente();
-				paciente.setNombre(nombrePaciente);
-				paciente.setDNI(dniPaciente);
-				Medico medico = new Medico();
-				medico.setNombre(medicoNombre);
-				medico.setMatricula(matricula);
-				Asignacion asignacion = new Asignacion();
-				asignacion.setPaciente(paciente);
-				asignacion.setMedico(medico);
-				asignacion.setBox(box);
-				asignacion.setFecha(fecha);
-				asignacion.setHora(hora);
-		        if (dao.insertarAsignacion(asignacion)) {
-		        	actualizarTabla();
-                    JOptionPane.showMessageDialog(null, "Se agrego correctamente");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al agregar la asignacion");
-                }
+				if(!nombrePaciente.equals("") && !dniPaciente.equals("") && !medicoNombre.equals("") && !matricula.equals("")) {
+					String fecha = txtFecha.getText();
+					String hora = txtMatricula.getText();
+					String box = comboBox_12.getSelectedItem().toString();
+					Paciente paciente = new Paciente();
+					paciente.setNombre(nombrePaciente);
+					paciente.setDNI(dniPaciente);
+					Medico medico = new Medico();
+					medico.setNombre(medicoNombre);
+					medico.setMatricula(matricula);
+					Asignacion asignacion = new Asignacion();
+					asignacion.setPaciente(paciente);
+					asignacion.setMedico(medico);
+					asignacion.setBox(box);
+					asignacion.setFecha(fecha);
+					asignacion.setHora(hora);
+			        if (dao.insertarAsignacion(asignacion)) {
+			        	actualizarTabla();
+	                    JOptionPane.showMessageDialog(null, "Se agrego correctamente");
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "Error al agregar la asignacion");
+	                }
+				}else{
+					JOptionPane.showMessageDialog(null, "debe completar todos los campos");
+				}
             }
         });
         btnAsignar.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -267,6 +271,11 @@ public class vAsignacion extends JFrame {
 		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblCaptionRol.setBounds(742, 11, 40, 18);
 		contentPane.add(lblCaptionRol);
+		
+		JLabel lblCampoObligatorio = new JLabel("* campo obligatorio");
+		lblCampoObligatorio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCampoObligatorio.setBounds(10, 232, 128, 22);
+		contentPane.add(lblCampoObligatorio);
 		setLocationRelativeTo(null);
 		actualizarTabla();
 		colocarHoraActual();
@@ -308,5 +317,8 @@ public class vAsignacion extends JFrame {
 	// Metodo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+		if(rol.equals("ADMINISTRADOR")) {
+			btnAsignar.setVisible(false);
+		}
 	}
 }
