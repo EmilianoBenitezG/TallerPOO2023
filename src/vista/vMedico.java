@@ -73,9 +73,9 @@ public class vMedico extends JFrame {
 
 		tableModel.addColumn("Nombre");
 		tableModel.addColumn("Apellido");
-		tableModel.addColumn("Matrícula");
+		tableModel.addColumn("Matricula");
 		tableModel.addColumn("Especialidad");
-		tableModel.addColumn("Fecha Obtención");
+		tableModel.addColumn("Fecha Obtencion");
 		tableModel.addColumn("Universidad");
 		
 		// Crear la tabla y agregar al contenido
@@ -89,7 +89,7 @@ public class vMedico extends JFrame {
 		scrollPane.setBounds(41, 280, 940, 270);
 		contentPane.add(scrollPane);
 
-		JLabel lblMedico = new JLabel("Médicos");
+		JLabel lblMedico = new JLabel("Medicos");
 		lblMedico.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblMedico.setBounds(432, 6, 150, 33);
 		contentPane.add(lblMedico);
@@ -165,12 +165,12 @@ public class vMedico extends JFrame {
 
 		// Botones en pantalla
 		// Seleccionar medico
-		JButton btnBuscarMedico = new JButton("Seleccionar Médico");
+		JButton btnBuscarMedico = new JButton("Seleccionar Medico");
 		btnBuscarMedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBuscarMedico.setBounds(41, 75, 201, 30);
 		contentPane.add(btnBuscarMedico);
 
-		// Manejar la selección de médicos al hacer clic en el botón "Buscar Médico"
+		// Manejar la seleccion de medicos al hacer clic en el boton "Buscar Medico"
 		btnBuscarMedico.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        daoMedico dao = new daoMedico();
@@ -193,7 +193,7 @@ public class vMedico extends JFrame {
 		    }
 		});
 
-		// Botón para agregar admisión
+		// Boton para agregar admision
 		JButton btnAgregarMedico = new JButton("Agregar");
         btnAgregarMedico.setFont(new Font("Tahoma", Font.BOLD, 15));
         btnAgregarMedico.addActionListener(new ActionListener() {
@@ -224,10 +224,10 @@ public class vMedico extends JFrame {
                     daoMedico dao = new daoMedico();
                     if (dao.insertarMedico(medico, medico.getDetallesEspecialidad())) {
                         actualizarTablaMedicos();
-                        JOptionPane.showMessageDialog(null, "Médico agregado correctamente.");
+                        JOptionPane.showMessageDialog(null, "Medico agregado correctamente.");
                         limpiarCampos();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error al agregar el médico.");
+                        JOptionPane.showMessageDialog(null, "Error al agregar el medico.");
                     }
                 }
             }
@@ -235,7 +235,7 @@ public class vMedico extends JFrame {
 		btnAgregarMedico.setBounds(442, 200, 125, 22);
 		contentPane.add(btnAgregarMedico);
 
-		// Boton para volver al menú principal
+		// Boton para volver al menu principal
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -304,7 +304,7 @@ public class vMedico extends JFrame {
         txtUniversidad.setText("");
     }
 
-	// Método para transferir el rol del usuario a la ventana
+	// Metodo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}

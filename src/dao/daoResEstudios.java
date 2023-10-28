@@ -11,7 +11,7 @@ import conexion.Conexion;
 public class daoResEstudios {
     private Conexion cx;
 
-    // Constructor de la clase daoResEstudios, inicializa la conexión a la base de datos.
+    // Constructor de la clase daoResEstudios, inicializa la conexion a la base de datos.
     public daoResEstudios() {
         cx = new Conexion();
     }

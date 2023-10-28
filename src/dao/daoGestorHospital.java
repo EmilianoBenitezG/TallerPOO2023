@@ -12,19 +12,25 @@ import modelo.Asignacion;
 import modelo.Medico;
 import modelo.Paciente;
 
+//Clase daoGestorHospital que maneja la comunicacion con la base de datos para informes del hospital
 public class daoGestorHospital {
 	
 	private Conexion cx;
 
+	// Constructor que inicializa la conexion a la base de datos
     public daoGestorHospital() {
         cx = new Conexion();
     }
 	
+    // Metodos para generar informes
+
+    // Metodo para obtener la cantidad de pacientes atendidos en un rango de fechas por un medico
 	public ArrayList<String> cantPacFechas(int ID) {
 		 ArrayList<String> cantidad = null;
 		return cantidad;
 	}
 	
+	// Metodo para obtener la cantidad de pacientes atendidos en un rango de fechas por un medico y agregarlos a un modelo de tabla
 	public DefaultTableModel cantPacFechas(DefaultTableModel modelo, String fechaDesde, String fechaHasta, String medico) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -49,11 +55,13 @@ public class daoGestorHospital {
 			} 
 			
 		} catch (SQLException e) {
-			
+		
+		// Manejo de excepciones
 		}
 		return modelo;
 	}
 
+	// Metodo para obtener estadisticas de pacientes menores y mayores de 18 años atendidos en un rango de fechas
 	public DefaultTableModel cantPacFechasEdades(DefaultTableModel modelo, String fechaDesde, String fechaHasta) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -77,7 +85,8 @@ public class daoGestorHospital {
 			} 
 			
 		} catch (SQLException e) {
-			
+		
+		// Manejo de excepciones
 		}
 		return modelo;
 	}

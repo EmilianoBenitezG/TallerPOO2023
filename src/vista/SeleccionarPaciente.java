@@ -17,7 +17,7 @@ public class SeleccionarPaciente extends JDialog {
     private daoPacientes daoPacientes;
     private Paciente selectedPaciente;
 
-    // Constructor para la ventana de selección de paciente
+    // Constructor para la ventana de seleccion de paciente
     public SeleccionarPaciente(Frame owner, DefaultListModel<Paciente> pacienteListModel) {
         super(owner, "Seleccionar Paciente", true);
         daoPacientes = new daoPacientes();
@@ -26,7 +26,7 @@ public class SeleccionarPaciente extends JDialog {
         pacienteList = new JList<>(pacienteListModel);
         JScrollPane listScrollPane = new JScrollPane(pacienteList);
 
-        // Botón para seleccionar un paciente
+        // Boton para seleccionar un paciente
         selectButton = new JButton("Seleccionar");
         selectButton.addActionListener(new ActionListener() {
             @Override
@@ -38,7 +38,7 @@ public class SeleccionarPaciente extends JDialog {
             }
         });
 
-        // Campo de búsqueda y botón para buscar pacientes por DNI
+        // Campo de busqueda y boton para buscar pacientes por DNI
         searchField = new JTextField(15);
         searchButton = new JButton("Buscar");
         searchButton.addActionListener(new ActionListener() {
@@ -46,7 +46,7 @@ public class SeleccionarPaciente extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 String dni = searchField.getText().trim();
                 if (!dni.isEmpty()) {
-                    // Realiza la búsqueda en un hilo separado para evitar bloquear la interfaz de usuario
+                    // Realiza la busqueda en un hilo separado para evitar bloquear la interfaz de usuario
                     SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
                             ArrayList<Paciente> pacientes = daoPacientes.buscarPacientesPorDNI(dni);
@@ -58,13 +58,13 @@ public class SeleccionarPaciente extends JDialog {
                         }
                     });
                 } else {
-                    // Restaurar la lista original si el campo de búsqueda está vacío
+                    // Restaurar la lista original si el campo de busqueda este vacio
                     pacienteList.setModel(pacienteListModel);
                 }
             }
         });
 
-        // Panel para la búsqueda
+        // Panel para la busqueda
         JPanel searchPanel = new JPanel();
         searchPanel.add(new JLabel("Buscar por DNI:"));
         searchPanel.add(searchField);
@@ -77,12 +77,12 @@ public class SeleccionarPaciente extends JDialog {
         contentPane.add(selectButton, BorderLayout.SOUTH);
         setContentPane(contentPane);
 
-        // Configurar la ubicación de la ventana
+        // Configurar la ubicacion de la ventana
         setLocationRelativeTo(owner);
         pack();
     }
 
-    // Método para obtener el paciente seleccionado
+    // Metodo para obtener el paciente seleccionado
     public Paciente getSelectedPaciente() {
         return selectedPaciente;
     }

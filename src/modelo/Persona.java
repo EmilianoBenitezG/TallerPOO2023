@@ -14,11 +14,11 @@ public abstract class Persona {
 	private String email;
 	private Integer edad;
 
-    // Constructor vac�o de la clase Persona
+    // Constructor vacio de la clase Persona
     public Persona() {
     }
 
-    // Constructor de la clase Persona con par�metros
+    // Constructor de la clase Persona con parametros
     public Persona(String nombre, String apellido, String fechaNacimiento, String domicilio,
                    String nroDNI, String telFijo, String telCelular, String estadoCivil, String email) {
         this.nombre = nombre;

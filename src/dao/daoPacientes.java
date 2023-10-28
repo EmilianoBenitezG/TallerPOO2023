@@ -115,7 +115,7 @@ public class daoPacientes {
         return salida;
     }
     
-    // Busca pacientes en la base de datos por su n�mero de DNI
+    // Busca pacientes en la base de datos por su numero de DNI
     public ArrayList<Paciente> buscarPacientesPorDNI(String dni) {
         ArrayList<Paciente> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -157,7 +157,7 @@ public class daoPacientes {
         return lista;
     }
     
- // Busca pacientes en la base de datos por su n�mero de DNI
+ // Busca pacientes en la base de datos por su numero de DNI
     public ArrayList<Paciente> buscarPacientes() {
         ArrayList<Paciente> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -198,7 +198,7 @@ public class daoPacientes {
         return lista;
     }
     
- // Busca pacientes en la base de datos por su n�mero de DNI
+ // Busca pacientes en la base de datos por su numero de DNI
     public ArrayList<Paciente> buscarPacientesEnTriage() {
         ArrayList<Paciente> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -239,7 +239,7 @@ public class daoPacientes {
         return lista;
     }
     
-    // Verifica si existe un paciente con el n�mero de DNI
+    // Verifica si existe un paciente con el numero de DNI
     public boolean existePacienteConDNI(String dni) {
         boolean existe = false;
 

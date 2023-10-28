@@ -1,4 +1,4 @@
-// Declaraci�n de las importaciones necesarias para las bibliotecas requeridas
+// Declaracion de las importaciones necesarias para las bibliotecas requeridas
 package vista;
 
 // Varias importaciones para diferentes componentes de Swing y la clase DAO
@@ -17,10 +17,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 
-// Definici�n de la clase principal vLogin, que extiende JFrame
+// Definicion de la clase principal vLogin, que extiende JFrame
 public class vLogin extends JFrame {
 
-	// Declaraci�n de variables a nivel de clase
+	// Declaracion de variables a nivel de clase
 	private JPanel contentPane;
 	private final JLabel lblTitulo = new JLabel("Sistema de Triage");
 	private JTextField txtUsuario;
@@ -28,7 +28,7 @@ public class vLogin extends JFrame {
 	private JPasswordField txtContrasenia;
 	JLabel lblRol = new JLabel("Rol");
 
-	// M�todo principal para iniciar la aplicaci�n
+	// Metodo principal para iniciar la aplicacion
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,7 +44,7 @@ public class vLogin extends JFrame {
 
 	// Constructor de la clase vLogin
 	public vLogin() {
-		// Configuraci�n de varias propiedades para el JFrame
+		// Configuracion de varias propiedades para el JFrame
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 865, 561);
@@ -53,12 +53,12 @@ public class vLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// Creaci�n y configuraci�n de la etiqueta de t�tulo
+		// Creacion y configuracion de la etiqueta de titulo
 		lblTitulo.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblTitulo.setBounds(268, 125, 314, 51);
 		contentPane.add(lblTitulo);
 
-		// Creaci�n y configuraci�n de etiquetas para usuario y Contrasenia
+		// Creacion y configuracion de etiquetas para usuario y Contrasenia
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Source Sans Pro SemiBold", Font.BOLD | Font.ITALIC, 22));
 		lblUsuario.setBounds(309, 199, 98, 39);
@@ -75,7 +75,7 @@ public class vLogin extends JFrame {
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
-		// Bot�n para iniciar el proceso de inicio de sesi�n
+		// Boton para iniciar el proceso de inicio de sesion
 		JButton btnIngresar = new JButton("INGRESAR");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -83,14 +83,14 @@ public class vLogin extends JFrame {
 				if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()) {
 					String rol = dao.login(txtUsuario.getText().toUpperCase(), txtContrasenia.getText().toUpperCase());
 					if (!rol.isEmpty()) {
-						// Abrir el men� principal
+						// Abrir el menu principal
 						menuPrincipal.transferirDatos(rol);
 						menuPrincipal.setVisible(true);
-						// Cerrar la ventana de inicio de sesi�n
+						// Cerrar la ventana de inicio de sesion
 						vLogin.this.dispose();
 					} else {
 						limpiarCampos();
-						JOptionPane.showMessageDialog(null, "Usuario y/o Contrasenia incorrecta");
+						JOptionPane.showMessageDialog(null, "Usuario y/o Contraseña incorrecta");
 					}
 				} else {
 					limpiarCampos();
@@ -107,7 +107,7 @@ public class vLogin extends JFrame {
 		txtContrasenia.setBounds(407, 261, 130, 23);
 		contentPane.add(txtContrasenia);
 
-		// Bot�n para salir de la aplicaci�n
+		// Boton para salir de la aplicacion
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,13 +135,13 @@ public class vLogin extends JFrame {
 		setLocationRelativeTo(null);
 	}
 
-	// M�todo para borrar los campos de texto
+	// Metodo para borrar los campos de texto
 	private void limpiarCampos() {
 		txtUsuario.setText("");
 		txtContrasenia.setText("");
 	}
 
-	// M�todo para transferir la informaci�n del rol del usuario
+	// Metodo para transferir la informacion del rol del usuario
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}

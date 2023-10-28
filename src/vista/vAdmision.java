@@ -87,13 +87,13 @@ public class vAdmision extends JFrame {
 		scrollPane.setBounds(41, 280, 940, 270);
 		contentPane.add(scrollPane);
 
-		// Configurar el t�tulo
+		// Configurar el titulo
 		JLabel lblAdmision = new JLabel("Admision");
 		lblAdmision.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblAdmision.setBounds(116, 14, 178, 33);
 		contentPane.add(lblAdmision);
 
-		// Bot�n para volver al men� principal
+		// Boton para volver al menu principal
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,7 +110,7 @@ public class vAdmision extends JFrame {
 		txtMotivoConsulta.setBounds(225, 160, 358, 64);
 		contentPane.add(txtMotivoConsulta);
 
-		// Bot�n para agregar admisi�n
+		// Boton para agregar admisi�n
 		JButton btnAgregarAdmision = new JButton("Agregar");
 		btnAgregarAdmision.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregarAdmision.addActionListener(new ActionListener() {
@@ -196,7 +196,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(txtNombreApellido);
 		setLocationRelativeTo(null);
 
-		// Bot�n para buscar pacientes
+		// Boton para buscar pacientes
 		JButton btnBuscarPaciente = new JButton("Seleccionar Paciente");
 		btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBuscarPaciente.addActionListener(new ActionListener() {
@@ -245,7 +245,7 @@ public class vAdmision extends JFrame {
 		lblMotivoConsulta.setBounds(76, 160, 152, 22);
 		contentPane.add(lblMotivoConsulta);
 
-		// Manejar selecci�n en tabla de admisiones
+		// Manejar seleccion en tabla de admisiones
 		tblAdmision.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -268,7 +268,7 @@ public class vAdmision extends JFrame {
 		colocarHoraActual();
 	}
 
-	// M�todo para actualizar la tabla de admisiones
+	// Metodo para actualizar la tabla de admisiones
 	private void actualizarTablaAdmisiones() {
 		DefaultTableModel model = (DefaultTableModel) tblAdmision.getModel();
 		model.setRowCount(0);
@@ -280,7 +280,7 @@ public class vAdmision extends JFrame {
 		}
 	}
 
-	// M�todo para transferir el rol del usuario a la ventana
+	// Metodo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}

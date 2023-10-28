@@ -100,7 +100,7 @@ public class daoFuncionario {
         return salida;
     }
 
-    // Busca funcionarios en la base de datos por su número de DNI
+    // Busca funcionarios en la base de datos por su numero de DNI
     public ArrayList<Funcionario> buscarFuncionarioPorDNI(String dni) {
         ArrayList<Funcionario> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -141,7 +141,7 @@ public class daoFuncionario {
         return lista;
     }
     
-    // Verifica si existe un funcionario con el número de DNI
+    // Verifica si existe un funcionario con el numero de DNI
     public boolean existeFuncionarioConDNI(String dni) {
         boolean existe = false;
 

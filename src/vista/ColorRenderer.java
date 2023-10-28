@@ -17,7 +17,7 @@ public class ColorRenderer extends DefaultTableCellRenderer {
             if (value != null) {
                 String color = value.toString();
 
-                // Asigna el color de fondo según el valor.
+                // Asigna el color de fondo segun el valor.
                 switch (color) {
                     case "Rojo":
                         setBackground(Color.RED);

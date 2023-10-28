@@ -47,13 +47,13 @@ public class menuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// Etiqueta que muestra el t�tulo "Menu Principal"
+		// Etiqueta que muestra el titulo "Menu Principal"
 		JLabel lblRoles = new JLabel("Menu Principal");
 		lblRoles.setBounds(282, 45, 275, 51);
 		lblRoles.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		contentPane.add(lblRoles);
 
-		// Bot�n "Usuarios" que abre la vista de usuarios
+		// Boton "Usuarios" que abre la vista de usuarios
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vUsuario vusuario = new vUsuario();
@@ -66,7 +66,7 @@ public class menuPrincipal extends JFrame {
 		btnUsuarios.setBounds(94, 145, 141, 51);
 		contentPane.add(btnUsuarios);
 
-		// Bot�n "Funcionario" que abre la vista de usuarios
+		// Boton "Funcionario" que abre la vista de usuarios
 		btnFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vFuncionarios vfuncionarios = new vFuncionarios();
@@ -79,7 +79,7 @@ public class menuPrincipal extends JFrame {
 		btnFuncionario.setBounds(416, 231, 141, 51);
 		contentPane.add(btnFuncionario);
 
-		// Bot�n "Pacientes" que abre la vista de pacientes
+		// Boton "Pacientes" que abre la vista de pacientes
 		btnPacientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vPaciente vpaciente = new vPaciente();
@@ -92,7 +92,7 @@ public class menuPrincipal extends JFrame {
 		btnPacientes.setBounds(255, 145, 129, 51);
 		contentPane.add(btnPacientes);
 
-		// Bot�n "Salir" que cierra la aplicaci�n
+		// Boton "Salir" que cierra la aplicacion
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -103,7 +103,7 @@ public class menuPrincipal extends JFrame {
 		btnSalir.setBounds(699, 454, 118, 39);
 		contentPane.add(btnSalir);
 
-		// Bot�n "Cerrar Sesi�n" que cierra la sesi�n actual
+		// Boton "Cerrar Sesion" que cierra la sesion actual
 		JButton btnCerrarSesion = new JButton("Cerrar Sesion");
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -117,7 +117,7 @@ public class menuPrincipal extends JFrame {
 		btnCerrarSesion.setBounds(556, 454, 129, 39);
 		contentPane.add(btnCerrarSesion);
 
-		// Bot�n "Historia Cl�nica" que abre la vista de historias cl�nicas
+		// Boton "Historia Clinica" que abre la vista de historias clinicas
 		btnHistoriaClinica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vHistoriaClinica historiaClinica = new vHistoriaClinica();
@@ -130,7 +130,7 @@ public class menuPrincipal extends JFrame {
 		btnHistoriaClinica.setBounds(416, 145, 141, 51);
 		contentPane.add(btnHistoriaClinica);
 
-		// Bot�n "Admision" que abre la vista de la pantalla admision
+		// Boton "Admision" que abre la vista de la pantalla admision
 		btnAdmision.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vAdmision admision = new vAdmision();
@@ -143,7 +143,7 @@ public class menuPrincipal extends JFrame {
 		btnAdmision.setBounds(94, 231, 141, 51);
 		contentPane.add(btnAdmision);
 
-		// Bot�n "Triage" que abre la vista de triage
+		// Boton "Triage" que abre la vista de triage
 		btnTriage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vTriage vTriage = new vTriage();

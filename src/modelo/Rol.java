@@ -2,10 +2,10 @@ package modelo;
 
 // Clase que representa el rol de un usuario
 public class Rol {
-    int id;             // Identificador único del rol
-    String nombreRol;   // Nombre del rol, como "administrador", "médico", "enfermero", etc.
+    int id;             // Identificador unico del rol
+    String nombreRol;   // Nombre del rol, como "administrador", "medico", "enfermero", etc.
 
-    // Constructor de la clase con parámetros
+    // Constructor de la clase con parametros
     public Rol(int id, String nombreRol) {
         this.id = id;
         this.nombreRol = nombreRol;

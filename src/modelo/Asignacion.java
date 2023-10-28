@@ -1,12 +1,12 @@
 package modelo;
 
 public class Asignacion {
-    private int id;            // Atributo: Identificador único de la asignación
-    private Paciente paciente; // Atributo: Paciente asociado a la asignación
-    private Medico medico;     // Atributo: Médico asociado a la asignación
-    private String box;        // Atributo: Ubicación del box para la asignación
-    private String fecha;      // Atributo: Fecha de la asignación
-    private String hora;       // Atributo: Hora de la asignación
+    private int id;            // Atributo: Identificador unico de la asignacion
+    private Paciente paciente; // Atributo: Paciente asociado a la asignacion
+    private Medico medico;     // Atributo: Modico asociado a la asignacion
+    private String box;        // Atributo: Ubicacion del box para la asignacion
+    private String fecha;      // Atributo: Fecha de la asignacion
+    private String hora;       // Atributo: Hora de la asignacion
 
     // Getter para obtener el valor del atributo "id"
     public int getId() {

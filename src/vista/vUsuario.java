@@ -33,7 +33,7 @@ public class vUsuario extends JFrame {
 	private JTextField txtUsuario;
 	private JLabel lblId;
 	JLabel lblRol = new JLabel("Rol");
-	String[] columnNames = {"Usuario", "Contrasenia", "Nivel acceso"};
+	String[] columnNames = {"Usuario", "Contraseña", "Nivel acceso"};
 	Object[][] data = {};
 	 DefaultTableModel modelo = new DefaultTableModel(data, columnNames) {
          @Override
@@ -77,22 +77,26 @@ public class vUsuario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// Componentes para ingresar el usuario.
 		txtUsuario = new JTextField();
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtUsuario.setBounds(127, 121, 173, 28);
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
+		// Etiqueta para "Usuario".
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblUsuario.setBounds(58, 125, 71, 17);
 		contentPane.add(lblUsuario);
 		
-		JLabel lblContrasenia = new JLabel("Contrase\u00F1a:");
+		// Etiqueta para "Contrasenia".
+		JLabel lblContrasenia = new JLabel("Contraseña:");
 		lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblContrasenia.setBounds(28, 164, 103, 14);
 		contentPane.add(lblContrasenia);
 		
+		// Boton para "Agregar".
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregar.addActionListener(new ActionListener() {
@@ -121,6 +125,7 @@ public class vUsuario extends JFrame {
 		btnAgregar.setBounds(94, 238, 125, 36);
 		contentPane.add(btnAgregar);
 		
+		// Panel de desplazamiento para mostrar la tabla de roles.
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(310, 109, 518, 300);
 		contentPane.add(scrollPane);
@@ -128,12 +133,14 @@ public class vUsuario extends JFrame {
 		tblRoles = new JTable();
 		tblRoles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
+		// Etiqueta oculta para "ID".
 		lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblId.setBounds(95, 88, 28, 17);
 		lblId.setVisible(false);
 		contentPane.add(lblId);
 		
+		// Manejador de eventos cuando se hace clic en la tabla de roles.
 		tblRoles.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -152,7 +159,7 @@ public class vUsuario extends JFrame {
 			
 		});
 		
-		
+		// Creacion de la tabla de roles.
 		tblRoles.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -170,17 +177,20 @@ public class vUsuario extends JFrame {
 		scrollPane.setViewportView(tblRoles);
 		actualizarTabla();
 		setLocationRelativeTo(null);
+		// Etiqueta para "Rol".
 		JLabel lblRol_1 = new JLabel("Rol:\r\n");
 		lblRol_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblRol_1.setBounds(89, 205, 35, 17);
 		contentPane.add(lblRol_1);
 		
+		// Lista desplegable para seleccionar el rol.
 		cbxNombreRol = new JComboBox();
 		cbxNombreRol.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		cbxNombreRol.setModel(new DefaultComboBoxModel(new String[] {"Medico", "Funcionario", "Licenciado en Enfermeria", "Gestor"}));
 		cbxNombreRol.setBounds(127, 199, 173, 28);
 		contentPane.add(cbxNombreRol);
 		
+		// Boton para "Modificar".
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -211,6 +221,7 @@ public class vUsuario extends JFrame {
 		btnModificar.setBounds(94, 285, 125, 36);
 		contentPane.add(btnModificar);
 		
+		// Boton para "Eliminar".
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -235,11 +246,13 @@ public class vUsuario extends JFrame {
 		btnEliminar.setBounds(94, 332, 125, 36);
 		contentPane.add(btnEliminar);
 		
+		// Etiqueta para mostrar "Usuarios".
 		JLabel lblRoles = new JLabel("Usuarios");
 		lblRoles.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblRoles.setBounds(352, 29, 156, 51);
 		contentPane.add(lblRoles);
 		
+		// Boton para "Limpiar" los campos.
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -250,6 +263,7 @@ public class vUsuario extends JFrame {
 		btnLimpiar.setBounds(94, 379, 125, 36);
 		contentPane.add(btnLimpiar);
 		
+		// Boton para "Volver" al menu principal.
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -263,14 +277,17 @@ public class vUsuario extends JFrame {
 		btnAtras.setBounds(10, 29, 85, 36);
 		contentPane.add(btnAtras);
 		
+		// Campo de contrasenia oculto para el usuario.
 		txtContrasenia = new JPasswordField();
 		txtContrasenia.setBounds(127, 160, 173, 28);
 		contentPane.add(txtContrasenia);
 		
+		// Etiqueta para mostrar el rol del usuario (etiqueta oculta al principio).
 		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblRol.setBounds(729, 11, 98, 18);
 		contentPane.add(lblRol);
 		
+		// Etiqueta para "Rol" (etiqueta oculta al principio).
 		JLabel lblCaptionRol = new JLabel("Rol:");
 		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblCaptionRol.setBounds(704, 11, 25, 18);
@@ -284,7 +301,7 @@ public class vUsuario extends JFrame {
 	}
 	
 	public void actualizarTabla() {
-		//elimina los registros para volverlos a crear
+		// Elimina los registros para volverlos a crear.
 		while (modelo.getRowCount() > 0) {
 			modelo.removeRow(0);
 		}

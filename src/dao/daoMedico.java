@@ -13,7 +13,7 @@ import modelo.DetallesEspecialidad;
 public class daoMedico {
 	private Conexion cx;
 	
-	// Constructor de la clase daoMedico, inicializa la conexión a la base de datos.
+	// Constructor de la clase daoMedico, inicializa la conexion a la base de datos.
 	public daoMedico() {
 		cx = new Conexion();
 	}
@@ -22,7 +22,7 @@ public class daoMedico {
 		cx.desconectar();
 	}
 
-	 // Función para insertar un nuevo médico en la base de datos, junto con detalles de especialidad si se proporcionan.
+	 // Funcion para insertar un nuevo medico en la base de datos, junto con detalles de especialidad si se proporcionan.
 	public boolean insertarMedico(Medico medico, DetallesEspecialidad detallesEspecialidad) {
 	    Connection connection = null;
 	    PreparedStatement ps = null;
@@ -35,7 +35,7 @@ public class daoMedico {
 
 	        while (intentos > 0) {
 	            try {
-	            	// Obtener el ID del funcionario asociado al médico por nombre y apellido.
+	            	// Obtener el ID del funcionario asociado al medico por nombre y apellido.
 	                int funcionarioId = obtenerFuncionarioId(medico.getNombre(), medico.getApellido());
 
 	                if (funcionarioId > 0) {
@@ -60,11 +60,11 @@ public class daoMedico {
 	                    salida = true;
 	                    break;
 	                } else {
-	                    System.err.println("El ID de Funcionarios proporcionado no es válido.");
+	                    System.err.println("El ID de Funcionarios proporcionado no es valido.");
 	                    break;
 	                }
 	            } catch (SQLException e) {
-	                System.err.println("Error al insertar médico: " + e.getMessage());
+	                System.err.println("Error al insertar medico: " + e.getMessage());
 	                intentos--;
 	                try {
 	                    Thread.sleep(1000);
@@ -82,14 +82,14 @@ public class daoMedico {
 	                connection.close();
 	            }
 	        } catch (SQLException e) {
-	            System.err.println("Error al restablecer la conexión: " + e.getMessage());
+	            System.err.println("Error al restablecer la conexion: " + e.getMessage());
 	        }
 	    }
 
 	    return salida;
 	}
 
-	// Función para obtener el ID de un funcionario por nombre y apellido.
+	// Funcion para obtener el ID de un funcionario por nombre y apellido.
 	private int obtenerFuncionarioId(String nombre, String apellido) {
 	    Connection connection = null;
 	    PreparedStatement ps = null;
@@ -121,7 +121,7 @@ public class daoMedico {
 	    return funcionarioId;
 	}
 	
-	// Función para obtener el ID de un médico por el ID de funcionario.
+	// Funcion para obtener el ID de un medico por el ID de funcionario.
 	private int obtenerMedicoIdPorFuncionarioId(int funcionarioId) {
 	    Connection connection = null;
 	    PreparedStatement ps = null;
@@ -152,7 +152,7 @@ public class daoMedico {
 	    return medicoId;
 	}
 	
-	// Consulta y retorna la lista de todos los médicos con detalles de especialidad
+	// Consulta y retorna la lista de todos los medicos con detalles de especialidad
 	public ArrayList<Medico> consultarMedicos() {
 		ArrayList<Medico> lista = new ArrayList<Medico>();
 		PreparedStatement ps = null;
@@ -185,12 +185,12 @@ public class daoMedico {
 			}
 			cx.desconectar();
 		} catch (SQLException e) {
-			System.err.println("Error al consultar médicos: " + e.getMessage());
+			System.err.println("Error al consultar medicos: " + e.getMessage());
 		}
 		return lista;
 	}
 	
-	// Busca médicos por matrícula
+	// Busca medicos por matricula
     public ArrayList<Medico> buscarMedicosPorMatricula(String matricula) {
         ArrayList<Medico> medicos = new ArrayList<Medico>();
         Connection connection = null;

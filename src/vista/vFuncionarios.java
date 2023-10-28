@@ -215,7 +215,7 @@ public class vFuncionarios extends JFrame {
 		contentPane.add(lblCaptionRol);
 
 		// Botones en pantalla
-		// Boton para volver al menú principal
+		// Boton para volver al menu principal
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,7 +251,7 @@ public class vFuncionarios extends JFrame {
 
 						if (dao.insertarFuncionario(funcionario)) {
 							actualizarTabla();
-							JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+							JOptionPane.showMessageDialog(null, "Se agrego correctamente");
 							limpiarCampos();
 						} else {
 							JOptionPane.showMessageDialog(null, "Error al agregar paciente");
@@ -291,7 +291,7 @@ public class vFuncionarios extends JFrame {
 						if (dao.modificarFuncionario(funcionario)) {
 							actualizarTabla();
 							limpiarCampos();
-							JOptionPane.showMessageDialog(null, "Se modificó correctamente");
+							JOptionPane.showMessageDialog(null, "Se modifico correctamente");
 						} else {
 							JOptionPane.showMessageDialog(null, "Error al modificar paciente");
 						}
@@ -367,7 +367,7 @@ public class vFuncionarios extends JFrame {
 		btnBuscarPorDNI.setBounds(631, 247, 125, 22);
 		contentPane.add(btnBuscarPorDNI);
 
-		// Manejar selección en tabla de funcionarios
+		// Manejar seleccion en tabla de funcionarios
 		tlbFuncionarios.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {

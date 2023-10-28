@@ -40,7 +40,7 @@ public class vInfoGestor extends JFrame {
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Código para volver al menú principal
+				// Codigo para volver al menu principal
                 vGestores vGestores = new vGestores();
                 vGestores.setVisible(true);
                 vInfoGestor.this.dispose(); // Cierra la ventana actual

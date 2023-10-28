@@ -16,23 +16,23 @@ public class SeleccionarMedico extends JDialog {
     private daoMedico dao;
     private Medico selectedMedico;
 
-    // Constructor para la ventana de selección de médico
+    // Constructor para la ventana de seleccion de medico
     public SeleccionarMedico(Frame owner, DefaultListModel<Medico> medicoListModel) {
-        super(owner, "Seleccionar Médico", true);
+        super(owner, "Seleccionar Mï¿½dico", true);
         dao = new daoMedico();
         
-        // Consultar la lista de médicos desde el DAO
+        // Consultar la lista de medicos desde el DAO
         ArrayList<Medico> medicos = dao.consultarMedicos();
         DefaultListModel<Medico> initialModel = new DefaultListModel<>();
         for (Medico medico : medicos) {
             initialModel.addElement(medico);
         }
 
-        // Crear una lista desplegable para mostrar los médicos
+        // Crear una lista desplegable para mostrar los medicos
         medicoList = new JList<>(initialModel);
         JScrollPane listScrollPane = new JScrollPane(medicoList);
 
-        // Botón para seleccionar un médico
+        // Boton para seleccionar un medico
         selectButton = new JButton("Seleccionar");
         selectButton.addActionListener(new ActionListener() {
             @Override
@@ -44,7 +44,7 @@ public class SeleccionarMedico extends JDialog {
             }
         });
 
-        // Campo de búsqueda y botón para buscar médicos por matrícula
+        // Campo de busqueda y boton para buscar medicos por matricula
         searchField = new JTextField(15);
         searchButton = new JButton("Buscar");
         searchButton.addActionListener(new ActionListener() {
@@ -52,7 +52,7 @@ public class SeleccionarMedico extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 String matricula = searchField.getText().trim();
                 if (!matricula.isEmpty()) {
-                    // Buscar médicos por matrícula y actualizar la lista
+                    // Buscar medicos por matricula y actualizar la lista
                     ArrayList<Medico> medicos = dao.buscarMedicosPorMatricula(matricula);
                     DefaultListModel<Medico> updatedModel = new DefaultListModel<>();
                     for (Medico medico : medicos) {
@@ -60,15 +60,15 @@ public class SeleccionarMedico extends JDialog {
                     }
                     medicoList.setModel(updatedModel);
                 } else {
-                    // Restaurar la lista original si el campo de búsqueda está vacío
+                    // Restaurar la lista original si el campo de busqueda este vacio
                     medicoList.setModel(initialModel);
                 }
             }
         });
 
-        // Panel para la búsqueda
+        // Panel para la busqueda
         JPanel searchPanel = new JPanel();
-        searchPanel.add(new JLabel("Buscar por Matrícula:"));
+        searchPanel.add(new JLabel("Buscar por Matricula:"));
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
 
@@ -79,12 +79,12 @@ public class SeleccionarMedico extends JDialog {
         contentPane.add(selectButton, BorderLayout.SOUTH);
         setContentPane(contentPane);
 
-        // Configurar la ubicación de la ventana
+        // Configurar la ubicacion de la ventana
         setLocationRelativeTo(owner);
         pack();
     }
 
-    // Método para obtener el médico seleccionado
+    // Metodo para obtener el medico seleccionado
     public Medico getSelectedMedico() {
         return selectedMedico;
     }

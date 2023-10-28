@@ -1,12 +1,12 @@
 package modelo;
 
-// Clase que representa la información de un triaje
+// Clase que representa la informacion de un triaje
 public class Triage {
-    int id;                 // Identificador único del triaje
+    int id;                 // Identificador unico del triaje
     String nombre_paciente; // Nombre del paciente evaluado en el triaje
     String resultado_triage; // Resultado del triaje, como "Leve", "Moderado", "Grave", etc.
-    String fecha_triage;    // Fecha en la que se realizó el triaje
-    String hora_triage;     // Hora en la que se realizó el triaje
+    String fecha_triage;    // Fecha en la que se realizo el triaje
+    String hora_triage;     // Hora en la que se realizo el triaje
     String motivo_cambio;   // Motivo de cambio en el triaje, si se actualiza
     String color_final;     // Color final asignado al paciente
 
@@ -76,9 +76,9 @@ public class Triage {
         this.resultado_triage = resultado_triage;
     }
 
-    private String colorResultado; // Color específico del resultado de triaje
+    private String colorResultado; // Color especifico del resultado de triaje
 
-    // Getter y Setter para obtener y establecer el color específico del resultado de triaje
+    // Getter y Setter para obtener y establecer el color especifico del resultado de triaje
     public String getColorResultado() {
         return colorResultado;
     }

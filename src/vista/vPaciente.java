@@ -198,7 +198,7 @@ public class vPaciente extends JFrame {
 		txtFiltroDNI.setBounds(420, 247, 203, 22);
 		contentPane.add(txtFiltroDNI);
 
-		// Bot�n de b�squeda por DNI
+		// Boton de busqueda por DNI
 		JButton btnBuscarPorDNI = new JButton("Buscar");
 		btnBuscarPorDNI.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnBuscarPorDNI.addActionListener(new ActionListener() {
@@ -215,7 +215,7 @@ public class vPaciente extends JFrame {
 		contentPane.add(btnBuscarPorDNI);
 
 		// Checkbox para el estado "vivo/muerto"
-		chkEstado = new JCheckBox("�Est� vivo?");
+		chkEstado = new JCheckBox("¿Esta vivo?");
 		chkEstado.setSelected(true);
 		chkEstado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chkEstado.setBounds(566, 127, 125, 22);
@@ -248,7 +248,7 @@ public class vPaciente extends JFrame {
 						if (dao.modificarPaciente(paciente)) {
 							actualizarTabla();
 							limpiarCampos();
-							JOptionPane.showMessageDialog(null, "Se modific� correctamente");
+							JOptionPane.showMessageDialog(null, "Se modifico correctamente");
 						} else {
 							JOptionPane.showMessageDialog(null, "Error al modificar paciente");
 						}
@@ -291,7 +291,7 @@ public class vPaciente extends JFrame {
 
 						if (dao.insertarPaciente(paciente)) {
 							actualizarTabla();
-							JOptionPane.showMessageDialog(null, "Se agreg� correctamente");
+							JOptionPane.showMessageDialog(null, "Se agrego correctamente");
 							limpiarCampos();
 						} else {
 							JOptionPane.showMessageDialog(null, "Error al agregar paciente");
@@ -308,7 +308,7 @@ public class vPaciente extends JFrame {
 		btnAgregar.setBounds(428, 176, 125, 22);
 		contentPane.add(btnAgregar);
 
-		// Boton para volver al men� principal
+		// Boton para volver al menu principal
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -348,7 +348,7 @@ public class vPaciente extends JFrame {
 		lblId.setVisible(false);
 		contentPane.add(lblId);
 
-		// Manejar selecci�n en tabla de pacientes
+		// Manejar seleccion en tabla de pacientes
 		tlbPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -499,7 +499,7 @@ public class vPaciente extends JFrame {
 		tlbPacientes.setModel(modelo);
 	}
 	
-	// M�todo para transferir el rol del usuario a la ventana
+	// Metodo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}

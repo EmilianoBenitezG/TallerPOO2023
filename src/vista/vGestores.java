@@ -81,7 +81,7 @@ public class vGestores extends JFrame {
 		lblRol.setBounds(745, 10, 94, 16);
 		contentPane.add(lblRol);
 		
-		JLabel lblCanti = new JLabel("Cantidad de pacientes atendidos por un m\u00E9dico en un rango de fechas dadas:");
+		JLabel lblCanti = new JLabel("Cantidad de pacientes atendidos por un medico en un rango de fechas dadas:");
 		lblCanti.setFont(new Font("Gadugi", Font.PLAIN, 15));
 		lblCanti.setBounds(133, 78, 523, 22);
 		contentPane.add(lblCanti);
@@ -96,7 +96,7 @@ public class vGestores extends JFrame {
 		lblGestores.setBounds(337, 23, 164, 33);
 		contentPane.add(lblGestores);
 		
-		JLabel lblPacientesQueMs = new JLabel("Paciente/s que m\u00E1s consultaron en un rango de fechas:");
+		JLabel lblPacientesQueMs = new JLabel("Paciente/s que mas consultaron en un rango de fechas:");
 		lblPacientesQueMs.setFont(new Font("Gadugi", Font.PLAIN, 15));
 		lblPacientesQueMs.setBounds(133, 233, 535, 22);
 		contentPane.add(lblPacientesQueMs);
@@ -104,7 +104,7 @@ public class vGestores extends JFrame {
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// C�digo para volver al men� principal
+				// Codigo para volver al menu principal
                 menuPrincipal menu = new menuPrincipal();
                 menu.transferirDatos(lblRol.getText());
                 menu.setVisible(true);
@@ -115,7 +115,7 @@ public class vGestores extends JFrame {
 		btnVolver.setBounds(10, 23, 85, 36);
 		contentPane.add(btnVolver);
 		
-		JLabel lblMdicosQueMs = new JLabel("M\u00E9dico/s que m\u00E1s pacientes haya atendido en un rango de fechas:");
+		JLabel lblMdicosQueMs = new JLabel("Medicos que mas pacientes haya atendido en un rango de fechas:");
 		lblMdicosQueMs.setFont(new Font("Gadugi", Font.PLAIN, 15));
 		lblMdicosQueMs.setBounds(133, 308, 523, 22);
 		contentPane.add(lblMdicosQueMs);
@@ -125,7 +125,7 @@ public class vGestores extends JFrame {
 		lblTriageRealizadoEn.setBounds(133, 367, 523, 22);
 		contentPane.add(lblTriageRealizadoEn);
 		
-		JLabel lblCantidadDeTriage = new JLabel("Cantidad de triage que fueron cambiados por quien efectu\u00F3 el traigado");
+		JLabel lblCantidadDeTriage = new JLabel("Cantidad de triage que fueron cambiados por quien efectuo el traigado");
 		lblCantidadDeTriage.setVerticalAlignment(SwingConstants.TOP);
 		lblCantidadDeTriage.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCantidadDeTriage.setFont(new Font("Gadugi", Font.PLAIN, 15));
@@ -157,7 +157,7 @@ public class vGestores extends JFrame {
 				     };
 					modelo = dao.cantPacFechas(modelo,fechaDesde,fechaHasta,txtMatricula.getText());
 					
-					// C�digo para volver al men� principal
+					// Codigo para volver al menu principal
 	                vInfoGestor infoGestor = new vInfoGestor(modelo);
 	                //menu.transferirDatos(lblRol.getText());
 	                infoGestor.setVisible(true);
@@ -229,7 +229,7 @@ public class vGestores extends JFrame {
 			     };
 				modelo = dao.cantPacFechasEdades(modelo,fechaDesde,fechaHasta);
 				
-				// C�digo para volver al men� principal
+				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
                 //menu.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
@@ -280,7 +280,7 @@ public class vGestores extends JFrame {
 			     };
 				modelo = dao.medicoAtendioPacFechas(modelo,fechaDesde,fechaHasta);
 				
-				// C�digo para volver al men� principal
+				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
                 //menu.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
@@ -323,7 +323,7 @@ public class vGestores extends JFrame {
 			     };
 				modelo = dao.consultaPacFechas(modelo,fechaDesde,fechaHasta);
 				
-				// C�digo para volver al men� principal
+				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
                 //menu.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
@@ -362,7 +362,7 @@ public class vGestores extends JFrame {
 			     };
 				modelo = dao.triageFechasConColores(modelo,fechaDesde,fechaHasta);
 				
-				// C�digo para volver al men� principal
+				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
                 //menu.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
@@ -393,7 +393,7 @@ public class vGestores extends JFrame {
 			     };
 				modelo = dao.cantTriageConColorPropSistColorAsignadoFunc(modelo);
 				
-				// C�digo para volver al men� principal
+				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
                 //menu.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);

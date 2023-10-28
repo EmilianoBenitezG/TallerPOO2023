@@ -8,13 +8,16 @@ import java.util.ArrayList;
 import modelo.HistoriaClinicaPaciente;
 import conexion.Conexion;
 
+//Clase que gestiona las operaciones relacionadas con las historias clinicas de los pacientes
 public class daoHistoriaClinica {
     private Conexion cx;
 
+    // Constructor que inicializa la conexion a la base de datos
     public daoHistoriaClinica() {
         cx = new Conexion();
     }
 
+    // Metodo para insertar un nuevo registro de historia clinica en la base de datos
     public boolean insertarHistorial(HistoriaClinicaPaciente historial) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -31,13 +34,14 @@ public class daoHistoriaClinica {
             int rowsInserted = ps.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {
-            manejarError("Error al insertar historia clínica: " + e.getMessage());
+            manejarError("Error al insertar historia clinica: " + e.getMessage());
             return false;
         } finally {
             cerrarRecursos(null, ps, conn);
         }
     }
 
+    // Metodo para modificar un registro de historia clinica existente en la base de datos
     public boolean modificarHistoriaClinica(HistoriaClinicaPaciente historiaClinica) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -56,13 +60,14 @@ public class daoHistoriaClinica {
             int rowsUpdated = ps.executeUpdate();
             return rowsUpdated > 0;
         } catch (SQLException e) {
-            manejarError("Error al modificar historia clínica: " + e.getMessage());
+            manejarError("Error al modificar historia clinica: " + e.getMessage());
             return false;
         } finally {
             cerrarRecursos(null, ps, conn);
         }
     }
 
+    // Metodo para buscar todas las historias clinicas de un paciente por su ID
     public ArrayList<HistoriaClinicaPaciente> buscarHistoriaClinicaPorPaciente(int pacienteId) {
         ArrayList<HistoriaClinicaPaciente> lista = new ArrayList<>();
         Connection conn = null;
@@ -80,7 +85,7 @@ public class daoHistoriaClinica {
                 lista.add(historiaClinica);
             }
         } catch (SQLException e) {
-            manejarError("Error al buscar historias clínicas por paciente: " + e.getMessage());
+            manejarError("Error al buscar historias clinicas por paciente: " + e.getMessage());
         } finally {
             cerrarRecursos(rs, ps, conn);
         }
@@ -88,6 +93,7 @@ public class daoHistoriaClinica {
         return lista;
     }
 
+    // Metodo para buscar una historia clinica por su ID
     public HistoriaClinicaPaciente buscarHistoriaClinicaPorID(int idHistoriaClinica) {
         HistoriaClinicaPaciente historiaClinica = null;
         Connection conn = cx.conectar();
@@ -105,12 +111,13 @@ public class daoHistoriaClinica {
 
             cx.desconectar();
         } catch (SQLException e) {
-            manejarError("Error al buscar historia clínica por ID: " + e.getMessage());
+            manejarError("Error al buscar historia clinica por ID: " + e.getMessage());
         }
 
         return historiaClinica;
     }
 
+    // Metodo privado para mapear una fila de resultados de la base de datos a un objeto HistoriaClinicaPaciente
     private HistoriaClinicaPaciente mapearHistoriaClinica(ResultSet rs) throws SQLException {
         HistoriaClinicaPaciente historiaClinica = new HistoriaClinicaPaciente();
         historiaClinica.setId(rs.getInt("id"));
@@ -123,10 +130,12 @@ public class daoHistoriaClinica {
         return historiaClinica;
     }
 
+    // Metodo privado para manejar errores
     private void manejarError(String mensaje) {
         System.err.println(mensaje);
     }
 
+    // Metodo privado para cerrar recursos de base de datos
     private void cerrarRecursos(ResultSet rs, PreparedStatement ps, Connection conn) {
         try {
             if (rs != null) rs.close();
@@ -137,6 +146,7 @@ public class daoHistoriaClinica {
         }
     }
 
+    // Metodo privado para obtener el ID de un paciente
     private int obtenerPacienteId(int pacienteId) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -184,7 +194,7 @@ public class daoHistoriaClinica {
                 lista.add(historial);
             }
         } catch (SQLException e) {
-            manejarError("Error al buscar historial clínico por paciente: " + e.getMessage());
+            manejarError("Error al buscar historial clinico por paciente: " + e.getMessage());
         } finally {
             cerrarRecursos(rs, ps, conn);
         }
@@ -208,7 +218,7 @@ public class daoHistoriaClinica {
             int rowsUpdated = ps.executeUpdate();
             return rowsUpdated > 0;
         } catch (SQLException e) {
-            manejarError("Error al actualizar historial clínico: " + e.getMessage());
+            manejarError("Error al actualizar historial clinico: " + e.getMessage());
             return false;
         } finally {
             cerrarRecursos(null, ps, conn);

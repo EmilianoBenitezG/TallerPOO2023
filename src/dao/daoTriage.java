@@ -18,7 +18,7 @@ public class daoTriage {
         cx = new Conexion();
     }
 
-    // Método para almacenar el resultado de triaje en la base de datos
+    // Metodo para almacenar el resultado de triaje en la base de datos
     public boolean almacenarResultadoTriage(String nombrePaciente, String resultadoTriage, String fechaTriage, String horaTriage, String dniPaciente, String triador) {
         String sql = "INSERT INTO Triage (nombre_paciente, resultado_triage, fecha_triage , hora_triage, dni_paciente,triador) VALUES (?,?,?,?,?,?)";
 
@@ -33,7 +33,7 @@ public class daoTriage {
             // Ejecutar la consulta
             pstmt.executeUpdate();
 
-            return true; // Éxito al almacenar el resultado de triaje
+            return true; // Exito al almacenar el resultado de triaje
         } catch (SQLException e) {
             e.printStackTrace();
             return false; // Error al almacenar el resultado de triaje
@@ -101,7 +101,7 @@ public class daoTriage {
                 // Ejecutar la consulta
                 pstmt.executeUpdate();
 
-                return true; // Éxito al actualizar el motivo de cambio
+                return true; // Exito al actualizar el motivo de cambio
             } catch (SQLException e) {
                 e.printStackTrace();
                 return false; // Error al actualizar el motivo de cambio
@@ -121,7 +121,7 @@ public class daoTriage {
                 // Ejecutar la consulta
                 pstmt.executeUpdate();
 
-                return true; // Éxito al almacenar el resultado en la columna "color_final" de la tabla "Triage"
+                return true; // Exito al almacenar el resultado en la columna "color_final" de la tabla "Triage"
             } catch (SQLException e) {
                 e.printStackTrace();
                 return false; // Error al almacenar el resultado en la columna "color_final" de la tabla "Triage"
@@ -161,7 +161,7 @@ public class daoTriage {
                 // Ejecutar la consulta
                 int rowsUpdated = pstmt.executeUpdate();
 
-                return rowsUpdated > 0; // Si se actualizó al menos una fila, significa éxito
+                return rowsUpdated > 0; // Si se actualizo al menos una fila, significa exito
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -200,7 +200,7 @@ public class daoTriage {
 		private int SignosdeShock;
 		private int Conciencia;
 
-    // Métodos para establecer la puntuación de cada síntoma
+    // Metodos para establecer la puntuacion de cada sintoma
     public void setPuntuacionRespiracion(int puntuacionRespiracion) {
         this.puntuacionRespiracion = puntuacionRespiracion;
     }

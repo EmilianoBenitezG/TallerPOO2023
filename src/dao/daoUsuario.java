@@ -22,7 +22,7 @@ public class daoUsuario {
 		PreparedStatement ps = null;
 		boolean salida = true;
 		try {
-			// Preparar la sentencia SQL para la inserci�n
+			// Preparar la sentencia SQL para la insercion
 			ps=cx.conectar().prepareStatement("INSERT INTO Usuario VALUES (null,?,?,?)");
 			ps.setString(1, usuario.getUsuario().toUpperCase());
 			ps.setString(2, usuario.getContrasenia().toUpperCase());
@@ -36,7 +36,7 @@ public class daoUsuario {
 		return salida;
 	}
 	
-	 // Consultar y retornar la lista de usuarios con informaci�n de roles
+	 // Consultar y retornar la lista de usuarios con informacion de roles
 	public ArrayList<Usuario> ConsultaUsuario(){
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		PreparedStatement ps = null;
@@ -53,7 +53,7 @@ public class daoUsuario {
 				Usuario usuario = new Usuario();
 				usuario.setId(rs.getInt("idUsuario"));
 				usuario.setUsuario(rs.getString("Usuario"));
-				usuario.setContrasenia(rs.getString("Contrase�a"));
+				usuario.setContrasenia(rs.getString("Contrasenia"));
 				usuario.setRol(rol);
 				// Agregar el usuario a la lista
 				lista.add(usuario);

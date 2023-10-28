@@ -1,8 +1,8 @@
 package modelo;
 
-// Enumerado que representa los lugares de atención disponibles
+// Enumerado que representa los lugares de atencion disponibles
 public enum LugarDeAtencion {
-    CONSULTORIO, // Indica atención en el consultorio
-    EMERGENCIA,  // Indica atención en la sala de emergencias
-    INTERNACIONES // Indica atención en el área de internaciones
+    CONSULTORIO, // Indica atencion en el consultorio
+    EMERGENCIA,  // Indica atencion en la sala de emergencias
+    INTERNACIONES // Indica atencion en el Area de internaciones
 }

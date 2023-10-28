@@ -12,17 +12,17 @@ import java.util.ArrayList;
 public class daoEspecialidad {
     private Conexion cx;
 
-    // Constructor de la clase daoEspecialidad, inicializa la conexión a la base de datos.
+    // Constructor de la clase daoEspecialidad, inicializa la conexion a la base de datos.
     public daoEspecialidad() {
         cx = new Conexion();
     }
 
-    // Función para cerrar la conexión a la base de datos.
+    // Funcion para cerrar la conexion a la base de datos.
     public void cerrarConexion() {
         cx.desconectar();
     }
 
-    // Función para insertar una nueva especialidad en la base de datos.
+    // Funcion para insertar una nueva especialidad en la base de datos.
     public boolean insertarEspecialidad(Especialidad especialidad) {
         Connection connection = null;
         PreparedStatement ps = null;
@@ -47,13 +47,13 @@ public class daoEspecialidad {
                     connection.close();
                 }
             } catch (SQLException e) {
-                System.err.println("Error al cerrar la conexión: " + e.getMessage());
+                System.err.println("Error al cerrar la conexion: " + e.getMessage());
             }
         }
         return exito;
     }
 
-    // Función para consultar y retornar la lista de todas las especialidades en la base de datos.
+    // Funcion para consultar y retornar la lista de todas las especialidades en la base de datos.
     public ArrayList<Especialidad> consultarEspecialidades() {
         ArrayList<Especialidad> lista = new ArrayList<>();
         Connection connection = null;
@@ -84,7 +84,7 @@ public class daoEspecialidad {
                     connection.close();
                 }
             } catch (SQLException e) {
-                System.err.println("Error al cerrar la conexión: " + e.getMessage());
+                System.err.println("Error al cerrar la conexion: " + e.getMessage());
             }
         }
         return lista; // Devolver la lista de especialidades consultadas.

@@ -56,7 +56,7 @@ public class vAsignacion extends JFrame {
     private JTable table;
     private daoAsignacion dao = new daoAsignacion();
 
-    // M�todo principal para ejecutar la aplicaci�n
+    // Metodo principal para ejecutar la aplicacion
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -243,9 +243,9 @@ public class vAsignacion extends JFrame {
 				asignacion.setHora(hora);
 		        if (dao.insertarAsignacion(asignacion)) {
 		        	actualizarTabla();
-                    JOptionPane.showMessageDialog(null, "Se agreg� correctamente");
+                    JOptionPane.showMessageDialog(null, "Se agrego correctamente");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al agregar la asignaci�n");
+                    JOptionPane.showMessageDialog(null, "Error al agregar la asignacion");
                 }
             }
         });

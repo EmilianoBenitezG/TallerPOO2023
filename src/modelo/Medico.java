@@ -1,6 +1,6 @@
 package modelo;
 
-// Clase que representa un médico, hereda de Funcionario
+// Clase que representa un medico, hereda de Funcionario
 public class Medico extends Funcionario {
     
     // Atributos de la clase Medico
@@ -16,7 +16,7 @@ public class Medico extends Funcionario {
         this.matricula = matricula;
     }
 
-    // Constructor vacío
+    // Constructor vacio
     public Medico() {
     }
 
@@ -56,9 +56,9 @@ public class Medico extends Funcionario {
         this.detallesEspecialidad = detallesEspecialidad;
     }
 
-    // Método para representar al médico como una cadena de texto
+    // Metodo para representar al medico como una cadena de texto
     @Override
     public String toString() {
-        return "Médico: " + getNombre() + " " + getApellido() + ", Matrícula: " + matricula;
+        return "Medico: " + getNombre() + " " + getApellido() + ", Matricula: " + matricula;
     }
 }

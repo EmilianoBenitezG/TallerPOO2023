@@ -1,16 +1,16 @@
 package modelo;
 
 public class Admision {
-    private int id;               // Atributo: Identificador único de la admisión
-    private Paciente paciente;    // Atributo: Paciente asociado a la admisión
+    private int id;               // Atributo: Identificador unico de la admision
+    private Paciente paciente;    // Atributo: Paciente asociado a la admision
     private String motivoConsulta; // Atributo: Motivo de la consulta
-    private String fecha;         // Atributo: Fecha de la admisión
-    private String hora;          // Atributo: Hora de la admisión
+    private String fecha;         // Atributo: Fecha de la admision
+    private String hora;          // Atributo: Hora de la admision
 
     public Admision() {
     }
 
-    // Constructor que recibe información sobre la admisión
+    // Constructor que recibe informacion sobre la admision
     public Admision(Paciente paciente, String motivoConsulta, String fecha, String hora) {
         this.paciente = paciente;
         this.motivoConsulta = motivoConsulta;

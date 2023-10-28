@@ -14,12 +14,12 @@ public class Paciente extends Persona {
                     String estadoCivil, String email, String personaContacto, boolean estado) {
         // Llama al constructor de la clase base (Persona) y establece valores adicionales
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telFijo, telCelular, estadoCivil, email);
-        this.id = -1; // Inicializa el ID en -1, se espera que se asigne uno válido
+        this.id = -1; // Inicializa el ID en -1, se espera que se asigne uno valido
         this.personaContacto = personaContacto;
         this.setEstado(estado);
     }
 
-    // Constructor vacío
+    // Constructor vacio
     public Paciente() {
     }
 
@@ -50,12 +50,12 @@ public class Paciente extends Persona {
         this.estado = estado;
     }
 
-    // Método para obtener el nombre y apellido del paciente
+    // Mï¿½todo para obtener el nombre y apellido del paciente
     public String getNombreApellido() {
         return this.getNombre() + " " + this.getApellido();
     }
 
-    // Método para representar al paciente como una cadena de texto
+    // Metodo para representar al paciente como una cadena de texto
     @Override
     public String toString() {
         return getNombre() + " " + getApellido() + " - DNI: " + getDNI();

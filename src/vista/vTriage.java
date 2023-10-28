@@ -438,7 +438,7 @@ public class vTriage extends JFrame {
 					txtNombreApellido.setText(nombreApellido);
 					txtDNI.setText(dni);
 				} else {
-					JOptionPane.showMessageDialog(vTriage.this, "No se pudo obtener la información del paciente.",
+					JOptionPane.showMessageDialog(vTriage.this, "No se pudo obtener la informacion del paciente.",
 							"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -618,7 +618,7 @@ public class vTriage extends JFrame {
 					String nuevoResultado = resultadoTextArea.getText();
 					String colorSeleccionado = (String) colorComboBox.getSelectedItem();
 
-					// Verificar si se está sobrepasando en más de 2 niveles
+					// Verificar si se esta sobrepasando en mas de 2 niveles
 					if (!puedeCambiarColor(colorActual, colorSeleccionado)) {
 						JOptionPane.showMessageDialog(null,
 								"El cambio de color no puede ser superior/inferior a 2 niveles", "Advertencia",
@@ -686,7 +686,7 @@ public class vTriage extends JFrame {
                 boxPacientes.addItem(nombreApellido);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No se pudieron cargar los nombres y apellidos de los pacientes desde Admisión.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los nombres y apellidos de los pacientes desde Admision.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

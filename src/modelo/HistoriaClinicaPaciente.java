@@ -1,13 +1,13 @@
 package modelo;
 
 public class HistoriaClinicaPaciente {
-    private int id; // Identificador de la historia clínica
+    private int id; // Identificador de la historia clinica
     private int pacienteId; // Identificador del paciente asociado
-    private String fecha; // Fecha de la historia clínica
-    private String hora; // Hora de la historia clínica
-    private String lugarDeAtencion; // Lugar de atención donde se creó la historia clínica
-    private String textoMedico; // Texto generado por el médico
-    private String historialDiagnostico; // Historial de diagnósticos y observaciones
+    private String fecha; // Fecha de la historia clinica
+    private String hora; // Hora de la historia clinica
+    private String lugarDeAtencion; // Lugar de atencion donde se creo la historia clinica
+    private String textoMedico; // Texto generado por el medico
+    private String historialDiagnostico; // Historial de diagnosticos y observaciones
 
     public HistoriaClinicaPaciente() {
     }

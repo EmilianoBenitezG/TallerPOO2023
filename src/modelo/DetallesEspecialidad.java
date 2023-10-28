@@ -1,10 +1,10 @@
 package modelo;
 
 public class DetallesEspecialidad {
-    private int id;               // Atributo: Identificador único de los detalles de especialidad
-    private int medicoId;         // Atributo: Identificador del médico asociado a estos detalles
+    private int id;               // Atributo: Identificador ï¿½nico de los detalles de especialidad
+    private int medicoId;         // Atributo: Identificador del medico asociado a estos detalles
     private int especialidadId;   // Atributo: Identificador de la especialidad asociada
-    private String fechaObtencion; // Atributo: Fecha de obtención de la especialidad
+    private String fechaObtencion; // Atributo: Fecha de obtencion de la especialidad
     private String universidad;    // Atributo: Universidad donde se obtuvo la especialidad
     private String especialidad;   // Atributo: Nombre de la especialidad (puede no estar presente en el constructor)
 
@@ -17,7 +17,7 @@ public class DetallesEspecialidad {
         this.universidad = universidad;
     }
 
-    // Constructor vacío
+    // Constructor vacio
     public DetallesEspecialidad() {
     }
 

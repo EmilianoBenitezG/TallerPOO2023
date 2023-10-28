@@ -1,16 +1,16 @@
 package modelo;
 
-// Clase que representa los resultados de estudios médicos
+// Clase que representa los resultados de estudios medicos
 public class ResultadosEstudios {
-    private int id;                 // Identificador único del resultado
-    private String fecha;           // Fecha en la que se realizó el estudio
-    private String hora;            // Hora en la que se realizó el estudio
-    private String tipoEstudio;     // Tipo de estudio médico realizado
+    private int id;                 // Identificador unico del resultado
+    private String fecha;           // Fecha en la que se realizo el estudio
+    private String hora;            // Hora en la que se realizo el estudio
+    private String tipoEstudio;     // Tipo de estudio medico realizado
     private String informe;         // Informe o resultados del estudio
     private Paciente paciente;      // Paciente asociado a los resultados
-    private HistoriaClinicaPaciente historiaClinica;  // Historia clínica relacionada a los resultados
+    private HistoriaClinicaPaciente historiaClinica;  // Historia clinica relacionada a los resultados
 
-    // Constructor de la clase con parámetros
+    // Constructor de la clase con parametros
     public ResultadosEstudios(String fecha, String hora, String tipoEstudio, String informe, Paciente paciente) {
         this.fecha = fecha;
         this.hora = hora;
@@ -19,7 +19,7 @@ public class ResultadosEstudios {
         this.paciente = paciente;
     }
 
-    // Constructor vacío de la clase
+    // Constructor vacio de la clase
     public ResultadosEstudios() {
     }
 

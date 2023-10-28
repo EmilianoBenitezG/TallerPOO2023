@@ -37,13 +37,13 @@ public class VariablesTriage {
     }
 
 
- // Método privado para validar que una puntuación se encuentre dentro de un rango
+ // Metodo privado para validar que una puntuacion se encuentre dentro de un rango
 private int validarPuntuacion(int sangrado2, int i, int j) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-// Método para calcular la puntuación total del sistema de triage
+// Metodo para calcular la puntuacion total del sistema de triage
 public int calcularPuntuacionTriage() {
     
     int puntuacionTotal = respiracion + pulso + estadoMental + conciencia + dolorPecho + lesionesGraves + edad + fiebre + vomitos + dolorAbdominal + signosShock + lesionesLeves + sangrado;
@@ -52,7 +52,7 @@ public int calcularPuntuacionTriage() {
 }
 
 
-// Método para obtener el color según la puntuación calculada    	
+// Metodo para obtener el color segun la puntuacion calculada    	
 public String obtenerColorSegunPuntuacion() {
     int puntuacionTotal = calcularPuntuacionTriage();
     
@@ -69,7 +69,7 @@ public String obtenerColorSegunPuntuacion() {
         return "Verde";
     } 
     else {
-        return "Color no válido";
+        return "Color no valido";
     	}
 	}
 }

@@ -1,7 +1,7 @@
 package modelo;
 
 public class Especialidad {
-    private int id;                // Atributo: Identificador único de la especialidad
+    private int id;                // Atributo: Identificador unico de la especialidad
     private String nombreEspecialidad; // Atributo: Nombre de la especialidad
 
     // Constructor que recibe todos los atributos
@@ -10,7 +10,7 @@ public class Especialidad {
         this.nombreEspecialidad = nombreEspecialidad;
     }
 
-    // Constructor vacío
+    // Constructor vacio
     public Especialidad() {
     }
 

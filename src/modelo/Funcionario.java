@@ -1,10 +1,10 @@
 package modelo;
 
 public class Funcionario extends Persona {
-    private int id;        // Atributo: Identificador único del funcionario
+    private int id;        // Atributo: Identificador unico del funcionario
     private String Puesto;  // Atributo: Puesto del funcionario
 
-    // Constructor vacío
+    // Constructor vacio
     public Funcionario() {
     }
 
