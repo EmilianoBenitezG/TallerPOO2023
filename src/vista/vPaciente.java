@@ -215,7 +215,7 @@ public class vPaciente extends JFrame {
 		contentPane.add(btnBuscarPorDNI);
 
 		// Checkbox para el estado "vivo/muerto"
-		chkEstado = new JCheckBox("¿Esta vivo?");
+		chkEstado = new JCheckBox("¿Está vivo?");
 		chkEstado.setSelected(true);
 		chkEstado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chkEstado.setBounds(566, 127, 125, 22);

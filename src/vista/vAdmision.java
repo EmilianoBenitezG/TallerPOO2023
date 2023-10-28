@@ -88,7 +88,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(scrollPane);
 
 		// Configurar el titulo
-		JLabel lblAdmision = new JLabel("Admision");
+		JLabel lblAdmision = new JLabel("Admisión");
 		lblAdmision.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblAdmision.setBounds(116, 14, 178, 33);
 		contentPane.add(lblAdmision);

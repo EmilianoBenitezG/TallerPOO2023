@@ -73,9 +73,9 @@ public class vMedico extends JFrame {
 
 		tableModel.addColumn("Nombre");
 		tableModel.addColumn("Apellido");
-		tableModel.addColumn("Matricula");
+		tableModel.addColumn("Matrícula");
 		tableModel.addColumn("Especialidad");
-		tableModel.addColumn("Fecha Obtencion");
+		tableModel.addColumn("Fecha obtención");
 		tableModel.addColumn("Universidad");
 		
 		// Crear la tabla y agregar al contenido
@@ -89,7 +89,7 @@ public class vMedico extends JFrame {
 		scrollPane.setBounds(41, 280, 940, 270);
 		contentPane.add(scrollPane);
 
-		JLabel lblMedico = new JLabel("Medicos");
+		JLabel lblMedico = new JLabel("Médicos");
 		lblMedico.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblMedico.setBounds(432, 6, 150, 33);
 		contentPane.add(lblMedico);
@@ -120,7 +120,7 @@ public class vMedico extends JFrame {
 		contentPane.add(lblApellido);
 		setLocationRelativeTo(null);
 		// Matricula
-		JLabel lblMatricula = new JLabel("Matricula: ");
+		JLabel lblMatricula = new JLabel("Matrícula: ");
 		lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMatricula.setBounds(655, 115, 81, 22);
 		contentPane.add(lblMatricula);
@@ -142,7 +142,7 @@ public class vMedico extends JFrame {
 		contentPane.add(boxEspecialidad);
 
 		// Fecha obtencion de especialidad
-		JLabel lblFechaObtencion = new JLabel("Fecha obtencion: ");
+		JLabel lblFechaObtencion = new JLabel("Fecha obtención: ");
 		lblFechaObtencion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblFechaObtencion.setBounds(376, 150, 128, 22);
 		contentPane.add(lblFechaObtencion);
@@ -165,7 +165,7 @@ public class vMedico extends JFrame {
 
 		// Botones en pantalla
 		// Seleccionar medico
-		JButton btnBuscarMedico = new JButton("Seleccionar Medico");
+		JButton btnBuscarMedico = new JButton("Seleccionar Médico");
 		btnBuscarMedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBuscarMedico.setBounds(41, 75, 201, 30);
 		contentPane.add(btnBuscarMedico);

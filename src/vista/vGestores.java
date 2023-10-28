@@ -81,7 +81,7 @@ public class vGestores extends JFrame {
 		lblRol.setBounds(745, 10, 94, 16);
 		contentPane.add(lblRol);
 		
-		JLabel lblCanti = new JLabel("Cantidad de pacientes atendidos por un medico en un rango de fechas dadas:");
+		JLabel lblCanti = new JLabel("Cantidad de pacientes atendidos por un médico en un rango de fechas dadas:");
 		lblCanti.setFont(new Font("Gadugi", Font.PLAIN, 15));
 		lblCanti.setBounds(133, 78, 523, 22);
 		contentPane.add(lblCanti);
@@ -96,7 +96,7 @@ public class vGestores extends JFrame {
 		lblGestores.setBounds(337, 23, 164, 33);
 		contentPane.add(lblGestores);
 		
-		JLabel lblPacientesQueMs = new JLabel("Paciente/s que mas consultaron en un rango de fechas:");
+		JLabel lblPacientesQueMs = new JLabel("Pacientes que más consultaron en un rango de fechas:");
 		lblPacientesQueMs.setFont(new Font("Gadugi", Font.PLAIN, 15));
 		lblPacientesQueMs.setBounds(133, 233, 535, 22);
 		contentPane.add(lblPacientesQueMs);
@@ -115,17 +115,17 @@ public class vGestores extends JFrame {
 		btnVolver.setBounds(10, 23, 85, 36);
 		contentPane.add(btnVolver);
 		
-		JLabel lblMdicosQueMs = new JLabel("Medicos que mas pacientes haya atendido en un rango de fechas:");
+		JLabel lblMdicosQueMs = new JLabel("Médicos que más pacientes hayan atendido en un rango de fechas:");
 		lblMdicosQueMs.setFont(new Font("Gadugi", Font.PLAIN, 15));
 		lblMdicosQueMs.setBounds(133, 308, 523, 22);
 		contentPane.add(lblMdicosQueMs);
 		
-		JLabel lblTriageRealizadoEn = new JLabel("Triage realizado en un rango de fechas, indicandose la cantidad de cada color:");
+		JLabel lblTriageRealizadoEn = new JLabel("Triage realizado en un rango de fechas, indicándose la cantidad de cada color:");
 		lblTriageRealizadoEn.setFont(new Font("Gadugi", Font.PLAIN, 15));
 		lblTriageRealizadoEn.setBounds(133, 367, 523, 22);
 		contentPane.add(lblTriageRealizadoEn);
 		
-		JLabel lblCantidadDeTriage = new JLabel("Cantidad de triage que fueron cambiados por quien efectuo el traigado");
+		JLabel lblCantidadDeTriage = new JLabel("Cantidad de triages que fueron cambiados por quien efectuó el traigado");
 		lblCantidadDeTriage.setVerticalAlignment(SwingConstants.TOP);
 		lblCantidadDeTriage.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCantidadDeTriage.setFont(new Font("Gadugi", Font.PLAIN, 15));
@@ -453,7 +453,7 @@ public class vGestores extends JFrame {
 		separator_1_2_2_1_1.setBounds(669, 78, 13, 426);
 		contentPane.add(separator_1_2_2_1_1);
 		
-		JButton btnSeleccionarMedico = new JButton("Seleccionar Medico");
+		JButton btnSeleccionarMedico = new JButton("Seleccionar Médico");
 		btnSeleccionarMedico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				daoMedico dao = new daoMedico();

@@ -16,13 +16,13 @@ public class menuPrincipal extends JFrame {
 	JLabel lblRol = new JLabel("Rol");
 	JButton btnUsuarios = new JButton("Usuarios");
 	JButton btnPacientes = new JButton("Pacientes");
-	JButton btnHistoriaClinica = new JButton("Historia Clinica");
-	JButton btnAdmision = new JButton("Admision");
+	JButton btnHistoriaClinica = new JButton("Historia Clínica");
+	JButton btnAdmision = new JButton("Admisión");
 	JButton btnTriage = new JButton("Triage");
 	JButton btnGestor = new JButton("Gestores");
 	JButton btnFuncionario = new JButton("Funcionarios");
 	JButton btnResultadoEstudios = new JButton("Resultado Estudios");
-	private final JButton btnMedico = new JButton("Medico");
+	private final JButton btnMedico = new JButton("Médico");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,7 +48,7 @@ public class menuPrincipal extends JFrame {
 		contentPane.setLayout(null);
 
 		// Etiqueta que muestra el titulo "Menu Principal"
-		JLabel lblRoles = new JLabel("Menu Principal");
+		JLabel lblRoles = new JLabel("Menú Principal");
 		lblRoles.setBounds(282, 45, 275, 51);
 		lblRoles.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		contentPane.add(lblRoles);
@@ -199,7 +199,7 @@ public class menuPrincipal extends JFrame {
 		
 		contentPane.add(btnMedico);
 		
-		JButton btnAsignacion = new JButton("Asignacion");
+		JButton btnAsignacion = new JButton("Asignación");
 		btnAsignacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vAsignacion vAsignacion = new vAsignacion();

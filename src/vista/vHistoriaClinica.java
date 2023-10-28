@@ -76,7 +76,7 @@ public class vHistoriaClinica extends JFrame {
 
 		lblRol = new JLabel();
 
-		JLabel lblHistorial = new JLabel("Historia Clinica");
+		JLabel lblHistorial = new JLabel("Historia Clínica");
 		lblHistorial.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblHistorial.setBounds(327, 4, 280, 33);
 		contentPane.add(lblHistorial);
@@ -136,7 +136,7 @@ public class vHistoriaClinica extends JFrame {
 		cmbLugarAtencion.setBounds(493, 107, 131, 22);
 		contentPane.add(cmbLugarAtencion);
 
-		JLabel lblLugarAtencion = new JLabel("Lugar de Atencion: ");
+		JLabel lblLugarAtencion = new JLabel("Lugar de Atención: ");
 		lblLugarAtencion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLugarAtencion.setBounds(353, 107, 140, 22);
 		contentPane.add(lblLugarAtencion);
@@ -146,7 +146,7 @@ public class vHistoriaClinica extends JFrame {
 		txtTextoMedico.setBounds(293, 144, 298, 62);
 		contentPane.add(txtTextoMedico);
 
-		JLabel lblTextoMedico = new JLabel("Texto Medico: ");
+		JLabel lblTextoMedico = new JLabel("Texto Médico: ");
 		lblTextoMedico.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTextoMedico.setBounds(186, 144, 105, 22);
 		contentPane.add(lblTextoMedico);
@@ -157,7 +157,7 @@ public class vHistoriaClinica extends JFrame {
 		txtHistorialDiagnostico.setBounds(743, 107, 170, 22);
 		contentPane.add(txtHistorialDiagnostico);
 
-		JLabel lblHistorialDiagnostico = new JLabel("Diagnostico: ");
+		JLabel lblHistorialDiagnostico = new JLabel("Diagnóstico:");
 		lblHistorialDiagnostico.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblHistorialDiagnostico.setBounds(651, 107, 93, 22);
 		contentPane.add(lblHistorialDiagnostico);
@@ -289,7 +289,7 @@ public class vHistoriaClinica extends JFrame {
 			}
 		};
 		tlbHistorial.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null }, },
-				new String[] { "Fecha", "Hora", "Lugar de Atencion", "Texto Medico", "Diagnostico", }));
+				new String[] { "Fecha", "Hora", "Lugar de Atención", "Texto Médico", "Diagnóstico", }));
 		scrollPane.setViewportView(tlbHistorial);
 
 		JLabel lblCaptionRol = new JLabel("Rol:");

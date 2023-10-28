@@ -45,7 +45,7 @@ public class vAsignacion extends JFrame {
     private JTextField txtFecha;
     private JTextField txtHora;
     ArrayList<Asignacion> lista;
-    String[] columnNames = {"Nombre Paciente", "DNI", "Medico", "Matricula", "Fecha", "Box"};
+    String[] columnNames = {"Nombre Paciente", "DNI", "Médico", "Matrícula", "Fecha", "Box"};
     Object[][] data = {};
     DefaultTableModel modelo = new DefaultTableModel(data, columnNames) {
         @Override
@@ -164,7 +164,7 @@ public class vAsignacion extends JFrame {
 		btnSeleccionarMedico.setBounds(533, 187, 182, 30);
 		contentPane.add(btnSeleccionarMedico);
 		
-		JLabel lblMedico = new JLabel("Medico:");
+		JLabel lblMedico = new JLabel("Médico:");
 		lblMedico.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMedico.setBounds(112, 179, 61, 22);
 		contentPane.add(lblMedico);
@@ -174,7 +174,7 @@ public class vAsignacion extends JFrame {
 		txtMedico.setBounds(183, 189, 150, 22);
 		contentPane.add(txtMedico);
 		
-		JLabel lblMatricula = new JLabel("Matricula:");
+		JLabel lblMatricula = new JLabel("Matrícula:");
 		lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMatricula.setBounds(340, 187, 70, 22);
 		contentPane.add(lblMatricula);
@@ -264,7 +264,7 @@ public class vAsignacion extends JFrame {
 				new Object[][] {
 				},
 				new String[] {
-						"Nombre Paciente","DNI","Medico","Matricula","Fecha","Box"
+						"Nombre Paciente","DNI","Médico","Matrícula","Fecha","Box"
 				}
 			));
 		table.setFont(new Font("Tahoma", Font.BOLD, 12));

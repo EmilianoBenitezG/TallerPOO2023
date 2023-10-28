@@ -204,7 +204,7 @@ public class vTriage extends JFrame {
 		});
 
 		// Signos de shock
-		lblSignosDeShock = new JLabel("Signos de Shock");
+		lblSignosDeShock = new JLabel("Signos de shock");
 		lblSignosDeShock.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSignosDeShock.setBounds(491, 260, 128, 24);
 		contentPane.add(lblSignosDeShock);
@@ -227,7 +227,7 @@ public class vTriage extends JFrame {
 		});
 
 		// Lesiones leves
-		lblLesionesLeves = new JLabel("Lesiones Leves");
+		lblLesionesLeves = new JLabel("Lesiones leves");
 		lblLesionesLeves.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLesionesLeves.setBounds(651, 260, 120, 24);
 		contentPane.add(lblLesionesLeves);
@@ -249,7 +249,7 @@ public class vTriage extends JFrame {
 		});
 
 		// Lesiones graves
-		lblLesionesGraves = new JLabel("Lesiones Graves");
+		lblLesionesGraves = new JLabel("Lesiones graves");
 		lblLesionesGraves.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLesionesGraves.setBounds(811, 183, 120, 24);
 		contentPane.add(lblLesionesGraves);
@@ -274,7 +274,7 @@ public class vTriage extends JFrame {
 		});
 
 		// Dolor abdominal
-		lblDolorAbdominal = new JLabel("Dolor Abdominal");
+		lblDolorAbdominal = new JLabel("Dolor abdominal");
 		lblDolorAbdominal.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDolorAbdominal.setBounds(332, 260, 137, 24);
 		contentPane.add(lblDolorAbdominal);
@@ -311,7 +311,7 @@ public class vTriage extends JFrame {
 		});
 
 		// Estado mental
-		lblEstadoMental = new JLabel("Estado Mental\r\n");
+		lblEstadoMental = new JLabel("Estado mental\r\n");
 		lblEstadoMental.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblEstadoMental.setBounds(332, 183, 109, 24);
 		contentPane.add(lblEstadoMental);
@@ -334,7 +334,7 @@ public class vTriage extends JFrame {
 		});
 
 		// Dolor de pecho
-		lblDolorDePecho = new JLabel("Dolor de Pecho");
+		lblDolorDePecho = new JLabel("Dolor de pecho");
 		lblDolorDePecho.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDolorDePecho.setBounds(651, 183, 120, 24);
 		contentPane.add(lblDolorDePecho);
@@ -357,14 +357,14 @@ public class vTriage extends JFrame {
 		});
 		
 		// Vomitos
-		lblVomitos = new JLabel("Vomitos");
+		lblVomitos = new JLabel("Vómitos");
 		lblVomitos.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblVomitos.setBounds(170, 260, 73, 24);
 		contentPane.add(lblVomitos);
 		
 		BoxVomitos = new JComboBox();
 		BoxVomitos.setToolTipText("Seleccione una opcion");
-		BoxVomitos.setModel(new DefaultComboBoxModel(new String[] { "Sin vomitos", "Leves", "Intensos" }));
+		BoxVomitos.setModel(new DefaultComboBoxModel(new String[] {"Sin vómitos", "Leves", "Intensos"}));
 		BoxVomitos.setSelectedIndex(0);
 		BoxVomitos.setMaximumRowCount(4);
 		BoxVomitos.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -676,7 +676,7 @@ public class vTriage extends JFrame {
 	private void cargarNombreApellidoPacientes() {
         ArrayList<String> nombreApellidos = obtenerNombreApellidoPacientesDesdeAdmision();
 
-        if (nombreApellidos != null) {
+        if (!nombreApellidos.isEmpty()) {
             boxPacientes.removeAllItems();
             String primerElemento = nombreApellidos.get(0);
             String[] partes = primerElemento.split(" - ");
@@ -685,9 +685,7 @@ public class vTriage extends JFrame {
             for (String nombreApellido : nombreApellidos) {
                 boxPacientes.addItem(nombreApellido);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudieron cargar los nombres y apellidos de los pacientes desde Admision.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        } 
     }
 
     private ArrayList<String> obtenerNombreApellidoPacientesDesdeAdmision() {
