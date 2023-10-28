@@ -158,38 +158,40 @@ public class vHistoriaClinica extends JFrame {
 		contentPane.add(lblRol);
 
 		// Botones en pantalla
-		// Boton Modificar Historial
-		btnModificarHistorial.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnModificarHistorial.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					if (historialSeleccionado != null) {
-						historialSeleccionado.setFecha(txtFecha.getText());
-						historialSeleccionado.setHora(txtHora.getText());
-						historialSeleccionado.setLugarDeAtencion((String) cmbLugarAtencion.getSelectedItem());
-						historialSeleccionado.setTextoMedico(txtTextoMedico.getText());
-						historialSeleccionado.setHistorialDiagnostico(txtHistorialDiagnostico.getText());
-
-						if (dao.actualizarHistorial(historialSeleccionado)) {
-							cargarHistorialPorPaciente(idPacienteSeleccionado);
-							limpiarCampos();
-							JOptionPane.showMessageDialog(null, "Se modifico el historial correctamente.");
-						} else {
-							JOptionPane.showMessageDialog(null, "Error al modificar el historial clinico.");
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Seleccione un historial clinico para modificar.");
-					}
-				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, "Error al modificar el historial clinico: " + e2.getMessage());
-				}
-			}
-		});
-		btnModificarHistorial.setBounds(257, 240, 115, 22);
-		contentPane.add(btnModificarHistorial);
-
-		// Boton Agregar
+//		// Boton Modificar Historial
+//		btnModificarHistorial.setFont(new Font("Tahoma", Font.BOLD, 15));
+//		btnModificarHistorial.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				try {
+//					if (historialSeleccionado != null) {
+//						historialSeleccionado.setFecha(txtFecha.getText());
+//						historialSeleccionado.setHora(txtHora.getText());
+//						historialSeleccionado.setLugarDeAtencion((String) cmbLugarAtencion.getSelectedItem());
+//						historialSeleccionado.setTextoMedico(txtTextoMedico.getText());
+//						historialSeleccionado.setHistorialDiagnostico(txtHistorialDiagnostico.getText());
+//
+//						if (dao.actualizarHistorial(historialSeleccionado)) {
+//							cargarHistorialPorPaciente(idPacienteSeleccionado);
+//							limpiarCampos();
+//							JOptionPane.showMessageDialog(null, "Se modifico el historial correctamente.");
+//						} else {
+//							JOptionPane.showMessageDialog(null, "Error al modificar el historial clinico.");
+//						}
+//					} else {
+//						JOptionPane.showMessageDialog(null, "Seleccione un historial clinico para modificar.");
+//					}
+//				} catch (Exception e2) {
+//					JOptionPane.showMessageDialog(null, "Error al modificar el historial clinico: " + e2.getMessage());
+//				}
+//			}
+//		});
+//		btnModificarHistorial.setBounds(257, 240, 115, 22);
+//		contentPane.add(btnModificarHistorial);
 		
+		// SE DEJA COMENTADA ESTA SECCION PORQUE HISTORIA CLINICA NO DEBERIA PERMITIR MODIFICAR EL HISTORIAL DE UN PACIENTE
+
+		
+		// Boton Agregar
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -291,22 +293,25 @@ public class vHistoriaClinica extends JFrame {
 		lblCaptionRol.setBounds(858, 19, 151, 18);
 		contentPane.add(lblCaptionRol);
 
-		JButton btnVerResultados = new JButton("Ver Resultados de Estudios");
-		btnVerResultados.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnVerResultados.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (pacienteSeleccionado != null) {
-					cargarResultadosEstudios(pacienteSeleccionado.getId());
-					actualizarTabla();
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Por favor, seleccione un paciente para ver los resultados de estudios.",
-							"Paciente no seleccionado", JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});
-		btnVerResultados.setBounds(615, 144, 243, 23);
-		contentPane.add(btnVerResultados);
+		
+//		JButton btnVerResultados = new JButton("Ver Resultados de Estudios");
+//		btnVerResultados.setFont(new Font("Tahoma", Font.PLAIN, 16));
+//		btnVerResultados.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				if (pacienteSeleccionado != null) {
+//					cargarResultadosEstudios(pacienteSeleccionado.getId());
+//					actualizarTabla();
+//				} else {
+//					JOptionPane.showMessageDialog(null,
+//							"Por favor, seleccione un paciente para ver los resultados de estudios.",
+//							"Paciente no seleccionado", JOptionPane.WARNING_MESSAGE);
+//				}
+//			}
+//		});
+//		btnVerResultados.setBounds(615, 144, 243, 23);
+//		contentPane.add(btnVerResultados);
+		
+		// DEJO COMENTADA ESTA SECCION POR CUESTIONES DE TIEMPO NO SE LLEGO A IMPLEMENTAR
 
 		tlbResultados = new JTable(
 				new DefaultTableModel(new Object[] { "Fecha", "Hora", "Tipo de Estudio", "Informe" }, 0));
@@ -458,8 +463,12 @@ public class vHistoriaClinica extends JFrame {
 		modelo.setRowCount(0);
 		lista = dao.buscarHistoriaClinicaPorPaciente(pacienteId);
 		for (HistoriaClinicaPaciente historial : lista) {
-			modelo.addRow(new Object[] { historial.getFecha(), historial.getHora(), historial.getLugarDeAtencion(),
-					historial.getHistorialDiagnostico(), historial.getTextoMedico() });
+			modelo.addRow(new Object[] { 
+					historial.getFecha(), 
+					historial.getHora(), 
+					historial.getLugarDeAtencion(),
+					historial.getHistorialDiagnostico(), 
+					historial.getTextoMedico() });
 			modelo.fireTableDataChanged();
 		}
 	}
