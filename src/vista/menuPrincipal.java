@@ -24,19 +24,6 @@ public class menuPrincipal extends JFrame {
 	JButton btnResultadoEstudios = new JButton("Resultado Estudios");
 	private final JButton btnMedico = new JButton("Médico");
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					menuPrincipal menuPrincipal = new menuPrincipal();
-					menuPrincipal.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public menuPrincipal() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -190,6 +177,7 @@ public class menuPrincipal extends JFrame {
 		btnMedico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vMedico medico = new vMedico();
+				medico.transferirDatos(lblRol.getText());
 				medico.setVisible(true);
 				menuPrincipal.this.setVisible(false);
 			}
@@ -203,7 +191,7 @@ public class menuPrincipal extends JFrame {
 		btnAsignacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vAsignacion vAsignacion = new vAsignacion();
-				//vfuncionarios.transferirDatos(lblRol.getText());
+				vAsignacion.transferirDatos(lblRol.getText());
 				vAsignacion.setVisible(true);
 				menuPrincipal.this.setVisible(false);
 			}

@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -51,19 +53,6 @@ public class vHistoriaClinica extends JFrame {
 	private DefaultTableModel modelo = new DefaultTableModel();
 	private JLabel lblRol;
 	private HistoriaClinicaPaciente historial;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vHistoriaClinica frame = new vHistoriaClinica();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public vHistoriaClinica() {
 		setResizable(false);
@@ -163,7 +152,7 @@ public class vHistoriaClinica extends JFrame {
 		contentPane.add(lblHistorialDiagnostico);
 
 		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-		lblRol.setBounds(955, 13, 98, 18);
+		lblRol.setBounds(881, 19, 128, 18);
 		contentPane.add(lblRol);
 
 		// Botones en pantalla
@@ -294,7 +283,7 @@ public class vHistoriaClinica extends JFrame {
 
 		JLabel lblCaptionRol = new JLabel("Rol:");
 		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-		lblCaptionRol.setBounds(928, 13, 25, 18);
+		lblCaptionRol.setBounds(858, 19, 151, 18);
 		contentPane.add(lblCaptionRol);
 
 		JButton btnVerResultados = new JButton("Ver Resultados de Estudios");
@@ -397,6 +386,7 @@ public class vHistoriaClinica extends JFrame {
 		    }
 		});
 		inicializarTabla();
+		colocarHoraActual();
 	}
 
 	private void cargarResultadosEstudios(int pacienteId) {
@@ -466,5 +456,15 @@ public class vHistoriaClinica extends JFrame {
 
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+	}
+	
+	private void colocarHoraActual() {
+		Date todayDate = new Date();
+		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
+        String fechaActual = fecha.format(todayDate);
+        String horaActual = hora.format(todayDate);
+        txtFecha.setText(fechaActual);
+        txtHora.setText(horaActual);
 	}
 }

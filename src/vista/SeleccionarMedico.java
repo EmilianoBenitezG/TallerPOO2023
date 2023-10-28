@@ -18,7 +18,7 @@ public class SeleccionarMedico extends JDialog {
 
     // Constructor para la ventana de seleccion de medico
     public SeleccionarMedico(Frame owner, DefaultListModel<Medico> medicoListModel) {
-        super(owner, "Seleccionar M�dico", true);
+        super(owner, "Seleccionar Médico", true);
         dao = new daoMedico();
         
         // Consultar la lista de medicos desde el DAO

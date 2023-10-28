@@ -48,22 +48,7 @@ public class vUsuario extends JFrame {
 	int fila=-1;
 	Usuario usuario = new Usuario();
 	private JPasswordField txtContrasenia;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vUsuario frame = new vUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */

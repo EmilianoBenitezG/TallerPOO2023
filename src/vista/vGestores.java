@@ -41,22 +41,6 @@ public class vGestores extends JFrame {
 	private daoGestorHospital dao = new daoGestorHospital();
 	private JTextField txtMatricula;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    vGestores frame = new vGestores();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
 	/**
 	 * Create the frame.
 	 */
@@ -159,7 +143,7 @@ public class vGestores extends JFrame {
 					
 					// Codigo para volver al menu principal
 	                vInfoGestor infoGestor = new vInfoGestor(modelo);
-	                //menu.transferirDatos(lblRol.getText());
+	                infoGestor.transferirDatos(lblRol.getText());
 	                infoGestor.setVisible(true);
 	                vGestores.this.dispose(); // Cierra la ventana actual
 				}
@@ -231,7 +215,7 @@ public class vGestores extends JFrame {
 				
 				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
-                //menu.transferirDatos(lblRol.getText());
+                infoGestor.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
                 vGestores.this.dispose(); // Cierra la ventana actual
 			}
@@ -282,7 +266,7 @@ public class vGestores extends JFrame {
 				
 				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
-                //menu.transferirDatos(lblRol.getText());
+                infoGestor.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
                 vGestores.this.dispose(); // Cierra la ventana actual
 			}
@@ -325,7 +309,7 @@ public class vGestores extends JFrame {
 				
 				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
-                //menu.transferirDatos(lblRol.getText());
+                infoGestor.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
                 vGestores.this.dispose(); // Cierra la ventana actual
 			}
@@ -364,7 +348,7 @@ public class vGestores extends JFrame {
 				
 				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
-                //menu.transferirDatos(lblRol.getText());
+                infoGestor.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
                 vGestores.this.dispose(); // Cierra la ventana actual
 			}
@@ -395,7 +379,7 @@ public class vGestores extends JFrame {
 				
 				// Codigo para volver al menu principal
                 vInfoGestor infoGestor = new vInfoGestor(modelo);
-                //menu.transferirDatos(lblRol.getText());
+                infoGestor.transferirDatos(lblRol.getText());
                 infoGestor.setVisible(true);
                 vGestores.this.dispose(); // Cierra la ventana actual
 			}

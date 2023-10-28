@@ -31,7 +31,7 @@ public class daoAdmision {
             // Obtener el ID del paciente y verificar si es valido.
             int pacienteID = admision.getPaciente().getId();
             if (pacienteID <= 0) {
-                System.err.println("ID de paciente no v�lido");
+                System.err.println("ID de paciente no válido");
                 return false;
             }
             // Establecer los valores de los parametros en la sentencia SQL.

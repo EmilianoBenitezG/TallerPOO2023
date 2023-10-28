@@ -41,19 +41,6 @@ public class vAdmision extends JFrame {
 	private Paciente pacienteSeleccionado;
 	JLabel lblRol = new JLabel("Rol");
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vAdmision frame = new vAdmision();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public vAdmision() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,7 +97,7 @@ public class vAdmision extends JFrame {
 		txtMotivoConsulta.setBounds(225, 160, 358, 64);
 		contentPane.add(txtMotivoConsulta);
 
-		// Boton para agregar admisi�n
+		// Boton para agregar admisión
 		JButton btnAgregarAdmision = new JButton("Agregar");
 		btnAgregarAdmision.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregarAdmision.addActionListener(new ActionListener() {
@@ -131,13 +118,13 @@ public class vAdmision extends JFrame {
 					daoAdmision dao = new daoAdmision();
 					if (dao.insertarAdmision(admision)) {
 						actualizarTablaAdmisiones();
-						JOptionPane.showMessageDialog(null, "Se agreg� correctamente");
+						JOptionPane.showMessageDialog(null, "Se agregó correctamente");
 						limpiarCampos();
 					} else {
-						JOptionPane.showMessageDialog(null, "Error al agregar la admisi�n");
+						JOptionPane.showMessageDialog(null, "Error al agregar la admisión");
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Debes seleccionar un paciente antes de agregar la admisi�n");
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un paciente antes de agregar la admisión");
 				}
 			}
 		});

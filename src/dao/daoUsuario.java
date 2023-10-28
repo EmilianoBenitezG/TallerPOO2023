@@ -87,7 +87,7 @@ public class daoUsuario {
 		PreparedStatement ps = null;
 		boolean salida = true;
 		try {
-			// Preparar la sentencia SQL para la modificaci�n
+			// Preparar la sentencia SQL para la modificación
 			ps=cx.conectar().prepareStatement("UPDATE Usuario SET Usuario = ?, Contrasenia = ?, idRol = ? WHERE idUsuario = ?");
 			ps.setString(1, usuario.getUsuario().toUpperCase());
 			ps.setString(2, usuario.getContrasenia().toUpperCase());

@@ -1,7 +1,7 @@
 package modelo;
 
 public class DetallesEspecialidad {
-    private int id;               // Atributo: Identificador �nico de los detalles de especialidad
+    private int id;               // Atributo: Identificador unico de los detalles de especialidad
     private int medicoId;         // Atributo: Identificador del medico asociado a estos detalles
     private int especialidadId;   // Atributo: Identificador de la especialidad asociada
     private String fechaObtencion; // Atributo: Fecha de obtencion de la especialidad

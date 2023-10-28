@@ -50,7 +50,7 @@ public class Paciente extends Persona {
         this.estado = estado;
     }
 
-    // M�todo para obtener el nombre y apellido del paciente
+    // Metodo para obtener el nombre y apellido del paciente
     public String getNombreApellido() {
         return this.getNombre() + " " + this.getApellido();
     }

@@ -80,19 +80,6 @@ public class vTriage extends JFrame {
     private JLabel lblCaptionRol;
     private JComboBox BoxEdad;
     
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vTriage frame = new vTriage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public vTriage() {
 
 		setBackground(new Color(255, 255, 255));
@@ -534,12 +521,12 @@ public class vTriage extends JFrame {
 
 		lblRol = new JLabel("Rol");
 		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-		lblRol.setBounds(991, 11, 83, 18);
+		lblRol.setBounds(962, 11, 104, 18);
 		contentPane.add(lblRol);
 
 		lblCaptionRol = new JLabel("Rol:");
 		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
-		lblCaptionRol.setBounds(956, 11, 25, 18);
+		lblCaptionRol.setBounds(937, 11, 25, 18);
 		contentPane.add(lblCaptionRol);
 
 		boxPacientes = new JComboBox<String>();

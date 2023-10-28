@@ -44,6 +44,7 @@ public class vAsignacion extends JFrame {
     private JTextField txtMatricula;
     private JTextField txtFecha;
     private JTextField txtHora;
+    JLabel lblRol = new JLabel("Rol");
     ArrayList<Asignacion> lista;
     String[] columnNames = {"Nombre Paciente", "DNI", "Médico", "Matrícula", "Fecha", "Box"};
     Object[][] data = {};
@@ -55,20 +56,6 @@ public class vAsignacion extends JFrame {
     };
     private JTable table;
     private daoAsignacion dao = new daoAsignacion();
-
-    // Metodo principal para ejecutar la aplicacion
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    vAsignacion frame = new vAsignacion();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
 	/**
 	 * Create the frame.
@@ -134,6 +121,7 @@ public class vAsignacion extends JFrame {
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuPrincipal menuPrincipal = new menuPrincipal();
+				menuPrincipal.transferirDatos(lblRol.getText());
 				menuPrincipal.setVisible(true);
 				vAsignacion.this.setVisible(false);
 			}
@@ -270,6 +258,15 @@ public class vAsignacion extends JFrame {
 		table.setFont(new Font("Tahoma", Font.BOLD, 12));
 		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(table);
+		
+		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblRol.setBounds(767, 11, 108, 18);
+		contentPane.add(lblRol);
+		
+		JLabel lblCaptionRol = new JLabel("Rol:");
+		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblCaptionRol.setBounds(742, 11, 40, 18);
+		contentPane.add(lblCaptionRol);
 		setLocationRelativeTo(null);
 		actualizarTabla();
 		colocarHoraActual();
@@ -304,8 +301,12 @@ public class vAsignacion extends JFrame {
         SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
         String fechaActual = fecha.format(todayDate);
         String horaActual = hora.format(todayDate);
-        
         txtFecha.setText(fechaActual);
         txtHora.setText(horaActual);
+	}
+
+	// Metodo para transferir el rol del usuario a la ventana
+	public void transferirDatos(String rol) {
+		lblRol.setText(rol);
 	}
 }

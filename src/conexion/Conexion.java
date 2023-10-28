@@ -28,10 +28,4 @@ public class Conexion {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args){
-		Conexion cx = new Conexion();
-		cx.conectar();
-	}
-	
 }

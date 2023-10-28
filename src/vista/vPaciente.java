@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -20,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Paciente;
 import dao.daoPacientes;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class vPaciente extends JFrame {
 
@@ -52,19 +55,6 @@ public class vPaciente extends JFrame {
 	Paciente pacienteSeleccionado;
 	JLabel lblRol = new JLabel("Rol");
 	private JTextField txtEdad;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vPaciente frame = new vPaciente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public vPaciente() {
 		setResizable(false);
@@ -405,7 +395,7 @@ public class vPaciente extends JFrame {
 		lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblEdad.setBounds(812, 94, 46, 22);
 		contentPane.add(lblEdad);
-
+		recomendarFechaNacimiento();
 		// Agregar columnas al modelo de datos de la tabla
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");
@@ -467,7 +457,7 @@ public class vPaciente extends JFrame {
 		txtEdad.setText("");
 		lblId.setText("");
 		chkEstado.setSelected(true);
-		
+		recomendarFechaNacimiento();
 	}
 
 	// Buscar pacientes por DNI
@@ -502,5 +492,9 @@ public class vPaciente extends JFrame {
 	// Metodo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
+	}
+	
+	private void recomendarFechaNacimiento() {
+        txtfechaNacimiento.setText("1990-12-20");
 	}
 }

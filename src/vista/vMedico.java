@@ -42,19 +42,6 @@ public class vMedico extends JFrame {
 	private JTextField txtFechaObtencion;
 	private JTextField txtUniversidad;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vMedico frame = new vMedico();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public vMedico() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -259,6 +246,15 @@ public class vMedico extends JFrame {
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnLimpiar.setBounds(619, 200, 163, 22);
 		contentPane.add(btnLimpiar);
+		
+		JLabel lblCaptionRol = new JLabel("Rol:");
+		lblCaptionRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblCaptionRol.setBounds(850, 21, 32, 18);
+		contentPane.add(lblCaptionRol);
+		
+		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
+		lblRol.setBounds(883, 21, 115, 18);
+		contentPane.add(lblRol);
 
 		// Llamamos a una funcion para cargar las especialidades
 		cargarEspecialidades();
