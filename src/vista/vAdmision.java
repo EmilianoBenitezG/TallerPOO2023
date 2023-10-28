@@ -87,13 +87,13 @@ public class vAdmision extends JFrame {
 		scrollPane.setBounds(41, 280, 940, 270);
 		contentPane.add(scrollPane);
 
-		// Configurar el título
+		// Configurar el tï¿½tulo
 		JLabel lblAdmision = new JLabel("Admision");
 		lblAdmision.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblAdmision.setBounds(116, 14, 178, 33);
 		contentPane.add(lblAdmision);
 
-		// Botón para volver al menú principal
+		// Botï¿½n para volver al menï¿½ principal
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,7 +110,7 @@ public class vAdmision extends JFrame {
 		txtMotivoConsulta.setBounds(225, 160, 358, 64);
 		contentPane.add(txtMotivoConsulta);
 
-		// Botón para agregar admisión
+		// Botï¿½n para agregar admisiï¿½n
 		JButton btnAgregarAdmision = new JButton("Agregar");
 		btnAgregarAdmision.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregarAdmision.addActionListener(new ActionListener() {
@@ -131,13 +131,13 @@ public class vAdmision extends JFrame {
 					daoAdmision dao = new daoAdmision();
 					if (dao.insertarAdmision(admision)) {
 						actualizarTablaAdmisiones();
-						JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+						JOptionPane.showMessageDialog(null, "Se agregï¿½ correctamente");
 						limpiarCampos();
 					} else {
-						JOptionPane.showMessageDialog(null, "Error al agregar la admisión");
+						JOptionPane.showMessageDialog(null, "Error al agregar la admisiï¿½n");
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Debes seleccionar un paciente antes de agregar la admisión");
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un paciente antes de agregar la admisiï¿½n");
 				}
 			}
 		});
@@ -196,7 +196,7 @@ public class vAdmision extends JFrame {
 		contentPane.add(txtNombreApellido);
 		setLocationRelativeTo(null);
 
-		// Botón para buscar pacientes
+		// Botï¿½n para buscar pacientes
 		JButton btnBuscarPaciente = new JButton("Seleccionar Paciente");
 		btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnBuscarPaciente.addActionListener(new ActionListener() {
@@ -245,7 +245,7 @@ public class vAdmision extends JFrame {
 		lblMotivoConsulta.setBounds(76, 160, 152, 22);
 		contentPane.add(lblMotivoConsulta);
 
-		// Manejar selección en tabla de admisiones
+		// Manejar selecciï¿½n en tabla de admisiones
 		tblAdmision.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -268,7 +268,7 @@ public class vAdmision extends JFrame {
 		colocarHoraActual();
 	}
 
-	// Método para actualizar la tabla de admisiones
+	// Mï¿½todo para actualizar la tabla de admisiones
 	private void actualizarTablaAdmisiones() {
 		DefaultTableModel model = (DefaultTableModel) tblAdmision.getModel();
 		model.setRowCount(0);
@@ -280,7 +280,7 @@ public class vAdmision extends JFrame {
 		}
 	}
 
-	// Método para transferir el rol del usuario a la ventana
+	// Mï¿½todo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}
@@ -292,6 +292,7 @@ public class vAdmision extends JFrame {
 		txtMotivoConsulta.setText("");
 		txtFecha.setText("");
 		txtHora.setText("");
+		colocarHoraActual();
 	}
 	
 	// Funcion que agrega fecha y hora actual del equipo

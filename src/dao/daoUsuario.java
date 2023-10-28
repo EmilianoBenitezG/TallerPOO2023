@@ -22,10 +22,10 @@ public class daoUsuario {
 		PreparedStatement ps = null;
 		boolean salida = true;
 		try {
-			// Preparar la sentencia SQL para la inserción
+			// Preparar la sentencia SQL para la inserciï¿½n
 			ps=cx.conectar().prepareStatement("INSERT INTO Usuario VALUES (null,?,?,?)");
 			ps.setString(1, usuario.getUsuario().toUpperCase());
-			ps.setString(2, usuario.getContraseña().toUpperCase());
+			ps.setString(2, usuario.getContrasenia().toUpperCase());
 			ps.setLong(3, usuario.getRol().getId());
 			// Ejecutar la sentencia SQL
 			ps.executeUpdate();
@@ -36,7 +36,7 @@ public class daoUsuario {
 		return salida;
 	}
 	
-	 // Consultar y retornar la lista de usuarios con información de roles
+	 // Consultar y retornar la lista de usuarios con informaciï¿½n de roles
 	public ArrayList<Usuario> ConsultaUsuario(){
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		PreparedStatement ps = null;
@@ -53,7 +53,7 @@ public class daoUsuario {
 				Usuario usuario = new Usuario();
 				usuario.setId(rs.getInt("idUsuario"));
 				usuario.setUsuario(rs.getString("Usuario"));
-				usuario.setContraseña(rs.getString("Contraseña"));
+				usuario.setContrasenia(rs.getString("Contraseï¿½a"));
 				usuario.setRol(rol);
 				// Agregar el usuario a la lista
 				lista.add(usuario);
@@ -87,10 +87,10 @@ public class daoUsuario {
 		PreparedStatement ps = null;
 		boolean salida = true;
 		try {
-			// Preparar la sentencia SQL para la modificación
-			ps=cx.conectar().prepareStatement("UPDATE Usuario SET Usuario = ?, Contraseña = ?, idRol = ? WHERE idUsuario = ?");
+			// Preparar la sentencia SQL para la modificaciï¿½n
+			ps=cx.conectar().prepareStatement("UPDATE Usuario SET Usuario = ?, Contrasenia = ?, idRol = ? WHERE idUsuario = ?");
 			ps.setString(1, usuario.getUsuario().toUpperCase());
-			ps.setString(2, usuario.getContraseña().toUpperCase());
+			ps.setString(2, usuario.getContrasenia().toUpperCase());
 			ps.setLong(3, usuario.getRol().getId());
 			ps.setInt(4, usuario.getId());
 			// Ejecutar la sentencia SQL

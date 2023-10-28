@@ -44,7 +44,7 @@ public class vHistoriaClinica extends JFrame {
 	private JTable tlbHistorial;
 	private JTable tlbResultados;
 	private int idPacienteSeleccionado = -1;
-	private HistoriaClinicaPaciente historialSeleccionado = null;
+	private HistoriaClinicaPaciente historialSeleccionado;
 	private Paciente pacienteSeleccionado = null;
 	private daoHistoriaClinica dao = new daoHistoriaClinica();
 	private ArrayList<HistoriaClinicaPaciente> lista = new ArrayList<HistoriaClinicaPaciente>();
@@ -129,35 +129,35 @@ public class vHistoriaClinica extends JFrame {
 		lblHora.setBounds(243, 107, 49, 22);
 		contentPane.add(lblHora);
 
-		// Lugar de Atención (usando JComboBox)
+		// Lugar de Atenciï¿½n (usando JComboBox)
 		String[] lugaresAtencion = { "CONSULTORIO", "EMERGENCIA", "INTERNACIONES" };
 		cmbLugarAtencion = new JComboBox<>(lugaresAtencion);
 		cmbLugarAtencion.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		cmbLugarAtencion.setBounds(493, 107, 131, 22);
 		contentPane.add(cmbLugarAtencion);
 
-		JLabel lblLugarAtencion = new JLabel("Lugar de Atención: ");
+		JLabel lblLugarAtencion = new JLabel("Lugar de Atenciï¿½n: ");
 		lblLugarAtencion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLugarAtencion.setBounds(353, 107, 140, 22);
 		contentPane.add(lblLugarAtencion);
 
-		// Texto Médico (JEditorPane)
+		// Texto Mï¿½dico (JEditorPane)
 		txtTextoMedico = new JEditorPane();
 		txtTextoMedico.setBounds(293, 144, 298, 62);
 		contentPane.add(txtTextoMedico);
 
-		JLabel lblTextoMedico = new JLabel("Texto Médico: ");
+		JLabel lblTextoMedico = new JLabel("Texto Mï¿½dico: ");
 		lblTextoMedico.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTextoMedico.setBounds(186, 144, 105, 22);
 		contentPane.add(lblTextoMedico);
 
-		// Historial de Diagnóstico
+		// Historial de Diagnï¿½stico
 		txtHistorialDiagnostico = new JTextField();
 		txtHistorialDiagnostico.setColumns(10);
 		txtHistorialDiagnostico.setBounds(743, 107, 170, 22);
 		contentPane.add(txtHistorialDiagnostico);
 
-		JLabel lblHistorialDiagnostico = new JLabel("Diagnóstico: ");
+		JLabel lblHistorialDiagnostico = new JLabel("Diagnï¿½stico: ");
 		lblHistorialDiagnostico.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblHistorialDiagnostico.setBounds(651, 107, 93, 22);
 		contentPane.add(lblHistorialDiagnostico);
@@ -167,7 +167,7 @@ public class vHistoriaClinica extends JFrame {
 		contentPane.add(lblRol);
 
 		// Botones en pantalla
-		// Botón Modificar Historial
+		// Botï¿½n Modificar Historial
 		JButton btnModificarHistorial = new JButton("Modificar");
 		btnModificarHistorial.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnModificarHistorial.addActionListener(new ActionListener() {
@@ -183,22 +183,22 @@ public class vHistoriaClinica extends JFrame {
 						if (dao.actualizarHistorial(historialSeleccionado)) {
 							cargarHistorialPorPaciente(idPacienteSeleccionado);
 							limpiarCampos();
-							JOptionPane.showMessageDialog(null, "Se modificó el historial correctamente.");
+							JOptionPane.showMessageDialog(null, "Se modificï¿½ el historial correctamente.");
 						} else {
-							JOptionPane.showMessageDialog(null, "Error al modificar el historial clínico.");
+							JOptionPane.showMessageDialog(null, "Error al modificar el historial clï¿½nico.");
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Seleccione un historial clínico para modificar.");
+						JOptionPane.showMessageDialog(null, "Seleccione un historial clï¿½nico para modificar.");
 					}
 				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, "Error al modificar el historial clínico: " + e2.getMessage());
+					JOptionPane.showMessageDialog(null, "Error al modificar el historial clï¿½nico: " + e2.getMessage());
 				}
 			}
 		});
 		btnModificarHistorial.setBounds(257, 240, 115, 22);
 		contentPane.add(btnModificarHistorial);
 
-		// Botón Agregar
+		// Botï¿½n Agregar
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAgregar.addActionListener(new ActionListener() {
@@ -213,7 +213,7 @@ public class vHistoriaClinica extends JFrame {
 					historial.setPacienteId(idPacienteSeleccionado);
 					if (dao.insertarHistorial(historial)) {
 						actualizarTabla();
-						JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+						JOptionPane.showMessageDialog(null, "Se agregï¿½ correctamente");
 						limpiarCampos();
 					} else {
 						JOptionPane.showMessageDialog(null, "Error al agregar el historial");
@@ -238,7 +238,7 @@ public class vHistoriaClinica extends JFrame {
 		btnLimpiar.setBounds(565, 240, 155, 22);
 		contentPane.add(btnLimpiar);
 
-		// Botón Volver
+		// Botï¿½n Volver
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnVolver.addActionListener(new ActionListener() {
@@ -252,7 +252,7 @@ public class vHistoriaClinica extends JFrame {
 		btnVolver.setBounds(10, 11, 85, 36);
 		contentPane.add(btnVolver);
 
-		// Botón para buscar pacientes
+		// Botï¿½n para buscar pacientes
 		JButton btnBuscarPaciente = new JButton("Seleccionar Paciente");
 		btnBuscarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnBuscarPaciente.addActionListener(new ActionListener() {
@@ -289,7 +289,7 @@ public class vHistoriaClinica extends JFrame {
 			}
 		};
 		tlbHistorial.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null }, },
-				new String[] { "Fecha", "Hora", "Lugar de Atención", "Texto Médico", "Diagnóstico", }));
+				new String[] { "Fecha", "Hora", "Lugar de Atenciï¿½n", "Texto Mï¿½dico", "Diagnï¿½stico", }));
 		scrollPane.setViewportView(tlbHistorial);
 
 		JLabel lblCaptionRol = new JLabel("Rol:");
@@ -323,7 +323,7 @@ public class vHistoriaClinica extends JFrame {
 		scrollPaneResultados.setBounds(10, 333, 999, 182);
 		contentPane.add(scrollPaneResultados);
 
-		// Manejar selección en tabla de historias clínicas
+		// Manejar selecciï¿½n en tabla de historias clï¿½nicas
 		tlbHistorial.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -331,6 +331,7 @@ public class vHistoriaClinica extends JFrame {
 				if (filaSeleccionada >= 0) {
 					if (filaSeleccionada < lista.size()) {
 						historial = lista.get(filaSeleccionada);
+						historialSeleccionado = historial;
 						cargarHistorial(historial);
 						cargarResultadosEstudios(historial.getId());
 					}
@@ -352,7 +353,7 @@ public class vHistoriaClinica extends JFrame {
 			}
 		});
 
-		// Manejar selección en tabla de historias clínicas
+		// Manejar selecciï¿½n en tabla de historias clï¿½nicas
 		tlbHistorial.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -381,7 +382,7 @@ public class vHistoriaClinica extends JFrame {
 			}
 		});
 		
-		// Manejar selección en tabla de historias clínicas
+		// Manejar selecciï¿½n en tabla de historias clï¿½nicas
 		tlbHistorial.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		    @Override
 		    public void valueChanged(ListSelectionEvent e) {
@@ -419,7 +420,7 @@ public class vHistoriaClinica extends JFrame {
 		txtHistorialDiagnostico.setText(historia.getHistorialDiagnostico());
 	}
 
-	// Método actualizarTabla
+	// Mï¿½todo actualizarTabla
 	private void actualizarTabla() {
 		modelo.setRowCount(0);
 		if (idPacienteSeleccionado != -1) {
@@ -430,9 +431,9 @@ public class vHistoriaClinica extends JFrame {
 	private void inicializarTabla() {
 		modelo.addColumn("Fecha");
 		modelo.addColumn("Hora");
-		modelo.addColumn("Lugar de Atención");
-		modelo.addColumn("Historial Diagnóstico");
-		modelo.addColumn("Texto Médico");
+		modelo.addColumn("Lugar de Atenciï¿½n");
+		modelo.addColumn("Historial Diagnï¿½stico");
+		modelo.addColumn("Texto Mï¿½dico");
 		tlbHistorial.setModel(modelo);
 		tlbHistorial.getColumnModel().getColumn(0).setPreferredWidth(80);
 		tlbHistorial.getColumnModel().getColumn(1).setPreferredWidth(60);

@@ -1,4 +1,4 @@
-// Declaración de las importaciones necesarias para las bibliotecas requeridas
+// Declaraciï¿½n de las importaciones necesarias para las bibliotecas requeridas
 package vista;
 
 // Varias importaciones para diferentes componentes de Swing y la clase DAO
@@ -17,18 +17,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 
-// Definición de la clase principal vLogin, que extiende JFrame
+// Definiciï¿½n de la clase principal vLogin, que extiende JFrame
 public class vLogin extends JFrame {
 
-	// Declaración de variables a nivel de clase
+	// Declaraciï¿½n de variables a nivel de clase
 	private JPanel contentPane;
 	private final JLabel lblTitulo = new JLabel("Sistema de Triage");
 	private JTextField txtUsuario;
 	daoLogin dao = new daoLogin();
-	private JPasswordField txtContraseña;
+	private JPasswordField txtContrasenia;
 	JLabel lblRol = new JLabel("Rol");
 
-	// Método principal para iniciar la aplicación
+	// Mï¿½todo principal para iniciar la aplicaciï¿½n
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,7 +44,7 @@ public class vLogin extends JFrame {
 
 	// Constructor de la clase vLogin
 	public vLogin() {
-		// Configuración de varias propiedades para el JFrame
+		// Configuraciï¿½n de varias propiedades para el JFrame
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 865, 561);
@@ -53,20 +53,20 @@ public class vLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// Creación y configuración de la etiqueta de título
+		// Creaciï¿½n y configuraciï¿½n de la etiqueta de tï¿½tulo
 		lblTitulo.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 40));
 		lblTitulo.setBounds(268, 125, 314, 51);
 		contentPane.add(lblTitulo);
 
-		// Creación y configuración de etiquetas para usuario y contraseña
+		// Creaciï¿½n y configuraciï¿½n de etiquetas para usuario y Contrasenia
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Source Sans Pro SemiBold", Font.BOLD | Font.ITALIC, 22));
 		lblUsuario.setBounds(309, 199, 98, 39);
 		contentPane.add(lblUsuario);
 
-		JLabel lblContrasea = new JLabel("Contraseña:");
+		JLabel lblContrasea = new JLabel("ContraseÃ±a");
 		lblContrasea.setFont(new Font("Source Sans Pro SemiBold", Font.BOLD | Font.ITALIC, 22));
-		lblContrasea.setBounds(272, 249, 122, 39);
+		lblContrasea.setBounds(277, 249, 130, 39);
 		contentPane.add(lblContrasea);
 
 		// Campo de texto para ingresar el nombre de usuario
@@ -75,22 +75,22 @@ public class vLogin extends JFrame {
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
-		// Botón para iniciar el proceso de inicio de sesión
+		// Botï¿½n para iniciar el proceso de inicio de sesiï¿½n
 		JButton btnIngresar = new JButton("INGRESAR");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuPrincipal menuPrincipal = new menuPrincipal();
-				if (!txtUsuario.getText().isEmpty() && !txtContraseña.getText().isEmpty()) {
-					String rol = dao.login(txtUsuario.getText().toUpperCase(), txtContraseña.getText().toUpperCase());
+				if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()) {
+					String rol = dao.login(txtUsuario.getText().toUpperCase(), txtContrasenia.getText().toUpperCase());
 					if (!rol.isEmpty()) {
-						// Abrir el menú principal
+						// Abrir el menï¿½ principal
 						menuPrincipal.transferirDatos(rol);
 						menuPrincipal.setVisible(true);
-						// Cerrar la ventana de inicio de sesión
+						// Cerrar la ventana de inicio de sesiï¿½n
 						vLogin.this.dispose();
 					} else {
 						limpiarCampos();
-						JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta");
+						JOptionPane.showMessageDialog(null, "Usuario y/o Contrasenia incorrecta");
 					}
 				} else {
 					limpiarCampos();
@@ -102,12 +102,12 @@ public class vLogin extends JFrame {
 		btnIngresar.setBounds(370, 314, 122, 31);
 		contentPane.add(btnIngresar);
 
-		// Campo de contraseña para ingresar la contraseña
-		txtContraseña = new JPasswordField();
-		txtContraseña.setBounds(407, 261, 130, 23);
-		contentPane.add(txtContraseña);
+		// Campo de Contrasenia para ingresar la Contrasenia
+		txtContrasenia = new JPasswordField();
+		txtContrasenia.setBounds(407, 261, 130, 23);
+		contentPane.add(txtContrasenia);
 
-		// Botón para salir de la aplicación
+		// Botï¿½n para salir de la aplicaciï¿½n
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,13 +135,13 @@ public class vLogin extends JFrame {
 		setLocationRelativeTo(null);
 	}
 
-	// Método para borrar los campos de texto
+	// Mï¿½todo para borrar los campos de texto
 	private void limpiarCampos() {
 		txtUsuario.setText("");
-		txtContraseña.setText("");
+		txtContrasenia.setText("");
 	}
 
-	// Método para transferir la información del rol del usuario
+	// Mï¿½todo para transferir la informaciï¿½n del rol del usuario
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}

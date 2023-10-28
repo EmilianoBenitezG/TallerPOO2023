@@ -198,7 +198,7 @@ public class vPaciente extends JFrame {
 		txtFiltroDNI.setBounds(420, 247, 203, 22);
 		contentPane.add(txtFiltroDNI);
 
-		// Botón de búsqueda por DNI
+		// Botï¿½n de bï¿½squeda por DNI
 		JButton btnBuscarPorDNI = new JButton("Buscar");
 		btnBuscarPorDNI.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnBuscarPorDNI.addActionListener(new ActionListener() {
@@ -215,7 +215,7 @@ public class vPaciente extends JFrame {
 		contentPane.add(btnBuscarPorDNI);
 
 		// Checkbox para el estado "vivo/muerto"
-		chkEstado = new JCheckBox("¿Está vivo?");
+		chkEstado = new JCheckBox("ï¿½Estï¿½ vivo?");
 		chkEstado.setSelected(true);
 		chkEstado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chkEstado.setBounds(566, 127, 125, 22);
@@ -248,7 +248,7 @@ public class vPaciente extends JFrame {
 						if (dao.modificarPaciente(paciente)) {
 							actualizarTabla();
 							limpiarCampos();
-							JOptionPane.showMessageDialog(null, "Se modificó correctamente");
+							JOptionPane.showMessageDialog(null, "Se modificï¿½ correctamente");
 						} else {
 							JOptionPane.showMessageDialog(null, "Error al modificar paciente");
 						}
@@ -269,8 +269,9 @@ public class vPaciente extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String dni = txtnroDNI.getText().trim();
+					String dni = txtnroDNI.getText();
 					if (!dao.existePacienteConDNI(dni)) {
+						String edad = txtEdad.getText();
 						Paciente paciente = new Paciente();
 						paciente.setNombre(txtnombre.getText());
 						paciente.setApellido(txtapellido.getText());
@@ -282,13 +283,15 @@ public class vPaciente extends JFrame {
 						paciente.setEstadoCivil(txtestadoCivil.getText());
 						paciente.setEmail(txtemail.getText());
 						paciente.setPersonaContacto(txtpersonaContacto.getText());
-						paciente.setEdad(Integer.parseInt(txtEdad.getText()));
+						if(!edad.equals("")) {
+							paciente.setEdad(Integer.parseInt(txtEdad.getText()));
+						}
 						boolean estaVivo = chkEstado.isSelected();
 						paciente.setEstado(estaVivo);
 
 						if (dao.insertarPaciente(paciente)) {
 							actualizarTabla();
-							JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+							JOptionPane.showMessageDialog(null, "Se agregï¿½ correctamente");
 							limpiarCampos();
 						} else {
 							JOptionPane.showMessageDialog(null, "Error al agregar paciente");
@@ -305,7 +308,7 @@ public class vPaciente extends JFrame {
 		btnAgregar.setBounds(428, 176, 125, 22);
 		contentPane.add(btnAgregar);
 
-		// Boton para volver al menú principal
+		// Boton para volver al menï¿½ principal
 		JButton btnAtras = new JButton("Volver");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -345,7 +348,7 @@ public class vPaciente extends JFrame {
 		lblId.setVisible(false);
 		contentPane.add(lblId);
 
-		// Manejar selección en tabla de pacientes
+		// Manejar selecciï¿½n en tabla de pacientes
 		tlbPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -463,7 +466,8 @@ public class vPaciente extends JFrame {
 		txtpersonaContacto.setText("");
 		txtEdad.setText("");
 		lblId.setText("");
-		chkEstado.setSelected(false);
+		chkEstado.setSelected(true);
+		
 	}
 
 	// Buscar pacientes por DNI
@@ -495,7 +499,7 @@ public class vPaciente extends JFrame {
 		tlbPacientes.setModel(modelo);
 	}
 	
-	// Método para transferir el rol del usuario a la ventana
+	// Mï¿½todo para transferir el rol del usuario a la ventana
 	public void transferirDatos(String rol) {
 		lblRol.setText(rol);
 	}

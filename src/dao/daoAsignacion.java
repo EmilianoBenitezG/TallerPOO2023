@@ -15,12 +15,12 @@ import modelo.Triage;
 public class daoAsignacion {
     private Conexion cx;
 
-    // Constructor de la clase daoAsignacion, inicializa la conexión a la base de datos.
+    // Constructor de la clase daoAsignacion, inicializa la conexiï¿½n a la base de datos.
     public daoAsignacion() {
         cx = new Conexion();
     }
 
-    // Función para insertar una nueva asignación en la base de datos.
+    // Funciï¿½n para insertar una nueva asignaciï¿½n en la base de datos.
     public boolean insertarAsignacion(Asignacion asignacion) {
         Connection connection = null;
         PreparedStatement ps = null;
@@ -28,10 +28,10 @@ public class daoAsignacion {
 
         try {
             connection = cx.conectar();
-            // Preparar la sentencia SQL para insertar una asignación en la tabla Asignacion.
+            // Preparar la sentencia SQL para insertar una asignaciï¿½n en la tabla Asignacion.
             ps = connection.prepareStatement("INSERT INTO Asignacion (dni_paciente, matricula_medico, Box, Fecha, Hora, nombre_paciente, nombre_medico) VALUES (?,?,?,?,?,?,?)");
 
-            // Establecer los valores de los parámetros en la sentencia SQL.
+            // Establecer los valores de los parï¿½metros en la sentencia SQL.
             ps.setString(1, asignacion.getPaciente().getDNI());
             ps.setString(2, asignacion.getMedico().getMatricula());
             ps.setString(3, asignacion.getBox());
@@ -40,7 +40,7 @@ public class daoAsignacion {
             ps.setString(6, asignacion.getPaciente().getNombre());
             ps.setString(7, asignacion.getMedico().getNombre());
 
-            // Ejecutar la sentencia SQL para insertar la asignación en la base de datos.
+            // Ejecutar la sentencia SQL para insertar la asignaciï¿½n en la base de datos.
             int resultado = ps.executeUpdate();
 
             if (resultado > 0) {
@@ -49,12 +49,12 @@ public class daoAsignacion {
         } catch (SQLException e) {
             System.err.println("Error al insertar Asignacion: " + e.getMessage());
         } finally {
-            cx.desconectar(); // Cerrar la conexión a la base de datos.
+            cx.desconectar(); // Cerrar la conexiï¿½n a la base de datos.
         }
         return salida;
     }
 
-    // Función para consultar todas las asignaciones en la base de datos y devolver una lista de objetos Asignacion.
+    // Funciï¿½n para consultar todas las asignaciones en la base de datos y devolver una lista de objetos Asignacion.
     public ArrayList<Asignacion> ConsultaAsignaciones() {
         ArrayList<Asignacion> lista = new ArrayList<Asignacion>();
         PreparedStatement ps = null;
@@ -81,14 +81,9 @@ public class daoAsignacion {
         } catch (SQLException e) {
             // Manejo de excepciones en caso de error.
         } finally {
-            cx.desconectar(); // Cerrar la conexión a la base de datos.
+            cx.desconectar(); // Cerrar la conexiï¿½n a la base de datos.
         }
 
         return lista; // Devolver la lista de asignaciones consultadas.
     }
-
-	public boolean insertarAdmision(Asignacion asignacion) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

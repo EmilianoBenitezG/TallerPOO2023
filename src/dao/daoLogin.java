@@ -9,21 +9,21 @@ public class daoLogin {
 
     Conexion cx;
     
-    // Constructor de la clase daoLogin, inicializa la conexión a la base de datos.
+    // Constructor de la clase daoLogin, inicializa la conexiï¿½n a la base de datos.
     public daoLogin() {
         cx = new Conexion();
     }
     
-    // Función para realizar el proceso de inicio de sesión.
-    public String login(String usuario, String contraseña){
+    // Funciï¿½n para realizar el proceso de inicio de sesiï¿½n.
+    public String login(String usuario, String contrasenia){
         String rol = "";
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            // Preparar la sentencia SQL para buscar un usuario con el nombre de usuario y contraseña proporcionados.
-            ps = cx.conectar().prepareStatement("SELECT * FROM Usuario a INNER JOIN Rol b on a.idRol = b.idRol WHERE UPPER(usuario) = ? AND UPPER(contraseña) = ?");
+            // Preparar la sentencia SQL para buscar un usuario con el nombre de usuario y contraseï¿½a proporcionados.
+            ps = cx.conectar().prepareStatement("SELECT * FROM Usuario a INNER JOIN Rol b on a.idRol = b.idRol WHERE UPPER(usuario) = ? AND UPPER(contrasenia) = ?");
             ps.setString(1, usuario);
-            ps.setString(2, contraseña);
+            ps.setString(2, contrasenia);
             rs = ps.executeQuery();
             while(rs.next()) {
                 rol = rs.getString("nombreRol");
@@ -34,6 +34,6 @@ public class daoLogin {
             // Cerrar recursos y desconectar la base de datos.
         }
         
-        return rol; // Devuelve el rol del usuario (si se encontró una coincidencia).
+        return rol; // Devuelve el rol del usuario (si se encontrï¿½ una coincidencia).
     }
 }

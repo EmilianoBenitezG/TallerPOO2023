@@ -33,7 +33,7 @@ public class vUsuario extends JFrame {
 	private JTextField txtUsuario;
 	private JLabel lblId;
 	JLabel lblRol = new JLabel("Rol");
-	String[] columnNames = {"Usuario", "Contraseña", "Nivel acceso"};
+	String[] columnNames = {"Usuario", "Contrasenia", "Nivel acceso"};
 	Object[][] data = {};
 	 DefaultTableModel modelo = new DefaultTableModel(data, columnNames) {
          @Override
@@ -47,7 +47,7 @@ public class vUsuario extends JFrame {
 	private JComboBox cbxNombreRol;
 	int fila=-1;
 	Usuario usuario = new Usuario();
-	private JPasswordField txtContraseña;
+	private JPasswordField txtContrasenia;
 	/**
 	 * Launch the application.
 	 */
@@ -88,10 +88,10 @@ public class vUsuario extends JFrame {
 		lblUsuario.setBounds(58, 125, 71, 17);
 		contentPane.add(lblUsuario);
 		
-		JLabel lblContraseña = new JLabel("Contrase\u00F1a:");
-		lblContraseña.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblContraseña.setBounds(28, 164, 103, 14);
-		contentPane.add(lblContraseña);
+		JLabel lblContrasenia = new JLabel("Contrase\u00F1a:");
+		lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblContrasenia.setBounds(28, 164, 103, 14);
+		contentPane.add(lblContrasenia);
 		
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -100,7 +100,7 @@ public class vUsuario extends JFrame {
 				try {
 					Usuario usuario = new Usuario();
 					usuario.setUsuario(txtUsuario.getText());
-					usuario.setContraseña(txtContraseña.getText());
+					usuario.setContrasenia(txtContrasenia.getText());
 					Integer idRol = cbxNombreRol.getSelectedIndex();
 					String nombreRol = cbxNombreRol.getSelectedItem().toString();
 					Rol rol = new Rol(idRol,nombreRol);
@@ -143,7 +143,7 @@ public class vUsuario extends JFrame {
 				usuario=lista.get(fila);
 				lblId.setText(String.valueOf(usuario.getId()));
 				txtUsuario.setText(usuario.getUsuario());
-				txtContraseña.setText(usuario.getContraseña());
+				txtContrasenia.setText(usuario.getContrasenia());
 				if (usuario.getRol().getNombreRol().equals("FUNCIONARIO")) {
 					item = 1;
 				}
@@ -187,7 +187,7 @@ public class vUsuario extends JFrame {
 				if(usuario.getId() != 1) {
 					try {
 						usuario.setUsuario(txtUsuario.getText());
-						usuario.setContraseña(txtContraseña.getText());
+						usuario.setContrasenia(txtContrasenia.getText());
 						Integer idRol = cbxNombreRol.getSelectedIndex();
 						String nombreRol = cbxNombreRol.getSelectedItem().toString();
 						Rol rol = new Rol(idRol,nombreRol);
@@ -263,9 +263,9 @@ public class vUsuario extends JFrame {
 		btnAtras.setBounds(10, 29, 85, 36);
 		contentPane.add(btnAtras);
 		
-		txtContraseña = new JPasswordField();
-		txtContraseña.setBounds(127, 160, 173, 28);
-		contentPane.add(txtContraseña);
+		txtContrasenia = new JPasswordField();
+		txtContrasenia.setBounds(127, 160, 173, 28);
+		contentPane.add(txtContrasenia);
 		
 		lblRol.setFont(new Font("Source Sans Pro SemiBold", Font.PLAIN, 12));
 		lblRol.setBounds(729, 11, 98, 18);
@@ -279,7 +279,7 @@ public class vUsuario extends JFrame {
 	
 	private void limpiarCampos() {
 		txtUsuario.setText("");
-		txtContraseña.setText("");
+		txtContrasenia.setText("");
 		lblId.setText("");
 	}
 	

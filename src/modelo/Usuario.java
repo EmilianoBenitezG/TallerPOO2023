@@ -2,9 +2,9 @@ package modelo;
 
 // Clase que representa un usuario del sistema
 public class Usuario {
-    int id;          // Identificador único del usuario
+    int id;          // Identificador ï¿½nico del usuario
     String usuario;  // Nombre de usuario
-    String contraseña; // Contraseña del usuario
+    String contrasenia; // Contraseï¿½a del usuario
     private Rol rol;  // Rol asociado al usuario
 
     public Usuario() {
@@ -28,13 +28,13 @@ public class Usuario {
         this.usuario = usuario;
     }
 
-    // Getter y Setter para obtener y establecer la contraseña del usuario
-    public String getContraseña() {
-        return contraseña;
+    // Getter y Setter para obtener y establecer la contraseï¿½a del usuario
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     // Getter y Setter para obtener y establecer el rol asociado al usuario

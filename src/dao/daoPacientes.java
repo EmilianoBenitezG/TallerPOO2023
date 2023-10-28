@@ -30,7 +30,11 @@ public class daoPacientes {
             ps.setString(8, paciente.getEstadoCivil().toUpperCase());
             ps.setString(9, paciente.getEmail().toUpperCase());
             ps.setString(10, paciente.getPersonaContacto().toUpperCase());
-            ps.setInt(11, paciente.getEdad());
+            Integer edad = paciente.getEdad();
+            if(edad == null) {
+            	edad = 0;
+            }
+            ps.setInt(11, edad);
             int estaVivo = paciente.isEstado() ? 1 : 0;
             ps.setInt(12, estaVivo);
             int resultado = ps.executeUpdate();
@@ -111,7 +115,7 @@ public class daoPacientes {
         return salida;
     }
     
-    // Busca pacientes en la base de datos por su número de DNI
+    // Busca pacientes en la base de datos por su nï¿½mero de DNI
     public ArrayList<Paciente> buscarPacientesPorDNI(String dni) {
         ArrayList<Paciente> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -153,7 +157,7 @@ public class daoPacientes {
         return lista;
     }
     
- // Busca pacientes en la base de datos por su número de DNI
+ // Busca pacientes en la base de datos por su nï¿½mero de DNI
     public ArrayList<Paciente> buscarPacientes() {
         ArrayList<Paciente> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -194,7 +198,7 @@ public class daoPacientes {
         return lista;
     }
     
- // Busca pacientes en la base de datos por su número de DNI
+ // Busca pacientes en la base de datos por su nï¿½mero de DNI
     public ArrayList<Paciente> buscarPacientesEnTriage() {
         ArrayList<Paciente> lista = new ArrayList<>();
         PreparedStatement ps = null;
@@ -235,7 +239,7 @@ public class daoPacientes {
         return lista;
     }
     
-    // Verifica si existe un paciente con el número de DNI
+    // Verifica si existe un paciente con el nï¿½mero de DNI
     public boolean existePacienteConDNI(String dni) {
         boolean existe = false;
 

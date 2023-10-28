@@ -241,7 +241,7 @@ public class vAsignacion extends JFrame {
 				asignacion.setBox(box);
 				asignacion.setFecha(fecha);
 				asignacion.setHora(hora);
-		        if (dao.insertarAdmision(asignacion)) {
+		        if (dao.insertarAsignacion(asignacion)) {
 		        	actualizarTabla();
                     JOptionPane.showMessageDialog(null, "Se agreg� correctamente");
                 } else {
